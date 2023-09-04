@@ -49,53 +49,64 @@
 		}
 		.track-list {
 			display: grid;
-			grid-template-columns: repeat(5, 1fr);
 			gap: 10px;
 			padding: 20px;
 		}
 
-    /* Define the grid for larger screens (e.g., desktop) */
-    @media (min-width: 1501px) {
-        .track-list {
-            grid-template-columns: repeat(5, 1fr);
-        }
-    }
+            /* Define the grid for larger screens (e.g., desktop) */
+            @media (min-width: 1501px) {
+                .track-list {
+                    grid-template-columns: repeat(5, 1fr);
+                }
+            }
 
-    /* Define the grid for medium-sized screens */
-    @media (min-width: 1251px) and (max-width: 1500px) {
-        .track-list {
-            grid-template-columns: repeat(4, 1fr);
-        }
-    }
+            /* Define the grid for medium-sized screens */
+            @media (min-width: 1291px) and (max-width: 1500px) {
+                .track-list {
+                    grid-template-columns: repeat(4, 1fr);
+                }
+            }
 
-    /* Define the grid for medium-sized screens */
-    @media (min-width: 1081px) and (max-width: 1250px) {
-        .track-list {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
+            /* Define the grid for medium-sized screens */
+            @media (min-width: 1081px) and (max-width: 1290px) {
+                .track-list {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
 
-    /* Define the grid for smaller screens (e.g., mobile) */
-    @media (max-width: 1080px) {
-        .track-list {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
+            /* Define the grid for smaller screens (e.g., mobile) */
+            @media (max-width: 1080px) {
+                .track-list {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
 
 		.track {
 			border: 1px solid #ccc;
 			padding: 10px;
 			text-align: center;
 		}
+
+        .track-container {
+			height: 55px;
+		}
 		
 		.track-details {
-			margin-top: 5px;
-			list-style: disc;
+			text-align: left;
 			padding-left: 20px;
+			line-height: 0.9;
+		}
+		
+		.track-details-distance {
+			line-height: 0.6;
 		}
 
-		.track-details li {
-			text-align: left; /* Align details text to the left */
+        .track-details-ascent-normal {
+			font-weight: normal;
+		}
+		
+		.track-details-ascent-bold {
+			font-weight: bold;
 		}
 	</style>
 	</head>
@@ -116,1014 +127,1476 @@
             <p><strong>Or click one of the following links to view individual tracks:</strong></p>
         <h1>2023</h1>
     <div class="track-list">
-                <div class="track">
+                <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-08-31-18-07-10 target="_self">SX 73950 79201</a>
-                <br>Becca Brook Clapper Bridge, Manaton
+                <div class="track-container">
+                    <br>Becca Brook Clapper Bridge, Manaton</br>
+                </div>
+                <br>2023-08-31 @ 18-07-10</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-08-31 @ 18-07-10</li>
-                    <li>Distance:</li>
-                    <li>5.85 miles \  9.42 km</li>
-                    <li>Duration: 2:56:50</li>
-                    <li>Ascent: 1083 metres</li>
-                    <li>Descent: -1088 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.85 miles \  9.42 km</br>
+                    </div>
+                    <br>Duration: 2:56:50</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 1083 metres</br>
+                        <br>Descent: -1088 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-08-24-18-06-10 target="_self">SX 68865 58966</a>
-                <br>Ugborough, South Brent
+                <div class="track-container">
+                    <br>Ugborough, South Brent</br>
+                </div>
+                <br>2023-08-24 @ 18-06-10</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-08-24 @ 18-06-10</li>
-                    <li>Distance:</li>
-                    <li>4.79 miles \  7.71 km</li>
-                    <li>Duration: 2:41:38</li>
-                    <li>Ascent: 786 metres</li>
-                    <li>Descent: -801 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.79 miles \  7.71 km</br>
+                    </div>
+                    <br>Duration: 2:41:38</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 786 metres</br>
+                        <br>Descent: -801 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #FFA07A;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-08-22-11-02-31 target="_self">SX 67964 81590</a>
-                <br>B3212, Chagford
+                <div class="track-container">
+                    <br>B3212, Chagford</br>
+                </div>
+                <br>2023-08-22 @ 11-02-31</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-08-22 @ 11-02-31</li>
-                    <li>Distance:</li>
-                    <li>11.66 miles \  18.77 km</li>
-                    <li>Duration: 7:22:40</li>
-                    <li>Ascent: 2139 metres</li>
-                    <li>Descent: -2477 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>11.66 miles \  18.77 km</br>
+                    </div>
+                    <br>Duration: 7:22:40</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 2139 metres</br>
+                        <br>Descent: -2477 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-08-17-18-14-18 target="_self">SX 58742 73283</a>
-                <br>B3212, Princetown, Walkhampton, Princetown
+                <div class="track-container">
+                    <br>B3212, Princetown, Walkhampton, Princetown</br>
+                </div>
+                <br>2023-08-17 @ 18-14-18</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-08-17 @ 18-14-18</li>
-                    <li>Distance:</li>
-                    <li>5.36 miles \  8.62 km</li>
-                    <li>Duration: 2:31:34</li>
-                    <li>Ascent: 575 metres</li>
-                    <li>Descent: -579 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.36 miles \  8.62 km</br>
+                    </div>
+                    <br>Duration: 2:31:34</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 575 metres</br>
+                        <br>Descent: -579 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-08-10-18-06-05 target="_self">SX 69501 73124</a>
-                <br>Dr Blackall's Drive, Widecombe in the Moor, Poundsgate
+                <div class="track-container">
+                    <br>Dr Blackall's Drive, Widecombe in the Moor, Poundsgate</br>
+                </div>
+                <br>2023-08-10 @ 18-06-05</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-08-10 @ 18-06-05</li>
-                    <li>Distance:</li>
-                    <li>5.76 miles \  9.28 km</li>
-                    <li>Duration: 3:01:46</li>
-                    <li>Ascent: 975 metres</li>
-                    <li>Descent: -970 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.76 miles \  9.28 km</br>
+                    </div>
+                    <br>Duration: 3:01:46</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 975 metres</br>
+                        <br>Descent: -970 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-08-03-18-09-46 target="_self">SX 50331 70268</a>
-                <br>A386, Horrabridge
+                <div class="track-container">
+                    <br>A386, Horrabridge</br>
+                </div>
+                <br>2023-08-03 @ 18-09-46</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-08-03 @ 18-09-46</li>
-                    <li>Distance:</li>
-                    <li>5.1 miles \  8.21 km</li>
-                    <li>Duration: 2:31:39</li>
-                    <li>Ascent: 1016 metres</li>
-                    <li>Descent: -1006 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.1 miles \  8.21 km</br>
+                    </div>
+                    <br>Duration: 2:31:39</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 1016 metres</br>
+                        <br>Descent: -1006 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-07-27-18-03-34 target="_self">SX 73982 79176</a>
-                <br>Great Houndtor, Manaton, Water
+                <div class="track-container">
+                    <br>Great Houndtor, Manaton, Water</br>
+                </div>
+                <br>2023-07-27 @ 18-03-34</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-07-27 @ 18-03-34</li>
-                    <li>Distance:</li>
-                    <li>4.82 miles \  7.76 km</li>
-                    <li>Duration: 3:01:46</li>
-                    <li>Ascent: 683 metres</li>
-                    <li>Descent: -694 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.82 miles \  7.76 km</br>
+                    </div>
+                    <br>Duration: 3:01:46</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 683 metres</br>
+                        <br>Descent: -694 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-07-20-18-10-05 target="_self">SX 67094 88394</a>
-                <br>Chapple, Gidleigh, Throwleigh
+                <div class="track-container">
+                    <br>Chapple, Gidleigh, Throwleigh</br>
+                </div>
+                <br>2023-07-20 @ 18-10-05</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-07-20 @ 18-10-05</li>
-                    <li>Distance:</li>
-                    <li>5.6 miles \  9.02 km</li>
-                    <li>Duration: 2:58:31</li>
-                    <li>Ascent: 834 metres</li>
-                    <li>Descent: -825 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.6 miles \  9.02 km</br>
+                    </div>
+                    <br>Duration: 2:58:31</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 834 metres</br>
+                        <br>Descent: -825 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-07-13-18-11-58 target="_self">SX 54725 47375</a>
-                <br>1, Hannaford Road, Noss Mayo, Newton and Noss, Newton Ferrers
+                <div class="track-container">
+                    <br>1, Hannaford Road, Noss Mayo, Newton and Noss, Newton Ferrers</br>
+                </div>
+                <br>2023-07-13 @ 18-11-58</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-07-13 @ 18-11-58</li>
-                    <li>Distance:</li>
-                    <li>4.55 miles \  7.32 km</li>
-                    <li>Duration: 1:59:33</li>
-                    <li>Ascent: 858 metres</li>
-                    <li>Descent: -869 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.55 miles \  7.32 km</br>
+                    </div>
+                    <br>Duration: 1:59:33</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 858 metres</br>
+                        <br>Descent: -869 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-07-06-18-34-37 target="_self">SX 72948 37421</a>
-                <br>Ringrone, Cliff Road, Salcombe
+                <div class="track-container">
+                    <br>Ringrone, Cliff Road, Salcombe</br>
+                </div>
+                <br>2023-07-06 @ 18-34-37</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-07-06 @ 18-34-37</li>
-                    <li>Distance:</li>
-                    <li>4.34 miles \  6.99 km</li>
-                    <li>Duration: 2:28:59</li>
-                    <li>Ascent: 669 metres</li>
-                    <li>Descent: -587 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.34 miles \  6.99 km</br>
+                    </div>
+                    <br>Duration: 2:28:59</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 669 metres</br>
+                        <br>Descent: -587 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-06-29-18-16-31 target="_self">SX 53093 75151</a>
-                <br>Pork Hill Car Park, B3357, Whitchurch
+                <div class="track-container">
+                    <br>Pork Hill Car Park, B3357, Whitchurch</br>
+                </div>
+                <br>2023-06-29 @ 18-16-31</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-06-29 @ 18-16-31</li>
-                    <li>Distance:</li>
-                    <li>3.24 miles \  5.21 km</li>
-                    <li>Duration: 1:45:42</li>
-                    <li>Ascent: 427 metres</li>
-                    <li>Descent: -423 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>3.24 miles \  5.21 km</br>
+                    </div>
+                    <br>Duration: 1:45:42</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 427 metres</br>
+                        <br>Descent: -423 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-06-22-18-22-46 target="_self">SX 68529 71248</a>
-                <br>Sandy Way, Holne
+                <div class="track-container">
+                    <br>Sandy Way, Holne</br>
+                </div>
+                <br>2023-06-22 @ 18-22-46</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-06-22 @ 18-22-46</li>
-                    <li>Distance:</li>
-                    <li>3.54 miles \  5.7 km</li>
-                    <li>Duration: 1:44:19</li>
-                    <li>Ascent: 437 metres</li>
-                    <li>Descent: -440 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>3.54 miles \  5.7 km</br>
+                    </div>
+                    <br>Duration: 1:44:19</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 437 metres</br>
+                        <br>Descent: -440 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-06-15-18-06-54 target="_self">SX 66400 73327</a>
-                <br>Pixieland, Dartmoor Forest, Dartmeet
+                <div class="track-container">
+                    <br>Pixieland, Dartmoor Forest, Dartmeet</br>
+                </div>
+                <br>2023-06-15 @ 18-06-54</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-06-15 @ 18-06-54</li>
-                    <li>Distance:</li>
-                    <li>5.13 miles \  8.25 km</li>
-                    <li>Duration: 2:41:46</li>
-                    <li>Ascent: 305 metres</li>
-                    <li>Descent: -313 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.13 miles \  8.25 km</br>
+                    </div>
+                    <br>Duration: 2:41:46</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 305 metres</br>
+                        <br>Descent: -313 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #FAF884;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-05-25-18-06-44 target="_self">SX 65423 72669</a>
-                <br>Hexworthy, Dartmoor Forest
+                <div class="track-container">
+                    <br>Hexworthy, Dartmoor Forest</br>
+                </div>
+                <br>2023-05-25 @ 18-06-44</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-05-25 @ 18-06-44</li>
-                    <li>Distance:</li>
-                    <li>6.05 miles \  9.73 km</li>
-                    <li>Duration: 2:46:43</li>
-                    <li>Ascent: 836 metres</li>
-                    <li>Descent: -817 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>6.05 miles \  9.73 km</br>
+                    </div>
+                    <br>Duration: 2:46:43</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 836 metres</br>
+                        <br>Descent: -817 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-05-18-18-14-19 target="_self">SX 63588 47825</a>
-                <br>Dolphin Inn Car Park, Yellands Park, Great Torr, Kingston
+                <div class="track-container">
+                    <br>Dolphin Inn Car Park, Yellands Park, Great Torr, Kingston</br>
+                </div>
+                <br>2023-05-18 @ 18-14-19</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-05-18 @ 18-14-19</li>
-                    <li>Distance:</li>
-                    <li>5.95 miles \  9.58 km</li>
-                    <li>Duration: 2:49:44</li>
-                    <li>Ascent: 908 metres</li>
-                    <li>Descent: -912 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.95 miles \  9.58 km</br>
+                    </div>
+                    <br>Duration: 2:49:44</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 908 metres</br>
+                        <br>Descent: -912 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-05-11-18-10-09 target="_self">SX 54580 66947</a>
-                <br>Lovaton, Meavy
+                <div class="track-container">
+                    <br>Lovaton, Meavy</br>
+                </div>
+                <br>2023-05-11 @ 18-10-09</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-05-11 @ 18-10-09</li>
-                    <li>Distance:</li>
-                    <li>3.46 miles \  5.57 km</li>
-                    <li>Duration: 2:16:43</li>
-                    <li>Ascent: 665 metres</li>
-                    <li>Descent: -680 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>3.46 miles \  5.57 km</br>
+                    </div>
+                    <br>Duration: 2:16:43</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 665 metres</br>
+                        <br>Descent: -680 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-04-20-18-13-17 target="_self">SX 70391 63991</a>
-                <br>Deancombe, Dean Prior
+                <div class="track-container">
+                    <br>Deancombe, Dean Prior</br>
+                </div>
+                <br>2023-04-20 @ 18-13-17</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-04-20 @ 18-13-17</li>
-                    <li>Distance:</li>
-                    <li>4.99 miles \  8.03 km</li>
-                    <li>Duration: 2:22:19</li>
-                    <li>Ascent: 159 metres</li>
-                    <li>Descent: -167 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.99 miles \  8.03 km</br>
+                    </div>
+                    <br>Duration: 2:22:19</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 159 metres</br>
+                        <br>Descent: -167 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-04-13-18-06-46 target="_self">SX 63840 59387</a>
-                <br>Harford
+                <div class="track-container">
+                    <br>Harford</br>
+                </div>
+                <br>2023-04-13 @ 18-06-46</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-04-13 @ 18-06-46</li>
-                    <li>Distance:</li>
-                    <li>5.79 miles \  9.32 km</li>
-                    <li>Duration: 2:37:28</li>
-                    <li>Ascent: 708 metres</li>
-                    <li>Descent: -692 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.79 miles \  9.32 km</br>
+                    </div>
+                    <br>Duration: 2:37:28</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 708 metres</br>
+                        <br>Descent: -692 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-04-06-18-02-36 target="_self">SX 70025 66636</a>
-                <br>Oaklands Road, Parklands Farm, West Buckfastleigh, Combe
+                <div class="track-container">
+                    <br>Oaklands Road, Parklands Farm, West Buckfastleigh, Combe</br>
+                </div>
+                <br>2023-04-06 @ 18-02-36</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-04-06 @ 18-02-36</li>
-                    <li>Distance:</li>
-                    <li>5.35 miles \  8.61 km</li>
-                    <li>Duration: 2:32:58</li>
-                    <li>Ascent: 265 metres</li>
-                    <li>Descent: -287 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.35 miles \  8.61 km</br>
+                    </div>
+                    <br>Duration: 2:32:58</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 265 metres</br>
+                        <br>Descent: -287 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-03-30-18-19-51 target="_self">SX 70031 66624</a>
-                <br>Oaklands Road, Parklands Farm, West Buckfastleigh, Combe
+                <div class="track-container">
+                    <br>Oaklands Road, Parklands Farm, West Buckfastleigh, Combe</br>
+                </div>
+                <br>2023-03-30 @ 18-19-51</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-03-30 @ 18-19-51</li>
-                    <li>Distance:</li>
-                    <li>2.79 miles \  4.49 km</li>
-                    <li>Duration: 1:17:06</li>
-                    <li>Ascent: 406 metres</li>
-                    <li>Descent: -402 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>2.79 miles \  4.49 km</br>
+                    </div>
+                    <br>Duration: 1:17:06</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 406 metres</br>
+                        <br>Descent: -402 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-03-23-18-09-03 target="_self">SX 68135 73268</a>
-                <br>B3357, Peter's Cottage, Widecombe in the Moor
+                <div class="track-container">
+                    <br>B3357, Peter's Cottage, Widecombe in the Moor</br>
+                </div>
+                <br>2023-03-23 @ 18-09-03</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-03-23 @ 18-09-03</li>
-                    <li>Distance:</li>
-                    <li>2.66 miles \  4.29 km</li>
-                    <li>Duration: 1:49:38</li>
-                    <li>Ascent: 415 metres</li>
-                    <li>Descent: -414 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>2.66 miles \  4.29 km</br>
+                    </div>
+                    <br>Duration: 1:49:38</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 415 metres</br>
+                        <br>Descent: -414 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-03-16-18-10-53 target="_self">SX 69458 72986</a>
-                <br>Dr Blackall's Drive, Widecombe in the Moor, Poundsgate
+                <div class="track-container">
+                    <br>Dr Blackall's Drive, Widecombe in the Moor, Poundsgate</br>
+                </div>
+                <br>2023-03-16 @ 18-10-53</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-03-16 @ 18-10-53</li>
-                    <li>Distance:</li>
-                    <li>5.56 miles \  8.94 km</li>
-                    <li>Duration: 2:35:57</li>
-                    <li>Ascent: 962 metres</li>
-                    <li>Descent: -957 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.56 miles \  8.94 km</br>
+                    </div>
+                    <br>Duration: 2:35:57</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 962 metres</br>
+                        <br>Descent: -957 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-03-09-18-21-21 target="_self">SX 55486 65754</a>
-                <br>Portland Lane, Sheepstor
+                <div class="track-container">
+                    <br>Portland Lane, Sheepstor</br>
+                </div>
+                <br>2023-03-09 @ 18-21-21</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-03-09 @ 18-21-21</li>
-                    <li>Distance:</li>
-                    <li>3.9 miles \  6.27 km</li>
-                    <li>Duration: 1:47:21</li>
-                    <li>Ascent: 439 metres</li>
-                    <li>Descent: -441 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>3.9 miles \  6.27 km</br>
+                    </div>
+                    <br>Duration: 1:47:21</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 439 metres</br>
+                        <br>Descent: -441 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-02-23-18-11-20 target="_self">SX 52227 65583</a>
-                <br>Plym Valley Trail, Buckland Monachorum
+                <div class="track-container">
+                    <br>Plym Valley Trail, Buckland Monachorum</br>
+                </div>
+                <br>2023-02-23 @ 18-11-20</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-02-23 @ 18-11-20</li>
-                    <li>Distance:</li>
-                    <li>4.07 miles \  6.55 km</li>
-                    <li>Duration: 1:59:21</li>
-                    <li>Ascent: 758 metres</li>
-                    <li>Descent: -761 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.07 miles \  6.55 km</br>
+                    </div>
+                    <br>Duration: 1:59:21</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 758 metres</br>
+                        <br>Descent: -761 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-02-09-18-02-46 target="_self">SX 61549 58103</a>
-                <br>Uppaton Lane, Cornwood
+                <div class="track-container">
+                    <br>Uppaton Lane, Cornwood</br>
+                </div>
+                <br>2023-02-09 @ 18-02-46</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-02-09 @ 18-02-46</li>
-                    <li>Distance:</li>
-                    <li>4.84 miles \  7.79 km</li>
-                    <li>Duration: 2:46:26</li>
-                    <li>Ascent: 121 metres</li>
-                    <li>Descent: -111 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.84 miles \  7.79 km</br>
+                    </div>
+                    <br>Duration: 2:46:26</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 121 metres</br>
+                        <br>Descent: -111 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-02-02-18-15-32 target="_self">SX 60178 60171</a>
-                <br>Cornwood
+                <div class="track-container">
+                    <br>Cornwood</br>
+                </div>
+                <br>2023-02-02 @ 18-15-32</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-02-02 @ 18-15-32</li>
-                    <li>Distance:</li>
-                    <li>5.01 miles \  8.06 km</li>
-                    <li>Duration: 2:47:03</li>
-                    <li>Ascent: 376 metres</li>
-                    <li>Descent: -384 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.01 miles \  8.06 km</br>
+                    </div>
+                    <br>Duration: 2:47:03</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 376 metres</br>
+                        <br>Descent: -384 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-01-19-18-15-19 target="_self">SX 51348 77776</a>
-                <br>Langsford Road, Peter Tavy
+                <div class="track-container">
+                    <br>Langsford Road, Peter Tavy</br>
+                </div>
+                <br>2023-01-19 @ 18-15-19</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-01-19 @ 18-15-19</li>
-                    <li>Distance:</li>
-                    <li>5.14 miles \  8.27 km</li>
-                    <li>Duration: 2:28:35</li>
-                    <li>Ascent: 721 metres</li>
-                    <li>Descent: -722 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.14 miles \  8.27 km</br>
+                    </div>
+                    <br>Duration: 2:28:35</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 721 metres</br>
+                        <br>Descent: -722 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-01-12-18-11-06 target="_self">SX 54753 69222</a>
-                <br>B3212, Walkhampton, Dousland
+                <div class="track-container">
+                    <br>B3212, Walkhampton, Dousland</br>
+                </div>
+                <br>2023-01-12 @ 18-11-06</br>
                 <br>
-                <ul class="track-details">
-                    <li>2023-01-12 @ 18-11-06</li>
-                    <li>Distance:</li>
-                    <li>3.73 miles \  6.01 km</li>
-                    <li>Duration: 1:53:26</li>
-                    <li>Ascent: 575 metres</li>
-                    <li>Descent: -573 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>3.73 miles \  6.01 km</br>
+                    </div>
+                    <br>Duration: 1:53:26</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 575 metres</br>
+                        <br>Descent: -573 metres</br>
+                    </div>
+                </div>
             </div>
                     </div>    <h1>2022</h1>
     <div class="track-list">
-                <div class="track">
+                <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-12-08-18-14-08 target="_self">SX 67968 81593</a>
-                <br>B3212, Chagford
+                <div class="track-container">
+                    <br>B3212, Chagford</br>
+                </div>
+                <br>2022-12-08 @ 18-14-08</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-12-08 @ 18-14-08</li>
-                    <li>Distance:</li>
-                    <li>3.91 miles \  6.3 km</li>
-                    <li>Duration: 2:09:34</li>
-                    <li>Ascent: 540 metres</li>
-                    <li>Descent: -536 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>3.91 miles \  6.3 km</br>
+                    </div>
+                    <br>Duration: 2:09:34</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 540 metres</br>
+                        <br>Descent: -536 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-12-01-18-06-39 target="_self">SX 63846 59382</a>
-                <br>Harford
+                <div class="track-container">
+                    <br>Harford</br>
+                </div>
+                <br>2022-12-01 @ 18-06-39</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-12-01 @ 18-06-39</li>
-                    <li>Distance:</li>
-                    <li>4.72 miles \  7.6 km</li>
-                    <li>Duration: 3:00:24</li>
-                    <li>Ascent: 640 metres</li>
-                    <li>Descent: -634 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.72 miles \  7.6 km</br>
+                    </div>
+                    <br>Duration: 3:00:24</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 640 metres</br>
+                        <br>Descent: -634 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-11-24-18-10-42 target="_self">SX 50331 70258</a>
-                <br>A386, Horrabridge
+                <div class="track-container">
+                    <br>A386, Horrabridge</br>
+                </div>
+                <br>2022-11-24 @ 18-10-42</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-11-24 @ 18-10-42</li>
-                    <li>Distance:</li>
-                    <li>5.02 miles \  8.09 km</li>
-                    <li>Duration: 2:32:07</li>
-                    <li>Ascent: 1022 metres</li>
-                    <li>Descent: -1030 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.02 miles \  8.09 km</br>
+                    </div>
+                    <br>Duration: 2:32:07</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 1022 metres</br>
+                        <br>Descent: -1030 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-11-17-18-14-24 target="_self">SX 60909 75047</a>
-                <br>Trout Cottage, Two Bridges, Dartmoor Forest
+                <div class="track-container">
+                    <br>Trout Cottage, Two Bridges, Dartmoor Forest</br>
+                </div>
+                <br>2022-11-17 @ 18-14-24</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-11-17 @ 18-14-24</li>
-                    <li>Distance:</li>
-                    <li>4.69 miles \  7.55 km</li>
-                    <li>Duration: 2:51:11</li>
-                    <li>Ascent: 697 metres</li>
-                    <li>Descent: -716 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.69 miles \  7.55 km</br>
+                    </div>
+                    <br>Duration: 2:51:11</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 697 metres</br>
+                        <br>Descent: -716 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-11-10-18-15-50 target="_self">SX 56051 74888</a>
-                <br>Foggintor School Ruin / Four Winds, B3357, Dartmoor Forest
+                <div class="track-container">
+                    <br>Foggintor School Ruin / Four Winds, B3357, Dartmoor Forest</br>
+                </div>
+                <br>2022-11-10 @ 18-15-50</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-11-10 @ 18-15-50</li>
-                    <li>Distance:</li>
-                    <li>3.86 miles \  6.22 km</li>
-                    <li>Duration: 1:55:25</li>
-                    <li>Ascent: 442 metres</li>
-                    <li>Descent: -434 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>3.86 miles \  6.22 km</br>
+                    </div>
+                    <br>Duration: 1:55:25</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 442 metres</br>
+                        <br>Descent: -434 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-10-13-18-06-44 target="_self">SX 55468 64557</a>
-                <br>Cadover Bridge Car Park, Cadover Bridge, Shaugh Prior
+                <div class="track-container">
+                    <br>Cadover Bridge Car Park, Cadover Bridge, Shaugh Prior</br>
+                </div>
+                <br>2022-10-13 @ 18-06-44</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-10-13 @ 18-06-44</li>
-                    <li>Distance:</li>
-                    <li>4.12 miles \  6.63 km</li>
-                    <li>Duration: 2:34:07</li>
-                    <li>Ascent: 780 metres</li>
-                    <li>Descent: -776 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.12 miles \  6.63 km</br>
+                    </div>
+                    <br>Duration: 2:34:07</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 780 metres</br>
+                        <br>Descent: -776 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #FAF884;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-09-01-18-04-50 target="_self">SX 63580 47830</a>
-                <br>Dolphin Inn Car Park, Yellands Park, Great Torr, Kingston
+                <div class="track-container">
+                    <br>Dolphin Inn Car Park, Yellands Park, Great Torr, Kingston</br>
+                </div>
+                <br>2022-09-01 @ 18-04-50</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-09-01 @ 18-04-50</li>
-                    <li>Distance:</li>
-                    <li>6.02 miles \  9.69 km</li>
-                    <li>Duration: 3:01:26</li>
-                    <li>Ascent: 1025 metres</li>
-                    <li>Descent: -1025 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>6.02 miles \  9.69 km</br>
+                    </div>
+                    <br>Duration: 3:01:26</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 1025 metres</br>
+                        <br>Descent: -1025 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-08-25-18-06-41 target="_self">SX 68744 71335</a>
-                <br>Holne
+                <div class="track-container">
+                    <br>Holne</br>
+                </div>
+                <br>2022-08-25 @ 18-06-41</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-08-25 @ 18-06-41</li>
-                    <li>Distance:</li>
-                    <li>4.82 miles \  7.76 km</li>
-                    <li>Duration: 2:40:05</li>
-                    <li>Ascent: 756 metres</li>
-                    <li>Descent: -724 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.82 miles \  7.76 km</br>
+                    </div>
+                    <br>Duration: 2:40:05</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 756 metres</br>
+                        <br>Descent: -724 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-08-18-18-18-06 target="_self">SX 71693 76895</a>
-                <br>B3387, Bonehill, Widecombe in the Moor
+                <div class="track-container">
+                    <br>B3387, Bonehill, Widecombe in the Moor</br>
+                </div>
+                <br>2022-08-18 @ 18-18-06</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-08-18 @ 18-18-06</li>
-                    <li>Distance:</li>
-                    <li>4.01 miles \  6.45 km</li>
-                    <li>Duration: 1:58:07</li>
-                    <li>Ascent: 631 metres</li>
-                    <li>Descent: -494 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.01 miles \  6.45 km</br>
+                    </div>
+                    <br>Duration: 1:58:07</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 631 metres</br>
+                        <br>Descent: -494 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #FFA07A;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-08-09-11-30-00 target="_self">SX 60447 70719</a>
-                <br>Tor Royal Lane, Peat Cot, Dartmoor Forest, Princetown
+                <div class="track-container">
+                    <br>Tor Royal Lane, Peat Cot, Dartmoor Forest, Princetown</br>
+                </div>
+                <br>2022-08-09 @ 11-30-00</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-08-09 @ 11-30-00</li>
-                    <li>Distance:</li>
-                    <li>9.36 miles \  15.06 km</li>
-                    <li>Duration: 5:59:24</li>
-                    <li>Ascent: 350 metres</li>
-                    <li>Descent: -465 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>9.36 miles \  15.06 km</br>
+                    </div>
+                    <br>Duration: 5:59:24</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 350 metres</br>
+                        <br>Descent: -465 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-08-04-18-02-15 target="_self">SX 66394 73346</a>
-                <br>Pixieland, Dartmoor Forest, Dartmeet
+                <div class="track-container">
+                    <br>Pixieland, Dartmoor Forest, Dartmeet</br>
+                </div>
+                <br>2022-08-04 @ 18-02-15</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-08-04 @ 18-02-15</li>
-                    <li>Distance:</li>
-                    <li>4.7 miles \  7.57 km</li>
-                    <li>Duration: 2:42:33</li>
-                    <li>Ascent: 818 metres</li>
-                    <li>Descent: -833 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.7 miles \  7.57 km</br>
+                    </div>
+                    <br>Duration: 2:42:33</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 818 metres</br>
+                        <br>Descent: -833 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-07-07-18-03-50 target="_self">SX 58898 73481</a>
-                <br>Tavistock Road, Princetown, Dartmoor Forest, Princetown
+                <div class="track-container">
+                    <br>Tavistock Road, Princetown, Dartmoor Forest, Princetown</br>
+                </div>
+                <br>2022-07-07 @ 18-03-50</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-07-07 @ 18-03-50</li>
-                    <li>Distance:</li>
-                    <li>4.5 miles \  7.23 km</li>
-                    <li>Duration: 2:42:33</li>
-                    <li>Ascent: 493 metres</li>
-                    <li>Descent: -493 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.5 miles \  7.23 km</br>
+                    </div>
+                    <br>Duration: 2:42:33</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 493 metres</br>
+                        <br>Descent: -493 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-06-30-18-03-02 target="_self">SX 70031 66640</a>
-                <br>Oaklands Road, Parklands Farm, West Buckfastleigh, Combe
+                <div class="track-container">
+                    <br>Oaklands Road, Parklands Farm, West Buckfastleigh, Combe</br>
+                </div>
+                <br>2022-06-30 @ 18-03-02</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-06-30 @ 18-03-02</li>
-                    <li>Distance:</li>
-                    <li>4.38 miles \  7.04 km</li>
-                    <li>Duration: 2:11:42</li>
-                    <li>Ascent: 594 metres</li>
-                    <li>Descent: -598 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.38 miles \  7.04 km</br>
+                    </div>
+                    <br>Duration: 2:11:42</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 594 metres</br>
+                        <br>Descent: -598 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-06-23-18-10-27 target="_self">SX 53562 90308</a>
-                <br>Granite Way, Aliceford, Sourton
+                <div class="track-container">
+                    <br>Granite Way, Aliceford, Sourton</br>
+                </div>
+                <br>2022-06-23 @ 18-10-27</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-06-23 @ 18-10-27</li>
-                    <li>Distance:</li>
-                    <li>5.77 miles \  9.29 km</li>
-                    <li>Duration: 3:32:58</li>
-                    <li>Ascent: 799 metres</li>
-                    <li>Descent: -800 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.77 miles \  9.29 km</br>
+                    </div>
+                    <br>Duration: 3:32:58</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 799 metres</br>
+                        <br>Descent: -800 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-06-16-18-10-59 target="_self">SX 67153 88400</a>
-                <br>Gidleigh
+                <div class="track-container">
+                    <br>Gidleigh</br>
+                </div>
+                <br>2022-06-16 @ 18-10-59</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-06-16 @ 18-10-59</li>
-                    <li>Distance:</li>
-                    <li>4.95 miles \  7.97 km</li>
-                    <li>Duration: 2:51:01</li>
-                    <li>Ascent: 735 metres</li>
-                    <li>Descent: -737 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.95 miles \  7.97 km</br>
+                    </div>
+                    <br>Duration: 2:51:01</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 735 metres</br>
+                        <br>Descent: -737 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-06-09-18-08-15 target="_self">SX 52580 86637</a>
-                <br>Fox and Hounds, A386, Bridestowe
+                <div class="track-container">
+                    <br>Fox and Hounds, A386, Bridestowe</br>
+                </div>
+                <br>2022-06-09 @ 18-08-15</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-06-09 @ 18-08-15</li>
-                    <li>Distance:</li>
-                    <li>5.46 miles \  8.79 km</li>
-                    <li>Duration: 2:35:45</li>
-                    <li>Ascent: 868 metres</li>
-                    <li>Descent: -877 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.46 miles \  8.79 km</br>
+                    </div>
+                    <br>Duration: 2:35:45</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 868 metres</br>
+                        <br>Descent: -877 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-05-19-18-12-46 target="_self">SX 73984 79186</a>
-                <br>Great Houndtor, Manaton, Water
+                <div class="track-container">
+                    <br>Great Houndtor, Manaton, Water</br>
+                </div>
+                <br>2022-05-19 @ 18-12-46</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-05-19 @ 18-12-46</li>
-                    <li>Distance:</li>
-                    <li>5.16 miles \  8.31 km</li>
-                    <li>Duration: 3:02:08</li>
-                    <li>Ascent: 806 metres</li>
-                    <li>Descent: -803 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.16 miles \  8.31 km</br>
+                    </div>
+                    <br>Duration: 3:02:08</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 806 metres</br>
+                        <br>Descent: -803 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-05-12-18-18-26 target="_self">SX 52383 80681</a>
-                <br>Horndon, Mary Tavy, Cudliptown
+                <div class="track-container">
+                    <br>Horndon, Mary Tavy, Cudliptown</br>
+                </div>
+                <br>2022-05-12 @ 18-18-26</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-05-12 @ 18-18-26</li>
-                    <li>Distance:</li>
-                    <li>4.44 miles \  7.14 km</li>
-                    <li>Duration: 2:14:17</li>
-                    <li>Ascent: 706 metres</li>
-                    <li>Descent: -704 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.44 miles \  7.14 km</br>
+                    </div>
+                    <br>Duration: 2:14:17</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 706 metres</br>
+                        <br>Descent: -704 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-05-05-18-07-37 target="_self">SX 54568 66946</a>
-                <br>Lovaton, Meavy
+                <div class="track-container">
+                    <br>Lovaton, Meavy</br>
+                </div>
+                <br>2022-05-05 @ 18-07-37</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-05-05 @ 18-07-37</li>
-                    <li>Distance:</li>
-                    <li>3.9 miles \  6.28 km</li>
-                    <li>Duration: 2:21:54</li>
-                    <li>Ascent: 773 metres</li>
-                    <li>Descent: -770 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>3.9 miles \  6.28 km</br>
+                    </div>
+                    <br>Duration: 2:21:54</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 773 metres</br>
+                        <br>Descent: -770 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #FAF884;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-04-21-18-06-04 target="_self">SX 54760 69236</a>
-                <br>B3212, Walkhampton, Dousland
+                <div class="track-container">
+                    <br>B3212, Walkhampton, Dousland</br>
+                </div>
+                <br>2022-04-21 @ 18-06-04</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-04-21 @ 18-06-04</li>
-                    <li>Distance:</li>
-                    <li>6.0 miles \  9.66 km</li>
-                    <li>Duration: 2:49:56</li>
-                    <li>Ascent: 797 metres</li>
-                    <li>Descent: -807 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>6.0 miles \  9.66 km</br>
+                    </div>
+                    <br>Duration: 2:49:56</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 797 metres</br>
+                        <br>Descent: -807 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-04-14-18-04-47 target="_self">SX 68104 73284</a>
-                <br>B3357, Peter's Cottage, Widecombe in the Moor
+                <div class="track-container">
+                    <br>B3357, Peter's Cottage, Widecombe in the Moor</br>
+                </div>
+                <br>2022-04-14 @ 18-04-47</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-04-14 @ 18-04-47</li>
-                    <li>Distance:</li>
-                    <li>3.33 miles \  5.36 km</li>
-                    <li>Duration: 2:01:55</li>
-                    <li>Ascent: 476 metres</li>
-                    <li>Descent: -474 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>3.33 miles \  5.36 km</br>
+                    </div>
+                    <br>Duration: 2:01:55</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 476 metres</br>
+                        <br>Descent: -474 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-04-07-18-06-58 target="_self">SX 70373 64000</a>
-                <br>Deancombe, Dean Prior
+                <div class="track-container">
+                    <br>Deancombe, Dean Prior</br>
+                </div>
+                <br>2022-04-07 @ 18-06-58</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-04-07 @ 18-06-58</li>
-                    <li>Distance:</li>
-                    <li>5.37 miles \  8.63 km</li>
-                    <li>Duration: 2:18:31</li>
-                    <li>Ascent: 595 metres</li>
-                    <li>Descent: -623 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.37 miles \  8.63 km</br>
+                    </div>
+                    <br>Duration: 2:18:31</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 595 metres</br>
+                        <br>Descent: -623 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-03-31-18-18-23 target="_self">SX 52653 73180</a>
-                <br>Moortown, Whitchurch
+                <div class="track-container">
+                    <br>Moortown, Whitchurch</br>
+                </div>
+                <br>2022-03-31 @ 18-18-23</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-03-31 @ 18-18-23</li>
-                    <li>Distance:</li>
-                    <li>4.57 miles \  7.35 km</li>
-                    <li>Duration: 2:19:47</li>
-                    <li>Ascent: 526 metres</li>
-                    <li>Descent: -527 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.57 miles \  7.35 km</br>
+                    </div>
+                    <br>Duration: 2:19:47</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 526 metres</br>
+                        <br>Descent: -527 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-03-24-18-09-28 target="_self">SX 57886 67311</a>
-                <br>Gutter Tor Car Park, Edward's Path, Sheepstor
+                <div class="track-container">
+                    <br>Gutter Tor Car Park, Edward's Path, Sheepstor</br>
+                </div>
+                <br>2022-03-24 @ 18-09-28</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-03-24 @ 18-09-28</li>
-                    <li>Distance:</li>
-                    <li>4.33 miles \  6.97 km</li>
-                    <li>Duration: 2:33:26</li>
-                    <li>Ascent: 428 metres</li>
-                    <li>Descent: -430 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.33 miles \  6.97 km</br>
+                    </div>
+                    <br>Duration: 2:33:26</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 428 metres</br>
+                        <br>Descent: -430 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-03-17-18-08-22 target="_self">SX 69642 73933</a>
-                <br>Cubworthy, Widecombe in the Moor, Poundsgate
+                <div class="track-container">
+                    <br>Cubworthy, Widecombe in the Moor, Poundsgate</br>
+                </div>
+                <br>2022-03-17 @ 18-08-22</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-03-17 @ 18-08-22</li>
-                    <li>Distance:</li>
-                    <li>4.09 miles \  6.58 km</li>
-                    <li>Duration: 2:22:52</li>
-                    <li>Ascent: 710 metres</li>
-                    <li>Descent: -713 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.09 miles \  6.58 km</br>
+                    </div>
+                    <br>Duration: 2:22:52</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 710 metres</br>
+                        <br>Descent: -713 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-03-10-18-10-24 target="_self">SX 51351 77762</a>
-                <br>Harragrove, Peter Tavy, Cudliptown
+                <div class="track-container">
+                    <br>Harragrove, Peter Tavy, Cudliptown</br>
+                </div>
+                <br>2022-03-10 @ 18-10-24</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-03-10 @ 18-10-24</li>
-                    <li>Distance:</li>
-                    <li>4.37 miles \  7.04 km</li>
-                    <li>Duration: 1:54:59</li>
-                    <li>Ascent: 479 metres</li>
-                    <li>Descent: -473 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.37 miles \  7.04 km</br>
+                    </div>
+                    <br>Duration: 1:54:59</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 479 metres</br>
+                        <br>Descent: -473 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-02-10-18-18-16 target="_self">SX 53109 75132</a>
-                <br>Pork Hill Car Park, B3357, Whitchurch
+                <div class="track-container">
+                    <br>Pork Hill Car Park, B3357, Whitchurch</br>
+                </div>
+                <br>2022-02-10 @ 18-18-16</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-02-10 @ 18-18-16</li>
-                    <li>Distance:</li>
-                    <li>3.2 miles \  5.16 km</li>
-                    <li>Duration: 1:55:58</li>
-                    <li>Ascent: 366 metres</li>
-                    <li>Descent: -362 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>3.2 miles \  5.16 km</br>
+                    </div>
+                    <br>Duration: 1:55:58</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 366 metres</br>
+                        <br>Descent: -362 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-02-03-18-17-03 target="_self">SX 67967 81592</a>
-                <br>B3212, Chagford
+                <div class="track-container">
+                    <br>B3212, Chagford</br>
+                </div>
+                <br>2022-02-03 @ 18-17-03</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-02-03 @ 18-17-03</li>
-                    <li>Distance:</li>
-                    <li>4.36 miles \  7.02 km</li>
-                    <li>Duration: 2:08:28</li>
-                    <li>Ascent: 446 metres</li>
-                    <li>Descent: -445 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.36 miles \  7.02 km</br>
+                    </div>
+                    <br>Duration: 2:08:28</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 446 metres</br>
+                        <br>Descent: -445 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-01-27-18-10-31 target="_self">SX 55442 64501</a>
-                <br>Cadover Bridge Car Park, Cadover Bridge, Shaugh Prior
+                <div class="track-container">
+                    <br>Cadover Bridge Car Park, Cadover Bridge, Shaugh Prior</br>
+                </div>
+                <br>2022-01-27 @ 18-10-31</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-01-27 @ 18-10-31</li>
-                    <li>Distance:</li>
-                    <li>4.65 miles \  7.48 km</li>
-                    <li>Duration: 2:34:42</li>
-                    <li>Ascent: 823 metres</li>
-                    <li>Descent: -821 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.65 miles \  7.48 km</br>
+                    </div>
+                    <br>Duration: 2:34:42</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 823 metres</br>
+                        <br>Descent: -821 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-01-20-18-07-47 target="_self">SX 74046 74238</a>
-                <br>B3387, Smallacombe, Ilsington, Haytor Vale
+                <div class="track-container">
+                    <br>B3387, Smallacombe, Ilsington, Haytor Vale</br>
+                </div>
+                <br>2022-01-20 @ 18-07-47</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-01-20 @ 18-07-47</li>
-                    <li>Distance:</li>
-                    <li>5.6 miles \  9.01 km</li>
-                    <li>Duration: 2:30:02</li>
-                    <li>Ascent: 625 metres</li>
-                    <li>Descent: -627 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.6 miles \  9.01 km</br>
+                    </div>
+                    <br>Duration: 2:30:02</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 625 metres</br>
+                        <br>Descent: -627 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #FAF884;">
                 <a href=https://moorwalkers.github.io/ind_maps/2022-01-13-18-11-14 target="_self">SX 63840 59392</a>
-                <br>Harford
+                <div class="track-container">
+                    <br>Harford</br>
+                </div>
+                <br>2022-01-13 @ 18-11-14</br>
                 <br>
-                <ul class="track-details">
-                    <li>2022-01-13 @ 18-11-14</li>
-                    <li>Distance:</li>
-                    <li>6.24 miles \  10.04 km</li>
-                    <li>Duration: 3:05:49</li>
-                    <li>Ascent: 596 metres</li>
-                    <li>Descent: -595 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>6.24 miles \  10.04 km</br>
+                    </div>
+                    <br>Duration: 3:05:49</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 596 metres</br>
+                        <br>Descent: -595 metres</br>
+                    </div>
+                </div>
             </div>
                     </div>    <h1>2021</h1>
     <div class="track-list">
-                <div class="track">
+                <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2021-12-30-15-15-52 target="_self">SX 54961 75147</a>
-                <br>B3357, Merrivale, Whitchurch
+                <div class="track-container">
+                    <br>B3357, Merrivale, Whitchurch</br>
+                </div>
+                <br>2021-12-30 @ 15-15-52</br>
                 <br>
-                <ul class="track-details">
-                    <li>2021-12-30 @ 15-15-52</li>
-                    <li>Distance:</li>
-                    <li>5.86 miles \  9.43 km</li>
-                    <li>Duration: 2:29:55</li>
-                    <li>Ascent: 880 metres</li>
-                    <li>Descent: -883 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.86 miles \  9.43 km</br>
+                    </div>
+                    <br>Duration: 2:29:55</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 880 metres</br>
+                        <br>Descent: -883 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2021-12-16-18-12-48 target="_self">SX 56875 69300</a>
-                <br>Burrator - Norsworthy, Norsworthy Bridge to South Hessary Tor, Walkhampton
+                <div class="track-container">
+                    <br>Burrator - Norsworthy, Norsworthy Bridge to South Hessary Tor, Walkhampton</br>
+                </div>
+                <br>2021-12-16 @ 18-12-48</br>
                 <br>
-                <ul class="track-details">
-                    <li>2021-12-16 @ 18-12-48</li>
-                    <li>Distance:</li>
-                    <li>1.68 miles \  2.71 km</li>
-                    <li>Duration: 2:37:24</li>
-                    <li>Ascent: 271 metres</li>
-                    <li>Descent: -272 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>1.68 miles \  2.71 km</br>
+                    </div>
+                    <br>Duration: 2:37:24</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 271 metres</br>
+                        <br>Descent: -272 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2021-12-09-18-13-23 target="_self">SX 70373 68515</a>
-                <br>Scorriton, West Buckfastleigh, Combe
+                <div class="track-container">
+                    <br>Scorriton, West Buckfastleigh, Combe</br>
+                </div>
+                <br>2021-12-09 @ 18-13-23</br>
                 <br>
-                <ul class="track-details">
-                    <li>2021-12-09 @ 18-13-23</li>
-                    <li>Distance:</li>
-                    <li>3.78 miles \  6.09 km</li>
-                    <li>Duration: 1:46:45</li>
-                    <li>Ascent: 727 metres</li>
-                    <li>Descent: -729 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>3.78 miles \  6.09 km</br>
+                    </div>
+                    <br>Duration: 1:46:45</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 727 metres</br>
+                        <br>Descent: -729 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2021-11-25-18-16-10 target="_self">SX 54751 69231</a>
-                <br>B3212, Walkhampton, Dousland
+                <div class="track-container">
+                    <br>B3212, Walkhampton, Dousland</br>
+                </div>
+                <br>2021-11-25 @ 18-16-10</br>
                 <br>
-                <ul class="track-details">
-                    <li>2021-11-25 @ 18-16-10</li>
-                    <li>Distance:</li>
-                    <li>5.62 miles \  9.04 km</li>
-                    <li>Duration: 2:39:56</li>
-                    <li>Ascent: 615 metres</li>
-                    <li>Descent: -615 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.62 miles \  9.04 km</br>
+                    </div>
+                    <br>Duration: 2:39:56</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 615 metres</br>
+                        <br>Descent: -615 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2021-11-18-18-12-30 target="_self">SX 60923 75152</a>
-                <br>B3357, Two Bridges, Dartmoor Forest
+                <div class="track-container">
+                    <br>B3357, Two Bridges, Dartmoor Forest</br>
+                </div>
+                <br>2021-11-18 @ 18-12-30</br>
                 <br>
-                <ul class="track-details">
-                    <li>2021-11-18 @ 18-12-30</li>
-                    <li>Distance:</li>
-                    <li>5.16 miles \  8.3 km</li>
-                    <li>Duration: 2:46:27</li>
-                    <li>Ascent: 689 metres</li>
-                    <li>Descent: -702 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.16 miles \  8.3 km</br>
+                    </div>
+                    <br>Duration: 2:46:27</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 689 metres</br>
+                        <br>Descent: -702 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2021-10-21-18-01-36 target="_self">SX 60169 60172</a>
-                <br>Cornwood
+                <div class="track-container">
+                    <br>Cornwood</br>
+                </div>
+                <br>2021-10-21 @ 18-01-36</br>
                 <br>
-                <ul class="track-details">
-                    <li>2021-10-21 @ 18-01-36</li>
-                    <li>Distance:</li>
-                    <li>5.91 miles \  9.52 km</li>
-                    <li>Duration: 3:01:24</li>
-                    <li>Ascent: 895 metres</li>
-                    <li>Descent: -908 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.91 miles \  9.52 km</br>
+                    </div>
+                    <br>Duration: 3:01:24</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 895 metres</br>
+                        <br>Descent: -908 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2021-10-14-18-11-18 target="_self">SX 57932 67313</a>
-                <br>Gutter Tor Car Park, Edward's Path, Sheepstor
+                <div class="track-container">
+                    <br>Gutter Tor Car Park, Edward's Path, Sheepstor</br>
+                </div>
+                <br>2021-10-14 @ 18-11-18</br>
                 <br>
-                <ul class="track-details">
-                    <li>2021-10-14 @ 18-11-18</li>
-                    <li>Distance:</li>
-                    <li>4.59 miles \  7.39 km</li>
-                    <li>Duration: 2:24:58</li>
-                    <li>Ascent: 509 metres</li>
-                    <li>Descent: -511 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.59 miles \  7.39 km</br>
+                    </div>
+                    <br>Duration: 2:24:58</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 509 metres</br>
+                        <br>Descent: -511 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2021-09-23-18-04-14 target="_self">SX 65515 72646</a>
-                <br>Hexworthy, Dartmoor Forest
+                <div class="track-container">
+                    <br>Hexworthy, Dartmoor Forest</br>
+                </div>
+                <br>2021-09-23 @ 18-04-14</br>
                 <br>
-                <ul class="track-details">
-                    <li>2021-09-23 @ 18-04-14</li>
-                    <li>Distance:</li>
-                    <li>5.47 miles \  8.8 km</li>
-                    <li>Duration: 3:15:45</li>
-                    <li>Ascent: 649 metres</li>
-                    <li>Descent: -663 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.47 miles \  8.8 km</br>
+                    </div>
+                    <br>Duration: 3:15:45</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 649 metres</br>
+                        <br>Descent: -663 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #FAF884;">
                 <a href=https://moorwalkers.github.io/ind_maps/2021-09-16-17-59-25 target="_self">SX 51351 77755</a>
-                <br>Harragrove, Peter Tavy, Cudliptown
+                <div class="track-container">
+                    <br>Harragrove, Peter Tavy, Cudliptown</br>
+                </div>
+                <br>2021-09-16 @ 17-59-25</br>
                 <br>
-                <ul class="track-details">
-                    <li>2021-09-16 @ 17-59-25</li>
-                    <li>Distance:</li>
-                    <li>6.32 miles \  10.17 km</li>
-                    <li>Duration: 3:18:05</li>
-                    <li>Ascent: 737 metres</li>
-                    <li>Descent: -732 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>6.32 miles \  10.17 km</br>
+                    </div>
+                    <br>Duration: 3:18:05</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 737 metres</br>
+                        <br>Descent: -732 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2021-08-12-18-26-25 target="_self">SX 72948 37460</a>
-                <br>Ringrone, Cliff Road, Salcombe
+                <div class="track-container">
+                    <br>Ringrone, Cliff Road, Salcombe</br>
+                </div>
+                <br>2021-08-12 @ 18-26-25</br>
                 <br>
-                <ul class="track-details">
-                    <li>2021-08-12 @ 18-26-25</li>
-                    <li>Distance:</li>
-                    <li>4.4 miles \  7.09 km</li>
-                    <li>Duration: 2:16:35</li>
-                    <li>Ascent: 610 metres</li>
-                    <li>Descent: -535 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.4 miles \  7.09 km</br>
+                    </div>
+                    <br>Duration: 2:16:35</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 610 metres</br>
+                        <br>Descent: -535 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #FAF884;">
                 <a href=https://moorwalkers.github.io/ind_maps/2021-08-05-17-58-43 target="_self">SX 71930 76881</a>
-                <br>B3387, Bonehill, Widecombe in the Moor
+                <div class="track-container">
+                    <br>B3387, Bonehill, Widecombe in the Moor</br>
+                </div>
+                <br>2021-08-05 @ 17-58-43</br>
                 <br>
-                <ul class="track-details">
-                    <li>2021-08-05 @ 17-58-43</li>
-                    <li>Distance:</li>
-                    <li>6.83 miles \  11.0 km</li>
-                    <li>Duration: 2:35:18</li>
-                    <li>Ascent: 665 metres</li>
-                    <li>Descent: -671 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>6.83 miles \  11.0 km</br>
+                    </div>
+                    <br>Duration: 2:35:18</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 665 metres</br>
+                        <br>Descent: -671 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2021-07-01-18-07-11 target="_self">SX 56160 91774</a>
-                <br>Granite Way, Meldon, Okehampton Hamlets
+                <div class="track-container">
+                    <br>Granite Way, Meldon, Okehampton Hamlets</br>
+                </div>
+                <br>2021-07-01 @ 18-07-11</br>
                 <br>
-                <ul class="track-details">
-                    <li>2021-07-01 @ 18-07-11</li>
-                    <li>Distance:</li>
-                    <li>5.74 miles \  9.23 km</li>
-                    <li>Duration: 3:03:38</li>
-                    <li>Ascent: 779 metres</li>
-                    <li>Descent: -773 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.74 miles \  9.23 km</br>
+                    </div>
+                    <br>Duration: 3:03:38</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 779 metres</br>
+                        <br>Descent: -773 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #90EE90;">
                 <a href=https://moorwalkers.github.io/ind_maps/2021-06-24-18-05-02 target="_self">SX 47386 64896</a>
-                <br>Tidal walkway, Bere Ferrers, Milton Combe
+                <div class="track-container">
+                    <br>Tidal walkway, Bere Ferrers, Milton Combe</br>
+                </div>
+                <br>2021-06-24 @ 18-05-02</br>
                 <br>
-                <ul class="track-details">
-                    <li>2021-06-24 @ 18-05-02</li>
-                    <li>Distance:</li>
-                    <li>5.41 miles \  8.71 km</li>
-                    <li>Duration: 2:44:47</li>
-                    <li>Ascent: 871 metres</li>
-                    <li>Descent: -869 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>5.41 miles \  8.71 km</br>
+                    </div>
+                    <br>Duration: 2:44:47</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 871 metres</br>
+                        <br>Descent: -869 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2021-06-17-18-27-37 target="_self">SX 61170 47823</a>
-                <br>Wonwell Slipway, Kingston, Mothecombe
+                <div class="track-container">
+                    <br>Wonwell Slipway, Kingston, Mothecombe</br>
+                </div>
+                <br>2021-06-17 @ 18-27-37</br>
                 <br>
-                <ul class="track-details">
-                    <li>2021-06-17 @ 18-27-37</li>
-                    <li>Distance:</li>
-                    <li>4.19 miles \  6.75 km</li>
-                    <li>Duration: 2:20:16</li>
-                    <li>Ascent: 555 metres</li>
-                    <li>Descent: -529 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>4.19 miles \  6.75 km</br>
+                    </div>
+                    <br>Duration: 2:20:16</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 555 metres</br>
+                        <br>Descent: -529 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #C0FFC0;">
                 <a href=https://moorwalkers.github.io/ind_maps/2021-06-10-18-26-27 target="_self">SX 52536 85390</a>
-                <br>A386, Vale Down, Lydford
+                <div class="track-container">
+                    <br>A386, Vale Down, Lydford</br>
+                </div>
+                <br>2021-06-10 @ 18-26-27</br>
                 <br>
-                <ul class="track-details">
-                    <li>2021-06-10 @ 18-26-27</li>
-                    <li>Distance:</li>
-                    <li>3.66 miles \  5.89 km</li>
-                    <li>Duration: 1:49:36</li>
-                    <li>Ascent: 429 metres</li>
-                    <li>Descent: -435 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>3.66 miles \  5.89 km</br>
+                    </div>
+                    <br>Duration: 1:49:36</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 429 metres</br>
+                        <br>Descent: -435 metres</br>
+                    </div>
+                </div>
             </div>
-                        <div class="track">
+                        <div class="track" style="background-color: #FAF884;">
                 <a href=https://moorwalkers.github.io/ind_maps/2021-04-29-18-09-31 target="_self">SX 54716 47413</a>
-                <br>Hannaford Road, Noss Mayo, Newton and Noss, Newton Ferrers
+                <div class="track-container">
+                    <br>Hannaford Road, Noss Mayo, Newton and Noss, Newton Ferrers</br>
+                </div>
+                <br>2021-04-29 @ 18-09-31</br>
                 <br>
-                <ul class="track-details">
-                    <li>2021-04-29 @ 18-09-31</li>
-                    <li>Distance:</li>
-                    <li>6.85 miles \  11.02 km</li>
-                    <li>Duration: 2:44:26</li>
-                    <li>Ascent: 875 metres</li>
-                    <li>Descent: -846 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>6.85 miles \  11.02 km</br>
+                    </div>
+                    <br>Duration: 2:44:26</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 875 metres</br>
+                        <br>Descent: -846 metres</br>
+                    </div>
+                </div>
             </div>
                     </div>    <h1>2020</h1>
     <div class="track-list">
-                <div class="track">
+                <div class="track" style="background-color: #FFA07A;">
                 <a href=https://moorwalkers.github.io/ind_maps/2020-08-20-10-13-00 target="_self">SX 52551 85372</a>
-                <br>A386, Vale Down, Lydford
+                <div class="track-container">
+                    <br>A386, Vale Down, Lydford</br>
+                </div>
+                <br>2020-08-20 @ 10-13-00</br>
                 <br>
-                <ul class="track-details">
-                    <li>2020-08-20 @ 10-13-00</li>
-                    <li>Distance:</li>
-                    <li>10.42 miles \  16.78 km</li>
-                    <li>Duration: 6:25:01</li>
-                    <li>Ascent: 857 metres</li>
-                    <li>Descent: -854 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>10.42 miles \  16.78 km</br>
+                    </div>
+                    <br>Duration: 6:25:01</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 857 metres</br>
+                        <br>Descent: -854 metres</br>
+                    </div>
+                </div>
             </div>
                     </div>    <h1>2019</h1>
     <div class="track-list">
-                <div class="track">
+                <div class="track" style="background-color: #FFA07A;">
                 <a href=https://moorwalkers.github.io/ind_maps/2019-05-15-09-24-00 target="_self">SS 71081 49728</a>
-                <br>Lynton, Lynton and Lynmouth, Lynbridge
+                <div class="track-container">
+                    <br>Lynton, Lynton and Lynmouth, Lynbridge</br>
+                </div>
+                <br>2019-05-15 @ 09-24-00</br>
                 <br>
-                <ul class="track-details">
-                    <li>2019-05-15 @ 09-24-00</li>
-                    <li>Distance:</li>
-                    <li>12.84 miles \  20.67 km</li>
-                    <li>Duration: 8:09:21</li>
-                    <li>Ascent: 942 metres</li>
-                    <li>Descent: -1048 metres</li>
-                </ul>
+                <div class="track-details">
+					<div class="track-details-distance">
+                        <br>Distance:</br>
+                        <br>12.84 miles \  20.67 km</br>
+                    </div>
+                    <br>Duration: 8:09:21</br>
+                    <div class="track-details-ascent-bold">
+                        <br>Ascent: 942 metres</br>
+                        <br>Descent: -1048 metres</br>
+                    </div>
+                </div>
             </div>
                     </div>    
 </main>
