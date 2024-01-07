@@ -115,7 +115,42 @@
 		.track-details-ascent-bold {
 			font-weight: bold;
 		}
+        
+        /* Styling for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Styling for the larger image */
+            .modal-content {
+            display: block;
+            max-width: 80%;
+            max-height: 80%;
+    }
 	</style>
+    <script>
+        function displayLargeImage(imageUrl) {
+            var modal = document.getElementById('modal');
+            var largerImg = document.getElementById('largerImage');
+            // Show the modal
+            modal.style.display = 'flex';
+            // Set the larger image source
+            largerImg.src = imageUrl;
+        }
+
+        function closeModal() {
+            var modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+    </script>
         <link rel="icon" href="https://moorwalkers.github.io/icons8-map-pastel-32.png" type="image/x-icon">
 	</head>
 	<body>
@@ -149,12 +184,16 @@
                         <br>Descent: -408m</br>
                     </div>
                 </div>
-                <img src="https://moorwalkers.github.io/elevation_profiles/2023-12-28_18-06-55.png" alt="Elevation Profile">
+                <img src="https://moorwalkers.github.io/elevation_profiles/2023-12-28_18-06-55.png" alt="Elevation Profile" onclick="displayLargeImage('https://moorwalkers.github.io/elevation_profiles/2023-12-28_18-06-55.png')">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-12-28_18-06-55.html target='_self' style='display: block; margin-top: 5px;'>Individual Map</a>
                 <a href="https://www.google.com/maps?q=50.418516,-3.917851" target="_blank" style='display: block; margin-top: 5px;'>Starting Location on Google Maps</a>
                 <a href="https://moorwalkers.github.io/track_downloads/2023-12-28_18-06-55.gpx" download="2023-12-28_18-06-55.gpx" style='display: block; margin-top: 5px;'>Download GPX Track File</a>
                 <div style='text-align: center; margin-top: 10px; font-weight: bold;'>Harford</div>
             </div>
+    <!-- Modal for displaying larger image -->
+    <div id="modal" class="modal" onclick="closeModal()">
+        <img id="largerImage" class="modal-content" src="" alt="Larger Image">
+    </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
 					<br>SX 56885 69304</br>
@@ -170,7 +209,7 @@
                         <br>Descent: -126m</br>
                     </div>
                 </div>
-                <img src="https://moorwalkers.github.io/elevation_profiles/2023-12-21_18-15-18.png" alt="Elevation Profile">
+                <img src="https://moorwalkers.github.io/elevation_profiles/2023-12-21_18-15-18.png" alt="Elevation Profile" onclick="displayLargeImage('https://moorwalkers.github.io/elevation_profiles/2023-12-21_18-15-18.png')">
                 <a href=https://moorwalkers.github.io/ind_maps/2023-12-21_18-15-18.html target='_self' style='display: block; margin-top: 5px;'>Individual Map</a>
                 <a href="https://www.google.com/maps?q=50.506001,-4.01958" target="_blank" style='display: block; margin-top: 5px;'>Starting Location on Google Maps</a>
                 <a href="https://moorwalkers.github.io/track_downloads/2023-12-21_18-15-18.gpx" download="2023-12-21_18-15-18.gpx" style='display: block; margin-top: 5px;'>Download GPX Track File</a>
@@ -2246,6 +2285,6 @@
             </div>
                     </div>    
         </main>
-    </body>
+    </body
 </html>
     
