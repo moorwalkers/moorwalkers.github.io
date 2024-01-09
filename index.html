@@ -176,6 +176,32 @@
 			<br>
             <br>
             <p><strong>Or click one of the following Individual Map links to view individual tracks:</strong></p>
+
+            <!-- Container with flex properties to position sliders -->
+            <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+            <!-- Container for distance sliders -->
+            <div style="margin: 10px;">
+                <label for="minDistance">Minimum Distance:</label>
+                <input type="range" id="minDistance" name="minDistance" min="0" max="15" value="0">
+                <span id="minDistanceValue"></span> miles <!-- Display selected value -->
+                <br>
+                <label for="maxDistance">Maximum Distance:</label>
+                <input type="range" id="maxDistance" name="maxDistance" min="0" max="15" value="15">
+                <span id="maxDistanceValue"></span> miles <!-- Display selected value -->
+                <br><br>
+            </div>
+            <!-- Container for ascent sliders -->
+            <div style="margin: 10px;">
+                <label for="minAscent">Minimum Ascent:</label>
+                <input type="range" id="minAscent" name="minAscent" min="0" max="1500" value="0">
+                <span id="minAscentValue"></span> meters <!-- Display selected value -->
+                <br>
+                <label for="maxAscent">Maximum Ascent:</label>
+                <input type="range" id="maxAscent" name="maxAscent" min="0" max="1500" value="1500">
+                <span id="maxAscentValue"></span> meters <!-- Display selected value -->
+                <br><br>
+            </div>
+            </div>
         <h1>2023</h1>
     <div class="track-list">
             <div class="track" style="border: 10px solid #90EE90;">
@@ -398,7 +424,7 @@
                         <br>6.93 km</br>
                     </div>
                     <br>Duration: 2:25:24</br>
-                    <div class="track-details-ascent-normal">
+                    <div class="track-details-ascent-bold">
                         <br>Ascent: 507m</br>
                         <br>Descent: -514m</br>
                     </div>
@@ -2105,7 +2131,7 @@
                         <br>16.78 km</br>
                     </div>
                     <br>Duration: 6:25:01</br>
-                    <div class="track-details-ascent-normal">
+                    <div class="track-details-ascent-bold">
                         <br>Ascent: 681m</br>
                         <br>Descent: -677m</br>
                     </div>
@@ -2291,5 +2317,83 @@
                     </div>    
         </main>
     </body>
+<script>
+  // Function to set maximum values for distance and ascent sliders
+  function setMaxSliderValues() {
+    // Retrieve all tracks
+    var tracks = document.querySelectorAll('.track');
+
+    // Initialize variables to store maximum distance and ascent values
+    var maxDistance = 0;
+    var maxAscent = 0;
+
+    // Loop through each track to find the maximum distance and ascent
+    tracks.forEach(function(track) {
+      // Extract distance and ascent details from track elements
+      var trackDistance = parseFloat(track.querySelector('.track-details-distance').innerText.trim().split(' ')[0]);
+      var ascentDetails = track.querySelector('.track-details-ascent-normal') || track.querySelector('.track-details-ascent-bold');
+      var trackAscent = parseFloat(ascentDetails.innerText.trim().split(' ')[1]);
+
+      // Update the maximum distance and ascent values
+      maxDistance = Math.max(maxDistance, Math.ceil(trackDistance)); // Round up distance to nearest whole number
+      maxAscent = Math.max(maxAscent, Math.ceil(trackAscent / 100) * 100); // Round up ascent to nearest 100
+    });
+
+    // Set the maximum values for distance and ascent sliders
+    document.getElementById('maxDistance').setAttribute('max', maxDistance);
+    document.getElementById('maxAscent').setAttribute('max', maxAscent);
+
+    // Display the maximum values next to the sliders
+    document.getElementById('maxDistanceValue').innerText = maxDistance;
+    document.getElementById('maxAscentValue').innerText = maxAscent;
+  }
+
+  // Function to filter tracks based on slider values
+  function filterTracks() {
+    // Retrieve slider values for minimum and maximum distance and ascent
+    var minDistance = parseFloat(document.getElementById('minDistance').value);
+    var maxDistance = parseFloat(document.getElementById('maxDistance').value);
+    var minAscent = parseFloat(document.getElementById('minAscent').value);
+    var maxAscent = parseFloat(document.getElementById('maxAscent').value);
+
+    // Retrieve all tracks
+    var tracks = document.querySelectorAll('.track');
+
+    // Loop through each track and show/hide tracks based on distance and ascent criteria
+    tracks.forEach(function(track) {
+      var trackDistance = parseFloat(track.querySelector('.track-details-distance').innerText.trim().split(' ')[0]);
+      var ascentDetails = track.querySelector('.track-details-ascent-normal') || track.querySelector('.track-details-ascent-bold');
+      var trackAscent = parseFloat(ascentDetails.innerText.trim().split(' ')[1]);
+
+      // Show the track if it satisfies the distance and ascent criteria, otherwise hide it
+      if (
+        trackDistance >= minDistance &&
+        trackDistance <= maxDistance &&
+        trackAscent >= minAscent &&
+        trackAscent <= maxAscent
+      ) {
+        track.style.display = 'block';
+      } else {
+        track.style.display = 'none';
+      }
+    });
+
+    // Display the selected slider values
+    document.getElementById('minDistanceValue').innerText = minDistance;
+    document.getElementById('maxDistanceValue').innerText = maxDistance;
+    document.getElementById('minAscentValue').innerText = minAscent;
+    document.getElementById('maxAscentValue').innerText = maxAscent;
+  }
+
+  // Add event listeners to the sliders to trigger filtering when their values change
+  document.getElementById('minDistance').addEventListener('input', filterTracks);
+  document.getElementById('maxDistance').addEventListener('input', filterTracks);
+  document.getElementById('minAscent').addEventListener('input', filterTracks);
+  document.getElementById('maxAscent').addEventListener('input', filterTracks);
+
+  // Initialize maximum slider values and perform initial filtering
+  setMaxSliderValues();
+  filterTracks();
+</script>
 </html>
     
