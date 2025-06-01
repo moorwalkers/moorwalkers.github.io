@@ -20,9 +20,16 @@
 
         var map = L.map('map').setView(dartmoorCenter, 11);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        // OpenStreetMap base layer
+        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 18,
             attribution: 'OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Esri Topographic base layer
+        var esriTopo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+            maxZoom: 18,
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom'
         }).addTo(map);
 
         // Load GeoJSON data for markers
@@ -40,8 +47,12 @@
             .catch(error => {
                 console.error('Error loading GeoJSON:', error);
             });
+
         // Add layer group control
-        var baseLayers = {};
+        var baseLayers = {
+            "OpenStreetMap": osm,
+            "Esri Topographic": esriTopo
+        };
         var overlays = {
             "Points of Interest": markers
         };
