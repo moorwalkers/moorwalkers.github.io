@@ -26,7 +26,7 @@
         }).addTo(map);
 
         // Load GeoJSON data for markers
-        fetch('points-of-interest.geojson')
+        fetch('points-of-interest.json')
             .then(response => response.json())
             .then(data => {
                 var markers = L.geoJSON(data, {
