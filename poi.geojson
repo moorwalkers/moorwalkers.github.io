@@ -1,0 +1,173 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Scout Hut",
+        "description": "Our local nickname for the Gutter Tor Refuge and Car Park.",
+        "category": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-4.0048358, 50.488276]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Potato Cave",
+        "description": "It's a potato cave, probably - definitely worth exploring.",
+        "category": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.9946203, 50.499572]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Brass Cross",
+        "description": "A small brass cross set into a rock.",
+        "category": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.9566958, 50.506137]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gidleigh Post Office",
+        "description": "Gidleigh has been without a Post Office for many decades.",
+        "category": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.8825975, 50.679952]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bluebell Woods",
+        "description": "Our yearly showcase of woodland bluebells",
+        "category": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-4.0409571, 50.486061]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ross's Quarry",
+        "description": "The car park at the quarry next to Ross Gray's farm",
+        "category": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.8382666, 50.514994]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jay's Grave",
+        "description": "<a href=https://www.dartmoor.gov.uk/learning/dartmoor-legends/the-legend-of-jays-grave>The Legend of Jay's Grave</a><br>In 2023 we sang happy birthday to a complete stranger here.",
+        "category": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.7926555, 50.605054]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Stephens's Grave",
+        "description": "<a href=https://www.dartmoor.gov.uk/learning/dartmoor-legends/the-legend-of-stephens-grave>The Legend of Stephen's Grave</a>",
+        "category": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-4.0694552, 50.584437]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Horsham Steps",
+        "description": "Where David went head first down a hole retrieving Phil's phone.",
+        "category": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.7553407, 50.621661]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dartmeet Stepping Stones",
+        "description": "Where Mike (among others) fell in.",
+        "category": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.8767134, 50.542560]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gary's Swim",
+        "description": "Where Gary tried to cross a stream (which turned out to be deeper than he expected) on his first time out.",
+        "category": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.9010568, 50.421808]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Windy Post Bullseye",
+        "description": "Bull's Eye - A stone set in the bank of a leat having a hole drilled to release water from the leat into a branch channel. It can be stopped at will with a turf. Hemery, 1983. p.28",
+        "category": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-4.069998451385319, 50.54999724259473]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ham Green Viaduct",
+        "description": "Ham Green Viaduct is on the ex-Great Western Railway Launceston-Tavistock-Plymouth line, now the Plym Valley Railway Path. There was originally a timber viaduct on this site and the stone piers for this can still be seen beneath the present viaduct, which was built in 1899. The timber viaduct was opened on 21st June 1859 when the line completed to Tavistock. Stations were provided at Bickleigh, Horrabridge and Tavistock, all of which opened to traffic on June 22nd 1859. The line closed to passengers in 1962 and goods 1964. After the scrapmen cleared the line it lay quietly decaying until the coming of the cycle route.",
+        "category": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-4.078238, 50.446093]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Western Machinery",
+        "description": "Meeting place up the lane from where Western Machinery used to be.",
+        "category": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.888844, 50.398682]
+      }
+    }
+  ]
+}
