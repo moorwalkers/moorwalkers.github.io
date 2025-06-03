@@ -29,6 +29,8 @@ from shapely.geometry import LineString
 from sklearn.cluster import KMeans
 
 def get_address_from_locationiq(lat, lon):
+    """Fetches a formatted address from LocationIQ given latitude and longitude coordinates."""
+    
     url = "https://us1.locationiq.com/v1/reverse.php"
     api_key = "pk.1e029c5824010fa1167fc1a2996c5b99"
     params = {
@@ -61,8 +63,11 @@ def get_address_from_locationiq(lat, lon):
             return ",".join(sections[0:3]).strip()
 
 def douglas_peucker(points, epsilon):
+    """Simplifies a polyline using the Douglas-Peucker algorithm with a specified tolerance."""
 
     def perpendicular_distance(pt, line_start, line_end):
+        """Calculate the perpendicular distance from a point to a line segment."""
+
         if line_start == line_end:
             return sqrt((pt[0] - line_start[0])**2 + (pt[1] - line_start[1])**2)
         x0, y0 = pt
@@ -73,6 +78,8 @@ def douglas_peucker(points, epsilon):
         return num / den
 
     def simplify(points, epsilon):
+        """Recursively simplifies a list of points using the Ramer-Douglas-Peucker algorithm."""
+
         dmax = 0.0
         index = 0
         for i in range(1, len(points) - 1):
@@ -90,6 +97,8 @@ def douglas_peucker(points, epsilon):
     return simplify(points, epsilon)
 
 def create_data(main_geojson):
+    """Processes GPX files and updates a GeoJSON FeatureCollection with track data and metadata."""
+
     # Create an empty list to store the track years
     years = []
 
@@ -464,6 +473,8 @@ def save_tracks_as_elevation_profiles(feature_collection):
     print("Elevation profiles created")
 
 def save_tracks_as_gpx(feature_collection):
+    """Converts a GeoJSON FeatureCollection of tracks to individual GPX files and saves them."""
+
     # Create the output directory if it doesn't exist
     output_dir = os.path.join(os.getcwd(), "track_downloads")
     os.makedirs(output_dir, exist_ok=True)
@@ -493,6 +504,8 @@ def save_tracks_as_gpx(feature_collection):
     print("GPX files created")
 
 def split_features_to_files(features, output_dir):
+    """Splits GeoJSON features into individual files and generates a manifest and marker features."""
+
     manifest = []
     marker_features = []
     for feature in features:
@@ -538,10 +551,14 @@ def split_features_to_files(features, output_dir):
     return manifest, marker_features
 
 def write_manifest(manifest, manifest_path):
+    """Write the manifest dictionary to a JSON file at the specified path."""
+
     with open(manifest_path, "w", encoding="utf-8") as mf:
         json.dump(manifest, mf, ensure_ascii=False, indent=2)
 
 def write_track_markers(marker_features, output_path):
+    """Writes marker features to a GeoJSON file at the specified output path."""
+
     track_markers_geojson = {
         "type": "FeatureCollection",
         "features": marker_features
@@ -550,16 +567,7 @@ def write_track_markers(marker_features, output_path):
         json.dump(track_markers_geojson, mf, ensure_ascii=False, indent=2)
 
 def create_index_page(years, feature_collection):
-    """
-    Create an HTML index page to showcase walking tracks for different years.
-
-    Args:
-        years (list of str): List of years to display tracks for.
-        feature_collection (dict): GeoJSON feature collection containing track information.
-
-    Generates an HTML index page containing links to individual track maps for each year
-    and associated track details.
-    """
+    """Create an HTML index page to showcase walking tracks for different years."""
 
     # HTML template for the start of the page
     html_start = """\
@@ -954,12 +962,15 @@ def create_index_page(years, feature_collection):
     print("Index page created")
 
 def main():
+    """Processes GeoJSON map data to generate elevation profiles, GPX files, split tracks, and supporting files."""
+
     # Paths
     main_geojson = "moorwalkers.geojson"
     output_dir = "tracks"
     manifest_path = "tracks_manifest.json"
     track_markers_path = "track_markers.geojson"
 
+    # Create the main GeoJSON file with all tracks
     years, feature_collection = create_data(main_geojson)
 
     # Create individual elevation profile images
@@ -976,15 +987,15 @@ def main():
         data = json.load(f)
     features = data.get("features", [])
 
+    # Split features into individual files and create manifest and marker features
     manifest, marker_features = split_features_to_files(features, output_dir)
     write_manifest(manifest, manifest_path)
     write_track_markers(marker_features, track_markers_path)
 
     print(f"Split {len(features)} features into '{output_dir}' folder, created manifest '{manifest_path}', and created '{track_markers_path}' with {len(marker_features)} markers.")
 
-    # Create the indxx page
+    # Create the index page
     create_index_page(years, feature_collection)
-
 
 if __name__ == "__main__":
     main()
