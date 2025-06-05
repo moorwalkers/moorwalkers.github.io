@@ -517,7 +517,13 @@
                                 }),
                                 onEachFeature: (feature, layer) => {
                                     if (feature.properties?.name) {
-                                        layer.bindTooltip((`<div style="font-size: 10px;">${feature.properties.gridref}<br>${feature.properties.name}<br>${feature.properties.place_name}</dev>`));
+                                        layer.bindTooltip(`
+                                            <div style="font-size: 10px;">
+                                                ${feature.properties.gridref}<br>
+                                                ${feature.properties.name}<br>
+                                                ${feature.properties.place_name}
+                                            </div>
+                                        `);
                                     }
                                 }
                             });
@@ -589,7 +595,36 @@
                         onEachFeature: function (feature, layer) {
                             if (feature.properties?.name) {
                                 const download_filename = feature.properties.download_link.split('/').pop();
-                                layer.bindPopup(`<div style="width: 100.0%; height: 100.0%;font-size: 10px;"><div style='width: 170px'>${feature.properties.gridref}<br>${feature.properties.name}<br>Distance: ${feature.properties.distance_mi} mile / ${feature.properties.distance_km} km<br>Duration: ${feature.properties.duration}<br>Ascent: ${feature.properties.ascent} metres<br>Descent: ${feature.properties.descent} metres<a href=${feature.properties.elevation_profile_link} target="_blank"><img src=${feature.properties.elevation_profile_link} alt="Elevation Profile" style="width: 100%; margin-bottom: 5px;"></a><a href=${feature.properties.ind_map_link_os} target="_blank" style='display: block; margin-bottom: 5px; padding: 0.5em 1em; background-color: #0A4478; color: white; text-decoration: none; border-radius: 3px; transition: background-color 0.2s ease; font-size: 1.0em; text-align: center;'>Open OS Map</a><a href=${feature.properties.ind_map_link} target="_blank" style='display: block; margin-bottom: 5px; padding: 0.5em 1em; background-color: #0A4478; color: white; text-decoration: none; border-radius: 3px; transition: background-color 0.2s ease; font-size: 1.0em; text-align: center;'>Open Standard Map</a><a href=${feature.properties.googleMapsLink} target="_blank" style='display: block; margin-bottom: 5px; padding: 0.5em 1em; background-color: #0A4478; color: white; text-decoration: none; border-radius: 3px; transition: background-color 0.2s ease; font-size: 1.0em; text-align: center;'>Starting Location on Google Maps</a><a href=${feature.properties.download_link} download="${download_filename}" style='display: block; margin-bottom: 5px; padding: 0.5em 1em; background-color: #0A4478; color: white; text-decoration: none; border-radius: 3px; transition: background-color 0.2s ease; font-size: 1.0em; text-align: center;'>Download GPX Track File</a><div style='text-align: center; margin-bottom: 5px; font-weight: bold;'>${feature.properties.place_name}</div></div></div>`);
+                                layer.bindPopup(`
+                                    <div style="width: 100.0%; height: 100.0%; font-size: 10px;">
+                                        <div style="width: 170px">
+                                            ${feature.properties.gridref}<br>
+                                            ${feature.properties.name}<br>
+                                            Distance: ${feature.properties.distance_mi} mile / ${feature.properties.distance_km} km<br>
+                                            Duration: ${feature.properties.duration}<br>
+                                            Ascent: ${feature.properties.ascent} metres<br>
+                                            Descent: ${feature.properties.descent} metres<br>
+                                            <a href="${feature.properties.elevation_profile_link}" target="_blank">
+                                                <img src="${feature.properties.elevation_profile_link}" alt="Elevation Profile" style="width: 100%; margin-bottom: 5px;">
+                                            </a>
+                                            <a href="${feature.properties.ind_map_link_os}" target="_blank" style="display: block; margin-bottom: 5px; padding: 0.5em 1em; background-color: #0A4478; color: white; text-decoration: none; border-radius: 3px; transition: background-color 0.2s ease; font-size: 1.0em; text-align: center;">
+                                                Open OS Map
+                                            </a>
+                                            <a href="${feature.properties.ind_map_link}" target="_blank" style="display: block; margin-bottom: 5px; padding: 0.5em 1em; background-color: #0A4478; color: white; text-decoration: none; border-radius: 3px; transition: background-color 0.2s ease; font-size: 1.0em; text-align: center;">
+                                                Open Standard Map
+                                            </a>
+                                            <a href="${feature.properties.googleMapsLink}" target="_blank" style="display: block; margin-bottom: 5px; padding: 0.5em 1em; background-color: #0A4478; color: white; text-decoration: none; border-radius: 3px; transition: background-color 0.2s ease; font-size: 1.0em; text-align: center;">
+                                                Starting Location on Google Maps
+                                            </a>
+                                            <a href="${feature.properties.download_link}" download="${download_filename}" style="display: block; margin-bottom: 5px; padding: 0.5em 1em; background-color: #0A4478; color: white; text-decoration: none; border-radius: 3px; transition: background-color 0.2s ease; font-size: 1.0em; text-align: center;">
+                                                Download GPX Track File
+                                            </a>
+                                            <div style="text-align: center; margin-bottom: 5px; font-weight: bold;">
+                                                ${feature.properties.place_name}
+                                            </div>
+                                        </div>
+                                    </div>
+                                `);
                             }
                         }
                     }).addTo(map);
@@ -623,7 +658,14 @@
                             },
                             onEachFeature: function (feature, layer) {
                                 if (feature.properties && feature.properties.name) {
-                                    layer.bindPopup(feature.properties.name);
+                                    layer.bindPopup(`
+                                        <div style="width: 100.0%; height: 100.0%; font-size: 10px;">
+                                            <div style="width: 170px;">
+                                                <strong>${feature.properties.name}</strong><br>
+                                                ${feature.properties.description}
+                                            </div>
+                                        </div>
+                                    `);
                                 }
                             }
                         });
@@ -654,7 +696,14 @@
                             },
                             onEachFeature: function (feature, layer) {
                                 if (feature.properties && feature.properties.name) {
-                                    layer.bindPopup(feature.properties.name);
+                                    layer.bindPopup(`
+                                        <div style="width: 100.0%; height: 100.0%; font-size: 10px;">
+                                            <div style="width: 170px;">
+                                                <strong>${feature.properties.name}</strong><br>
+                                                ${feature.properties.description}
+                                            </div>
+                                        </div>
+                                    `);
                                 }
                             }
                         });
@@ -697,7 +746,18 @@
                             },
                             onEachFeature: function (feature, layer) {
                                 if (feature.properties && feature.properties.name) {
-                                    layer.bindPopup(feature.properties.name);
+                                    const popupContent = `
+                                        <div style="width: 100%; font-size: 10px;">
+                                            <div style="width: 170px;">
+                                                <strong>${feature.properties.name}</strong><br>
+                                                <img src="${feature.properties.imageLink}" alt="Image" style="width: 100%; height: auto;"><br>
+                                                <a href="${feature.properties.pageLink}" target="_blank">Tors of Dartmoor: ${feature.properties.name}</a><br>
+                                                ${feature.properties.gridRef}<br>
+                                                ${feature.properties.status}
+                                            </div>
+                                        </div>
+                                    `;
+                                    layer.bindPopup(popupContent);
                                 }
                             }
                         });
@@ -714,7 +774,18 @@
                             },
                             onEachFeature: function (feature, layer) {
                                 if (feature.properties && feature.properties.name) {
-                                    layer.bindPopup(feature.properties.name);
+                                    const popupContent = `
+                                        <div style="width: 100%; font-size: 10px;">
+                                            <div style="width: 170px;">
+                                                <strong>${feature.properties.name}</strong><br>
+                                                <img src="${feature.properties.imageLink}" alt="Image" style="width: 100%; height: auto;"><br>
+                                                <a href="${feature.properties.pageLink}" target="_blank">Tors of Dartmoor: ${feature.properties.name}</a><br>
+                                                ${feature.properties.gridRef}<br>
+                                                ${feature.properties.status}
+                                            </div>
+                                        </div>
+                                    `;
+                                    layer.bindPopup(popupContent);
                                 }
                             }
                         });
