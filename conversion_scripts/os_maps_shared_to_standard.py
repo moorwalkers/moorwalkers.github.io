@@ -54,6 +54,7 @@ def main():
     """Main function to process GPX files."""
     script_dir = os.path.dirname(os.path.abspath(__file__))
     input_folder = os.path.join(script_dir, "original")
+    os.makedirs(input_folder, exist_ok=True)
     output_folder = os.path.join(script_dir, "converted")
     os.makedirs(output_folder, exist_ok=True)
 
