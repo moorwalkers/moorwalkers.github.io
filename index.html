@@ -1,59 +1,59 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	<title>Moor Walkers Map</title>
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			margin: 0;
-			padding: 0;
-		}
-		header {
-			background-color: #0A4478;
-			color: white;
-			padding: 1em;
-			text-align: center;
-		}
-		h1 {
-			text-align: center;
-			margin: 0;
-			font-size: 2.5em;
-		}
-		p {
-			font-size: 1.2em;
-			margin-top: 2em;
-			margin-bottom: 1em;
-			text-align: center;
-		}
-		ul {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-			text-align: center;
+    <head>
+    <title>Moor Walkers Map</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0A4478;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            margin: 0;
+            font-size: 2.5em;
+        }
+        p {
+            font-size: 1.2em;
+            margin-top: 2em;
+            margin-bottom: 1em;
+            text-align: center;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
             font-size: 1.8em;
-		}
-		li {
-			display: inline-block;
-			margin: 0 1em;
-		}
-		a {
-			display: block;
-			padding: 0.5em 1em;
-			background-color: #0A4478;
-			color: white;
-			text-decoration: none;
-			border-radius: 5px;
-			transition: background-color 0.2s ease;
+        }
+        li {
+            display: inline-block;
+            margin: 0 1em;
+        }
+        a {
+            display: block;
+            padding: 0.5em 1em;
+            background-color: #0A4478;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
             font-size: 1.0em;
-		}
-		a:hover {
-			background-color: #1A4E87;
-		}
-		.track-list {
-			display: grid;
-			gap: 10px;
-			padding: 20px;
-		}
+        }
+        a:hover {
+            background-color: #1A4E87;
+        }
+        .track-list {
+            display: grid;
+            gap: 10px;
+            padding: 20px;
+        }
 
             /* Define the grid for larger screens (e.g., desktop) */
             @media (min-width: 1501px) {
@@ -83,13 +83,13 @@
                 }
             }
 
-		.track {
-			font-size: 1.0em;
+        .track {
+            font-size: 1.0em;
             border: 10px solid #ccc;
-			border-radius: 10px;
-			padding: 10px;
-			text-align: center;
-		}
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+        }
 
         .track img {
             max-width: 100%; /* Set maximum width to fit the container */
@@ -97,24 +97,24 @@
             display: block; /* Ensures images resize properly */
             margin: auto; /* Centers the images horizontally */
         }
-		
-		.track-details {
-			text-align: left;
-			padding-left: 20px;
-			line-height: 0.9;
-		}
-		
-		.track-details-distance {
-			line-height: 0.6;
-		}
+        
+        .track-details {
+            text-align: left;
+            padding-left: 20px;
+            line-height: 0.9;
+        }
+        
+        .track-details-distance {
+            line-height: 0.6;
+        }
 
         .track-details-ascent-normal {
-			font-weight: normal;
-		}
-		
-		.track-details-ascent-bold {
-			font-weight: bold;
-		}
+            font-weight: normal;
+        }
+        
+        .track-details-ascent-bold {
+            font-weight: bold;
+        }
 
         /* Styling for the modal */
         .modal {
@@ -145,7 +145,7 @@
         input[type="range"] {
             width: 400px; /* Adjust the width */
         }
-	</style>
+    </style>
     <script>
         function displayLargeImage(imageUrl) {
             var modal = document.getElementById('modal');
@@ -162,24 +162,24 @@
         }
     </script>
     <link rel="icon" href="https://moorwalkers.github.io/icons8-map-pastel-32.png" type="image/x-icon">
-	</head>
-	<body>
-		<!-- Modal for displaying larger image -->
+    </head>
+    <body>
+        <!-- Modal for displaying larger image -->
         <div id="modal" class="modal" onclick="closeModal()">
             <img id="largerImage" class="modal-content" src="" alt="Larger Image">
         </div>
         <header>
-			<h1>Moor Walkers Map</h1>
-		</header>
-		<main>
-			<p>Welcome to our website, dedicated to showcasing the incredible walks that the Moor Walkers have taken over Dartmoor and the surrounding areas.
-			<br>Join us on a journey through the heart of this stunning landscape and discover the hidden treasures that Dartmoor has to offer.</p>
-			<p><strong>Click the links below to view the maps showing all tracks:</strong></p>
-			<ul>
-				<li><a href="https://moorwalkers.github.io/map_os.html">OS Map Layers<br>with All Tracks</a></li>
+            <h1>Moor Walkers Map</h1>
+        </header>
+        <main>
+            <p>Welcome to our website, dedicated to showcasing the incredible walks that the Moor Walkers have taken over Dartmoor and the surrounding areas.
+            <br>Join us on a journey through the heart of this stunning landscape and discover the hidden treasures that Dartmoor has to offer.</p>
+            <p><strong>Click the links below to view the maps showing all tracks:</strong></p>
+            <ul>
+                <li><a href="https://moorwalkers.github.io/map_os.html">OS Map Layers<br>with All Tracks</a></li>
                 <li><a href="https://moorwalkers.github.io/map_std.html">Standard Map Layers<br>with All Tracks</a></li>
-			</ul>
-			<br>
+            </ul>
+            <br>
             <br>
             <p><strong>Or click one of the following Individual Map links to view individual tracks:</strong></p>
 
@@ -208,7 +208,7 @@
     <div class="track-list">
             <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 74001 79182</br>
+                    <br>SX 74001 79182</br>
                     <br>Date: 2025-07-17</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -230,7 +230,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 77902 60284</br>
+                    <br>SX 77902 60284</br>
                     <br>Date: 2025-07-10</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -252,7 +252,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 68554 71188</br>
+                    <br>SX 68554 71188</br>
                     <br>Date: 2025-06-26</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -274,7 +274,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-					<br>SX 62098 93760</br>
+                    <br>SX 62098 93760</br>
                     <br>Date: 2025-06-19</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -296,7 +296,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 37510 71366</br>
+                    <br>SX 37510 71366</br>
                     <br>Date: 2025-06-12</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -318,7 +318,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 66400 73332</br>
+                    <br>SX 66400 73332</br>
                     <br>Date: 2025-06-05</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -340,7 +340,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 73946 79208</br>
+                    <br>SX 73946 79208</br>
                     <br>Date: 2025-05-29</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -362,7 +362,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 64788 56869</br>
+                    <br>SX 64788 56869</br>
                     <br>Date: 2025-05-22</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -384,7 +384,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 57856 67287</br>
+                    <br>SX 57856 67287</br>
                     <br>Date: 2025-05-15</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -406,7 +406,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 69765 69971</br>
+                    <br>SX 69765 69971</br>
                     <br>Date: 2025-05-08</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -428,7 +428,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 54571 66931</br>
+                    <br>SX 54571 66931</br>
                     <br>Date: 2025-05-01</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -450,7 +450,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-					<br>SX 54726 47368</br>
+                    <br>SX 54726 47368</br>
                     <br>Date: 2025-04-24</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -472,7 +472,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-					<br>SX 67007 71779</br>
+                    <br>SX 67007 71779</br>
                     <br>Date: 2025-04-17</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -494,7 +494,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 54755 69224</br>
+                    <br>SX 54755 69224</br>
                     <br>Date: 2025-04-10</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -516,7 +516,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 50336 70253</br>
+                    <br>SX 50336 70253</br>
                     <br>Date: 2025-03-27</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -538,7 +538,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 67978 81588</br>
+                    <br>SX 67978 81588</br>
                     <br>Date: 2025-03-20</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -560,7 +560,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 74080 74296</br>
+                    <br>SX 74080 74296</br>
                     <br>Date: 2025-03-13</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -582,7 +582,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 64619 78674</br>
+                    <br>SX 64619 78674</br>
                     <br>Date: 2025-03-06</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -604,7 +604,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 67002 71809</br>
+                    <br>SX 67002 71809</br>
                     <br>Date: 2025-02-13</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -626,7 +626,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 56866 69295</br>
+                    <br>SX 56866 69295</br>
                     <br>Date: 2025-02-06</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -648,7 +648,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 69467 73117</br>
+                    <br>SX 69467 73117</br>
                     <br>Date: 2025-01-30</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -670,7 +670,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 60931 75053</br>
+                    <br>SX 60931 75053</br>
                     <br>Date: 2025-01-16</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -692,7 +692,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 70379 68520</br>
+                    <br>SX 70379 68520</br>
                     <br>Date: 2025-01-09</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -714,7 +714,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 53108 75133</br>
+                    <br>SX 53108 75133</br>
                     <br>Date: 2025-01-02</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -738,7 +738,7 @@
     <div class="track-list">
             <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 55500 64514</br>
+                    <br>SX 55500 64514</br>
                     <br>Date: 2024-12-12</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -760,7 +760,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 67657 81015</br>
+                    <br>SX 67657 81015</br>
                     <br>Date: 2024-12-05</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -782,7 +782,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-					<br>SX 76528 77135</br>
+                    <br>SX 76528 77135</br>
                     <br>Date: 2024-11-28</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -804,7 +804,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 57868 67307</br>
+                    <br>SX 57868 67307</br>
                     <br>Date: 2024-11-14</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -826,7 +826,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 60170 60175</br>
+                    <br>SX 60170 60175</br>
                     <br>Date: 2024-11-07</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -848,7 +848,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 74060 74223</br>
+                    <br>SX 74060 74223</br>
                     <br>Date: 2024-10-31</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -870,7 +870,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 53342 63625</br>
+                    <br>SX 53342 63625</br>
                     <br>Date: 2024-10-10</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -892,7 +892,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 52188 77880</br>
+                    <br>SX 52188 77880</br>
                     <br>Date: 2024-10-03</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -914,7 +914,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 68839 70881</br>
+                    <br>SX 68839 70881</br>
                     <br>Date: 2024-09-26</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -936,7 +936,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 70027 66636</br>
+                    <br>SX 70027 66636</br>
                     <br>Date: 2024-09-19</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -958,7 +958,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 66071 83685</br>
+                    <br>SX 66071 83685</br>
                     <br>Date: 2024-09-12</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -980,7 +980,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 68064 62899</br>
+                    <br>SX 68064 62899</br>
                     <br>Date: 2024-09-05</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1002,7 +1002,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 72098 80198</br>
+                    <br>SX 72098 80198</br>
                     <br>Date: 2024-08-29</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1024,7 +1024,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 60410 70804</br>
+                    <br>SX 60410 70804</br>
                     <br>Date: 2024-08-08</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1046,7 +1046,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-					<br>SX 54635 80547</br>
+                    <br>SX 54635 80547</br>
                     <br>Date: 2024-08-01</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1068,7 +1068,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 61489 93287</br>
+                    <br>SX 61489 93287</br>
                     <br>Date: 2024-07-25</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1090,7 +1090,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 57881 67304</br>
+                    <br>SX 57881 67304</br>
                     <br>Date: 2024-07-18</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1112,7 +1112,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 56868 69313</br>
+                    <br>SX 56868 69313</br>
                     <br>Date: 2024-07-11</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1134,7 +1134,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 65837 57155</br>
+                    <br>SX 65837 57155</br>
                     <br>Date: 2024-07-04</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1156,7 +1156,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-					<br>SX 63917 77860</br>
+                    <br>SX 63917 77860</br>
                     <br>Date: 2024-06-27</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1178,7 +1178,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 53733 82352</br>
+                    <br>SX 53733 82352</br>
                     <br>Date: 2024-06-20</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1200,7 +1200,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-					<br>SX 64520 93570</br>
+                    <br>SX 64520 93570</br>
                     <br>Date: 2024-06-13</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1222,7 +1222,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-					<br>SX 69761 60274</br>
+                    <br>SX 69761 60274</br>
                     <br>Date: 2024-06-06</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1244,7 +1244,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-					<br>SX 55005 47727</br>
+                    <br>SX 55005 47727</br>
                     <br>Date: 2024-05-30</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1266,7 +1266,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 61386 60669</br>
+                    <br>SX 61386 60669</br>
                     <br>Date: 2024-05-23</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1288,7 +1288,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-					<br>SX 65090 72746</br>
+                    <br>SX 65090 72746</br>
                     <br>Date: 2024-05-16</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1310,7 +1310,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 48979 68337</br>
+                    <br>SX 48979 68337</br>
                     <br>Date: 2024-05-09</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1332,7 +1332,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 54576 66939</br>
+                    <br>SX 54576 66939</br>
                     <br>Date: 2024-05-02</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1354,7 +1354,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 76990 77791</br>
+                    <br>SX 76990 77791</br>
                     <br>Date: 2024-04-25</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1376,7 +1376,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 56414 64399</br>
+                    <br>SX 56414 64399</br>
                     <br>Date: 2024-04-18</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1398,7 +1398,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 68038 62914</br>
+                    <br>SX 68038 62914</br>
                     <br>Date: 2024-04-11</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1420,7 +1420,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 53315 63616</br>
+                    <br>SX 53315 63616</br>
                     <br>Date: 2024-04-04</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1442,7 +1442,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 64602 74569</br>
+                    <br>SX 64602 74569</br>
                     <br>Date: 2024-03-28</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1464,7 +1464,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 66055 83687</br>
+                    <br>SX 66055 83687</br>
                     <br>Date: 2024-03-21</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1486,7 +1486,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-					<br>SX 12587 50977</br>
+                    <br>SX 12587 50977</br>
                     <br>Date: 2024-03-14</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1508,7 +1508,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-					<br>SX 38939 53318</br>
+                    <br>SX 38939 53318</br>
                     <br>Date: 2024-03-13</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1530,7 +1530,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 57870 67307</br>
+                    <br>SX 57870 67307</br>
                     <br>Date: 2024-03-07</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1552,7 +1552,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 53107 75123</br>
+                    <br>SX 53107 75123</br>
                     <br>Date: 2024-02-29</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1574,7 +1574,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 50342 70272</br>
+                    <br>SX 50342 70272</br>
                     <br>Date: 2024-02-22</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1596,7 +1596,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 67031 71782</br>
+                    <br>SX 67031 71782</br>
                     <br>Date: 2024-02-08</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1618,7 +1618,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 67734 59289</br>
+                    <br>SX 67734 59289</br>
                     <br>Date: 2024-02-01</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1640,7 +1640,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 52241 65574</br>
+                    <br>SX 52241 65574</br>
                     <br>Date: 2024-01-25</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1662,7 +1662,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 54752 69223</br>
+                    <br>SX 54752 69223</br>
                     <br>Date: 2024-01-18</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1684,7 +1684,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 67968 81589</br>
+                    <br>SX 67968 81589</br>
                     <br>Date: 2024-01-11</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1708,7 +1708,7 @@
     <div class="track-list">
             <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 63847 59386</br>
+                    <br>SX 63847 59386</br>
                     <br>Date: 2023-12-28</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1730,7 +1730,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 56885 69304</br>
+                    <br>SX 56885 69304</br>
                     <br>Date: 2023-12-21</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1752,7 +1752,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 60912 75059</br>
+                    <br>SX 60912 75059</br>
                     <br>Date: 2023-12-14</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1774,7 +1774,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-					<br>SS 22268 24700</br>
+                    <br>SS 22268 24700</br>
                     <br>Date: 2023-12-07</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1796,7 +1796,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 69681 70013</br>
+                    <br>SX 69681 70013</br>
                     <br>Date: 2023-11-30</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1818,7 +1818,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 65843 57145</br>
+                    <br>SX 65843 57145</br>
                     <br>Date: 2023-11-23</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1840,7 +1840,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-					<br>SX 54745 69220</br>
+                    <br>SX 54745 69220</br>
                     <br>Date: 2023-11-16</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1862,7 +1862,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-					<br>SX 55313 75017</br>
+                    <br>SX 55313 75017</br>
                     <br>Date: 2023-11-09</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1884,7 +1884,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 74043 74235</br>
+                    <br>SX 74043 74235</br>
                     <br>Date: 2023-11-02</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1906,7 +1906,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-					<br>SX 67367 58158</br>
+                    <br>SX 67367 58158</br>
                     <br>Date: 2023-10-26</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1928,7 +1928,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 74311 90023</br>
+                    <br>SX 74311 90023</br>
                     <br>Date: 2023-10-19</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1950,7 +1950,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 68533 71247</br>
+                    <br>SX 68533 71247</br>
                     <br>Date: 2023-10-12</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1972,7 +1972,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 63578 47836</br>
+                    <br>SX 63578 47836</br>
                     <br>Date: 2023-10-05</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -1994,7 +1994,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 57870 67309</br>
+                    <br>SX 57870 67309</br>
                     <br>Date: 2023-09-28</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2016,7 +2016,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 70416 68584</br>
+                    <br>SX 70416 68584</br>
                     <br>Date: 2023-09-21</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2038,7 +2038,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 56885 69295</br>
+                    <br>SX 56885 69295</br>
                     <br>Date: 2023-09-14</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2060,7 +2060,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 73950 79201</br>
+                    <br>SX 73950 79201</br>
                     <br>Date: 2023-08-31</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2082,7 +2082,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 68865 58966</br>
+                    <br>SX 68865 58966</br>
                     <br>Date: 2023-08-24</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2104,7 +2104,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-					<br>SX 67964 81590</br>
+                    <br>SX 67964 81590</br>
                     <br>Date: 2023-08-22</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2126,7 +2126,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 58742 73283</br>
+                    <br>SX 58742 73283</br>
                     <br>Date: 2023-08-17</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2148,7 +2148,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 69501 73124</br>
+                    <br>SX 69501 73124</br>
                     <br>Date: 2023-08-10</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2170,7 +2170,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 50331 70268</br>
+                    <br>SX 50331 70268</br>
                     <br>Date: 2023-08-03</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2192,7 +2192,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 73982 79176</br>
+                    <br>SX 73982 79176</br>
                     <br>Date: 2023-07-27</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2214,7 +2214,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 67094 88394</br>
+                    <br>SX 67094 88394</br>
                     <br>Date: 2023-07-20</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2236,7 +2236,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 54725 47375</br>
+                    <br>SX 54725 47375</br>
                     <br>Date: 2023-07-13</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2258,7 +2258,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 72948 37421</br>
+                    <br>SX 72948 37421</br>
                     <br>Date: 2023-07-06</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2280,7 +2280,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 53093 75151</br>
+                    <br>SX 53093 75151</br>
                     <br>Date: 2023-06-29</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2302,7 +2302,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 68529 71248</br>
+                    <br>SX 68529 71248</br>
                     <br>Date: 2023-06-22</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2324,7 +2324,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 66400 73327</br>
+                    <br>SX 66400 73327</br>
                     <br>Date: 2023-06-15</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2346,7 +2346,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 65423 72669</br>
+                    <br>SX 65423 72669</br>
                     <br>Date: 2023-05-25</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2368,7 +2368,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 63588 47825</br>
+                    <br>SX 63588 47825</br>
                     <br>Date: 2023-05-18</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2390,7 +2390,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 54580 66947</br>
+                    <br>SX 54580 66947</br>
                     <br>Date: 2023-05-11</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2412,7 +2412,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 70391 63991</br>
+                    <br>SX 70391 63991</br>
                     <br>Date: 2023-04-20</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2434,7 +2434,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 63840 59387</br>
+                    <br>SX 63840 59387</br>
                     <br>Date: 2023-04-13</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2456,7 +2456,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 70025 66636</br>
+                    <br>SX 70025 66636</br>
                     <br>Date: 2023-04-06</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2478,7 +2478,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 70031 66624</br>
+                    <br>SX 70031 66624</br>
                     <br>Date: 2023-03-30</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2500,7 +2500,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 68135 73268</br>
+                    <br>SX 68135 73268</br>
                     <br>Date: 2023-03-23</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2522,7 +2522,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 69458 72986</br>
+                    <br>SX 69458 72986</br>
                     <br>Date: 2023-03-16</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2544,7 +2544,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 55486 65754</br>
+                    <br>SX 55486 65754</br>
                     <br>Date: 2023-03-09</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2566,7 +2566,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 52227 65583</br>
+                    <br>SX 52227 65583</br>
                     <br>Date: 2023-02-23</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2588,7 +2588,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 61549 58103</br>
+                    <br>SX 61549 58103</br>
                     <br>Date: 2023-02-09</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2610,7 +2610,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 60178 60171</br>
+                    <br>SX 60178 60171</br>
                     <br>Date: 2023-02-02</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2632,7 +2632,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 51348 77776</br>
+                    <br>SX 51348 77776</br>
                     <br>Date: 2023-01-19</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2654,7 +2654,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 54753 69222</br>
+                    <br>SX 54753 69222</br>
                     <br>Date: 2023-01-12</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2678,7 +2678,7 @@
     <div class="track-list">
             <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 67968 81593</br>
+                    <br>SX 67968 81593</br>
                     <br>Date: 2022-12-08</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2700,7 +2700,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 63846 59382</br>
+                    <br>SX 63846 59382</br>
                     <br>Date: 2022-12-01</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2722,7 +2722,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 50331 70258</br>
+                    <br>SX 50331 70258</br>
                     <br>Date: 2022-11-24</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2744,7 +2744,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 60909 75047</br>
+                    <br>SX 60909 75047</br>
                     <br>Date: 2022-11-17</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2766,7 +2766,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 56051 74888</br>
+                    <br>SX 56051 74888</br>
                     <br>Date: 2022-11-10</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2788,7 +2788,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 55468 64557</br>
+                    <br>SX 55468 64557</br>
                     <br>Date: 2022-10-13</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2810,7 +2810,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 63580 47830</br>
+                    <br>SX 63580 47830</br>
                     <br>Date: 2022-09-01</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2832,7 +2832,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 68744 71335</br>
+                    <br>SX 68744 71335</br>
                     <br>Date: 2022-08-25</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2854,7 +2854,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 71693 76895</br>
+                    <br>SX 71693 76895</br>
                     <br>Date: 2022-08-18</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2876,7 +2876,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-					<br>SX 60447 70719</br>
+                    <br>SX 60447 70719</br>
                     <br>Date: 2022-08-09</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2898,7 +2898,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 66394 73346</br>
+                    <br>SX 66394 73346</br>
                     <br>Date: 2022-08-04</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2920,7 +2920,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 58898 73481</br>
+                    <br>SX 58898 73481</br>
                     <br>Date: 2022-07-07</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2942,7 +2942,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 70031 66640</br>
+                    <br>SX 70031 66640</br>
                     <br>Date: 2022-06-30</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2964,7 +2964,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 53562 90308</br>
+                    <br>SX 53562 90308</br>
                     <br>Date: 2022-06-23</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -2986,7 +2986,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 67153 88400</br>
+                    <br>SX 67153 88400</br>
                     <br>Date: 2022-06-16</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3008,7 +3008,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 52580 86637</br>
+                    <br>SX 52580 86637</br>
                     <br>Date: 2022-06-09</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3030,7 +3030,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 73984 79186</br>
+                    <br>SX 73984 79186</br>
                     <br>Date: 2022-05-19</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3052,7 +3052,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 52383 80681</br>
+                    <br>SX 52383 80681</br>
                     <br>Date: 2022-05-12</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3074,7 +3074,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 54568 66946</br>
+                    <br>SX 54568 66946</br>
                     <br>Date: 2022-05-05</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3096,7 +3096,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 54760 69236</br>
+                    <br>SX 54760 69236</br>
                     <br>Date: 2022-04-21</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3118,7 +3118,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 68104 73284</br>
+                    <br>SX 68104 73284</br>
                     <br>Date: 2022-04-14</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3140,7 +3140,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 70373 64000</br>
+                    <br>SX 70373 64000</br>
                     <br>Date: 2022-04-07</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3162,7 +3162,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 52653 73180</br>
+                    <br>SX 52653 73180</br>
                     <br>Date: 2022-03-31</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3184,7 +3184,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 57886 67311</br>
+                    <br>SX 57886 67311</br>
                     <br>Date: 2022-03-24</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3206,7 +3206,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 69642 73933</br>
+                    <br>SX 69642 73933</br>
                     <br>Date: 2022-03-17</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3228,7 +3228,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 51351 77762</br>
+                    <br>SX 51351 77762</br>
                     <br>Date: 2022-03-10</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3250,7 +3250,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 53109 75132</br>
+                    <br>SX 53109 75132</br>
                     <br>Date: 2022-02-10</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3272,7 +3272,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 67967 81592</br>
+                    <br>SX 67967 81592</br>
                     <br>Date: 2022-02-03</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3294,7 +3294,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 55442 64501</br>
+                    <br>SX 55442 64501</br>
                     <br>Date: 2022-01-27</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3316,7 +3316,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 74046 74238</br>
+                    <br>SX 74046 74238</br>
                     <br>Date: 2022-01-20</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3338,7 +3338,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-					<br>SX 63840 59392</br>
+                    <br>SX 63840 59392</br>
                     <br>Date: 2022-01-13</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3362,7 +3362,7 @@
     <div class="track-list">
             <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 54961 75147</br>
+                    <br>SX 54961 75147</br>
                     <br>Date: 2021-12-30</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3384,7 +3384,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 56875 69300</br>
+                    <br>SX 56875 69300</br>
                     <br>Date: 2021-12-16</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3406,7 +3406,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 70373 68515</br>
+                    <br>SX 70373 68515</br>
                     <br>Date: 2021-12-09</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3428,7 +3428,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 54751 69231</br>
+                    <br>SX 54751 69231</br>
                     <br>Date: 2021-11-25</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3450,7 +3450,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 60923 75152</br>
+                    <br>SX 60923 75152</br>
                     <br>Date: 2021-11-18</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3472,7 +3472,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 60169 60172</br>
+                    <br>SX 60169 60172</br>
                     <br>Date: 2021-10-21</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3494,7 +3494,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 57932 67313</br>
+                    <br>SX 57932 67313</br>
                     <br>Date: 2021-10-14</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3516,7 +3516,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 65515 72646</br>
+                    <br>SX 65515 72646</br>
                     <br>Date: 2021-09-23</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3538,7 +3538,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-					<br>SX 51351 77755</br>
+                    <br>SX 51351 77755</br>
                     <br>Date: 2021-09-16</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3560,7 +3560,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 72948 37460</br>
+                    <br>SX 72948 37460</br>
                     <br>Date: 2021-08-12</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3582,7 +3582,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-					<br>SX 71930 76881</br>
+                    <br>SX 71930 76881</br>
                     <br>Date: 2021-08-05</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3604,7 +3604,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 56160 91774</br>
+                    <br>SX 56160 91774</br>
                     <br>Date: 2021-07-01</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3626,7 +3626,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 47386 64896</br>
+                    <br>SX 47386 64896</br>
                     <br>Date: 2021-06-24</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3648,7 +3648,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 61170 47823</br>
+                    <br>SX 61170 47823</br>
                     <br>Date: 2021-06-17</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3670,7 +3670,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 52536 85390</br>
+                    <br>SX 52536 85390</br>
                     <br>Date: 2021-06-10</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3692,7 +3692,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-					<br>SX 54716 47413</br>
+                    <br>SX 54716 47413</br>
                     <br>Date: 2021-04-29</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3716,7 +3716,7 @@
     <div class="track-list">
             <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-					<br>SX 52551 85372</br>
+                    <br>SX 52551 85372</br>
                     <br>Date: 2020-08-20</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3738,7 +3738,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 68116 73287</br>
+                    <br>SX 68116 73287</br>
                     <br>Date: 2020 or Earlier - Yar Tor</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3760,7 +3760,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 60308 71075</br>
+                    <br>SX 60308 71075</br>
                     <br>Date: 2020 or Earlier - Whiteworks</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3782,7 +3782,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 59050 73435</br>
+                    <br>SX 59050 73435</br>
                     <br>Date: 2020 or Earlier - Tor Royal</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3804,7 +3804,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 74809 76162</br>
+                    <br>SX 74809 76162</br>
                     <br>Date: 2020 or Earlier - Top Tor</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3826,7 +3826,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 69407 70199</br>
+                    <br>SX 69407 70199</br>
                     <br>Date: 2020 or Earlier - Snowdon</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3848,7 +3848,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 68044 62908</br>
+                    <br>SX 68044 62908</br>
                     <br>Date: 2020 or Earlier - Shipley Bridge</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3870,7 +3870,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 58891 73476</br>
+                    <br>SX 58891 73476</br>
                     <br>Date: 2020 or Earlier - Princetown Transmitter</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3892,7 +3892,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 56076 74883</br>
+                    <br>SX 56076 74883</br>
                     <br>Date: 2020 or Earlier - Peak Hill</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3914,7 +3914,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 52563 85343</br>
+                    <br>SX 52563 85343</br>
                     <br>Date: 2020 or Earlier - Hare Tor</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3936,7 +3936,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 52550 86696</br>
+                    <br>SX 52550 86696</br>
                     <br>Date: 2020 or Earlier - Great Links Tor</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3958,7 +3958,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 68050 59381</br>
+                    <br>SX 68050 59381</br>
                     <br>Date: 2020 or Earlier - Glazebrook</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -3980,7 +3980,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-					<br>SX 60906 75024</br>
+                    <br>SX 60906 75024</br>
                     <br>Date: 2020 or Earlier - Devils Tor</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -4002,7 +4002,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-					<br>SX 64536 93596</br>
+                    <br>SX 64536 93596</br>
                     <br>Date: 2020 or Earlier - Cosdon Beacon</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -4024,7 +4024,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 57870 67308</br>
+                    <br>SX 57870 67308</br>
                     <br>Date: 2020 or Earlier - Combshead Tor</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -4046,7 +4046,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 66978 71786</br>
+                    <br>SX 66978 71786</br>
                     <br>Date: 2020 or Earlier - Combestone Tor</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -4068,7 +4068,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 66994 71794</br>
+                    <br>SX 66994 71794</br>
                     <br>Date: 2020 or Earlier - Combestone</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -4090,7 +4090,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-					<br>SX 74317 90029</br>
+                    <br>SX 74317 90029</br>
                     <br>Date: 2020 or Earlier - Castle Drogo</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -4112,7 +4112,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-					<br>SX 62015 93323</br>
+                    <br>SX 62015 93323</br>
                     <br>Date: 2020 or Earlier - Belstone</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
@@ -4134,7 +4134,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-					<br>SS 71081 49728</br>
+                    <br>SS 71081 49728</br>
                     <br>Date: 2019-05-15</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">

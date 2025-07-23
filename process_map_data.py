@@ -456,19 +456,21 @@ def save_tracks_as_elevation_profiles(feature_collection):
         elevations = [point[2] for point in coordinates]
         distances = [point[3] for point in coordinates]
 
-        # Plotting elevation against total distance
-        plt.figure(figsize=(8, 4))
-        plt.plot(distances, elevations)
-        plt.xlabel('Distance (miles)')
-        plt.ylabel('Elevation (m)')
-        plt.grid(True)
+        # Plotting elevation against total distance with xkcd style
+        with plt.xkcd():
+            plt.figure(figsize=(8, 4))
+            plt.plot(distances, elevations)
+            plt.xlabel('Distance (miles)')
+            plt.ylabel('Elevation (m)')
 
-        # Set y-axis limits
-        plt.ylim(bottom=0, top=max_elevation)
+            # Set y-axis limits
+            plt.ylim(bottom=0, top=max_elevation)
 
-        # Save the graph as an image
-        plt.savefig(output_dir + "/" + track_name)
-        plt.close()  # Close the figure to prevent overlap
+            # Adjust layout to ensure labels are visible
+            plt.tight_layout()
+            # Save the graph as an image
+            plt.savefig(output_dir + "/" + track_name)
+            plt.close()  # Close the figure to prevent overlap
     
     print("Elevation profiles created")
 
@@ -573,60 +575,60 @@ def create_index_page(years, feature_collection):
     html_start = """\
 <!DOCTYPE html>
 <html>
-	<head>
-	<title>Moor Walkers Map</title>
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			margin: 0;
-			padding: 0;
-		}
-		header {
-			background-color: #0A4478;
-			color: white;
-			padding: 1em;
-			text-align: center;
-		}
-		h1 {
-			text-align: center;
-			margin: 0;
-			font-size: 2.5em;
-		}
-		p {
-			font-size: 1.2em;
-			margin-top: 2em;
-			margin-bottom: 1em;
-			text-align: center;
-		}
-		ul {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-			text-align: center;
+    <head>
+    <title>Moor Walkers Map</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0A4478;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            margin: 0;
+            font-size: 2.5em;
+        }
+        p {
+            font-size: 1.2em;
+            margin-top: 2em;
+            margin-bottom: 1em;
+            text-align: center;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
             font-size: 1.8em;
-		}
-		li {
-			display: inline-block;
-			margin: 0 1em;
-		}
-		a {
-			display: block;
-			padding: 0.5em 1em;
-			background-color: #0A4478;
-			color: white;
-			text-decoration: none;
-			border-radius: 5px;
-			transition: background-color 0.2s ease;
+        }
+        li {
+            display: inline-block;
+            margin: 0 1em;
+        }
+        a {
+            display: block;
+            padding: 0.5em 1em;
+            background-color: #0A4478;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
             font-size: 1.0em;
-		}
-		a:hover {
-			background-color: #1A4E87;
-		}
-		.track-list {
-			display: grid;
-			gap: 10px;
-			padding: 20px;
-		}
+        }
+        a:hover {
+            background-color: #1A4E87;
+        }
+        .track-list {
+            display: grid;
+            gap: 10px;
+            padding: 20px;
+        }
 
             /* Define the grid for larger screens (e.g., desktop) */
             @media (min-width: 1501px) {
@@ -656,13 +658,13 @@ def create_index_page(years, feature_collection):
                 }
             }
 
-		.track {
-			font-size: 1.0em;
+        .track {
+            font-size: 1.0em;
             border: 10px solid #ccc;
-			border-radius: 10px;
-			padding: 10px;
-			text-align: center;
-		}
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+        }
 
         .track img {
             max-width: 100%; /* Set maximum width to fit the container */
@@ -670,24 +672,24 @@ def create_index_page(years, feature_collection):
             display: block; /* Ensures images resize properly */
             margin: auto; /* Centers the images horizontally */
         }
-		
-		.track-details {
-			text-align: left;
-			padding-left: 20px;
-			line-height: 0.9;
-		}
-		
-		.track-details-distance {
-			line-height: 0.6;
-		}
+        
+        .track-details {
+            text-align: left;
+            padding-left: 20px;
+            line-height: 0.9;
+        }
+        
+        .track-details-distance {
+            line-height: 0.6;
+        }
 
         .track-details-ascent-normal {
-			font-weight: normal;
-		}
-		
-		.track-details-ascent-bold {
-			font-weight: bold;
-		}
+            font-weight: normal;
+        }
+        
+        .track-details-ascent-bold {
+            font-weight: bold;
+        }
 
         /* Styling for the modal */
         .modal {
@@ -718,7 +720,7 @@ def create_index_page(years, feature_collection):
         input[type="range"] {
             width: 400px; /* Adjust the width */
         }
-	</style>
+    </style>
     <script>
         function displayLargeImage(imageUrl) {
             var modal = document.getElementById('modal');
@@ -735,24 +737,24 @@ def create_index_page(years, feature_collection):
         }
     </script>
     <link rel="icon" href="https://moorwalkers.github.io/icons8-map-pastel-32.png" type="image/x-icon">
-	</head>
-	<body>
-		<!-- Modal for displaying larger image -->
+    </head>
+    <body>
+        <!-- Modal for displaying larger image -->
         <div id="modal" class="modal" onclick="closeModal()">
             <img id="largerImage" class="modal-content" src="" alt="Larger Image">
         </div>
         <header>
-			<h1>Moor Walkers Map</h1>
-		</header>
-		<main>
-			<p>Welcome to our website, dedicated to showcasing the incredible walks that the Moor Walkers have taken over Dartmoor and the surrounding areas.
-			<br>Join us on a journey through the heart of this stunning landscape and discover the hidden treasures that Dartmoor has to offer.</p>
-			<p><strong>Click the links below to view the maps showing all tracks:</strong></p>
-			<ul>
-				<li><a href="https://moorwalkers.github.io/map_os.html">OS Map Layers<br>with All Tracks</a></li>
+            <h1>Moor Walkers Map</h1>
+        </header>
+        <main>
+            <p>Welcome to our website, dedicated to showcasing the incredible walks that the Moor Walkers have taken over Dartmoor and the surrounding areas.
+            <br>Join us on a journey through the heart of this stunning landscape and discover the hidden treasures that Dartmoor has to offer.</p>
+            <p><strong>Click the links below to view the maps showing all tracks:</strong></p>
+            <ul>
+                <li><a href="https://moorwalkers.github.io/map_os.html">OS Map Layers<br>with All Tracks</a></li>
                 <li><a href="https://moorwalkers.github.io/map_std.html">Standard Map Layers<br>with All Tracks</a></li>
-			</ul>
-			<br>
+            </ul>
+            <br>
             <br>
             <p><strong>Or click one of the following Individual Map links to view individual tracks:</strong></p>
 
@@ -930,7 +932,7 @@ def create_index_page(years, feature_collection):
                         html_track = f"""\
 <div class="track" style="border: 10px solid {grid_colour};">
                 <div class="track-details">
-					<br>{feature['properties']['gridref']}</br>
+                    <br>{feature['properties']['gridref']}</br>
                     <br>Date: {date_title}</br>
                     <br>Distance:</br>
                     <div class="track-details-distance">
