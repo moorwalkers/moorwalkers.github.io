@@ -187,19 +187,19 @@
             <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
             <div style="margin: 10px;">
                 <label for="minDistance">Minimum Distance:</label>
-                <input type="range" id="minDistance" name="minDistance" min="0" max="0" value="0">
+                <input type="range" id="minDistance" name="minDistance" min="0" max="15" value="0">
                 <span id="minDistanceValue"></span> miles <!-- Display selected value -->
                 <br><br>
                 <label for="maxDistance">Maximum Distance:</label>
-                <input type="range" id="maxDistance" name="maxDistance" min="0" max="0" value="0">
+                <input type="range" id="maxDistance" name="maxDistance" min="0" max="15" value="15">
                 <span id="maxDistanceValue"></span> miles <!-- Display selected value -->
                 <br><br><br>
                 <label for="minAscent">Minimum Ascent:</label>
-                <input type="range" id="minAscent" name="minAscent" min="0" max="0" value="0">
+                <input type="range" id="minAscent" name="minAscent" min="0" max="1500" value="0">
                 <span id="minAscentValue"></span> meters <!-- Display selected value -->
                 <br><br>
                 <label for="maxAscent">Maximum Ascent:</label>
-                <input type="range" id="maxAscent" name="maxAscent" min="0" max="0" value="0">
+                <input type="range" id="maxAscent" name="maxAscent" min="0" max="1500" value="1500">
                 <span id="maxAscentValue"></span> meters <!-- Display selected value -->
                 <br><br>
             </div>
@@ -207,6 +207,28 @@
         <h1>2025</h1>
     <div class="track-list">
             <div class="track" style="border: 10px solid #C0FFC0;">
+                <div class="track-details">
+                    <br>SX 67449 85590</br>
+                    <br>Date: 2025-08-14</br>
+                    <br>Distance:</br>
+                    <div class="track-details-distance">
+                        <br>4.79 miles</br>
+                        <br>7.72 km</br>
+                    </div>
+                    <br>Duration: 1:44:44</br>
+                    <div class="track-details-ascent-normal">
+                        <br>Ascent: 107m</br>
+                        <br>Descent: -106m</br>
+                    </div>
+                </div>
+                <img src="https://moorwalkers.github.io/elevation_profiles/2025-08-14_18-00-00.png" alt="Elevation Profile" class="clickable-image" onclick="displayLargeImage('https://moorwalkers.github.io/elevation_profiles/2025-08-14_18-00-00.png')">
+                <a href="https://moorwalkers.github.io/map_os.html?track_id=2025-08-14T18:00:00" target="_self" style='display: block; margin-top: 5px;'>Open OS Map</a>
+                <a href="https://moorwalkers.github.io/map_std.html?track_id=2025-08-14T18:00:00" target="_self" style='display: block; margin-top: 5px;'>Open Standard Map</a>
+                <a href="https://www.google.com/maps?q=50.654864804819226,-3.8765022251755" target="_blank" style='display: block; margin-top: 5px;'>Starting Location on Google Maps</a>
+                <a href="https://moorwalkers.github.io/track_downloads/2025-08-14_18-00-00.gpx" download="2025-08-14_18-00-00.gpx" style='display: block; margin-top: 5px;'>Download GPX Track File</a>
+                <div style='text-align: center; margin-top: 10px; font-weight: bold;'>Teignworthy, Chagford, West Devon</div>
+            </div>
+                    <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
                     <br>SX 72883 53620</br>
                     <br>Date: 2025-08-07</br>
@@ -4241,23 +4263,17 @@
       var trackAscent = parseFloat(ascentDetails.innerText.trim().split(' ')[1]);
 
       // Update the maximum distance and ascent values
-      maxDistance = Math.max(maxDistance, Math.ceil(trackDistance / 5) * 5); // Round up distance to nearest multiple of 5
+      maxDistance = Math.max(maxDistance, Math.ceil(trackDistance)); // Round up distance to nearest whole number
       maxAscent = Math.max(maxAscent, Math.ceil(trackAscent / 100) * 100); // Round up ascent to nearest 100
     });
 
     // Set the maximum values for distance and ascent sliders
-    document.getElementById('minDistance').setAttribute('max', maxDistance);
     document.getElementById('maxDistance').setAttribute('max', maxDistance);
-    document.getElementById('minAscent').setAttribute('max', maxAscent);
     document.getElementById('maxAscent').setAttribute('max', maxAscent);
 
     // Display the maximum values next to the sliders
     document.getElementById('maxDistanceValue').innerText = maxDistance;
     document.getElementById('maxAscentValue').innerText = maxAscent;
-
-    // Set initial slider values
-    document.getElementById('maxDistance').value = maxDistance;
-    document.getElementById('maxAscent').value = maxAscent;
   }
 
   // Function to filter tracks based on slider values
