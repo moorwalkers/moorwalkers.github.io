@@ -1,0 +1,152 @@
+{
+  "filter_info": {
+    "start_date": "2025-01-22",
+    "end_date": null,
+    "original_walk_count": 198,
+    "filtered_walk_count": 40,
+    "walks_excluded": 158
+  },
+  "total_walks": 40,
+  "distance_stats_km": {
+    "total": 348.08,
+    "average": 8.7,
+    "median": 7.54,
+    "longest": 48.72,
+    "shortest": 4.62,
+    "std_dev": 6.87
+  },
+  "distance_stats_miles": {
+    "total": 216.27,
+    "average": 5.41,
+    "median": 4.69,
+    "longest": 30.27,
+    "shortest": 2.87
+  },
+  "elevation_stats": {
+    "total_ascent": 6865,
+    "total_descent": 7383,
+    "average_ascent": 171.62,
+    "max_ascent": 625,
+    "min_ascent": 49,
+    "average_descent": 184.57,
+    "max_descent": 752,
+    "min_descent": 45
+  },
+  "duration_stats": {
+    "total_hours": 100.2,
+    "average_minutes": 150.3,
+    "average_hours": 2.51,
+    "longest_minutes": 442.97,
+    "longest_hours": 7.38,
+    "shortest_minutes": 53.53,
+    "shortest_hours": 0.89
+  },
+  "date_stats": {
+    "first_walk": "2025-01-30",
+    "most_recent_walk": "2025-11-27",
+    "days_between_first_and_last": 300
+  },
+  "most_common_places": {
+    "Holne, South Hams, Devon": 4,
+    "Walkhampton, Dousland, West Devon": 2,
+    "Royal Mail, A386, Horrabridge": 2,
+    "Pixieland, Dartmoor Forest, Dartmeet": 2,
+    "A382, Easton, Chagford": 1,
+    "Tavistock Inn, Dr Blackall's Drive, Leigh Tor Farm": 1,
+    "Trout Cottage, Two Bridges, Dartmoor Forest": 1,
+    "Oaklands Road, Parklands Farm, West Buckfastleigh": 1,
+    "Peter's Cottage, Widecombe-in-the-Moor, Teignbridge": 1,
+    "Mine (dis), Shaugh Bridge, Shaugh Prior": 1
+  },
+  "unique_places": 34,
+  "unique_grid_refs": 40,
+  "cluster_stats": {
+    "unique_clusters": 12,
+    "most_common_cluster": 1,
+    "walks_per_cluster": {
+      "1": 11,
+      "5": 7,
+      "8": 4,
+      "13": 4,
+      "0": 3,
+      "14": 3,
+      "9": 3,
+      "18": 1,
+      "4": 1,
+      "16": 1,
+      "15": 1,
+      "10": 1
+    }
+  },
+  "coordinate_stats": {
+    "northernmost_lat": 50.6954842237927,
+    "southernmost_lat": 50.30374493266699,
+    "easternmost_lon": -3.7173871428390646,
+    "westernmost_lon": -4.288880854088307,
+    "average_lat": 50.534158,
+    "average_lon": -3.930906
+  },
+  "record_walks": {
+    "longest": {
+      "name": "2025-06-19 @ 09-35-31",
+      "distance_km": 48.72,
+      "date": "2025-06-19T09:35:31"
+    },
+    "shortest": {
+      "name": "2025-05-08 @ 18-00-00",
+      "distance_km": 4.62,
+      "date": "2025-05-08T18:00:00"
+    },
+    "highest_ascent": {
+      "name": "2025-06-19 @ 09-35-31",
+      "ascent": 625,
+      "date": "2025-06-19T09:35:31"
+    },
+    "longest_duration": {
+      "name": "2025-06-19 @ 09-35-31",
+      "duration": "7:22:58",
+      "date": "2025-06-19T09:35:31"
+    }
+  },
+  "pace_stats": {
+    "average_min_per_km": 18.46,
+    "fastest_min_per_km": 9.09,
+    "slowest_min_per_km": 26.6
+  },
+  "colour_distribution": {
+    "darkred": 12,
+    "green": 7,
+    "red": 7,
+    "blue": 4,
+    "gray": 2,
+    "purple": 2,
+    "black": 2,
+    "cadetblue": 1,
+    "darkgreen": 1,
+    "orange": 1,
+    "darkblue": 1
+  },
+  "monthly_distance_totals": {
+    "2025-01": 4.89,
+    "2025-02": 14.4,
+    "2025-03": 26.75,
+    "2025-04": 29.86,
+    "2025-05": 32.230000000000004,
+    "2025-06": 69.16,
+    "2025-07": 30.46,
+    "2025-08": 30.189999999999998,
+    "2025-09": 32.87,
+    "2025-10": 36.690000000000005,
+    "2025-11": 40.58
+  },
+  "busiest_month": [
+    "2025-06",
+    69.16
+  ],
+  "coordinate_points": {
+    "total_points": 3531,
+    "average_points_per_walk": 88.28,
+    "max_points_in_walk": 388,
+    "min_points_in_walk": 42
+  }
+}
