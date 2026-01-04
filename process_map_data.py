@@ -568,61 +568,25 @@ def write_track_markers(marker_features, output_path):
     with open(output_path, "w", encoding="utf-8") as mf:
         json.dump(track_markers_geojson, mf, ensure_ascii=False, indent=2)
 
-def create_index_page(years, feature_collection):
-    """Create an HTML index page to showcase walking tracks for different years."""
+def create_tracks_content_page(years, feature_collection):
+    """Create an HTML page with track data to be embedded in an iframe."""
 
-    # HTML template for the start of the page
+    # HTML template for the start of the tracks content page
     html_start = """\
 <!DOCTYPE html>
 <html>
     <head>
-    <title>Moor Walkers Map</title>
+    <title>Tracks Content</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
-        header {
-            background-color: #0A4478;
-            color: white;
-            padding: 1em;
-            text-align: center;
-        }
         h1 {
             text-align: center;
             margin: 0;
             font-size: 2.5em;
-        }
-        p {
-            font-size: 1.2em;
-            margin-top: 2em;
-            margin-bottom: 1em;
-            text-align: center;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: center;
-            font-size: 1.8em;
-        }
-        li {
-            display: inline-block;
-            margin: 0 1em;
-        }
-        a {
-            display: block;
-            padding: 0.5em 1em;
-            background-color: #0A4478;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.2s ease;
-            font-size: 1.0em;
-        }
-        a:hover {
-            background-color: #1A4E87;
         }
         .track-list {
             display: grid;
@@ -721,60 +685,18 @@ def create_index_page(years, feature_collection):
             width: 400px; /* Adjust the width */
         }
         
-        /* Latest donation display */
-        .latest-donation {
-            background-color: #f0f8ff;
-            border: 2px solid #0A4478;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px auto;
-            max-width: 800px;
-            text-align: center;
-        }
-        .latest-donation h3 {
-            color: #0A4478;
-            margin-top: 0;
-        }
-        .latest-donation table {
-            margin: 10px auto;
-            border-collapse: collapse;
-            background-color: white;
-        }
-        .latest-donation th {
-            background-color: #0A4478;
-            color: white;
-            padding: 8px;
-            font-size: 0.9em;
-        }
-        .latest-donation td {
-            padding: 8px;
-            border: 1px solid #ddd;
-            font-size: 0.9em;
-        }
-        .latest-donation a {
-            color: #0A4478;
-            text-decoration: none;
-            display: inline;
-            padding: 0;
-            background-color: transparent;
-            border-radius: 0;
-        }
-        .latest-donation a:hover {
-            text-decoration: underline;
-            background-color: transparent;
-        }
-        .latest-donation a.button-link {
-            display: inline-block;
+        a {
+            display: block;
             padding: 0.5em 1em;
             background-color: #0A4478;
             color: white;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.2s ease;
+            font-size: 1.0em;
         }
-        .latest-donation a.button-link:hover {
+        a:hover {
             background-color: #1A4E87;
-            text-decoration: none;
         }
     </style>
     <script>
@@ -792,71 +714,38 @@ def create_index_page(years, feature_collection):
             modal.style.display = 'none';
         }
     </script>
-    <link rel="icon" href="https://moorwalkers.github.io/icons8-map-pastel-32.png" type="image/x-icon">
     </head>
     <body>
         <!-- Modal for displaying larger image -->
         <div id="modal" class="modal" onclick="closeModal()">
             <img id="largerImage" class="modal-content" src="" alt="Larger Image">
         </div>
-        <header>
-            <h1>Moor Walkers Map</h1>
-        </header>
-        <main>
-            <p>Welcome to our website, dedicated to showcasing the incredible walks that the Moor Walkers have taken over Dartmoor and the surrounding areas.
-            <br>Join us on a journey through the heart of this stunning landscape and discover the hidden treasures that Dartmoor has to offer.
-            <br><br>Each week we take a collection during our walks, and these collections are donated to charities proposed by our walkers.</p>
-            
-            <!-- Charity Information -->
-            <div class="latest-donation">
-                <h3>Latest Charity Collection</h3>
-                <div id="donationLoading" style="font-style: italic; color: #666;">Loading...</div>
-                <div id="donationContainer"></div>
-                
-                <h3 style="margin-top: 20px;">Next Proposed Charity</h3>
-                <div id="upcomingLoading" style="font-style: italic; color: #666;">Loading...</div>
-                <div id="upcomingContainer"></div>
-                
-                <p style="margin-top: 15px; text-align: center;">
-                    <a href="charity_donations.html" class="button-link">View Recent Charity Collections & Donations</a>
-                </p>
-            </div>
-            
-            <p><strong>Click the links below to view the maps showing all tracks:</strong></p>
-            <ul>
-                <li><a href="https://moorwalkers.github.io/map_os.html">OS Map Layers<br>with All Tracks</a></li>
-                <li><a href="https://moorwalkers.github.io/map_std.html">Standard Map Layers<br>with All Tracks</a></li>
-            </ul>
-            <br>
-            <br>
-            <p><strong>Or click one of the following Individual Map links to view individual tracks:</strong></p>
-
-            <!-- Container for distance sliders -->
-            <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
-            <div style="margin: 10px;">
-                <label for="minDistance">Minimum Distance:</label>
-                <input type="range" id="minDistance" name="minDistance" min="0" max="15" value="0">
-                <span id="minDistanceValue"></span> miles <!-- Display selected value -->
-                <br><br>
-                <label for="maxDistance">Maximum Distance:</label>
-                <input type="range" id="maxDistance" name="maxDistance" min="0" max="15" value="15">
-                <span id="maxDistanceValue"></span> miles <!-- Display selected value -->
-                <br><br><br>
-                <label for="minAscent">Minimum Ascent:</label>
-                <input type="range" id="minAscent" name="minAscent" min="0" max="1500" value="0">
-                <span id="minAscentValue"></span> meters <!-- Display selected value -->
-                <br><br>
-                <label for="maxAscent">Maximum Ascent:</label>
-                <input type="range" id="maxAscent" name="maxAscent" min="0" max="1500" value="1500">
-                <span id="maxAscentValue"></span> meters <!-- Display selected value -->
-                <br><br>
-            </div>
-            </div>
+        
+        <!-- Container for distance sliders -->
+        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+        <div style="margin: 10px;">
+            <label for="minDistance">Minimum Distance:</label>
+            <input type="range" id="minDistance" name="minDistance" min="0" max="15" value="0">
+            <span id="minDistanceValue"></span> miles <!-- Display selected value -->
+            <br><br>
+            <label for="maxDistance">Maximum Distance:</label>
+            <input type="range" id="maxDistance" name="maxDistance" min="0" max="15" value="15">
+            <span id="maxDistanceValue"></span> miles <!-- Display selected value -->
+            <br><br><br>
+            <label for="minAscent">Minimum Ascent:</label>
+            <input type="range" id="minAscent" name="minAscent" min="0" max="1500" value="0">
+            <span id="minAscentValue"></span> meters <!-- Display selected value -->
+            <br><br>
+            <label for="maxAscent">Maximum Ascent:</label>
+            <input type="range" id="maxAscent" name="maxAscent" min="0" max="1500" value="1500">
+            <span id="maxAscentValue"></span> meters <!-- Display selected value -->
+            <br><br>
+        </div>
+        </div>
     """
 
-    # HTML template for the end of the page
+    # HTML template for the end of the tracks content page
     html_end = """    
-        </main>
     </body>
 <script>
   // Function to set maximum values for distance and ascent sliders
@@ -940,294 +829,24 @@ def create_index_page(years, feature_collection):
   setMaxSliderValues();
   filterTracks();
   
-  // Fetch and display latest charity donation
-  (function() {
-      const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9fPeRBDx4hLm3TU25ElZA14R2H5gSwoenN0ouGNmlfbyRRwqt2ODbQ0vVMZlVjA/pub?gid=1099060302&single=true&output=csv';
-      
-      function parseCSV(csv) {
-          const result = [];
-          let currentRow = [];
-          let currentField = '';
-          let insideQuotes = false;
-          
-          for (let i = 0; i < csv.length; i++) {
-              const char = csv[i];
-              const nextChar = csv[i + 1];
-              
-              if (char === '"') {
-                  if (insideQuotes && nextChar === '"') {
-                      currentField += '"';
-                      i++;
-                  } else {
-                      insideQuotes = !insideQuotes;
-                  }
-              } else if (char === ',' && !insideQuotes) {
-                  currentRow.push(currentField.trim());
-                  currentField = '';
-              } else if (char === '\\n' && !insideQuotes) {
-                  currentRow.push(currentField.trim());
-                  if (currentRow.some(field => field !== '')) {
-                      result.push(currentRow);
-                  }
-                  currentRow = [];
-                  currentField = '';
-              } else {
-                  if (char === '\\n' && insideQuotes) {
-                      currentField += ' ';
-                  } else if (char === '\\r') {
-                      // Skip
-                  } else {
-                      currentField += char;
-                  }
-              }
-          }
-          
-          if (currentField || currentRow.length > 0) {
-              currentRow.push(currentField.trim());
-              if (currentRow.some(field => field !== '')) {
-                  result.push(currentRow);
-              }
-          }
-          
-          return result;
-      }
-      
-      function getLatestDonation(data) {
-          if (data.length === 0) return null;
-          
-          const headers = data[0];
-          const amountCollectedIndex = headers.findIndex(h => 
-              h.toLowerCase().includes('amount') && h.toLowerCase().includes('collected')
-          );
-          
-          if (amountCollectedIndex === -1) return null;
-          
-          let lastValidRowIndex = -1;
-          for (let i = 1; i < data.length; i++) {
-              const cellValue = data[i][amountCollectedIndex] || '';
-              if (cellValue.trim() !== '') {
-                  lastValidRowIndex = i;
-              }
-          }
-          
-          if (lastValidRowIndex === -1) return null;
-          
-          const columnsToKeep = [];
-          for (let colIndex = 0; colIndex < headers.length; colIndex++) {
-              const header = headers[colIndex];
-              const headerLower = header.toLowerCase();
-              
-              if ((headerLower.includes('charity') && headerLower.includes('no') && headerLower.includes('name')) ||
-                  (headerLower.includes('gift') && headerLower.includes('aid')) ||
-                  headerLower.includes('notes') ||
-                  (headerLower.includes('average') && headerLower.includes('weekly')) ||
-                  headerLower.includes('month') ||
-                  headerLower.includes('week') ||
-                  (headerLower.includes('average') && headerLower.includes('monthly'))) {
-                  continue;
-              }
-              
-              const isTotalCollectedColumn = headerLower.includes('total') && 
-                                             headerLower.includes('collected') &&
-                                             /\\d{4}\\/\\d{2}/.test(header);
-              
-              if (isTotalCollectedColumn) {
-                  const cellValue = data[lastValidRowIndex][colIndex] || '';
-                  const numericValue = cellValue.replace(/[£$,]/g, '').trim();
-                  const value = parseFloat(numericValue);
-                  
-                  if (!isNaN(value) && value > 0) {
-                      columnsToKeep.push(colIndex);
-                  }
-              } else {
-                  columnsToKeep.push(colIndex);
-              }
-          }
-          
-          return {
-              headers: columnsToKeep.map(idx => headers[idx]),
-              row: columnsToKeep.map(idx => data[lastValidRowIndex][idx])
-          };
-      }
-      
-      function displayDonation(donation) {
-          if (!donation) {
-              document.getElementById('donationContainer').innerHTML = '<p>No donation data available</p>';
-              return;
-          }
-          
-          const donationRecipientIndex = donation.headers.findIndex(h => 
-              h.toLowerCase().includes('donation') && h.toLowerCase().includes('recipient')
-          );
-          
-          let html = '<table><tr>';
-          donation.headers.forEach(header => {
-              html += `<th>${header}</th>`;
-          });
-          html += '</tr><tr>';
-          
-          donation.row.forEach((cell, idx) => {
-              let cellContent = cell;
-              if (idx === donationRecipientIndex && cell && cell.match(/^https?:\\/\\//)) {
-                  cellContent = `<a href="${cell}" target="_blank">${cell}</a>`;
-              }
-              html += `<td>${cellContent}</td>`;
-          });
-          html += '</tr></table>';
-          
-          document.getElementById('donationContainer').innerHTML = html;
-      }
-      
-      fetch(csvUrl)
-          .then(response => response.text())
-          .then(csv => {
-              const data = parseCSV(csv);
-              const latestDonation = getLatestDonation(data);
-              document.getElementById('donationLoading').style.display = 'none';
-              displayDonation(latestDonation);
-          })
-          .catch(error => {
-              document.getElementById('donationLoading').style.display = 'none';
-              document.getElementById('donationContainer').innerHTML = `<p style="color: red;">Error loading donation data</p>`;
-          });
-  })();
+  // Send height to parent window for iframe resizing
+  function sendHeight() {
+      const height = document.body.scrollHeight;
+      window.parent.postMessage({ type: 'resize', height: height }, '*');
+  }
   
-  // Fetch and display Next proposed charity
-  (function() {
-      const csvUrl2 = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9fPeRBDx4hLm3TU25ElZA14R2H5gSwoenN0ouGNmlfbyRRwqt2ODbQ0vVMZlVjA/pub?gid=150385441&single=true&output=csv';
-      
-      function parseCSV(csv) {
-          const result = [];
-          let currentRow = [];
-          let currentField = '';
-          let insideQuotes = false;
-          
-          for (let i = 0; i < csv.length; i++) {
-              const char = csv[i];
-              const nextChar = csv[i + 1];
-              
-              if (char === '"') {
-                  if (insideQuotes && nextChar === '"') {
-                      currentField += '"';
-                      i++;
-                  } else {
-                      insideQuotes = !insideQuotes;
-                  }
-              } else if (char === ',' && !insideQuotes) {
-                  currentRow.push(currentField.trim());
-                  currentField = '';
-              } else if (char === '\\n' && !insideQuotes) {
-                  currentRow.push(currentField.trim());
-                  if (currentRow.some(field => field !== '')) {
-                      result.push(currentRow);
-                  }
-                  currentRow = [];
-                  currentField = '';
-              } else {
-                  if (char === '\\n' && insideQuotes) {
-                      currentField += ' ';
-                  } else if (char === '\\r') {
-                      // Skip
-                  } else {
-                      currentField += char;
-                  }
-              }
-          }
-          
-          if (currentField || currentRow.length > 0) {
-              currentRow.push(currentField.trim());
-              if (currentRow.some(field => field !== '')) {
-                  result.push(currentRow);
-              }
-          }
-          
-          return result;
-      }
-      
-      function getFirstUpcoming(data) {
-          if (data.length === 0 || data.length < 2) return null;
-          
-          const headers = data[0];
-          
-          // Find first row with any content (skip header)
-          let firstValidRowIndex = -1;
-          for (let i = 1; i < data.length; i++) {
-              const hasContent = data[i].some(cell => cell && cell.trim() !== '');
-              if (hasContent) {
-                  firstValidRowIndex = i;
-                  break;
-              }
-          }
-          
-          if (firstValidRowIndex === -1) return null;
-          
-          // Filter columns - exclude "Registered Charity"
-          const columnsToKeep = [];
-          for (let colIndex = 0; colIndex < headers.length; colIndex++) {
-              const header = headers[colIndex];
-              const headerLower = header.toLowerCase();
-              
-              // Skip "Registered Charity" column
-              if (headerLower.includes('registered') && headerLower.includes('charity')) {
-                  continue;
-              }
-              
-              columnsToKeep.push(colIndex);
-          }
-          
-          return {
-              headers: columnsToKeep.map(idx => headers[idx]),
-              row: columnsToKeep.map(idx => data[firstValidRowIndex][idx])
-          };
-      }
-      
-      function displayUpcoming(upcoming) {
-          if (!upcoming) {
-              document.getElementById('upcomingContainer').innerHTML = '<p>No next proposed charity data available</p>';
-              return;
-          }
-          
-          const charityUrlIndex = upcoming.headers.findIndex(h => 
-              h.toLowerCase().includes('charity') && h.toLowerCase().includes('url')
-          );
-          
-          let html = '<table><tr>';
-          upcoming.headers.forEach(header => {
-              html += `<th>${header}</th>`;
-          });
-          html += '</tr><tr>';
-          
-          upcoming.row.forEach((cell, idx) => {
-              let cellContent = cell;
-              if (idx === charityUrlIndex && cell && cell.match(/^https?:\\/\\//)) {
-                  cellContent = `<a href="${cell}" target="_blank">${cell}</a>`;
-              }
-              html += `<td>${cellContent}</td>`;
-          });
-          html += '</tr></table>';
-          
-          document.getElementById('upcomingContainer').innerHTML = html;
-      }
-      
-      fetch(csvUrl2)
-          .then(response => response.text())
-          .then(csv => {
-              const data = parseCSV(csv);
-              const upcomingCharity = getFirstUpcoming(data);
-              document.getElementById('upcomingLoading').style.display = 'none';
-              displayUpcoming(upcomingCharity);
-          })
-          .catch(error => {
-              document.getElementById('upcomingLoading').style.display = 'none';
-              document.getElementById('upcomingContainer').innerHTML = `<p style="color: red;">Error loading next proposed charity data</p>`;
-          });
-  })();
+  // Send height on load and when window is resized
+  window.addEventListener('load', sendHeight);
+  window.addEventListener('resize', sendHeight);
+  
+  // Also send height after a short delay to account for dynamic content
+  setTimeout(sendHeight, 1000);
 </script>
 </html>
     """
 
     # Output file path
-    output_file = os.path.join(os.getcwd(), "index.html")
+    output_file = os.path.join(os.getcwd(), "tracks_content.html")
 
     with open(output_file, "w") as f:
         # Write the start of the HTML page to the output file
@@ -1306,8 +925,8 @@ def create_index_page(years, feature_collection):
                     </div>
                 </div>
                 <img src="{feature['properties']['elevation_profile_link']}" alt="Elevation Profile" class="clickable-image" onclick="displayLargeImage('{feature['properties']['elevation_profile_link']}')">
-                <a href=\"{feature['properties']['ind_map_link_os']}" target=\"_self\" style='display: block; margin-top: 5px;'>Open OS Map</a>
-                <a href=\"{feature['properties']['ind_map_link']}" target=\"_self\" style='display: block; margin-top: 5px;'>Open Standard Map</a>
+                <a href=\"{feature['properties']['ind_map_link_os']}" target=\"_blank\" style='display: block; margin-top: 5px;'>Open OS Map</a>
+                <a href=\"{feature['properties']['ind_map_link']}" target=\"_blank\" style='display: block; margin-top: 5px;'>Open Standard Map</a>
                 <a href=\"{feature['properties']['googleMapsLink']}\" target=\"_blank\" style='display: block; margin-top: 5px;'>Starting Location on Google Maps</a>
                 <a href=\"{feature['properties']['download_link']}\" download=\"{os.path.basename(feature['properties']['download_link'])}\" style='display: block; margin-top: 5px;'>Download GPX Track File</a>
                 <div style='text-align: center; margin-top: 10px; font-weight: bold;'>{feature['properties']['place_name']}</div>
@@ -1321,7 +940,7 @@ def create_index_page(years, feature_collection):
         # Write the end of the HTML page
         f.write(html_end)
 
-    print("Index page created")
+    print("Tracks content page created")
 
 def main():
     """Processes GeoJSON map data to generate elevation profiles, GPX files, split tracks, and supporting files."""
@@ -1355,9 +974,9 @@ def main():
     write_track_markers(marker_features, track_markers_path)
 
     print(f"Split {len(features)} features into '{output_dir}' folder, created manifest '{manifest_path}', and created '{track_markers_path}' with {len(marker_features)} markers.")
-
-    # Create the index page
-    create_index_page(years, feature_collection)
+    
+    # Create the tracks content page
+    create_tracks_content_page(years, feature_collection)
 
 if __name__ == "__main__":
     main()
