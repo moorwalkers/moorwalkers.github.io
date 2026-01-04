@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charity Donations - Moor Walkers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0A4478;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            margin: 0;
+            font-size: 2.5em;
+        }
+        h2 {
+            text-align: center;
+            color: #0A4478;
+            font-size: 2em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        .content {
+            padding: 20px;
+        }
+        #loading, #loading2 {
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 0 auto;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #0A4478;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        a {
+            color: #0A4478;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .error {
+            color: red;
+            padding: 10px;
+            background-color: #ffe6e6;
+            border-radius: 4px;
+            text-align: center;
+        }
+        nav {
+            text-align: center;
+            padding: 20px;
+        }
+        nav a {
+            display: inline-block;
+            padding: 0.5em 1em;
+            background-color: #0A4478;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+            font-size: 1.0em;
+            margin: 0 0.5em;
+        }
+        nav a:hover {
+            background-color: #1A4E87;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Moor Walkers - Charity Donations</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="https://docs.google.com/spreadsheets/d/1mBTYXbNLlbsC-6KlDGwNO9-Q5Cxw4lRz/edit?usp=sharing&ouid=103249216531241065383&rtpof=true&sd=true" target="_blank">Full Spreadsheet</a>
+    </nav>
+    <div class="content">
+    <h2>Recent Charity Donations</h2>
+    <div id="loading">Loading data...</div>
+    <div id="error"></div>
+    <div id="tableContainer"></div>
+    
+    <h2>Upcoming Charities</h2>
+    <div id="loading2">Loading Upcoming Charities...</div>
+    <div id="error2"></div>
+    <div id="tableContainer2"></div>
+    </div>
+
+    <script>
+        const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9fPeRBDx4hLm3TU25ElZA14R2H5gSwoenN0ouGNmlfbyRRwqt2ODbQ0vVMZlVjA/pub?gid=1099060302&single=true&output=csv';
+        const csvUrl2 = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9fPeRBDx4hLm3TU25ElZA14R2H5gSwoenN0ouGNmlfbyRRwqt2ODbQ0vVMZlVjA/pub?gid=150385441&single=true&output=csv';
+
+        function parseCSV(csv) {
+            const result = [];
+            let currentRow = [];
+            let currentField = '';
+            let insideQuotes = false;
+            
+            for (let i = 0; i < csv.length; i++) {
+                const char = csv[i];
+                const nextChar = csv[i + 1];
+                
+                if (char === '"') {
+                    if (insideQuotes && nextChar === '"') {
+                        // Escaped quote (double quote)
+                        currentField += '"';
+                        i++; // Skip next quote
+                    } else {
+                        // Toggle quote state
+                        insideQuotes = !insideQuotes;
+                    }
+                } else if (char === ',' && !insideQuotes) {
+                    // End of field
+                    currentRow.push(currentField.trim());
+                    currentField = '';
+                } else if (char === '\n' && !insideQuotes) {
+                    // End of row
+                    currentRow.push(currentField.trim());
+                    if (currentRow.some(field => field !== '')) {
+                        result.push(currentRow);
+                    }
+                    currentRow = [];
+                    currentField = '';
+                } else {
+                    // Regular character (including newlines inside quotes)
+                    // Replace newlines within quoted fields with a space
+                    if (char === '\n' && insideQuotes) {
+                        currentField += ' ';
+                    } else if (char === '\r') {
+                        // Skip carriage return
+                    } else {
+                        currentField += char;
+                    }
+                }
+            }
+            
+            // Handle last field and row
+            if (currentField || currentRow.length > 0) {
+                currentRow.push(currentField.trim());
+                if (currentRow.some(field => field !== '')) {
+                    result.push(currentRow);
+                }
+            }
+            
+            return result;
+        }
+
+        function filterData(data) {
+            if (data.length === 0) return data;
+            
+            // Find the "Amount collected" column index
+            const headers = data[0];
+            const amountCollectedIndex = headers.findIndex(h => 
+                h.toLowerCase().includes('amount') && h.toLowerCase().includes('collected')
+            );
+            
+            if (amountCollectedIndex === -1) {
+                console.warn('Amount collected column not found');
+                return data;
+            }
+            
+            // Find all rows where Amount collected is not blank
+            const validRowIndices = [];
+            for (let i = 1; i < data.length; i++) {
+                const cellValue = data[i][amountCollectedIndex] || '';
+                if (cellValue.trim() !== '') {
+                    validRowIndices.push(i);
+                }
+            }
+            
+            // Get the last 24 valid rows (or all if fewer than 24)
+            if (validRowIndices.length === 0) {
+                return [data[0]]; // Just headers if no valid rows found
+            }
+            
+            const last24Indices = validRowIndices.slice(-24);
+            const lastValidRowIndex = validRowIndices[validRowIndices.length - 1];
+            const filteredRows = [data[0], ...last24Indices.map(idx => data[idx])];
+            
+            // Now filter columns - keep only "Total Collected" columns with value > 0
+            const columnsToKeep = [];
+            for (let colIndex = 0; colIndex < headers.length; colIndex++) {
+                const header = headers[colIndex];
+                const headerLower = header.toLowerCase();
+                
+                // Skip excluded columns
+                if ((headerLower.includes('charity') && headerLower.includes('no') && headerLower.includes('name')) ||
+                    (headerLower.includes('gift') && headerLower.includes('aid')) ||
+                    headerLower.includes('notes') ||
+                    (headerLower.includes('average') && headerLower.includes('weekly')) ||
+                    headerLower.includes('month') ||
+                    headerLower.includes('week') ||
+                    (headerLower.includes('average') && headerLower.includes('monthly'))) {
+                    continue;
+                }
+                
+                const isTotalCollectedColumn = headerLower.includes('total') && 
+                                               headerLower.includes('collected') &&
+                                               /\d{4}\/\d{2}/.test(header); // Match year pattern like 2025/26
+                
+                if (isTotalCollectedColumn) {
+                    // Check if this column has a value > 0 in the last row
+                    const cellValue = data[lastValidRowIndex][colIndex] || '';
+                    const numericValue = cellValue.replace(/[£$,]/g, '').trim();
+                    const value = parseFloat(numericValue);
+                    
+                    if (!isNaN(value) && value > 0) {
+                        columnsToKeep.push(colIndex);
+                    }
+                } else {
+                    // Keep all non-"Total Collected YYYY/YY" columns
+                    columnsToKeep.push(colIndex);
+                }
+            }
+            
+            // Filter columns in both rows
+            return filteredRows.map(row => 
+                columnsToKeep.map(colIndex => row[colIndex])
+            );
+        }
+
+        function createTable(data) {
+            if (data.length === 0) return '';
+            
+            // Find the "Donation recipient" and "Charity URL" column indices
+            const headers = data[0];
+            const donationRecipientIndex = headers.findIndex(h => 
+                h.toLowerCase().includes('donation') && h.toLowerCase().includes('recipient')
+            );
+            const charityUrlIndex = headers.findIndex(h => 
+                h.toLowerCase().includes('charity') && h.toLowerCase().includes('url')
+            );
+            
+            let html = '<table>';
+            
+            // Header row
+            html += '<thead><tr>';
+            for (let header of data[0]) {
+                html += `<th>${header}</th>`;
+            }
+            html += '</tr></thead>';
+            
+            // Data rows
+            html += '<tbody>';
+            for (let i = 1; i < data.length; i++) {
+                html += '<tr>';
+                for (let j = 0; j < data[i].length; j++) {
+                    let cellContent = data[i][j];
+                    
+                    // If this is the Donation recipient or Charity URL column and contains a URL, make it a link
+                    if ((j === donationRecipientIndex || j === charityUrlIndex) && cellContent && cellContent.trim()) {
+                        // Check if it looks like a URL
+                        if (cellContent.match(/^https?:\/\//)) {
+                            cellContent = `<a href="${cellContent}" target="_blank">${cellContent}</a>`;
+                        }
+                    }
+                    
+                    html += `<td>${cellContent}</td>`;
+                }
+                html += '</tr>';
+            }
+            html += '</tbody></table>';
+            
+            return html;
+        }
+
+        fetch(csvUrl)
+            .then(response => response.text())
+            .then(csv => {
+                const data = parseCSV(csv);
+                const filteredData = filterData(data);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('tableContainer').innerHTML = createTable(filteredData);
+            })
+            .catch(error => {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').innerHTML = `<div class="error">Error loading data: ${error.message}</div>`;
+            });
+
+        // Fetch and display second CSV
+        fetch(csvUrl2)
+            .then(response => response.text())
+            .then(csv => {
+                const data = parseCSV(csv);
+                document.getElementById('loading2').style.display = 'none';
+                document.getElementById('tableContainer2').innerHTML = createTable(data);
+            })
+            .catch(error => {
+                document.getElementById('loading2').style.display = 'none';
+                document.getElementById('error2').innerHTML = `<div class="error">Error loading Upcoming Charities: ${error.message}</div>`;
+            });
+    </script>
+</body>
+</html>
