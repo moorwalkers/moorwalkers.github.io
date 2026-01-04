@@ -720,6 +720,49 @@ def create_index_page(years, feature_collection):
         input[type="range"] {
             width: 400px; /* Adjust the width */
         }
+        
+        /* Latest donation display */
+        .latest-donation {
+            background-color: #f0f8ff;
+            border: 2px solid #0A4478;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: center;
+        }
+        .latest-donation h3 {
+            color: #0A4478;
+            margin-top: 0;
+        }
+        .latest-donation table {
+            margin: 10px auto;
+            border-collapse: collapse;
+            background-color: white;
+        }
+        .latest-donation th {
+            background-color: #0A4478;
+            color: white;
+            padding: 8px;
+            font-size: 0.9em;
+        }
+        .latest-donation td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            font-size: 0.9em;
+        }
+        .latest-donation a {
+            color: #0A4478;
+            text-decoration: none;
+            display: inline;
+            padding: 0;
+            background-color: transparent;
+            border-radius: 0;
+        }
+        .latest-donation a:hover {
+            text-decoration: underline;
+            background-color: transparent;
+        }
     </style>
     <script>
         function displayLargeImage(imageUrl) {
@@ -748,7 +791,24 @@ def create_index_page(years, feature_collection):
         </header>
         <main>
             <p>Welcome to our website, dedicated to showcasing the incredible walks that the Moor Walkers have taken over Dartmoor and the surrounding areas.
-            <br>Join us on a journey through the heart of this stunning landscape and discover the hidden treasures that Dartmoor has to offer.</p>
+            <br>Join us on a journey through the heart of this stunning landscape and discover the hidden treasures that Dartmoor has to offer.
+            <br><br>Each week we take a collection during our walks, and these collections are donated to charities proposed by our walkers.</p>
+            
+            <!-- Charity Information -->
+            <div class="latest-donation">
+                <h3>Latest Charity Collection</h3>
+                <div id="donationLoading" style="font-style: italic; color: #666;">Loading...</div>
+                <div id="donationContainer"></div>
+                
+                <h3 style="margin-top: 20px;">Next Proposed Charity</h3>
+                <div id="upcomingLoading" style="font-style: italic; color: #666;">Loading...</div>
+                <div id="upcomingContainer"></div>
+                
+                <p style="margin-top: 15px; text-align: center;">
+                    <a href="charity_donations.html">View Recent Charity Collections & Donations</a>
+                </p>
+            </div>
+            
             <p><strong>Click the links below to view the maps showing all tracks:</strong></p>
             <ul>
                 <li><a href="https://moorwalkers.github.io/map_os.html">OS Map Layers<br>with All Tracks</a></li>
@@ -810,6 +870,10 @@ def create_index_page(years, feature_collection):
     // Set the maximum values for distance and ascent sliders
     document.getElementById('maxDistance').setAttribute('max', maxDistance);
     document.getElementById('maxAscent').setAttribute('max', maxAscent);
+    
+    // Set the slider values to the maximum
+    document.getElementById('maxDistance').value = maxDistance;
+    document.getElementById('maxAscent').value = maxAscent;
 
     // Display the maximum values next to the sliders
     document.getElementById('maxDistanceValue').innerText = maxDistance;
@@ -862,6 +926,289 @@ def create_index_page(years, feature_collection):
   // Initialize maximum slider values and perform initial filtering
   setMaxSliderValues();
   filterTracks();
+  
+  // Fetch and display latest charity donation
+  (function() {
+      const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9fPeRBDx4hLm3TU25ElZA14R2H5gSwoenN0ouGNmlfbyRRwqt2ODbQ0vVMZlVjA/pub?gid=1099060302&single=true&output=csv';
+      
+      function parseCSV(csv) {
+          const result = [];
+          let currentRow = [];
+          let currentField = '';
+          let insideQuotes = false;
+          
+          for (let i = 0; i < csv.length; i++) {
+              const char = csv[i];
+              const nextChar = csv[i + 1];
+              
+              if (char === '"') {
+                  if (insideQuotes && nextChar === '"') {
+                      currentField += '"';
+                      i++;
+                  } else {
+                      insideQuotes = !insideQuotes;
+                  }
+              } else if (char === ',' && !insideQuotes) {
+                  currentRow.push(currentField.trim());
+                  currentField = '';
+              } else if (char === '\\n' && !insideQuotes) {
+                  currentRow.push(currentField.trim());
+                  if (currentRow.some(field => field !== '')) {
+                      result.push(currentRow);
+                  }
+                  currentRow = [];
+                  currentField = '';
+              } else {
+                  if (char === '\\n' && insideQuotes) {
+                      currentField += ' ';
+                  } else if (char === '\\r') {
+                      // Skip
+                  } else {
+                      currentField += char;
+                  }
+              }
+          }
+          
+          if (currentField || currentRow.length > 0) {
+              currentRow.push(currentField.trim());
+              if (currentRow.some(field => field !== '')) {
+                  result.push(currentRow);
+              }
+          }
+          
+          return result;
+      }
+      
+      function getLatestDonation(data) {
+          if (data.length === 0) return null;
+          
+          const headers = data[0];
+          const amountCollectedIndex = headers.findIndex(h => 
+              h.toLowerCase().includes('amount') && h.toLowerCase().includes('collected')
+          );
+          
+          if (amountCollectedIndex === -1) return null;
+          
+          let lastValidRowIndex = -1;
+          for (let i = 1; i < data.length; i++) {
+              const cellValue = data[i][amountCollectedIndex] || '';
+              if (cellValue.trim() !== '') {
+                  lastValidRowIndex = i;
+              }
+          }
+          
+          if (lastValidRowIndex === -1) return null;
+          
+          const columnsToKeep = [];
+          for (let colIndex = 0; colIndex < headers.length; colIndex++) {
+              const header = headers[colIndex];
+              const headerLower = header.toLowerCase();
+              
+              if ((headerLower.includes('charity') && headerLower.includes('no') && headerLower.includes('name')) ||
+                  (headerLower.includes('gift') && headerLower.includes('aid')) ||
+                  headerLower.includes('notes') ||
+                  (headerLower.includes('average') && headerLower.includes('weekly')) ||
+                  headerLower.includes('month') ||
+                  headerLower.includes('week') ||
+                  (headerLower.includes('average') && headerLower.includes('monthly'))) {
+                  continue;
+              }
+              
+              const isTotalCollectedColumn = headerLower.includes('total') && 
+                                             headerLower.includes('collected') &&
+                                             /\\d{4}\\/\\d{2}/.test(header);
+              
+              if (isTotalCollectedColumn) {
+                  const cellValue = data[lastValidRowIndex][colIndex] || '';
+                  const numericValue = cellValue.replace(/[£$,]/g, '').trim();
+                  const value = parseFloat(numericValue);
+                  
+                  if (!isNaN(value) && value > 0) {
+                      columnsToKeep.push(colIndex);
+                  }
+              } else {
+                  columnsToKeep.push(colIndex);
+              }
+          }
+          
+          return {
+              headers: columnsToKeep.map(idx => headers[idx]),
+              row: columnsToKeep.map(idx => data[lastValidRowIndex][idx])
+          };
+      }
+      
+      function displayDonation(donation) {
+          if (!donation) {
+              document.getElementById('donationContainer').innerHTML = '<p>No donation data available</p>';
+              return;
+          }
+          
+          const donationRecipientIndex = donation.headers.findIndex(h => 
+              h.toLowerCase().includes('donation') && h.toLowerCase().includes('recipient')
+          );
+          
+          let html = '<table><tr>';
+          donation.headers.forEach(header => {
+              html += `<th>${header}</th>`;
+          });
+          html += '</tr><tr>';
+          
+          donation.row.forEach((cell, idx) => {
+              let cellContent = cell;
+              if (idx === donationRecipientIndex && cell && cell.match(/^https?:\\/\\//)) {
+                  cellContent = `<a href="${cell}" target="_blank">${cell}</a>`;
+              }
+              html += `<td>${cellContent}</td>`;
+          });
+          html += '</tr></table>';
+          
+          document.getElementById('donationContainer').innerHTML = html;
+      }
+      
+      fetch(csvUrl)
+          .then(response => response.text())
+          .then(csv => {
+              const data = parseCSV(csv);
+              const latestDonation = getLatestDonation(data);
+              document.getElementById('donationLoading').style.display = 'none';
+              displayDonation(latestDonation);
+          })
+          .catch(error => {
+              document.getElementById('donationLoading').style.display = 'none';
+              document.getElementById('donationContainer').innerHTML = `<p style="color: red;">Error loading donation data</p>`;
+          });
+  })();
+  
+  // Fetch and display Next proposed charity
+  (function() {
+      const csvUrl2 = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9fPeRBDx4hLm3TU25ElZA14R2H5gSwoenN0ouGNmlfbyRRwqt2ODbQ0vVMZlVjA/pub?gid=150385441&single=true&output=csv';
+      
+      function parseCSV(csv) {
+          const result = [];
+          let currentRow = [];
+          let currentField = '';
+          let insideQuotes = false;
+          
+          for (let i = 0; i < csv.length; i++) {
+              const char = csv[i];
+              const nextChar = csv[i + 1];
+              
+              if (char === '"') {
+                  if (insideQuotes && nextChar === '"') {
+                      currentField += '"';
+                      i++;
+                  } else {
+                      insideQuotes = !insideQuotes;
+                  }
+              } else if (char === ',' && !insideQuotes) {
+                  currentRow.push(currentField.trim());
+                  currentField = '';
+              } else if (char === '\\n' && !insideQuotes) {
+                  currentRow.push(currentField.trim());
+                  if (currentRow.some(field => field !== '')) {
+                      result.push(currentRow);
+                  }
+                  currentRow = [];
+                  currentField = '';
+              } else {
+                  if (char === '\\n' && insideQuotes) {
+                      currentField += ' ';
+                  } else if (char === '\\r') {
+                      // Skip
+                  } else {
+                      currentField += char;
+                  }
+              }
+          }
+          
+          if (currentField || currentRow.length > 0) {
+              currentRow.push(currentField.trim());
+              if (currentRow.some(field => field !== '')) {
+                  result.push(currentRow);
+              }
+          }
+          
+          return result;
+      }
+      
+      function getFirstUpcoming(data) {
+          if (data.length === 0 || data.length < 2) return null;
+          
+          const headers = data[0];
+          
+          // Find first row with any content (skip header)
+          let firstValidRowIndex = -1;
+          for (let i = 1; i < data.length; i++) {
+              const hasContent = data[i].some(cell => cell && cell.trim() !== '');
+              if (hasContent) {
+                  firstValidRowIndex = i;
+                  break;
+              }
+          }
+          
+          if (firstValidRowIndex === -1) return null;
+          
+          // Filter columns - exclude "Registered Charity"
+          const columnsToKeep = [];
+          for (let colIndex = 0; colIndex < headers.length; colIndex++) {
+              const header = headers[colIndex];
+              const headerLower = header.toLowerCase();
+              
+              // Skip "Registered Charity" column
+              if (headerLower.includes('registered') && headerLower.includes('charity')) {
+                  continue;
+              }
+              
+              columnsToKeep.push(colIndex);
+          }
+          
+          return {
+              headers: columnsToKeep.map(idx => headers[idx]),
+              row: columnsToKeep.map(idx => data[firstValidRowIndex][idx])
+          };
+      }
+      
+      function displayUpcoming(upcoming) {
+          if (!upcoming) {
+              document.getElementById('upcomingContainer').innerHTML = '<p>No next proposed charity data available</p>';
+              return;
+          }
+          
+          const charityUrlIndex = upcoming.headers.findIndex(h => 
+              h.toLowerCase().includes('charity') && h.toLowerCase().includes('url')
+          );
+          
+          let html = '<table><tr>';
+          upcoming.headers.forEach(header => {
+              html += `<th>${header}</th>`;
+          });
+          html += '</tr><tr>';
+          
+          upcoming.row.forEach((cell, idx) => {
+              let cellContent = cell;
+              if (idx === charityUrlIndex && cell && cell.match(/^https?:\\/\\//)) {
+                  cellContent = `<a href="${cell}" target="_blank">${cell}</a>`;
+              }
+              html += `<td>${cellContent}</td>`;
+          });
+          html += '</tr></table>';
+          
+          document.getElementById('upcomingContainer').innerHTML = html;
+      }
+      
+      fetch(csvUrl2)
+          .then(response => response.text())
+          .then(csv => {
+              const data = parseCSV(csv);
+              const upcomingCharity = getFirstUpcoming(data);
+              document.getElementById('upcomingLoading').style.display = 'none';
+              displayUpcoming(upcomingCharity);
+          })
+          .catch(error => {
+              document.getElementById('upcomingLoading').style.display = 'none';
+              document.getElementById('upcomingContainer').innerHTML = `<p style="color: red;">Error loading next proposed charity data</p>`;
+          });
+  })();
 </script>
 </html>
     """
