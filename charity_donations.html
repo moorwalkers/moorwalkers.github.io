@@ -203,7 +203,8 @@
             
             const last24Indices = validRowIndices.slice(-24);
             const lastValidRowIndex = validRowIndices[validRowIndices.length - 1];
-            const filteredRows = [data[0], ...last24Indices.map(idx => data[idx])];
+            // Reverse the order so most recent is first
+            const filteredRows = [data[0], ...last24Indices.map(idx => data[idx]).reverse()];
             
             // Now filter columns - keep only "Total Collected" columns with value > 0
             const columnsToKeep = [];
