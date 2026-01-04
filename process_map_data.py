@@ -763,6 +763,19 @@ def create_index_page(years, feature_collection):
             text-decoration: underline;
             background-color: transparent;
         }
+        .latest-donation a.button-link {
+            display: inline-block;
+            padding: 0.5em 1em;
+            background-color: #0A4478;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+        .latest-donation a.button-link:hover {
+            background-color: #1A4E87;
+            text-decoration: none;
+        }
     </style>
     <script>
         function displayLargeImage(imageUrl) {
@@ -805,7 +818,7 @@ def create_index_page(years, feature_collection):
                 <div id="upcomingContainer"></div>
                 
                 <p style="margin-top: 15px; text-align: center;">
-                    <a href="charity_donations.html">View Recent Charity Collections & Donations</a>
+                    <a href="charity_donations.html" class="button-link">View Recent Charity Collections & Donations</a>
                 </p>
             </div>
             
