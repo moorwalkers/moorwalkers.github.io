@@ -1,572 +1,604 @@
+
 <!DOCTYPE html>
-<html>
-    <head>
-    <title>Moor Walkers Map</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #0A4478;
-            color: white;
-            padding: 1em;
-            text-align: center;
-        }
-        h1 {
-            text-align: center;
-            margin: 0;
-            font-size: 2.5em;
-        }
-        p {
-            font-size: 1.2em;
-            margin-top: 2em;
-            margin-bottom: 1em;
-            text-align: center;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: center;
-            font-size: 1.8em;
-        }
-        li {
-            display: inline-block;
-            margin: 0 1em;
-        }
-        a {
-            display: block;
-            padding: 0.5em 1em;
-            background-color: #0A4478;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.2s ease;
-            font-size: 1.0em;
-        }
-        a:hover {
-            background-color: #1A4E87;
-        }
-        /* Latest donation display */
-        .latest-donation {
-            background-color: #f0f8ff;
-            border: 2px solid #0A4478;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px auto;
-            max-width: 800px;
-            text-align: center;
-        }
-        .latest-donation h3 {
-            color: #0A4478;
-            margin-top: 0;
-        }
-        .latest-donation table {
-            margin: 10px auto;
-            border-collapse: collapse;
-            background-color: white;
-        }
-        .latest-donation th {
-            background-color: #0A4478;
-            color: white;
-            padding: 8px;
-            font-size: 0.9em;
-        }
-        .latest-donation td {
-            padding: 8px;
-            border: 1px solid #ddd;
-            font-size: 0.9em;
-        }
-        .latest-donation a {
-            color: #0A4478;
-            text-decoration: none;
-            display: inline;
-            padding: 0;
-            background-color: transparent;
-            border-radius: 0;
-        }
-        .latest-donation a:hover {
-            text-decoration: underline;
-            background-color: transparent;
-        }
-        .latest-donation a.button-link {
-            display: inline-block;
-            padding: 0.5em 1em;
-            background-color: #0A4478;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.2s ease;
-        }
-        .latest-donation a.button-link:hover {
-            background-color: #1A4E87;
-            text-decoration: none;
-        }
-        .iframe-container {
-            width: 100%;
-            border: none;
-            min-height: 2000px;
-        }
-    </style>
-    <link rel="icon" href="https://moorwalkers.github.io/icons8-map-pastel-32.png" type="image/x-icon">
-    </head>
-    <body>
-        <header>
-            <h1>Moor Walkers Map</h1>
-        </header>
-        <main>
-            <p>Welcome to our website, dedicated to showcasing the incredible walks that the Moor Walkers have taken over Dartmoor and the surrounding areas.
-            <br>Join us on a journey through the heart of this stunning landscape and discover the hidden treasures that Dartmoor has to offer.
-            <br><br>Each week we take a collection during our walks, and these collections are donated to charities proposed by our walkers.</p>
-            
-            <!-- Charity Information -->
-            <div class="latest-donation">
-                <h3>Latest Charity Collection</h3>
-                <div id="donationLoading" style="font-style: italic; color: #666;">Loading...</div>
-                <div id="donationContainer"></div>
-                
-                <h3 style="margin-top: 20px;">Next Proposed Charity</h3>
-                <div id="upcomingLoading" style="font-style: italic; color: #666;">Loading...</div>
-                <div id="upcomingContainer"></div>
-                
-                <p style="margin-top: 15px; text-align: center;">
-                    <a href="charity_donations.html" class="button-link">View Recent Charity Collections & Donations</a>
-                </p>
-            </div>
-            
-            <p><strong>Click the links below to view the maps showing all tracks:</strong></p>
-            <ul>
-                <li><a href="https://moorwalkers.github.io/map_os.html">OS Map Layers<br>with All Tracks</a></li>
-                <li><a href="https://moorwalkers.github.io/map_std.html">Standard Map Layers<br>with All Tracks</a></li>
-            </ul>
-            <br>
-            <br>
-            <p><strong>Or click one of the following Individual Map links to view individual tracks:</strong></p>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Moor Walkers Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-            <!-- iframe for tracks content -->
-            <iframe src="tracks_content.html" class="iframe-container" id="tracksIframe"></iframe>
-        </main>
-    </body>
-<script>
-  // Auto-resize iframe based on content
-  window.addEventListener('message', function(e) {
-      if (e.data.type === 'resize') {
-          document.getElementById('tracksIframe').style.height = e.data.height + 'px';
+  <!-- Favicon -->
+  <link rel="icon" href="https://moorwalkers.github.io/icons8-map-pastel-32.png" type="image/x-icon" />
+
+  <!-- Performance hint: preconnect to Google Sheets -->
+  <link rel="preconnect" href="https://docs.google.com" crossorigin>
+
+  <style>
+    :root {
+      --brand-700: #0A4478;
+      --brand-600: #1A4E87;
+      --bg-soft: #f0f8ff;
+      --text-main: #111;
+      --text-muted: #666;
+      --radius-sm: 5px;
+      --radius-md: 10px;
+      --space-1: 0.5rem;
+      --space-2: 1rem;
+      --space-3: 1.5rem;
+      --space-4: 2rem;
+      --fs-100: 1rem;
+      --fs-200: 1.2rem;
+      --fs-300: 1.8rem;
+      --fs-400: 2.2rem;
+      --fs-500: 2.5rem;
+      font-synthesis-weight: none; /* tiny perf win */
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      color: var(--text-main);
+      background: #fff;
+    }
+
+    header {
+      background-color: var(--brand-700);
+      color: #fff;
+      padding: var(--space-2);
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: var(--fs-500);
+    }
+
+    main {
+      padding: var(--space-2) var(--space-2) var(--space-4);
+    }
+
+    .lead {
+      font-size: var(--fs-200);
+      text-align: center;
+      margin: var(--space-3) auto var(--space-2);
+      max-width: 75ch;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 0.6em 1em;
+      background-color: var(--brand-700);
+      color: #fff;
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: background-color 0.2s ease;
+      font-size: var(--fs-100);
+    }
+    .button:hover { background-color: var(--brand-600); }
+
+    .map-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+      font-size: var(--fs-300);
+    }
+    .map-links li { display: inline-block; margin: 0 var(--space-2); }
+    .map-links a {
+      display: block;
+      padding: 0.4em 0.8em;
+      background-color: var(--brand-700);
+      color: #fff;
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: background-color 0.2s ease;
+      font-size: 1em;
+    }
+    .map-links a:hover { background-color: var(--brand-600); }
+
+    /* Card containing the charity tables */
+    .card {
+      background-color: var(--bg-soft);
+      border: 2px solid var(--brand-700);
+      border-radius: var(--radius-md);
+      padding: var(--space-2);
+      margin: var(--space-3) auto;
+      max-width: 900px;
+    }
+    .card h2 {
+      color: var(--brand-700);
+      margin: 0 0 var(--space-1) 0;
+      text-align: center;
+      font-size: var(--fs-400);
+    }
+    .card .actions {
+      text-align: center;
+      margin-top: var(--space-2);
+    }
+
+    /* --- IMPORTANT: Scope all table styles so we don't affect the iframe --- */
+    /* Shared styles for both donation and upcoming tables */
+    .donation-table-container .table-wrap,
+    .upcoming-table-container .table-wrap { 
+      overflow: visible; /* no horizontal slider */
+    }
+
+    .donation-table-container table,
+    .upcoming-table-container table {
+      margin: var(--space-1) auto;
+      border-collapse: collapse;
+      background-color: #fff;
+      width: 100%;
+      table-layout: auto;
+    }
+    
+    .donation-table-container caption,
+    .upcoming-table-container caption {
+      text-align: left;
+      font-weight: bold;
+      padding: 0.4rem;
+    }
+    
+    .donation-table-container th,
+    .donation-table-container td,
+    .upcoming-table-container th,
+    .upcoming-table-container td {
+      padding: 0.6rem 0.7rem;
+      border: 1px solid #ddd;
+      font-size: 0.95em;
+      vertical-align: top;
+    }
+    
+    /* Prevent wrapping for table data cells by default */
+    .donation-table-container td,
+    .upcoming-table-container td {
+      white-space: nowrap;
+    }
+    
+    /* Donation table: Allow wrapping only for the 4th column */
+    .donation-table-container td:nth-child(4) {
+      white-space: normal;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+    
+    /* Upcoming table: Allow wrapping only for the 1st column */
+    .upcoming-table-container td:nth-child(1) {
+      white-space: normal;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+    
+    .donation-table-container thead th,
+    .upcoming-table-container thead th {
+      background-color: var(--brand-700);
+      color: #fff;
+    }
+
+    /* Responsive stacked layout for small screens ONLY for charity tables */
+    @media (max-width: 720px) {
+      .donation-table-container table,
+      .donation-table-container thead,
+      .donation-table-container tbody,
+      .donation-table-container th,
+      .donation-table-container td,
+      .donation-table-container tr,
+      .upcoming-table-container table,
+      .upcoming-table-container thead,
+      .upcoming-table-container tbody,
+      .upcoming-table-container th,
+      .upcoming-table-container td,
+      .upcoming-table-container tr {
+        display: block;
+        width: 100%;
       }
-  });
-  
-// Fetch and display latest charity donation
-// IIFE (Immediately Invoked Function Expression) to keep variables scoped
-(function() {
- // URL for the Google Sheets CSV export containing the charity donations and collections
-  const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9fPeRBDx4hLm3TU25ElZA14R2H5gSwoenN0ouGNmlfbyRRwqt2ODbQ0vVMZlVjA/pub?gid=1099060302&single=true&output=csv';
 
-/**
- * Parses CSV text into a 2D array, handling quoted fields properly
- * @param {string} csv - Raw CSV text
- * @returns {Array} 2D array of parsed values
- */
-function parseCSV(csv) {
-    const result = [];
-    let currentRow = [];
-    let currentField = '';
-    let insideQuotes = false;
+      .donation-table-container thead,
+      .upcoming-table-container thead {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+        height: 0;
+        overflow: hidden;
+      }
 
-    // Iterate through each character in the CSV string
-    for (let i = 0; i < csv.length; i++) {
-        const char = csv[i];
-        const nextChar = csv[i + 1];
+      .donation-table-container tbody tr,
+      .upcoming-table-container tbody tr {
+        margin: 0 0 var(--space-2);
+        border: 1px solid #ddd;
+        border-radius: var(--radius-sm);
+        padding: 0.3rem;
+      }
 
-        if (char === '"') {
-            // Handle escaped quotes (two consecutive quotes)
-            if (insideQuotes && nextChar === '"') {
-                currentField += '"';
-                i++; // Skip the next quote
-            } else {
-                // Toggle quote state (entering or exiting quoted field)
-                insideQuotes = !insideQuotes;
-            }
-        } else if (char === ',' && !insideQuotes) {
-            // Comma outside quotes indicates field separator
-            currentRow.push(currentField.trim());
-            currentField = '';
-        } else if (char === '\n' && !insideQuotes) {
-            // Newline outside quotes indicates row separator
-            currentRow.push(currentField.trim());
-            
-            // Only add non-empty rows
-            if (currentRow.some(field => field !== '')) {
-                result.push(currentRow);
-            }
-            currentRow = [];
-            currentField = '';
-        } else {
-            // Handle newlines inside quotes (replace with space)
-            if (char === '\n' && insideQuotes) {
-                currentField += ' ';
-            } else if (char === '\r') {
-                // Skip carriage return characters
-            } else {
-                // Add regular characters to current field
-                currentField += char;
-            }
-        }
+      .donation-table-container tbody td,
+      .upcoming-table-container tbody td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 9.5rem;         /* space for the label */
+        min-height: 2.25rem;
+      }
+
+      .donation-table-container tbody td:last-child,
+      .upcoming-table-container tbody td:last-child {
+        border-bottom: none;
+      }
+
+      /* Cell label injected from data-label attribute */
+      .donation-table-container tbody td::before,
+      .upcoming-table-container tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0.5rem;
+        top: 0.5rem;
+        width: 8.5rem;                /* matches padding-left above */
+        font-weight: 700;
+        color: var(--brand-700);
+        white-space: normal;
+      }
     }
 
-    // Handle the last field and row if present
-    if (currentField || currentRow.length > 0) {
-        currentRow.push(currentField.trim());
-        if (currentRow.some(field => field !== '')) {
-            result.push(currentRow);
-        }
+    /* Utility */
+    .center { text-align: center; }
+    .muted { color: var(--text-muted); font-style: italic; }
+    .mt-1 { margin-top: var(--space-1); }
+    .mt-2 { margin-top: var(--space-2); }
+    .mt-3 { margin-top: var(--space-3); }
+
+    /* Iframe container (scoped so it won't be affected by table rules) */
+    .iframe-container {
+      width: 100%;
+      border: none;
+      min-height: 2000px; /* keep if content can be tall */
+      display: block;
     }
 
-    return result;
-}
+    /* Inline link used inside tables */
+    .inline-link {
+      color: var(--brand-700);
+      text-decoration: none;
+    }
+    .inline-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Moor Walkers Map</h1>
+  </header>
 
-  function normalizeCellForPresenceCheck(cell) {
-    // Handle null/undefined
-    const s = (cell || '')
-      // Remove common mojibake artefacts (Â, replacement char �)
+  <main>
+    <p class="lead">
+      Welcome to our website, showcasing the incredible walks the Moor Walkers have taken across Dartmoor and surrounding areas.
+      <br>Each week we take a collection during our walks and donate to charities proposed by our walkers.
+    </p>
+
+    <!-- Charity information -->
+    <section class="card" aria-labelledby="latest-title">
+      <h2 id="latest-title">Latest Charity Collection</h2>
+
+      <p id="donationLoading" class="center muted" aria-live="polite">Loading…</p>
+      <div class="donation-table-container">
+        <div id="donationContainer" class="table-wrap" aria-live="polite"></div>
+      </div>
+
+      <h2 class="mt-2" id="next-title">Next Proposed Charity</h2>
+      <p id="upcomingLoading" class="center muted" aria-live="polite">Loading…</p>
+      <div class="upcoming-table-container">
+        <div id="upcomingContainer" class="table-wrap" aria-live="polite"></div>
+      </div>
+
+      <div class="actions">
+        <a href="charity_donations.html" class="button">View Recent Charity Collections &amp; Donations</a>
+      </div>
+    </section>
+
+    <p class="center"><strong>Click the links below to view the maps showing all tracks:</strong></p>
+    <ul class="map-links" aria-label="Map layers">
+      <li><a href="https://moorwalkers.github.io/map_os.html">OS Map Layers<br>with All Tracks</a></li>
+      <li><a href="https://moorwalkers.github.io/map_std.html">Standard Map Layers<br>with All Tracks</a></li>
+    </ul>
+
+    <p class="center mt-2"><strong>Or click one of the following Individual Map links to view individual tracks:</strong></p>
+
+    <!-- Tracks iframe -->
+    <iframe src="tracks_content.html" class="iframe-container" id="tracksIframe" title="Moor Walkers tracks"></iframe>
+  </main>
+
+  <script defer>
+    // ---------------- Config ----------------
+    const SHEET_URLS = {
+      latestDonation: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9fPeRBDx4hLm3TU25ElZA14R2H5gSwoenN0ouGNmlfbyRRwqt2ODbQ0vVMZlVjA/pub?gid=1099060302&single=true&output=csv',
+      upcomingCharity: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9fPeRBDx4hLm3TU25ElZA14R2H5gSwoenN0ouGNmlfbyRRwqt2ODbQ0vVMZlVjA/pub?gid=150385441&single=true&output=csv'
+    };
+
+    // ---------------- Utilities ----------------
+    /** Robust CSV parser for basic cases (quoted fields, escaped quotes). */
+    function parseCSV(csv) {
+      const rows = [];
+      let row = [], field = '', inQuotes = false;
+      for (let i = 0; i < csv.length; i++) {
+        const c = csv[i], n = csv[i + 1];
+        if (c === '"') {
+          if (inQuotes && n === '"') { field += '"'; i++; }
+          else { inQuotes = !inQuotes; }
+        } else if (c === ',' && !inQuotes) {
+          row.push(field.trim()); field = '';
+        } else if (c === '\n' && !inQuotes) {
+          row.push(field.trim());
+          if (row.some(v => v !== '')) rows.push(row);
+          row = []; field = '';
+        } else if (c !== '\r') {
+          field += (c === '\n' && inQuotes) ? ' ' : c;
+        }
+      }
+      if (field || row.length) {
+        row.push(field.trim());
+        if (row.some(v => v !== '')) rows.push(row);
+      }
+      return rows;
+    }
+
+    const norm = s => String(s ?? '')
       .replace(/[Â�]/g, '')
-      // Collapse all whitespace (including non-breaking)
       .replace(/\u00A0/g, ' ')
       .replace(/\s+/g, ' ')
       .trim();
-    return s;
-  }
 
-  /**
-   * Extracts the latest donation record from parsed CSV data
-   * @param {Array} data - Parsed CSV data as 2D array
-   * @returns {Object|null} Object containing headers and row data, or null if no valid data
-   */
-  function getLatestDonation(data) {
-    // Return null if the data array is empty
-    if (data.length === 0) return null;
+    function buildTable({ caption, headers, row, linkColumnIndexes = [], textLinkColumns = [] }) {
+      const table = document.createElement('table');
 
-    // Extract the header row (first row of the CSV)
-    const headers = data[0];
-    
-    // Find the index of the "Amount Collected" column
-    const amountCollectedIndex = headers.findIndex(h =>
-      h.toLowerCase().includes('amount') && h.toLowerCase().includes('collected')
-    );
-
-    // If "Amount Collected" column doesn't exist, return null
-    if (amountCollectedIndex === -1) return null;
-
-    // Find the last row where Amount Collected has a non-blank value
-    // This represents the most recent donation entry
-    let lastValidRowIndex = -1;
-    for (let i = 1; i < data.length; i++) {
-      // Normalize the cell value to check if it has actual content
-      const cellValue = normalizeCellForPresenceCheck(data[i][amountCollectedIndex]);
-      if (cellValue !== '') {
-        lastValidRowIndex = i;
-      }
-    }
-    
-    // If no valid rows found, return null
-    if (lastValidRowIndex === -1) return null;
-
-    // Build a list of column indices to keep (exclude unwanted columns)
-    const columnsToKeep = [];
-    for (let colIndex = 0; colIndex < headers.length; colIndex++) {
-      const header = headers[colIndex];
-      const headerLower = header.toLowerCase();
-
-      // Skip columns that should be excluded from display
-      // These include: Charity No/Name, Gift Aid, Notes, Weekly/Monthly averages, Month, Week
-      if ((headerLower.includes('charity') && headerLower.includes('no') && headerLower.includes('name')) ||
-          (headerLower.includes('gift') && headerLower.includes('aid')) ||
-          headerLower.includes('notes') ||
-          (headerLower.includes('average') && headerLower.includes('weekly')) ||
-          headerLower.includes('month') ||
-          headerLower.includes('week') ||
-          (headerLower.includes('average') && headerLower.includes('monthly'))) {
-        continue;
+      if (caption) {
+        const cap = document.createElement('caption');
+        cap.textContent = caption;
+        table.appendChild(cap);
       }
 
-      // Check if this is a "Total Collected YYYY/YY" column
-      // These columns show cumulative totals for specific years
-      const isTotalCollectedColumn =
-        headerLower.includes('total') &&
-        headerLower.includes('collected') &&
-        /\d{4}\/\d{2}/.test(header);
+      // Header
+      const thead = document.createElement('thead');
+      const trHead = document.createElement('tr');
+      headers.forEach(h => {
+        const th = document.createElement('th');
+        th.scope = 'col';
+        th.textContent = h;
+        trHead.appendChild(th);
+      });
+      thead.appendChild(trHead);
+      table.appendChild(thead);
 
-      if (isTotalCollectedColumn) {
-        // Only keep this total column if it has a value in the latest row
-        const raw = data[lastValidRowIndex][colIndex] || '';
-        const present = normalizeCellForPresenceCheck(raw) !== '';
-        if (present) {
-          columnsToKeep.push(colIndex);
+      // Body (single row in your case)
+      const tbody = document.createElement('tbody');
+      const trBody = document.createElement('tr');
+
+      // Only create cells for columns that have headers
+      for (let idx = 0; idx < headers.length; idx++) {
+        const td = document.createElement('td');
+        td.setAttribute('data-label', headers[idx]); // used by CSS on mobile
+
+        const value = row[idx] ?? '';
+        
+        // Check if this column should be hyperlinked using URL from another column
+        const textLinkConfig = textLinkColumns.find(config => config.textCol === idx);
+        if (textLinkConfig) {
+          const urlValue = row[textLinkConfig.urlCol];
+          if (urlValue && /^https?:\/\//.test(String(urlValue))) {
+            const a = document.createElement('a');
+            a.href = String(urlValue);
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.className = 'inline-link';
+            a.textContent = String(value);
+            td.appendChild(a);
+          } else {
+            td.textContent = String(value);
+          }
+        } else if (linkColumnIndexes.includes(idx) && /^https?:\/\//.test(String(value))) {
+          const a = document.createElement('a');
+          a.href = String(value);
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          a.className = 'inline-link';
+          a.textContent = String(value);
+          td.appendChild(a);
+        } else {
+          td.textContent = String(value);
         }
-      } else {
-        // Keep all other non-excluded columns
-        columnsToKeep.push(colIndex);
+        trBody.appendChild(td);
+      }
+
+      tbody.appendChild(trBody);
+      table.appendChild(tbody);
+
+      return table;
+    }
+
+    // ---------------- Extractors ----------------
+    function getLatestDonation(data) {
+      if (!data.length) return null;
+      const headers = data[0];
+
+      const amountIdx = headers.findIndex(h =>
+        h.toLowerCase().includes('amount') && h.toLowerCase().includes('collected')
+      );
+      if (amountIdx === -1) return null;
+
+      let lastRowIdx = -1;
+      for (let i = 1; i < data.length; i++) {
+        if (norm(data[i][amountIdx]) !== '') lastRowIdx = i;
+      }
+      if (lastRowIdx === -1) return null;
+
+      // Find Charity URL column in original data (before filtering)
+      const origCharityUrlIdx = headers.findIndex(h => {
+        const hh = h.toLowerCase();
+        return hh.includes('charity') && hh.includes('url');
+      });
+      const charityUrlValue = origCharityUrlIdx !== -1 ? data[lastRowIdx][origCharityUrlIdx] : null;
+
+      const keep = [];
+      for (let c = 0; c < headers.length; c++) {
+        const h = headers[c].toLowerCase();
+
+        // Exclusions
+        const exclude =
+          ((h.includes('charity') && h.includes('no') && h.includes('name')) ||
+           (h.includes('charity') && h.includes('url')) ||  // Hide URL column
+           (h.includes('gift') && h.includes('aid')) ||
+           h.includes('notes') ||
+           (h.includes('average') && h.includes('weekly')) ||
+           (h.includes('average') && h.includes('monthly')) ||
+           h.includes('month') ||
+           h.includes('week'));
+        if (exclude) continue;
+
+        // Keep "Total Collected YYYY/YY" only if present in latest row
+        const isTotalYear = (h.includes('total') && h.includes('collected') && /\d{4}\/\d{2}/.test(headers[c]));
+        if (isTotalYear) {
+          const present = norm(data[lastRowIdx][c]) !== '';
+          if (present) keep.push(c);
+        } else {
+          keep.push(c);
+        }
+      }
+
+      // Find Charity column in the filtered list
+      const charityIdx = keep.findIndex(i => {
+        const hh = data[0][i].toLowerCase();
+        return hh.includes('charity') && !hh.includes('url') && !hh.includes('no') && !hh.includes('name');
+      });
+
+      // Build row data and append URL at the end (hidden, no header)
+      const rowData = keep.map(i => data[lastRowIdx][i]);
+      if (charityUrlValue) {
+        rowData.push(charityUrlValue);  // URL at end, beyond headers
+      }
+
+      return {
+        headers: keep.map(i => data[0][i]),
+        row: rowData,
+        linkColumns: [],
+        textLinkColumns: (charityIdx !== -1 && charityUrlValue)
+          ? [{ textCol: charityIdx, urlCol: rowData.length - 1 }]  // Point to URL at end
+          : []
+      };
+    }
+
+    function getUpcomingCharity(data) {
+      if (data.length < 2) return null;
+      const headers = data[0];
+
+      let firstIdx = -1;
+      for (let i = 1; i < data.length; i++) {
+        if (data[i].some(cell => norm(cell) !== '')) { firstIdx = i; break; }
+      }
+      if (firstIdx === -1) return null;
+
+      // Find Charity URL column in original data (before filtering)
+      const origCharityUrlIdx = headers.findIndex(h => {
+        const hh = h.toLowerCase();
+        return hh.includes('charity') && hh.includes('url');
+      });
+      const charityUrlValue = origCharityUrlIdx !== -1 ? data[firstIdx][origCharityUrlIdx] : null;
+
+      const keep = [];
+      for (let c = 0; c < headers.length; c++) {
+        const h = headers[c].toLowerCase();
+        // Exclude registration numbers and URL column
+        if (h.includes('registered') && h.includes('charity')) continue;
+        if (h.includes('charity') && h.includes('url')) continue;  // Hide URL column
+        keep.push(c);
+      }
+
+      // Find charity name column in the filtered list
+      const charityNameIdx = keep.findIndex(i => {
+        const hh = headers[i].toLowerCase();
+        return hh.includes('charity') && !hh.includes('url') && !hh.includes('registered');
+      });
+
+      // Build row data and append URL at the end (hidden, no header)
+      const rowData = keep.map(i => data[firstIdx][i]);
+      if (charityUrlValue) {
+        rowData.push(charityUrlValue);  // URL at end, beyond headers
+      }
+
+      return {
+        headers: keep.map(i => headers[i]),
+        row: rowData,
+        linkColumns: [],
+        textLinkColumns: (charityNameIdx !== -1 && charityUrlValue) 
+          ? [{ textCol: charityNameIdx, urlCol: rowData.length - 1 }]  // Point to URL at end
+          : []
+      };
+    }
+
+    // ---------------- Rendering ----------------
+    async function render() {
+      const donationLoading = document.getElementById('donationLoading');
+      const donationContainer = document.getElementById('donationContainer');
+      const upcomingLoading = document.getElementById('upcomingLoading');
+      const upcomingContainer = document.getElementById('upcomingContainer');
+
+      try {
+        const [csvDonation, csvUpcoming] = await Promise.all([
+          fetch(SHEET_URLS.latestDonation).then(r => r.text()),
+          fetch(SHEET_URLS.upcomingCharity).then(r => r.text())
+        ]);
+
+        // Latest donation
+        const donationData = parseCSV(csvDonation);
+        const latest = getLatestDonation(donationData);
+        donationLoading.style.display = 'none';
+        if (latest) {
+          const table = buildTable({
+            caption: 'Latest collection',
+            headers: latest.headers,
+            row: latest.row,
+            linkColumnIndexes: latest.linkColumns,
+            textLinkColumns: latest.textLinkColumns
+          });
+          donationContainer.innerHTML = '';
+          donationContainer.appendChild(table);
+        } else {
+          donationContainer.innerHTML = '<p>No donation data available</p>';
+        }
+
+        // Upcoming charity
+        const upcomingData = parseCSV(csvUpcoming);
+        const upcoming = getUpcomingCharity(upcomingData);
+        upcomingLoading.style.display = 'none';
+        if (upcoming) {
+          const table = buildTable({
+            caption: 'Next proposed charity',
+            headers: upcoming.headers,
+            row: upcoming.row,
+            linkColumnIndexes: upcoming.linkColumns,
+            textLinkColumns: upcoming.textLinkColumns
+          });
+          upcomingContainer.innerHTML = '';
+          upcomingContainer.appendChild(table);
+        } else {
+          upcomingContainer.innerHTML = '<p>No next proposed charity data available</p>';
+        }
+
+      } catch (err) {
+        if (donationLoading) donationLoading.style.display = 'none';
+        if (upcomingLoading) upcomingLoading.style.display = 'none';
+        donationContainer.innerHTML = '<p style="color: red;">Error loading donation data</p>';
+        upcomingContainer.innerHTML = '<p style="color: red;">Error loading next proposed charity data</p>';
+        // console.error(err);
       }
     }
 
-    // Return an object with filtered headers and the corresponding row data
-    return {
-      headers: columnsToKeep.map(idx => headers[idx]),
-      row: columnsToKeep.map(idx => data[lastValidRowIndex][idx])
-    };
-  }
-
-  /**
-   * Displays the donation data as an HTML table
-   * @param {Object|null} donation - Object containing headers and row arrays
-   */
-  function displayDonation(donation) {
-    // Get the loading indicator element
-    const loadingEl = document.getElementById('donationLoading');
-    
-    // If no donation data available, hide loading and show message
-    if (!donation) {
-      if (loadingEl) loadingEl.style.display = 'none';
-      document.getElementById('donationContainer').innerHTML = '<p>No donation data available</p>';
-      return;
-    }
-
-    // Find the column index for "Donation Recipient" to apply special link formatting
-    const donationRecipientIndex = donation.headers.findIndex(h =>
-      h.toLowerCase().includes('donation') && h.toLowerCase().includes('recipient')
-    );
-
-    // Build the HTML table - start with table header row
-    let html = '<table><tr>';
-    donation.headers.forEach(header => {
-      html += `<th>${header}</th>`;
+    // Iframe auto-resize via postMessage (keep if you can’t edit iframe source)
+    window.addEventListener('message', (e) => {
+      if (e?.data?.type === 'resize' && typeof e.data.height === 'number') {
+        const iframe = document.getElementById('tracksIframe');
+        if (iframe) iframe.style.height = `${e.data.height}px`;
+      }
     });
-    html += '</tr><tr>';
 
-    // Build the data row
-    donation.row.forEach((cell, idx) => {
-      let cellContent = cell;
-      
-      // If this is the Donation Recipient column and contains a URL, make it clickable
-      if (idx === donationRecipientIndex && cell && String(cell).match(/^https?:\/\//)) {
-        cellContent = `<a href="${cell}" target="_blank" rel="noopener noreferrer">${cell}</a>`;
-      }
-      
-      // Add the cell to the table (use nullish coalescing to handle null/undefined)
-      html += `<td>${cellContent ?? ''}</td>`;
-    });
-    html += '</tr></table>';
-
-    // Hide the loading indicator and display the table
-    if (loadingEl) loadingEl.style.display = 'none';
-    document.getElementById('donationContainer').innerHTML = html;
-  }
-
-  // Fetch the CSV data from Google Sheets and display the latest donation
-  fetch(csvUrl)
-    .then(response => response.text())
-    .then(csv => {
-      // Parse the CSV text into a 2D array
-      const data = parseCSV(csv);
-      
-      // Extract the latest donation record
-      const latestDonation = getLatestDonation(data);
-      
-      // Hide the loading indicator
-      const loadingEl = document.getElementById('donationLoading');
-      if (loadingEl) loadingEl.style.display = 'none';
-      
-      // Display the donation data
-      displayDonation(latestDonation);
-    })
-    .catch(error => {
-      // If fetch fails, hide loading and show error message
-      const loadingEl = document.getElementById('donationLoading');
-      if (loadingEl) loadingEl.style.display = 'none';
-      document.getElementById('donationContainer').innerHTML =
-        `<p style="color: red;">Error loading donation data</p>`;
-    });
-})();
-  
-  // Fetch and display Next proposed charity
-  // IIFE (Immediately Invoked Function Expression) to keep variables scoped
-  (function() {
-      // URL for the Google Sheets CSV export containing upcoming charity proposals
-      const csvUrl2 = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9fPeRBDx4hLm3TU25ElZA14R2H5gSwoenN0ouGNmlfbyRRwqt2ODbQ0vVMZlVjA/pub?gid=150385441&single=true&output=csv';
-      
-      /**
-       * Parses CSV text into a 2D array, handling quoted fields properly
-       * @param {string} csv - Raw CSV text
-       * @returns {Array} 2D array of parsed values
-       */
-      function parseCSV(csv) {
-          const result = [];
-          let currentRow = [];
-          let currentField = '';
-          let insideQuotes = false;
-          
-          // Iterate through each character in the CSV string
-          for (let i = 0; i < csv.length; i++) {
-              const char = csv[i];
-              const nextChar = csv[i + 1];
-              
-              if (char === '"') {
-                  // Handle escaped quotes (two consecutive quotes)
-                  if (insideQuotes && nextChar === '"') {
-                      currentField += '"';
-                      i++; // Skip the next quote
-                  } else {
-                      // Toggle quote state (entering or exiting quoted field)
-                      insideQuotes = !insideQuotes;
-                  }
-              } else if (char === ',' && !insideQuotes) {
-                  // Comma outside quotes indicates field separator
-                  currentRow.push(currentField.trim());
-                  currentField = '';
-              } else if (char === '\n' && !insideQuotes) {
-                  // Newline outside quotes indicates row separator
-                  currentRow.push(currentField.trim());
-                  
-                  // Only add non-empty rows
-                  if (currentRow.some(field => field !== '')) {
-                      result.push(currentRow);
-                  }
-                  currentRow = [];
-                  currentField = '';
-              } else {
-                  // Handle newlines inside quotes (replace with space)
-                  if (char === '\n' && insideQuotes) {
-                      currentField += ' ';
-                  } else if (char === '\r') {
-                      // Skip carriage return characters
-                  } else {
-                      // Add regular characters to current field
-                      currentField += char;
-                  }
-              }
-          }
-          
-          // Handle the last field and row if present
-          if (currentField || currentRow.length > 0) {
-              currentRow.push(currentField.trim());
-              if (currentRow.some(field => field !== '')) {
-                  result.push(currentRow);
-              }
-          }
-          
-          return result;
-      }
-      
-      /**
-       * Extracts the first upcoming charity from parsed CSV data
-       * @param {Array} data - Parsed CSV data as 2D array
-       * @returns {Object|null} Object containing headers and row data, or null if no valid data
-       */
-      function getFirstUpcoming(data) {
-          // Return null if insufficient data
-          if (data.length === 0 || data.length < 2) return null;
-          
-          // Extract the header row
-          const headers = data[0];
-          
-          // Find the first row with any content (skip header row)
-          let firstValidRowIndex = -1;
-          for (let i = 1; i < data.length; i++) {
-              const hasContent = data[i].some(cell => cell && cell.trim() !== '');
-              if (hasContent) {
-                  firstValidRowIndex = i;
-                  break;
-              }
-          }
-          
-          // If no valid rows found, return null
-          if (firstValidRowIndex === -1) return null;
-          
-          // Build list of columns to keep, excluding "Registered Charity" column
-          const columnsToKeep = [];
-          for (let colIndex = 0; colIndex < headers.length; colIndex++) {
-              const header = headers[colIndex];
-              const headerLower = header.toLowerCase();
-              
-              // Skip "Registered Charity" column (contains registration numbers)
-              if (headerLower.includes('registered') && headerLower.includes('charity')) {
-                  continue;
-              }
-              
-              columnsToKeep.push(colIndex);
-          }
-          
-          // Return an object with filtered headers and the corresponding row data
-          return {
-              headers: columnsToKeep.map(idx => headers[idx]),
-              row: columnsToKeep.map(idx => data[firstValidRowIndex][idx])
-          };
-      }
-      
-      /**
-       * Displays the upcoming charity data as an HTML table
-       * @param {Object|null} upcoming - Object containing headers and row arrays
-       */
-      function displayUpcoming(upcoming) {
-          // If no data available, show message
-          if (!upcoming) {
-              document.getElementById('upcomingContainer').innerHTML = '<p>No next proposed charity data available</p>';
-              return;
-          }
-          
-          // Find the column index for "Charity URL" to apply link formatting
-          const charityUrlIndex = upcoming.headers.findIndex(h => 
-              h.toLowerCase().includes('charity') && h.toLowerCase().includes('url')
-          );
-          
-          // Build the HTML table - start with header row
-          let html = '<table><tr>';
-          upcoming.headers.forEach(header => {
-              html += `<th>${header}</th>`;
-          });
-          html += '</tr><tr>';
-          
-          // Build the data row
-          upcoming.row.forEach((cell, idx) => {
-              let cellContent = cell;
-              
-              // If this is the Charity URL column and contains a URL, make it clickable
-              if (idx === charityUrlIndex && cell && cell.match(/^https?:\/\//)) {
-                  cellContent = `<a href="${cell}" target="_blank">${cell}</a>`;
-              }
-              
-              // Add the cell to the table
-              html += `<td>${cellContent}</td>`;
-          });
-          html += '</tr></table>';
-          
-          // Display the table in the container
-          document.getElementById('upcomingContainer').innerHTML = html;
-      }
-      
-      // Fetch the CSV data from Google Sheets and display the upcoming charity
-      fetch(csvUrl2)
-          .then(response => response.text())
-          .then(csv => {
-              // Parse the CSV text into a 2D array
-              const data = parseCSV(csv);
-              
-              // Extract the first upcoming charity record
-              const upcomingCharity = getFirstUpcoming(data);
-              
-              // Hide the loading indicator
-              document.getElementById('upcomingLoading').style.display = 'none';
-              
-              // Display the upcoming charity data
-              displayUpcoming(upcomingCharity);
-          })
-          .catch(error => {
-              // If fetch fails, hide loading and show error message
-              document.getElementById('upcomingLoading').style.display = 'none';
-              document.getElementById('upcomingContainer').innerHTML = `<p style="color: red;">Error loading next proposed charity data</p>`;
-          });
-  })();
-</script>
+    // Kick off rendering
+    render();
+  </script>
+</body>
 </html>
-    
