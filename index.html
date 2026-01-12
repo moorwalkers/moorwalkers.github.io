@@ -461,10 +461,10 @@
         }
       }
 
-      // Find Charity column in the filtered list
+      // Find Charity URL column in the filtered list
       const charityIdx = keep.findIndex(i => {
         const hh = data[0][i].toLowerCase();
-        return hh.includes('charity') && !hh.includes('url') && !hh.includes('no') && !hh.includes('name');
+        return hh.includes('charity') && !hh.includes('url');
       });
 
       // Build row data and append URL at the end (hidden, no header)
