@@ -275,14 +275,17 @@
 
     <!-- Charity information -->
     <section class="card" aria-labelledby="latest-title">
-      <h2 id="latest-title">Latest Charity Collection</h2>
 
       <p id="donationLoading" class="center muted" aria-live="polite">Loading…</p>
       <div class="donation-table-container">
         <div id="donationContainer" class="table-wrap" aria-live="polite"></div>
       </div>
 
-      <h2 class="mt-2" id="next-title">Next Proposed Charity</h2>
+      <p id="latestDonationLoading" class="center muted" aria-live="polite">Loading…</p>
+      <div class="donation-table-container">
+        <div id="latestDonationContainer" class="table-wrap" aria-live="polite"></div>
+      </div>
+
       <p id="upcomingLoading" class="center muted" aria-live="polite">Loading…</p>
       <div class="upcoming-table-container">
         <div id="upcomingContainer" class="table-wrap" aria-live="polite"></div>
@@ -441,14 +444,16 @@
 
         // Exclusions
         const exclude =
-          ((h.includes('charity') && h.includes('no') && h.includes('name')) ||
+          ((h.includes('charity') && h.includes('no') && h.includes('name')) || // Hide Charity No.and Name column
            (h.includes('charity') && h.includes('url')) ||  // Hide URL column
-           (h.includes('gift') && h.includes('aid')) ||
-           h.includes('notes') ||
-           (h.includes('average') && h.includes('weekly')) ||
-           (h.includes('average') && h.includes('monthly')) ||
-           h.includes('month') ||
-           h.includes('week'));
+           h.includes('charity') ||  // Hide Charity column
+           h.includes('donation') ||  // Hide Donation column
+           (h.includes('gift') && h.includes('aid')) || // Hide Gift Aid column
+           h.includes('notes') || // Hide Notes column
+           (h.includes('average') && h.includes('weekly')) || // Hide Average weekly column
+           (h.includes('average') && h.includes('monthly')) || // Hide Average monthly column
+           h.includes('month') || // Hide Month column
+           h.includes('week')); // Hide Week column
         if (exclude) continue;
 
         // Keep "Total Collected YYYY/YY" only if present in latest row
@@ -459,6 +464,72 @@
         } else {
           keep.push(c);
         }
+      }
+
+      // Find Charity URL column in the filtered list
+      const charityIdx = keep.findIndex(i => {
+        const hh = data[0][i].toLowerCase();
+        return hh.includes('charity') && !hh.includes('url');
+      });
+
+      // Build row data and append URL at the end (hidden, no header)
+      const rowData = keep.map(i => data[lastRowIdx][i]);
+      if (charityUrlValue) {
+        rowData.push(charityUrlValue);  // URL at end, beyond headers
+      }
+
+      return {
+        headers: keep.map(i => data[0][i]),
+        row: rowData,
+        linkColumns: [],
+        textLinkColumns: (charityIdx !== -1 && charityUrlValue)
+          ? [{ textCol: charityIdx, urlCol: rowData.length - 1 }]  // Point to URL at end
+          : []
+      };
+    }
+
+    function getLatestDonationByDonation(data) {
+      if (!data.length) return null;
+      const headers = data[0];
+
+      const donationIdx = headers.findIndex(h =>
+        h.toLowerCase().includes('donation') && !h.toLowerCase().includes('charity')
+      );
+      if (donationIdx === -1) return null;
+
+      let lastRowIdx = -1;
+      for (let i = 1; i < data.length; i++) {
+        if (norm(data[i][donationIdx]) !== '') lastRowIdx = i;
+      }
+      if (lastRowIdx === -1) return null;
+
+      // Find Charity URL column in original data (before filtering)
+      const origCharityUrlIdx = headers.findIndex(h => {
+        const hh = h.toLowerCase();
+        return hh.includes('charity') && hh.includes('url');
+      });
+      const charityUrlValue = origCharityUrlIdx !== -1 ? data[lastRowIdx][origCharityUrlIdx] : null;
+
+      const keep = [];
+      for (let c = 0; c < headers.length; c++) {
+        const h = headers[c].toLowerCase();
+
+        // Exclusions
+        const exclude =
+          ((h.includes('charity') && h.includes('no') && h.includes('name')) || // Hide Charity No.and Name column
+           (h.includes('charity') && h.includes('url')) ||  // Hide URL column
+           (h.includes('amount') && h.includes('collected')) ||  // Hide Amount Collected
+           (h.includes('current') && h.includes('total')) ||  // Hide Current total
+           (h.includes('total') && h.includes('collected')) ||  // Hide Total collected and Total Collected yyyy/yy
+           (h.includes('gift') && h.includes('aid')) || // Hide Gift Aid column
+           h.includes('notes') || // Hide Notes column
+           (h.includes('average') && h.includes('weekly')) || // Hide Average weekly column
+           (h.includes('average') && h.includes('monthly')) || // Hide Average monthly column
+           h.includes('month') || // Hide Month column
+           h.includes('week')); // Hide Week column
+        if (exclude) continue;
+
+        keep.push(c);
       }
 
       // Find Charity URL column in the filtered list
@@ -535,6 +606,8 @@
     async function render() {
       const donationLoading = document.getElementById('donationLoading');
       const donationContainer = document.getElementById('donationContainer');
+      const latestDonationLoading = document.getElementById('latestDonationLoading');
+      const latestDonationContainer = document.getElementById('latestDonationContainer');
       const upcomingLoading = document.getElementById('upcomingLoading');
       const upcomingContainer = document.getElementById('upcomingContainer');
 
@@ -544,7 +617,7 @@
           fetch(SHEET_URLS.upcomingCharity).then(r => r.text())
         ]);
 
-        // Latest donation
+        // Latest donation (by Amount Collected)
         const donationData = parseCSV(csvDonation);
         const latest = getLatestDonation(donationData);
         donationLoading.style.display = 'none';
@@ -560,6 +633,23 @@
           donationContainer.appendChild(table);
         } else {
           donationContainer.innerHTML = '<p>No donation data available</p>';
+        }
+
+        // Latest donation (by Donation column)
+        const latestByDonation = getLatestDonationByDonation(donationData);
+        latestDonationLoading.style.display = 'none';
+        if (latestByDonation) {
+          const table = buildTable({
+            caption: 'Latest donation',
+            headers: latestByDonation.headers,
+            row: latestByDonation.row,
+            linkColumnIndexes: latestByDonation.linkColumns,
+            textLinkColumns: latestByDonation.textLinkColumns
+          });
+          latestDonationContainer.innerHTML = '';
+          latestDonationContainer.appendChild(table);
+        } else {
+          latestDonationContainer.innerHTML = '<p>No donation data available</p>';
         }
 
         // Upcoming charity
@@ -582,8 +672,10 @@
 
       } catch (err) {
         if (donationLoading) donationLoading.style.display = 'none';
+        if (latestDonationLoading) latestDonationLoading.style.display = 'none';
         if (upcomingLoading) upcomingLoading.style.display = 'none';
         donationContainer.innerHTML = '<p style="color: red;">Error loading donation data</p>';
+        latestDonationContainer.innerHTML = '<p style="color: red;">Error loading donation data</p>';
         upcomingContainer.innerHTML = '<p style="color: red;">Error loading next proposed charity data</p>';
         // console.error(err);
       }
