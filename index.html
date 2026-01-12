@@ -157,200 +157,297 @@
       }
   });
   
-  // Fetch and display latest charity donation
-  (function() {
-      const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9fPeRBDx4hLm3TU25ElZA14R2H5gSwoenN0ouGNmlfbyRRwqt2ODbQ0vVMZlVjA/pub?gid=1099060302&single=true&output=csv';
+// Fetch and display latest charity donation
+// IIFE (Immediately Invoked Function Expression) to keep variables scoped
+(function() {
+ // URL for the Google Sheets CSV export containing the charity donations and collections
+  const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9fPeRBDx4hLm3TU25ElZA14R2H5gSwoenN0ouGNmlfbyRRwqt2ODbQ0vVMZlVjA/pub?gid=1099060302&single=true&output=csv';
+
+/**
+ * Parses CSV text into a 2D array, handling quoted fields properly
+ * @param {string} csv - Raw CSV text
+ * @returns {Array} 2D array of parsed values
+ */
+function parseCSV(csv) {
+    const result = [];
+    let currentRow = [];
+    let currentField = '';
+    let insideQuotes = false;
+
+    // Iterate through each character in the CSV string
+    for (let i = 0; i < csv.length; i++) {
+        const char = csv[i];
+        const nextChar = csv[i + 1];
+
+        if (char === '"') {
+            // Handle escaped quotes (two consecutive quotes)
+            if (insideQuotes && nextChar === '"') {
+                currentField += '"';
+                i++; // Skip the next quote
+            } else {
+                // Toggle quote state (entering or exiting quoted field)
+                insideQuotes = !insideQuotes;
+            }
+        } else if (char === ',' && !insideQuotes) {
+            // Comma outside quotes indicates field separator
+            currentRow.push(currentField.trim());
+            currentField = '';
+        } else if (char === '\n' && !insideQuotes) {
+            // Newline outside quotes indicates row separator
+            currentRow.push(currentField.trim());
+            
+            // Only add non-empty rows
+            if (currentRow.some(field => field !== '')) {
+                result.push(currentRow);
+            }
+            currentRow = [];
+            currentField = '';
+        } else {
+            // Handle newlines inside quotes (replace with space)
+            if (char === '\n' && insideQuotes) {
+                currentField += ' ';
+            } else if (char === '\r') {
+                // Skip carriage return characters
+            } else {
+                // Add regular characters to current field
+                currentField += char;
+            }
+        }
+    }
+
+    // Handle the last field and row if present
+    if (currentField || currentRow.length > 0) {
+        currentRow.push(currentField.trim());
+        if (currentRow.some(field => field !== '')) {
+            result.push(currentRow);
+        }
+    }
+
+    return result;
+}
+
+  function normalizeCellForPresenceCheck(cell) {
+    // Handle null/undefined
+    const s = (cell || '')
+      // Remove common mojibake artefacts (Â, replacement char �)
+      .replace(/[Â�]/g, '')
+      // Collapse all whitespace (including non-breaking)
+      .replace(/\u00A0/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    return s;
+  }
+
+  /**
+   * Extracts the latest donation record from parsed CSV data
+   * @param {Array} data - Parsed CSV data as 2D array
+   * @returns {Object|null} Object containing headers and row data, or null if no valid data
+   */
+  function getLatestDonation(data) {
+    // Return null if the data array is empty
+    if (data.length === 0) return null;
+
+    // Extract the header row (first row of the CSV)
+    const headers = data[0];
+    
+    // Find the index of the "Amount Collected" column
+    const amountCollectedIndex = headers.findIndex(h =>
+      h.toLowerCase().includes('amount') && h.toLowerCase().includes('collected')
+    );
+
+    // If "Amount Collected" column doesn't exist, return null
+    if (amountCollectedIndex === -1) return null;
+
+    // Find the last row where Amount Collected has a non-blank value
+    // This represents the most recent donation entry
+    let lastValidRowIndex = -1;
+    for (let i = 1; i < data.length; i++) {
+      // Normalize the cell value to check if it has actual content
+      const cellValue = normalizeCellForPresenceCheck(data[i][amountCollectedIndex]);
+      if (cellValue !== '') {
+        lastValidRowIndex = i;
+      }
+    }
+    
+    // If no valid rows found, return null
+    if (lastValidRowIndex === -1) return null;
+
+    // Build a list of column indices to keep (exclude unwanted columns)
+    const columnsToKeep = [];
+    for (let colIndex = 0; colIndex < headers.length; colIndex++) {
+      const header = headers[colIndex];
+      const headerLower = header.toLowerCase();
+
+      // Skip columns that should be excluded from display
+      // These include: Charity No/Name, Gift Aid, Notes, Weekly/Monthly averages, Month, Week
+      if ((headerLower.includes('charity') && headerLower.includes('no') && headerLower.includes('name')) ||
+          (headerLower.includes('gift') && headerLower.includes('aid')) ||
+          headerLower.includes('notes') ||
+          (headerLower.includes('average') && headerLower.includes('weekly')) ||
+          headerLower.includes('month') ||
+          headerLower.includes('week') ||
+          (headerLower.includes('average') && headerLower.includes('monthly'))) {
+        continue;
+      }
+
+      // Check if this is a "Total Collected YYYY/YY" column
+      // These columns show cumulative totals for specific years
+      const isTotalCollectedColumn =
+        headerLower.includes('total') &&
+        headerLower.includes('collected') &&
+        /\d{4}\/\d{2}/.test(header);
+
+      if (isTotalCollectedColumn) {
+        // Only keep this total column if it has a value in the latest row
+        const raw = data[lastValidRowIndex][colIndex] || '';
+        const present = normalizeCellForPresenceCheck(raw) !== '';
+        if (present) {
+          columnsToKeep.push(colIndex);
+        }
+      } else {
+        // Keep all other non-excluded columns
+        columnsToKeep.push(colIndex);
+      }
+    }
+
+    // Return an object with filtered headers and the corresponding row data
+    return {
+      headers: columnsToKeep.map(idx => headers[idx]),
+      row: columnsToKeep.map(idx => data[lastValidRowIndex][idx])
+    };
+  }
+
+  /**
+   * Displays the donation data as an HTML table
+   * @param {Object|null} donation - Object containing headers and row arrays
+   */
+  function displayDonation(donation) {
+    // Get the loading indicator element
+    const loadingEl = document.getElementById('donationLoading');
+    
+    // If no donation data available, hide loading and show message
+    if (!donation) {
+      if (loadingEl) loadingEl.style.display = 'none';
+      document.getElementById('donationContainer').innerHTML = '<p>No donation data available</p>';
+      return;
+    }
+
+    // Find the column index for "Donation Recipient" to apply special link formatting
+    const donationRecipientIndex = donation.headers.findIndex(h =>
+      h.toLowerCase().includes('donation') && h.toLowerCase().includes('recipient')
+    );
+
+    // Build the HTML table - start with table header row
+    let html = '<table><tr>';
+    donation.headers.forEach(header => {
+      html += `<th>${header}</th>`;
+    });
+    html += '</tr><tr>';
+
+    // Build the data row
+    donation.row.forEach((cell, idx) => {
+      let cellContent = cell;
       
-      function parseCSV(csv) {
-          const result = [];
-          let currentRow = [];
-          let currentField = '';
-          let insideQuotes = false;
-          
-          for (let i = 0; i < csv.length; i++) {
-              const char = csv[i];
-              const nextChar = csv[i + 1];
-              
-              if (char === '"') {
-                  if (insideQuotes && nextChar === '"') {
-                      currentField += '"';
-                      i++;
-                  } else {
-                      insideQuotes = !insideQuotes;
-                  }
-              } else if (char === ',' && !insideQuotes) {
-                  currentRow.push(currentField.trim());
-                  currentField = '';
-              } else if (char === '\n' && !insideQuotes) {
-                  currentRow.push(currentField.trim());
-                  if (currentRow.some(field => field !== '')) {
-                      result.push(currentRow);
-                  }
-                  currentRow = [];
-                  currentField = '';
-              } else {
-                  if (char === '\n' && insideQuotes) {
-                      currentField += ' ';
-                  } else if (char === '\r') {
-                      // Skip
-                  } else {
-                      currentField += char;
-                  }
-              }
-          }
-          
-          if (currentField || currentRow.length > 0) {
-              currentRow.push(currentField.trim());
-              if (currentRow.some(field => field !== '')) {
-                  result.push(currentRow);
-              }
-          }
-          
-          return result;
+      // If this is the Donation Recipient column and contains a URL, make it clickable
+      if (idx === donationRecipientIndex && cell && String(cell).match(/^https?:\/\//)) {
+        cellContent = `<a href="${cell}" target="_blank" rel="noopener noreferrer">${cell}</a>`;
       }
       
-      function getLatestDonation(data) {
-          if (data.length === 0) return null;
-          
-          const headers = data[0];
-          const amountCollectedIndex = headers.findIndex(h => 
-              h.toLowerCase().includes('amount') && h.toLowerCase().includes('collected')
-          );
-          
-          if (amountCollectedIndex === -1) return null;
-          
-          let lastValidRowIndex = -1;
-          for (let i = 1; i < data.length; i++) {
-              const cellValue = data[i][amountCollectedIndex] || '';
-              if (cellValue.trim() !== '') {
-                  lastValidRowIndex = i;
-              }
-          }
-          
-          if (lastValidRowIndex === -1) return null;
-          
-          const columnsToKeep = [];
-          for (let colIndex = 0; colIndex < headers.length; colIndex++) {
-              const header = headers[colIndex];
-              const headerLower = header.toLowerCase();
-              
-              if ((headerLower.includes('charity') && headerLower.includes('no') && headerLower.includes('name')) ||
-                  (headerLower.includes('gift') && headerLower.includes('aid')) ||
-                  headerLower.includes('notes') ||
-                  (headerLower.includes('average') && headerLower.includes('weekly')) ||
-                  headerLower.includes('month') ||
-                  headerLower.includes('week') ||
-                  (headerLower.includes('average') && headerLower.includes('monthly'))) {
-                  continue;
-              }
-              
-              const isTotalCollectedColumn = headerLower.includes('total') && 
-                                             headerLower.includes('collected') &&
-                                             /\d{4}\/\d{2}/.test(header);
-              
-              if (isTotalCollectedColumn) {
-                  const cellValue = data[lastValidRowIndex][colIndex] || '';
-                  const numericValue = cellValue.replace(/[�$,]/g, '').trim();
-                  const value = parseFloat(numericValue);
-                  
-                  if (!isNaN(value) && value > 0) {
-                      columnsToKeep.push(colIndex);
-                  }
-              } else {
-                  columnsToKeep.push(colIndex);
-              }
-          }
-          
-          return {
-              headers: columnsToKeep.map(idx => headers[idx]),
-              row: columnsToKeep.map(idx => data[lastValidRowIndex][idx])
-          };
-      }
+      // Add the cell to the table (use nullish coalescing to handle null/undefined)
+      html += `<td>${cellContent ?? ''}</td>`;
+    });
+    html += '</tr></table>';
+
+    // Hide the loading indicator and display the table
+    if (loadingEl) loadingEl.style.display = 'none';
+    document.getElementById('donationContainer').innerHTML = html;
+  }
+
+  // Fetch the CSV data from Google Sheets and display the latest donation
+  fetch(csvUrl)
+    .then(response => response.text())
+    .then(csv => {
+      // Parse the CSV text into a 2D array
+      const data = parseCSV(csv);
       
-      function displayDonation(donation) {
-          if (!donation) {
-              document.getElementById('donationContainer').innerHTML = '<p>No donation data available</p>';
-              return;
-          }
-          
-          const donationRecipientIndex = donation.headers.findIndex(h => 
-              h.toLowerCase().includes('donation') && h.toLowerCase().includes('recipient')
-          );
-          
-          let html = '<table><tr>';
-          donation.headers.forEach(header => {
-              html += `<th>${header}</th>`;
-          });
-          html += '</tr><tr>';
-          
-          donation.row.forEach((cell, idx) => {
-              let cellContent = cell;
-              if (idx === donationRecipientIndex && cell && cell.match(/^https?:\/\//)) {
-                  cellContent = `<a href="${cell}" target="_blank">${cell}</a>`;
-              }
-              html += `<td>${cellContent}</td>`;
-          });
-          html += '</tr></table>';
-          
-          document.getElementById('donationContainer').innerHTML = html;
-      }
+      // Extract the latest donation record
+      const latestDonation = getLatestDonation(data);
       
-      fetch(csvUrl)
-          .then(response => response.text())
-          .then(csv => {
-              const data = parseCSV(csv);
-              const latestDonation = getLatestDonation(data);
-              document.getElementById('donationLoading').style.display = 'none';
-              displayDonation(latestDonation);
-          })
-          .catch(error => {
-              document.getElementById('donationLoading').style.display = 'none';
-              document.getElementById('donationContainer').innerHTML = `<p style="color: red;">Error loading donation data</p>`;
-          });
-  })();
+      // Hide the loading indicator
+      const loadingEl = document.getElementById('donationLoading');
+      if (loadingEl) loadingEl.style.display = 'none';
+      
+      // Display the donation data
+      displayDonation(latestDonation);
+    })
+    .catch(error => {
+      // If fetch fails, hide loading and show error message
+      const loadingEl = document.getElementById('donationLoading');
+      if (loadingEl) loadingEl.style.display = 'none';
+      document.getElementById('donationContainer').innerHTML =
+        `<p style="color: red;">Error loading donation data</p>`;
+    });
+})();
   
   // Fetch and display Next proposed charity
+  // IIFE (Immediately Invoked Function Expression) to keep variables scoped
   (function() {
+      // URL for the Google Sheets CSV export containing upcoming charity proposals
       const csvUrl2 = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9fPeRBDx4hLm3TU25ElZA14R2H5gSwoenN0ouGNmlfbyRRwqt2ODbQ0vVMZlVjA/pub?gid=150385441&single=true&output=csv';
       
+      /**
+       * Parses CSV text into a 2D array, handling quoted fields properly
+       * @param {string} csv - Raw CSV text
+       * @returns {Array} 2D array of parsed values
+       */
       function parseCSV(csv) {
           const result = [];
           let currentRow = [];
           let currentField = '';
           let insideQuotes = false;
           
+          // Iterate through each character in the CSV string
           for (let i = 0; i < csv.length; i++) {
               const char = csv[i];
               const nextChar = csv[i + 1];
               
               if (char === '"') {
+                  // Handle escaped quotes (two consecutive quotes)
                   if (insideQuotes && nextChar === '"') {
                       currentField += '"';
-                      i++;
+                      i++; // Skip the next quote
                   } else {
+                      // Toggle quote state (entering or exiting quoted field)
                       insideQuotes = !insideQuotes;
                   }
               } else if (char === ',' && !insideQuotes) {
+                  // Comma outside quotes indicates field separator
                   currentRow.push(currentField.trim());
                   currentField = '';
               } else if (char === '\n' && !insideQuotes) {
+                  // Newline outside quotes indicates row separator
                   currentRow.push(currentField.trim());
+                  
+                  // Only add non-empty rows
                   if (currentRow.some(field => field !== '')) {
                       result.push(currentRow);
                   }
                   currentRow = [];
                   currentField = '';
               } else {
+                  // Handle newlines inside quotes (replace with space)
                   if (char === '\n' && insideQuotes) {
                       currentField += ' ';
                   } else if (char === '\r') {
-                      // Skip
+                      // Skip carriage return characters
                   } else {
+                      // Add regular characters to current field
                       currentField += char;
                   }
               }
           }
           
+          // Handle the last field and row if present
           if (currentField || currentRow.length > 0) {
               currentRow.push(currentField.trim());
               if (currentRow.some(field => field !== '')) {
@@ -361,12 +458,19 @@
           return result;
       }
       
+      /**
+       * Extracts the first upcoming charity from parsed CSV data
+       * @param {Array} data - Parsed CSV data as 2D array
+       * @returns {Object|null} Object containing headers and row data, or null if no valid data
+       */
       function getFirstUpcoming(data) {
+          // Return null if insufficient data
           if (data.length === 0 || data.length < 2) return null;
           
+          // Extract the header row
           const headers = data[0];
           
-          // Find first row with any content (skip header)
+          // Find the first row with any content (skip header row)
           let firstValidRowIndex = -1;
           for (let i = 1; i < data.length; i++) {
               const hasContent = data[i].some(cell => cell && cell.trim() !== '');
@@ -376,15 +480,16 @@
               }
           }
           
+          // If no valid rows found, return null
           if (firstValidRowIndex === -1) return null;
           
-          // Filter columns - exclude "Registered Charity"
+          // Build list of columns to keep, excluding "Registered Charity" column
           const columnsToKeep = [];
           for (let colIndex = 0; colIndex < headers.length; colIndex++) {
               const header = headers[colIndex];
               const headerLower = header.toLowerCase();
               
-              // Skip "Registered Charity" column
+              // Skip "Registered Charity" column (contains registration numbers)
               if (headerLower.includes('registered') && headerLower.includes('charity')) {
                   continue;
               }
@@ -392,49 +497,72 @@
               columnsToKeep.push(colIndex);
           }
           
+          // Return an object with filtered headers and the corresponding row data
           return {
               headers: columnsToKeep.map(idx => headers[idx]),
               row: columnsToKeep.map(idx => data[firstValidRowIndex][idx])
           };
       }
       
+      /**
+       * Displays the upcoming charity data as an HTML table
+       * @param {Object|null} upcoming - Object containing headers and row arrays
+       */
       function displayUpcoming(upcoming) {
+          // If no data available, show message
           if (!upcoming) {
               document.getElementById('upcomingContainer').innerHTML = '<p>No next proposed charity data available</p>';
               return;
           }
           
+          // Find the column index for "Charity URL" to apply link formatting
           const charityUrlIndex = upcoming.headers.findIndex(h => 
               h.toLowerCase().includes('charity') && h.toLowerCase().includes('url')
           );
           
+          // Build the HTML table - start with header row
           let html = '<table><tr>';
           upcoming.headers.forEach(header => {
               html += `<th>${header}</th>`;
           });
           html += '</tr><tr>';
           
+          // Build the data row
           upcoming.row.forEach((cell, idx) => {
               let cellContent = cell;
+              
+              // If this is the Charity URL column and contains a URL, make it clickable
               if (idx === charityUrlIndex && cell && cell.match(/^https?:\/\//)) {
                   cellContent = `<a href="${cell}" target="_blank">${cell}</a>`;
               }
+              
+              // Add the cell to the table
               html += `<td>${cellContent}</td>`;
           });
           html += '</tr></table>';
           
+          // Display the table in the container
           document.getElementById('upcomingContainer').innerHTML = html;
       }
       
+      // Fetch the CSV data from Google Sheets and display the upcoming charity
       fetch(csvUrl2)
           .then(response => response.text())
           .then(csv => {
+              // Parse the CSV text into a 2D array
               const data = parseCSV(csv);
+              
+              // Extract the first upcoming charity record
               const upcomingCharity = getFirstUpcoming(data);
+              
+              // Hide the loading indicator
               document.getElementById('upcomingLoading').style.display = 'none';
+              
+              // Display the upcoming charity data
               displayUpcoming(upcomingCharity);
           })
           .catch(error => {
+              // If fetch fails, hide loading and show error message
               document.getElementById('upcomingLoading').style.display = 'none';
               document.getElementById('upcomingContainer').innerHTML = `<p style="color: red;">Error loading next proposed charity data</p>`;
           });
