@@ -196,15 +196,15 @@
                 }
             }
             
-            // Get the last 24 valid rows (or all if fewer than 24)
+            // Get the last 52 valid rows (or all if fewer than 52)
             if (validRowIndices.length === 0) {
                 return [data[0]]; // Just headers if no valid rows found
             }
             
-            const last24Indices = validRowIndices.slice(-24);
+            const last52Indices = validRowIndices.slice(-52);
             const lastValidRowIndex = validRowIndices[validRowIndices.length - 1];
             // Reverse the order so most recent is first
-            const filteredRows = [data[0], ...last24Indices.map(idx => data[idx]).reverse()];
+            const filteredRows = [data[0], ...last52Indices.map(idx => data[idx]).reverse()];
             
             // Now filter columns - keep only "Total Collected" columns with value > 0
             const columnsToKeep = [];
