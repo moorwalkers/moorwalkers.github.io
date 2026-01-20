@@ -1,117 +1,126 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title>Moor Walkers Map</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #0A4478;
-            color: white;
-            padding: 1em;
-            text-align: center;
-        }
-        h1 {
-            text-align: center;
-            margin: 0;
-            font-size: 2.5em;
-        }
-        p {
-            font-size: 1.2em;
-            margin-top: 2em;
-            margin-bottom: 1em;
-            text-align: center;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: center;
-            font-size: 1.8em;
-        }
-        li {
-            display: inline-block;
-            margin: 0 1em;
-        }
-        a {
-            display: block;
-            padding: 0.5em 1em;
-            background-color: #0A4478;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.2s ease;
-            font-size: 1.0em;
-        }
-        a:hover {
-            background-color: #1A4E87;
-        }
-        /* Latest donation display */
-        .latest-donation {
-            background-color: #f0f8ff;
-            border: 2px solid #0A4478;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px auto;
-            max-width: 800px;
-            text-align: center;
-        }
-        .latest-donation h3 {
-            color: #0A4478;
-            margin-top: 0;
-            font-size: 1em;
-        }
-        .latest-donation table {
-            margin: 10px auto;
-            border-collapse: collapse;
-            background-color: white;
-        }
-        .latest-donation th {
-            background-color: #0A4478;
-            color: white;
-            padding: 8px;
-            font-size: 0.9em;
-        }
-        .latest-donation td {
-            padding: 8px;
-            border: 1px solid #ddd;
-            font-size: 0.9em;
-        }
-        .latest-donation a {
-            color: #0A4478;
-            text-decoration: none;
-            display: inline;
-            padding: 0;
-            background-color: transparent;
-            border-radius: 0;
-        }
-        .latest-donation a:hover {
-            text-decoration: underline;
-            background-color: transparent;
-        }
-        .latest-donation a.button-link {
-            display: inline-block;
-            padding: 0.5em 1em;
-            background-color: #0A4478;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.2s ease;
-        }
-        .latest-donation a.button-link:hover {
-            background-color: #1A4E87;
-            text-decoration: none;
-        }
-        .iframe-container {
-            width: 100%;
-            border: none;
-            min-height: 2000px;
-        }
-    </style>
-    <link rel="icon" href="https://moorwalkers.github.io/icons8-map-pastel-32.png" type="image/x-icon">
+        <title>Moor Walkers Map</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+            header {
+                background-color: #0A4478;
+                color: white;
+                padding: 1em;
+                text-align: center;
+            }
+            h1 {
+                text-align: center;
+                margin: 0;
+                font-size: 2.5em;
+            }
+            p {
+                font-size: 1.2em;
+                margin-top: 2em;
+                margin-bottom: 1em;
+                text-align: center;
+            }
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                text-align: center;
+                font-size: 1.8em;
+            }
+            li {
+                display: inline-block;
+                margin: 0 1em;
+            }
+            a {
+                display: block;
+                padding: 0.5em 1em;
+                background-color: #0A4478;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.2s ease;
+                font-size: 1.0em;
+            }
+            a:hover {
+                background-color: #1A4E87;
+            }
+            /* Latest donation display */
+            .latest-donation {
+                background-color: #f0f8ff;
+                border: 2px solid #0A4478;
+                border-radius: 10px;
+                padding: 15px;
+                margin: 20px auto;
+                max-width: 800px;
+                text-align: center;
+            }
+            .latest-donation h3 {
+                color: #0A4478;
+                margin-top: 0;
+                font-size: 1em;
+            }
+            .latest-donation table {
+                margin: 10px auto;
+                border-collapse: collapse;
+                background-color: white;
+            }
+            .latest-donation th {
+                background-color: #0A4478;
+                color: white;
+                padding: 8px;
+                font-size: 0.9em;
+            }
+            .latest-donation td {
+                padding: 8px;
+                border: 1px solid #ddd;
+                font-size: 0.9em;
+            }
+            .latest-donation a {
+                color: #0A4478;
+                text-decoration: none;
+                display: inline;
+                padding: 0;
+                background-color: transparent;
+                border-radius: 0;
+            }
+            .latest-donation a:hover {
+                text-decoration: underline;
+                background-color: transparent;
+            }
+            .latest-donation a.button-link {
+                display: inline-block;
+                padding: 0.5em 1em;
+                background-color: #0A4478;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.2s ease;
+            }
+            .latest-donation a.button-link:hover {
+                background-color: #1A4E87;
+                text-decoration: none;
+            }
+            .iframe-container {
+                width: 100%;
+                border: none;
+                min-height: 2000px;
+            }
+        </style>
+        <link rel="icon" href="https://moorwalkers.github.io/icons8-map-pastel-32.png" type="image/x-icon">
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-PBJZDHQ6NW"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PBJZDHQ6NW');
+        </script>
     </head>
     <body>
         <header>
