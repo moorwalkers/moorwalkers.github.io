@@ -7,6 +7,472 @@
                 "type": "LineString",
                 "coordinates": [
                     [
+                        -3.843312,
+                        50.489902,
+                        297.33,
+                        0.0
+                    ],
+                    [
+                        -3.845043,
+                        50.490599,
+                        302.62,
+                        0.090288
+                    ],
+                    [
+                        -3.846959,
+                        50.490835,
+                        305.93,
+                        0.176315
+                    ],
+                    [
+                        -3.84979,
+                        50.491001,
+                        313.57,
+                        0.301691
+                    ],
+                    [
+                        -3.851937,
+                        50.490891,
+                        317.9,
+                        0.396644
+                    ],
+                    [
+                        -3.855583,
+                        50.491165,
+                        334.76,
+                        0.558535
+                    ],
+                    [
+                        -3.856227,
+                        50.490967,
+                        339.0,
+                        0.590037
+                    ],
+                    [
+                        -3.857602,
+                        50.491242,
+                        338.03,
+                        0.65359
+                    ],
+                    [
+                        -3.85869,
+                        50.491258,
+                        344.13,
+                        0.701569
+                    ],
+                    [
+                        -3.860127,
+                        50.490794,
+                        354.77,
+                        0.772595
+                    ],
+                    [
+                        -3.860483,
+                        50.490857,
+                        360.67,
+                        0.788893
+                    ],
+                    [
+                        -3.861573,
+                        50.490589,
+                        371.12,
+                        0.840358
+                    ],
+                    [
+                        -3.863008,
+                        50.489929,
+                        391.35,
+                        0.918401
+                    ],
+                    [
+                        -3.864316,
+                        50.489649,
+                        407.59,
+                        0.979247
+                    ],
+                    [
+                        -3.865556,
+                        50.48905,
+                        418.61,
+                        1.047809
+                    ],
+                    [
+                        -3.866685,
+                        50.48872,
+                        424.34,
+                        1.102541
+                    ],
+                    [
+                        -3.871624,
+                        50.487682,
+                        432.16,
+                        1.331888
+                    ],
+                    [
+                        -3.879088,
+                        50.487653,
+                        411.51,
+                        1.661015
+                    ],
+                    [
+                        -3.880113,
+                        50.488057,
+                        408.39,
+                        1.714134
+                    ],
+                    [
+                        -3.881057,
+                        50.488189,
+                        412.25,
+                        1.756777
+                    ],
+                    [
+                        -3.881714,
+                        50.487965,
+                        416.8,
+                        1.789612
+                    ],
+                    [
+                        -3.883336,
+                        50.486921,
+                        432.95,
+                        1.891199
+                    ],
+                    [
+                        -3.883715,
+                        50.486185,
+                        440.05,
+                        1.944746
+                    ],
+                    [
+                        -3.884297,
+                        50.485891,
+                        446.35,
+                        1.977503
+                    ],
+                    [
+                        -3.885065,
+                        50.485985,
+                        455.15,
+                        2.01202
+                    ],
+                    [
+                        -3.88555,
+                        50.486169,
+                        461.72,
+                        2.03692
+                    ],
+                    [
+                        -3.885806,
+                        50.486472,
+                        466.32,
+                        2.06067
+                    ],
+                    [
+                        -3.887191,
+                        50.486777,
+                        471.0,
+                        2.125317
+                    ],
+                    [
+                        -3.888754,
+                        50.486227,
+                        472.22,
+                        2.204033
+                    ],
+                    [
+                        -3.889106,
+                        50.486604,
+                        472.52,
+                        2.234354
+                    ],
+                    [
+                        -3.895856,
+                        50.486796,
+                        438.83,
+                        2.532315
+                    ],
+                    [
+                        -3.897007,
+                        50.486932,
+                        429.74,
+                        2.583913
+                    ],
+                    [
+                        -3.897687,
+                        50.487238,
+                        423.02,
+                        2.62061
+                    ],
+                    [
+                        -3.898289,
+                        50.487159,
+                        414.4,
+                        2.647692
+                    ],
+                    [
+                        -3.898598,
+                        50.486934,
+                        408.93,
+                        2.668404
+                    ],
+                    [
+                        -3.899144,
+                        50.487175,
+                        408.51,
+                        2.697689
+                    ],
+                    [
+                        -3.898445,
+                        50.486803,
+                        408.07,
+                        2.737849
+                    ],
+                    [
+                        -3.897853,
+                        50.48506,
+                        402.18,
+                        2.861112
+                    ],
+                    [
+                        -3.895787,
+                        50.483191,
+                        395.41,
+                        3.019173
+                    ],
+                    [
+                        -3.895672,
+                        50.483022,
+                        394.55,
+                        3.031909
+                    ],
+                    [
+                        -3.895775,
+                        50.482438,
+                        389.23,
+                        3.072538
+                    ],
+                    [
+                        -3.895377,
+                        50.481488,
+                        385.05,
+                        3.140547
+                    ],
+                    [
+                        -3.894807,
+                        50.481197,
+                        383.98,
+                        3.172712
+                    ],
+                    [
+                        -3.89469,
+                        50.480948,
+                        383.01,
+                        3.190694
+                    ],
+                    [
+                        -3.89384,
+                        50.480298,
+                        378.17,
+                        3.249205
+                    ],
+                    [
+                        -3.89396,
+                        50.480081,
+                        376.01,
+                        3.265096
+                    ],
+                    [
+                        -3.892454,
+                        50.480036,
+                        376.52,
+                        3.331618
+                    ],
+                    [
+                        -3.891608,
+                        50.480349,
+                        376.93,
+                        3.374716
+                    ],
+                    [
+                        -3.889482,
+                        50.480157,
+                        369.38,
+                        3.469406
+                    ],
+                    [
+                        -3.887629,
+                        50.480406,
+                        365.84,
+                        3.552935
+                    ],
+                    [
+                        -3.883613,
+                        50.480013,
+                        357.16,
+                        3.732109
+                    ],
+                    [
+                        -3.881063,
+                        50.480236,
+                        361.78,
+                        3.845637
+                    ],
+                    [
+                        -3.880707,
+                        50.480498,
+                        368.69,
+                        3.869594
+                    ],
+                    [
+                        -3.878047,
+                        50.481479,
+                        401.07,
+                        4.00511
+                    ],
+                    [
+                        -3.87539,
+                        50.482085,
+                        411.64,
+                        4.129561
+                    ],
+                    [
+                        -3.873987,
+                        50.482608,
+                        414.53,
+                        4.201189
+                    ],
+                    [
+                        -3.87165,
+                        50.484956,
+                        417.33,
+                        4.393455
+                    ],
+                    [
+                        -3.87124,
+                        50.485775,
+                        415.72,
+                        4.452878
+                    ],
+                    [
+                        -3.870525,
+                        50.486065,
+                        414.69,
+                        4.49025
+                    ],
+                    [
+                        -3.869276,
+                        50.487063,
+                        417.96,
+                        4.578523
+                    ],
+                    [
+                        -3.867532,
+                        50.487691,
+                        424.42,
+                        4.666837
+                    ],
+                    [
+                        -3.866148,
+                        50.488395,
+                        423.7,
+                        4.744908
+                    ],
+                    [
+                        -3.865187,
+                        50.489297,
+                        416.8,
+                        4.820297
+                    ],
+                    [
+                        -3.862813,
+                        50.489993,
+                        390.35,
+                        4.935479
+                    ],
+                    [
+                        -3.860789,
+                        50.490812,
+                        362.09,
+                        5.041175
+                    ],
+                    [
+                        -3.858615,
+                        50.491302,
+                        342.39,
+                        5.142845
+                    ],
+                    [
+                        -3.85757,
+                        50.491286,
+                        336.67,
+                        5.188912
+                    ],
+                    [
+                        -3.856827,
+                        50.491057,
+                        336.43,
+                        5.22532
+                    ],
+                    [
+                        -3.856471,
+                        50.491117,
+                        337.75,
+                        5.241577
+                    ],
+                    [
+                        -3.856501,
+                        50.491013,
+                        339.16,
+                        5.24891
+                    ],
+                    [
+                        -3.847558,
+                        50.490808,
+                        308.2,
+                        5.643495
+                    ],
+                    [
+                        -3.845227,
+                        50.490535,
+                        302.59,
+                        5.747979
+                    ],
+                    [
+                        -3.843685,
+                        50.489998,
+                        298.36,
+                        5.825439
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "2026-05-07 @ 18-03-24",
+                "date": "2026-05-07T18:03:24",
+                "distance_km": 9.38,
+                "distance_mi": 5.83,
+                "duration": "3:00:23",
+                "ascent": 216,
+                "descent": -215,
+                "center_lat": 50.48704765753188,
+                "center_lon": -3.8722795864241704,
+                "place_name": "Bowden, West Buckfastleigh, Combe",
+                "gridref": "SX 69339 67189",
+                "googleMapsLink": "https://www.google.com/maps?q=50.48990182578564,-3.843311984091997",
+                "download_link": "https://moorwalkers.github.io/track_downloads/2026-05-07_18-03-24.gpx",
+                "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2026-05-07T18:03:24",
+                "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2026-05-07T18:03:24",
+                "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2026-05-07_18-03-24.png",
+                "cluster_label": 16,
+                "colour": "darkred"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
                         -3.868269,
                         50.619047,
                         400.0,
@@ -553,7 +1019,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2026-04-30T18:07:24",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2026-04-30T18:07:24",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2026-04-30_18-07-24.png",
-                "cluster_label": 13,
+                "cluster_label": 14,
                 "colour": "darkred"
             }
         },
@@ -2137,7 +2603,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2026-04-02T18:13:47",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2026-04-02T18:13:47",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2026-04-02_18-13-47.png",
-                "cluster_label": 17,
+                "cluster_label": 0,
                 "colour": "darkred"
             }
         },
@@ -2441,8 +2907,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2026-03-26T18:10:32",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2026-03-26T18:10:32",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2026-03-26_18-10-32.png",
-                "cluster_label": 12,
-                "colour": "darkred"
+                "cluster_label": 16,
+                "colour": "green"
             }
         },
         {
@@ -3241,7 +3707,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2026-03-12T18:10:33",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2026-03-12T18:10:33",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2026-03-12_18-10-33.png",
-                "cluster_label": 12,
+                "cluster_label": 7,
                 "colour": "green"
             }
         },
@@ -4406,7 +4872,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2026-02-19T18:09:22",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2026-02-19_18-09-22.png",
                 "cluster_label": 0,
-                "colour": "darkred"
+                "colour": "green"
             }
         },
         {
@@ -4799,7 +5265,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2026-02-12T18:03:34",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2026-02-12T18:03:34",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2026-02-12_18-03-34.png",
-                "cluster_label": 12,
+                "cluster_label": 7,
                 "colour": "red"
             }
         },
@@ -5599,8 +6065,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2026-01-29T18:02:12",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2026-01-29T18:02:12",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2026-01-29_18-02-12.png",
-                "cluster_label": 12,
-                "colour": "blue"
+                "cluster_label": 16,
+                "colour": "red"
             }
         },
         {
@@ -6537,8 +7003,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2026-01-15T17:56:35",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2026-01-15T17:56:35",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2026-01-15_17-56-35.png",
-                "cluster_label": 12,
-                "colour": "gray"
+                "cluster_label": 16,
+                "colour": "blue"
             }
         },
         {
@@ -8685,7 +9151,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-11-27T10:13:38",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-11-27T10:13:38",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-11-27_10-13-38.png",
-                "cluster_label": 18,
+                "cluster_label": 19,
                 "colour": "darkred"
             }
         },
@@ -9157,8 +9623,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-11-20T18:03:18",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-11-20T18:03:18",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-11-20_18-03-18.png",
-                "cluster_label": 12,
-                "colour": "purple"
+                "cluster_label": 16,
+                "colour": "gray"
             }
         },
         {
@@ -9617,8 +10083,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-11-13T18:15:13",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-11-13T18:15:13",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-11-13_18-15-13.png",
-                "cluster_label": 17,
-                "colour": "green"
+                "cluster_label": 0,
+                "colour": "red"
             }
         },
         {
@@ -10083,8 +10549,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-11-06T18:10:57",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-11-06T18:10:57",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-11-06_18-10-57.png",
-                "cluster_label": 8,
-                "colour": "green"
+                "cluster_label": 12,
+                "colour": "darkred"
             }
         },
         {
@@ -10477,8 +10943,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-10-30T18:12:03",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-10-30T18:12:03",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-10-30_18-12-03.png",
-                "cluster_label": 7,
-                "colour": "green"
+                "cluster_label": 13,
+                "colour": "darkred"
             }
         },
         {
@@ -11373,8 +11839,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-10-16T18:01:22",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-10-16T18:01:22",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-10-16_18-01-22.png",
-                "cluster_label": 12,
-                "colour": "black"
+                "cluster_label": 16,
+                "colour": "purple"
             }
         },
         {
@@ -12013,8 +12479,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-10-09T18:20:43",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-10-09T18:20:43",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-10-09_18-20-43.png",
-                "cluster_label": 17,
-                "colour": "red"
+                "cluster_label": 12,
+                "colour": "green"
             }
         },
         {
@@ -13065,8 +13531,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-09-25T18:04:30",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-09-25T18:04:30",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-09-25_18-04-30.png",
-                "cluster_label": 12,
-                "colour": "cadetblue"
+                "cluster_label": 7,
+                "colour": "blue"
             }
         },
         {
@@ -13550,7 +14016,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-09-18T18:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-09-18_18-00-00.png",
                 "cluster_label": 0,
-                "colour": "green"
+                "colour": "blue"
             }
         },
         {
@@ -13925,8 +14391,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-09-11T18:05:34",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-09-11T18:05:34",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-09-11_18-05-34.png",
-                "cluster_label": 12,
-                "colour": "darkgreen"
+                "cluster_label": 7,
+                "colour": "gray"
             }
         },
         {
@@ -14428,7 +14894,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-09-04T18:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-09-04_18-00-00.png",
                 "cluster_label": 7,
-                "colour": "red"
+                "colour": "purple"
             }
         },
         {
@@ -14875,8 +15341,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-08-28T18:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-08-28T18:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-08-28_18-00-00.png",
-                "cluster_label": 0,
-                "colour": "red"
+                "cluster_label": 13,
+                "colour": "green"
             }
         },
         {
@@ -15467,8 +15933,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-08-21T18:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-08-21T18:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-08-21_18-00-00.png",
-                "cluster_label": 7,
-                "colour": "blue"
+                "cluster_label": 13,
+                "colour": "red"
             }
         },
         {
@@ -15789,7 +16255,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-08-14T18:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-08-14T18:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-08-14_18-00-00.png",
-                "cluster_label": 13,
+                "cluster_label": 14,
                 "colour": "green"
             }
         },
@@ -16829,7 +17295,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-07-31T17:23:57",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-07-31T17:23:57",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-07-31_17-23-57.png",
-                "cluster_label": 8,
+                "cluster_label": 12,
                 "colour": "red"
             }
         },
@@ -18675,8 +19141,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-06-26T18:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-06-26T18:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-06-26_18-00-00.png",
-                "cluster_label": 12,
-                "colour": "orange"
+                "cluster_label": 16,
+                "colour": "black"
             }
         },
         {
@@ -21031,7 +21497,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-06-19T09:35:31",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-06-19T09:35:31",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-06-19_09-35-31.png",
-                "cluster_label": 15,
+                "cluster_label": 18,
                 "colour": "darkred"
             }
         },
@@ -21785,7 +22251,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-06-12T18:11:16",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-06-12T18:11:16",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-06-12_18-11-16.png",
-                "cluster_label": 14,
+                "cluster_label": 11,
                 "colour": "darkred"
             }
         },
@@ -22335,8 +22801,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-06-05T18:02:30",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-06-05T18:02:30",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-06-05_18-02-30.png",
-                "cluster_label": 12,
-                "colour": "darkblue"
+                "cluster_label": 7,
+                "colour": "black"
             }
         },
         {
@@ -23842,7 +24308,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-05-15T18:10:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-05-15_18-10-00.png",
                 "cluster_label": 0,
-                "colour": "blue"
+                "colour": "gray"
             }
         },
         {
@@ -24145,8 +24611,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-05-08T18:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-05-08T18:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-05-08_18-00-00.png",
-                "cluster_label": 12,
-                "colour": "darkred"
+                "cluster_label": 16,
+                "colour": "cadetblue"
             }
         },
         {
@@ -25025,8 +25491,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-05-01T17:59:07",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-05-01T17:59:07",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-05-01_17-59-07.png",
-                "cluster_label": 17,
-                "colour": "blue"
+                "cluster_label": 0,
+                "colour": "purple"
             }
         },
         {
@@ -25629,7 +26095,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-04-24T18:07:22",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-04-24T18:07:22",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-04-24_18-07-22.png",
-                "cluster_label": 16,
+                "cluster_label": 15,
                 "colour": "darkred"
             }
         },
@@ -26221,8 +26687,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-04-17T18:07:20",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-04-17T18:07:20",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-04-17_18-07-20.png",
-                "cluster_label": 12,
-                "colour": "green"
+                "cluster_label": 7,
+                "colour": "cadetblue"
             }
         },
         {
@@ -26615,8 +27081,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-04-10T18:03:21",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-04-10T18:03:21",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-04-10_18-03-21.png",
-                "cluster_label": 17,
-                "colour": "gray"
+                "cluster_label": 0,
+                "colour": "black"
             }
         },
         {
@@ -27111,7 +27577,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-03-27T18:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-03-27T18:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-03-27_18-00-00.png",
-                "cluster_label": 8,
+                "cluster_label": 12,
                 "colour": "blue"
             }
         },
@@ -27547,7 +28013,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-03-20T18:05:29",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-03-20T18:05:29",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-03-20_18-05-29.png",
-                "cluster_label": 13,
+                "cluster_label": 14,
                 "colour": "red"
             }
         },
@@ -28468,7 +28934,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-03-06T18:08:55",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-03-06_18-08-55.png",
                 "cluster_label": 7,
-                "colour": "gray"
+                "colour": "darkgreen"
             }
         },
         {
@@ -28921,8 +29387,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-02-13T18:09:43",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-02-13T18:09:43",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-02-13_18-09-43.png",
-                "cluster_label": 12,
-                "colour": "red"
+                "cluster_label": 7,
+                "colour": "orange"
             }
         },
         {
@@ -29556,7 +30022,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-02-06T18:08:43",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-02-06_18-08-43.png",
                 "cluster_label": 0,
-                "colour": "gray"
+                "colour": "cadetblue"
             }
         },
         {
@@ -29925,8 +30391,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-01-30T18:12:57",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-01-30T18:12:57",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-01-30_18-12-57.png",
-                "cluster_label": 12,
-                "colour": "blue"
+                "cluster_label": 16,
+                "colour": "darkgreen"
             }
         },
         {
@@ -30301,8 +30767,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-01-16T18:12:55",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-01-16T18:12:55",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-01-16_18-12-55.png",
-                "cluster_label": 7,
-                "colour": "purple"
+                "cluster_label": 13,
+                "colour": "blue"
             }
         },
         {
@@ -30767,8 +31233,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2025-01-09T18:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-01-09T18:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-01-09_18-00-00.png",
-                "cluster_label": 12,
-                "colour": "gray"
+                "cluster_label": 16,
+                "colour": "orange"
             }
         },
         {
@@ -31138,7 +31604,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2025-01-02T18:08:02",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2025-01-02_18-08-02.png",
                 "cluster_label": 8,
-                "colour": "gray"
+                "colour": "green"
             }
         },
         {
@@ -31567,8 +32033,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-12-12T18:06:03",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-12-12T18:06:03",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-12-12_18-06-03.png",
-                "cluster_label": 17,
-                "colour": "purple"
+                "cluster_label": 0,
+                "colour": "darkgreen"
             }
         },
         {
@@ -32141,7 +32607,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-12-05T18:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-12-05T18:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-12-05_18-00-00.png",
-                "cluster_label": 13,
+                "cluster_label": 14,
                 "colour": "blue"
             }
         },
@@ -33686,7 +34152,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-11-14T18:15:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-11-14_18-15-00.png",
                 "cluster_label": 0,
-                "colour": "purple"
+                "colour": "orange"
             }
         },
         {
@@ -35257,8 +35723,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-10-10T18:07:07",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-10-10T18:07:07",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-10-10_18-07-07.png",
-                "cluster_label": 17,
-                "colour": "black"
+                "cluster_label": 12,
+                "colour": "gray"
             }
         },
         {
@@ -35891,8 +36357,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-10-03T18:13:50",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-10-03T18:13:50",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-10-03_18-13-50.png",
-                "cluster_label": 19,
-                "colour": "darkred"
+                "cluster_label": 8,
+                "colour": "red"
             }
         },
         {
@@ -36363,8 +36829,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-09-26T16:08:06",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-09-26T16:08:06",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-09-26_16-08-06.png",
-                "cluster_label": 12,
-                "colour": "purple"
+                "cluster_label": 16,
+                "colour": "darkblue"
             }
         },
         {
@@ -37217,7 +37683,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-09-12T18:13:21",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-09-12T18:13:21",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-09-12_18-13-21.png",
-                "cluster_label": 13,
+                "cluster_label": 14,
                 "colour": "gray"
             }
         },
@@ -38405,8 +38871,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-08-08T18:14:37",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-08-08T18:14:37",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-08-08_18-14-37.png",
-                "cluster_label": 0,
-                "colour": "black"
+                "cluster_label": 13,
+                "colour": "gray"
             }
         },
         {
@@ -39147,8 +39613,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-08-01T17:09:41",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-08-01T17:09:41",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-08-01_17-09-41.png",
-                "cluster_label": 19,
-                "colour": "green"
+                "cluster_label": 8,
+                "colour": "blue"
             }
         },
         {
@@ -39625,7 +40091,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-07-25T18:10:07",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-07-25T18:10:07",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-07-25_18-10-07.png",
-                "cluster_label": 15,
+                "cluster_label": 18,
                 "colour": "green"
             }
         },
@@ -40278,7 +40744,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-07-18T18:01:27",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-07-18_18-01-27.png",
                 "cluster_label": 0,
-                "colour": "cadetblue"
+                "colour": "darkblue"
             }
         },
         {
@@ -40924,7 +41390,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-07-11T18:17:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-07-11_18-17-00.png",
                 "cluster_label": 0,
-                "colour": "darkgreen"
+                "colour": "darkred"
             }
         },
         {
@@ -42012,7 +42478,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-06-27T18:16:41",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-06-27_18-16-41.png",
                 "cluster_label": 7,
-                "colour": "black"
+                "colour": "darkblue"
             }
         },
         {
@@ -42501,8 +42967,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-06-20T18:13:14",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-06-20T18:13:14",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-06-20_18-13-14.png",
-                "cluster_label": 19,
-                "colour": "red"
+                "cluster_label": 4,
+                "colour": "green"
             }
         },
         {
@@ -43537,7 +44003,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-06-13T10:37:02",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-06-13T10:37:02",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-06-13_10-37-02.png",
-                "cluster_label": 15,
+                "cluster_label": 18,
                 "colour": "red"
             }
         },
@@ -44853,7 +45319,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-05-30T18:09:11",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-05-30T18:09:11",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-05-30_18-09-11.png",
-                "cluster_label": 16,
+                "cluster_label": 15,
                 "colour": "green"
             }
         },
@@ -45845,8 +46311,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-05-16T18:15:07",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-05-16T18:15:07",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-05-16_18-15-07.png",
-                "cluster_label": 12,
-                "colour": "black"
+                "cluster_label": 7,
+                "colour": "darkred"
             }
         },
         {
@@ -46545,7 +47011,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-05-09T18:17:59",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-05-09T18:17:59",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-05-09_18-17-59.png",
-                "cluster_label": 8,
+                "cluster_label": 12,
                 "colour": "purple"
             }
         },
@@ -47017,8 +47483,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-05-02T18:05:55",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-05-02T18:05:55",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-05-02_18-05-55.png",
-                "cluster_label": 17,
-                "colour": "cadetblue"
+                "cluster_label": 0,
+                "colour": "green"
             }
         },
         {
@@ -48021,8 +48487,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-04-18T18:13:40",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-04-18T18:13:40",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-04-18_18-13-40.png",
-                "cluster_label": 17,
-                "colour": "darkgreen"
+                "cluster_label": 0,
+                "colour": "red"
             }
         },
         {
@@ -49277,8 +49743,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-04-04T18:11:56",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-04-04T18:11:56",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-04-04_18-11-56.png",
-                "cluster_label": 17,
-                "colour": "orange"
+                "cluster_label": 12,
+                "colour": "black"
             }
         },
         {
@@ -49774,7 +50240,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-03-28T18:11:57",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-03-28_18-11-57.png",
                 "cluster_label": 7,
-                "colour": "cadetblue"
+                "colour": "green"
             }
         },
         {
@@ -50281,7 +50747,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-03-21T17:51:07",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-03-21T17:51:07",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-03-21_17-51-07.png",
-                "cluster_label": 13,
+                "cluster_label": 14,
                 "colour": "purple"
             }
         },
@@ -52498,7 +52964,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-03-13T09:39:29",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-03-13_09-39-29.png",
                 "cluster_label": 11,
-                "colour": "darkred"
+                "colour": "green"
             }
         },
         {
@@ -52862,7 +53328,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-03-07T18:02:34",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-03-07_18-02-34.png",
                 "cluster_label": 0,
-                "colour": "orange"
+                "colour": "blue"
             }
         },
         {
@@ -53220,7 +53686,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-02-29T18:02:25",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-02-29_18-02-25.png",
                 "cluster_label": 8,
-                "colour": "black"
+                "colour": "gray"
             }
         },
         {
@@ -53715,7 +54181,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-02-22T18:17:57",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-02-22T18:17:57",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-02-22_18-17-57.png",
-                "cluster_label": 8,
+                "cluster_label": 12,
                 "colour": "cadetblue"
             }
         },
@@ -54181,8 +54647,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-02-08T18:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-02-08T18:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-02-08_18-00-00.png",
-                "cluster_label": 12,
-                "colour": "cadetblue"
+                "cluster_label": 7,
+                "colour": "red"
             }
         },
         {
@@ -55083,8 +55549,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-01-25T18:12:09",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-01-25T18:12:09",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-01-25_18-12-09.png",
-                "cluster_label": 17,
-                "colour": "darkblue"
+                "cluster_label": 12,
+                "colour": "darkgreen"
             }
         },
         {
@@ -55507,8 +55973,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-01-18T18:09:12",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-01-18T18:09:12",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-01-18_18-09-12.png",
-                "cluster_label": 17,
-                "colour": "darkred"
+                "cluster_label": 0,
+                "colour": "gray"
             }
         },
         {
@@ -56069,7 +56535,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2024-01-11T18:08:53",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2024-01-11T18:08:53",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2024-01-11_18-08-53.png",
-                "cluster_label": 13,
+                "cluster_label": 14,
                 "colour": "black"
             }
         },
@@ -56750,7 +57216,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-12-21T18:15:18",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-12-21_18-15-18.png",
                 "cluster_label": 0,
-                "colour": "darkblue"
+                "colour": "purple"
             }
         },
         {
@@ -57059,8 +57525,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-12-14T18:05:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-12-14T18:05:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-12-14_18-05-00.png",
-                "cluster_label": 7,
-                "colour": "darkgreen"
+                "cluster_label": 13,
+                "colour": "purple"
             }
         },
         {
@@ -59167,8 +59633,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-11-30T18:10:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-11-30T18:10:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-11-30_18-10-00.png",
-                "cluster_label": 12,
-                "colour": "darkgreen"
+                "cluster_label": 16,
+                "colour": "darkred"
             }
         },
         {
@@ -60375,8 +60841,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-11-16T18:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-11-16T18:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-11-16_18-00-00.png",
-                "cluster_label": 17,
-                "colour": "green"
+                "cluster_label": 0,
+                "colour": "black"
             }
         },
         {
@@ -61016,7 +61482,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-11-09T18:05:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-11-09_18-05-00.png",
                 "cluster_label": 8,
-                "colour": "darkgreen"
+                "colour": "purple"
             }
         },
         {
@@ -62353,7 +62819,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-10-19T18:03:19",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-10-19T18:03:19",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-10-19_18-03-19.png",
-                "cluster_label": 18,
+                "cluster_label": 19,
                 "colour": "green"
             }
         },
@@ -62603,8 +63069,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-10-12T18:04:37",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-10-12T18:04:37",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-10-12_18-04-37.png",
-                "cluster_label": 12,
-                "colour": "orange"
+                "cluster_label": 16,
+                "colour": "green"
             }
         },
         {
@@ -63105,8 +63571,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-10-05T18:17:33",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-10-05T18:17:33",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-10-05_18-17-33.png",
-                "cluster_label": 9,
-                "colour": "orange"
+                "cluster_label": 17,
+                "colour": "darkred"
             }
         },
         {
@@ -63374,7 +63840,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-09-28T18:08:03",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-09-28_18-08-03.png",
                 "cluster_label": 0,
-                "colour": "darkred"
+                "colour": "cadetblue"
             }
         },
         {
@@ -63827,8 +64293,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-09-21T18:04:43",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-09-21T18:04:43",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-09-21_18-04-43.png",
-                "cluster_label": 12,
-                "colour": "darkblue"
+                "cluster_label": 16,
+                "colour": "red"
             }
         },
         {
@@ -64348,7 +64814,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-09-14T18:10:39",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-09-14_18-10-39.png",
                 "cluster_label": 0,
-                "colour": "green"
+                "colour": "darkgreen"
             }
         },
         {
@@ -66651,7 +67117,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-08-22T11:02:31",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-08-22T11:02:31",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-08-22_11-02-31.png",
-                "cluster_label": 13,
+                "cluster_label": 14,
                 "colour": "cadetblue"
             }
         },
@@ -66961,8 +67427,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-08-17T18:14:18",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-08-17T18:14:18",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-08-17_18-14-18.png",
-                "cluster_label": 0,
-                "colour": "red"
+                "cluster_label": 13,
+                "colour": "black"
             }
         },
         {
@@ -67541,8 +68007,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-08-10T18:06:05",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-08-10T18:06:05",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-08-10_18-06-05.png",
-                "cluster_label": 12,
-                "colour": "darkred"
+                "cluster_label": 16,
+                "colour": "blue"
             }
         },
         {
@@ -68049,7 +68515,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-08-03T18:09:46",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-08-03T18:09:46",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-08-03_18-09-46.png",
-                "cluster_label": 8,
+                "cluster_label": 12,
                 "colour": "orange"
             }
         },
@@ -69269,7 +69735,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-07-20T18:10:05",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-07-20T18:10:05",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-07-20_18-10-05.png",
-                "cluster_label": 13,
+                "cluster_label": 14,
                 "colour": "darkgreen"
             }
         },
@@ -69705,7 +70171,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-07-13T18:11:58",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-07-13T18:11:58",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-07-13_18-11-58.png",
-                "cluster_label": 16,
+                "cluster_label": 15,
                 "colour": "red"
             }
         },
@@ -70572,7 +71038,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-06-29T18:16:31",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-06-29_18-16-31.png",
                 "cluster_label": 8,
-                "colour": "darkblue"
+                "colour": "black"
             }
         },
         {
@@ -70851,8 +71317,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-06-22T18:22:46",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-06-22T18:22:46",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-06-22_18-22-46.png",
-                "cluster_label": 12,
-                "colour": "green"
+                "cluster_label": 16,
+                "colour": "gray"
             }
         },
         {
@@ -71437,8 +71903,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-06-15T18:06:54",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-06-15T18:06:54",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-06-15_18-06-54.png",
-                "cluster_label": 12,
-                "colour": "red"
+                "cluster_label": 7,
+                "colour": "blue"
             }
         },
         {
@@ -72053,8 +72519,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-05-25T18:06:44",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-05-25T18:06:44",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-05-25_18-06-44.png",
-                "cluster_label": 12,
-                "colour": "blue"
+                "cluster_label": 7,
+                "colour": "gray"
             }
         },
         {
@@ -72639,8 +73105,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-05-18T18:14:19",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-05-18T18:14:19",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-05-18_18-14-19.png",
-                "cluster_label": 9,
-                "colour": "darkblue"
+                "cluster_label": 17,
+                "colour": "green"
             }
         },
         {
@@ -73087,8 +73553,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-05-11T18:10:09",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-05-11T18:10:09",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-05-11_18-10-09.png",
-                "cluster_label": 17,
-                "colour": "red"
+                "cluster_label": 0,
+                "colour": "orange"
             }
         },
         {
@@ -73822,7 +74288,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-04-13T18:06:46",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-04-13_18-06-46.png",
                 "cluster_label": 9,
-                "colour": "darkred"
+                "colour": "orange"
             }
         },
         {
@@ -74673,8 +75139,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-03-23T18:09:03",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-03-23T18:09:03",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-03-23_18-09-03.png",
-                "cluster_label": 12,
-                "colour": "gray"
+                "cluster_label": 16,
+                "colour": "purple"
             }
         },
         {
@@ -75217,8 +75683,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-03-16T18:10:53",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-03-16T18:10:53",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-03-16_18-10-53.png",
-                "cluster_label": 12,
-                "colour": "purple"
+                "cluster_label": 16,
+                "colour": "black"
             }
         },
         {
@@ -75563,8 +76029,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-03-09T18:21:21",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-03-09T18:21:21",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-03-09_18-21-21.png",
-                "cluster_label": 17,
-                "colour": "blue"
+                "cluster_label": 0,
+                "colour": "darkblue"
             }
         },
         {
@@ -75993,8 +76459,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-02-23T18:11:20",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-02-23T18:11:20",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-02-23_18-11-20.png",
-                "cluster_label": 17,
-                "colour": "gray"
+                "cluster_label": 12,
+                "colour": "darkblue"
             }
         },
         {
@@ -76460,7 +76926,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-02-09T18:02:46",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-02-09_18-02-46.png",
                 "cluster_label": 9,
-                "colour": "green"
+                "colour": "darkblue"
             }
         },
         {
@@ -76992,7 +77458,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-02-02T18:15:32",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-02-02_18-15-32.png",
                 "cluster_label": 9,
-                "colour": "red"
+                "colour": "darkred"
             }
         },
         {
@@ -77451,8 +77917,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-01-19T18:15:19",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-01-19T18:15:19",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-01-19_18-15-19.png",
-                "cluster_label": 19,
-                "colour": "blue"
+                "cluster_label": 8,
+                "colour": "cadetblue"
             }
         },
         {
@@ -77833,8 +78299,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2023-01-12T18:11:06",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2023-01-12T18:11:06",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2023-01-12_18-11-06.png",
-                "cluster_label": 17,
-                "colour": "purple"
+                "cluster_label": 0,
+                "colour": "darkred"
             }
         },
         {
@@ -78251,7 +78717,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-12-08T18:14:08",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-12-08T18:14:08",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-12-08_18-14-08.png",
-                "cluster_label": 13,
+                "cluster_label": 14,
                 "colour": "orange"
             }
         },
@@ -78784,7 +79250,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-12-01T18:06:39",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-12-01_18-06-39.png",
                 "cluster_label": 9,
-                "colour": "blue"
+                "colour": "green"
             }
         },
         {
@@ -79273,7 +79739,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-11-24T18:10:42",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-11-24T18:10:42",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-11-24_18-10-42.png",
-                "cluster_label": 8,
+                "cluster_label": 12,
                 "colour": "darkred"
             }
         },
@@ -79823,8 +80289,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-11-17T18:14:24",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-11-17T18:14:24",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-11-17_18-14-24.png",
-                "cluster_label": 7,
-                "colour": "orange"
+                "cluster_label": 13,
+                "colour": "cadetblue"
             }
         },
         {
@@ -80188,7 +80654,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-11-10T18:15:50",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-11-10_18-15-50.png",
                 "cluster_label": 8,
-                "colour": "green"
+                "colour": "darkgreen"
             }
         },
         {
@@ -80707,8 +81173,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-10-13T18:06:44",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-10-13T18:06:44",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-10-13_18-06-44.png",
-                "cluster_label": 17,
-                "colour": "black"
+                "cluster_label": 0,
+                "colour": "green"
             }
         },
         {
@@ -81359,8 +81825,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-09-01T18:04:50",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-09-01T18:04:50",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-09-01_18-04-50.png",
-                "cluster_label": 9,
-                "colour": "gray"
+                "cluster_label": 17,
+                "colour": "red"
             }
         },
         {
@@ -81945,8 +82411,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-08-25T18:06:41",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-08-25T18:06:41",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-08-25_18-06-41.png",
-                "cluster_label": 12,
-                "colour": "black"
+                "cluster_label": 16,
+                "colour": "cadetblue"
             }
         },
         {
@@ -82961,8 +83427,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-08-09T11:30:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-08-09T11:30:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-08-09_11-30-00.png",
-                "cluster_label": 0,
-                "colour": "blue"
+                "cluster_label": 13,
+                "colour": "darkgreen"
             }
         },
         {
@@ -83493,8 +83959,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-08-04T18:02:15",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-08-04T18:02:15",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-08-04_18-02-15.png",
-                "cluster_label": 12,
-                "colour": "cadetblue"
+                "cluster_label": 7,
+                "colour": "purple"
             }
         },
         {
@@ -83773,8 +84239,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-07-07T18:03:50",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-07-07T18:03:50",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-07-07_18-03-50.png",
-                "cluster_label": 0,
-                "colour": "gray"
+                "cluster_label": 13,
+                "colour": "orange"
             }
         },
         {
@@ -84580,7 +85046,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-06-23T18:10:27",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-06-23_18-10-27.png",
                 "cluster_label": 4,
-                "colour": "green"
+                "colour": "red"
             }
         },
         {
@@ -85105,7 +85571,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-06-16T18:10:59",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-06-16T18:10:59",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-06-16_18-10-59.png",
-                "cluster_label": 13,
+                "cluster_label": 14,
                 "colour": "darkblue"
             }
         },
@@ -85523,8 +85989,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-06-09T18:08:15",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-06-09T18:08:15",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-06-09_18-08-15.png",
-                "cluster_label": 19,
-                "colour": "gray"
+                "cluster_label": 4,
+                "colour": "blue"
             }
         },
         {
@@ -86629,8 +87095,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-05-12T18:18:26",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-05-12T18:18:26",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-05-12_18-18-26.png",
-                "cluster_label": 19,
-                "colour": "purple"
+                "cluster_label": 8,
+                "colour": "orange"
             }
         },
         {
@@ -87149,8 +87615,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-05-05T18:07:37",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-05-05T18:07:37",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-05-05_18-07-37.png",
-                "cluster_label": 17,
-                "colour": "cadetblue"
+                "cluster_label": 0,
+                "colour": "red"
             }
         },
         {
@@ -87717,8 +88183,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-04-21T18:06:04",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-04-21T18:06:04",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-04-21_18-06-04.png",
-                "cluster_label": 17,
-                "colour": "darkgreen"
+                "cluster_label": 0,
+                "colour": "blue"
             }
         },
         {
@@ -88147,7 +88613,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-04-14T18:04:47",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-04-14T18:04:47",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-04-14_18-04-47.png",
-                "cluster_label": 12,
+                "cluster_label": 16,
                 "colour": "darkgreen"
             }
         },
@@ -89122,7 +89588,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-03-31T18:18:23",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-03-31_18-18-23.png",
                 "cluster_label": 8,
-                "colour": "red"
+                "colour": "darkblue"
             }
         },
         {
@@ -89546,7 +90012,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-03-24T18:09:28",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-03-24_18-09-28.png",
                 "cluster_label": 0,
-                "colour": "purple"
+                "colour": "gray"
             }
         },
         {
@@ -90047,7 +90513,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-03-17T18:08:22",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-03-17T18:08:22",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-03-17_18-08-22.png",
-                "cluster_label": 12,
+                "cluster_label": 16,
                 "colour": "orange"
             }
         },
@@ -90405,8 +90871,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-03-10T18:10:24",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-03-10T18:10:24",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-03-10_18-10-24.png",
-                "cluster_label": 19,
-                "colour": "black"
+                "cluster_label": 8,
+                "colour": "darkred"
             }
         },
         {
@@ -90752,7 +91218,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-02-10T18:18:16",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-02-10_18-18-16.png",
                 "cluster_label": 8,
-                "colour": "blue"
+                "colour": "green"
             }
         },
         {
@@ -91193,7 +91659,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-02-03T18:17:03",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-02-03T18:17:03",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-02-03_18-17-03.png",
-                "cluster_label": 13,
+                "cluster_label": 14,
                 "colour": "darkred"
             }
         },
@@ -91671,8 +92137,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2022-01-27T18:10:31",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-01-27T18:10:31",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-01-27_18-10-31.png",
-                "cluster_label": 17,
-                "colour": "orange"
+                "cluster_label": 0,
+                "colour": "purple"
             }
         },
         {
@@ -92694,7 +93160,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2022-01-13T18:11:14",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2022-01-13_18-11-14.png",
                 "cluster_label": 9,
-                "colour": "purple"
+                "colour": "red"
             }
         },
         {
@@ -93352,7 +93818,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2021-12-30T15:15:52",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2021-12-30_15-15-52.png",
                 "cluster_label": 8,
-                "colour": "gray"
+                "colour": "red"
             }
         },
         {
@@ -93851,7 +94317,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2021-12-09T18:13:23",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2021-12-09T18:13:23",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2021-12-09_18-13-23.png",
-                "cluster_label": 12,
+                "cluster_label": 16,
                 "colour": "darkblue"
             }
         },
@@ -94299,8 +94765,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2021-11-25T18:16:10",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2021-11-25T18:16:10",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2021-11-25_18-16-10.png",
-                "cluster_label": 17,
-                "colour": "darkblue"
+                "cluster_label": 0,
+                "colour": "cadetblue"
             }
         },
         {
@@ -94807,7 +95273,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2021-11-18T18:12:30",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2021-11-18T18:12:30",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2021-11-18_18-12-30.png",
-                "cluster_label": 7,
+                "cluster_label": 13,
                 "colour": "darkblue"
             }
         },
@@ -95358,7 +95824,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2021-10-21T18:01:36",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2021-10-21_18-01-36.png",
                 "cluster_label": 9,
-                "colour": "black"
+                "colour": "blue"
             }
         },
         {
@@ -95788,7 +96254,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2021-10-14T18:11:18",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2021-10-14_18-11-18.png",
                 "cluster_label": 0,
-                "colour": "cadetblue"
+                "colour": "darkgreen"
             }
         },
         {
@@ -96313,8 +96779,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2021-09-23T18:04:14",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2021-09-23T18:04:14",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2021-09-23_18-04-14.png",
-                "cluster_label": 12,
-                "colour": "darkred"
+                "cluster_label": 7,
+                "colour": "black"
             }
         },
         {
@@ -96863,8 +97329,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2021-09-16T17:59:25",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2021-09-16T17:59:25",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2021-09-16_17-59-25.png",
-                "cluster_label": 19,
-                "colour": "cadetblue"
+                "cluster_label": 8,
+                "colour": "blue"
             }
         },
         {
@@ -98418,7 +98884,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2021-07-01T18:07:11",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2021-07-01_18-07-11.png",
                 "cluster_label": 4,
-                "colour": "red"
+                "colour": "gray"
             }
         },
         {
@@ -98877,8 +99343,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2021-06-24T18:05:02",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2021-06-24T18:05:02",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2021-06-24_18-05-02.png",
-                "cluster_label": 17,
-                "colour": "darkred"
+                "cluster_label": 12,
+                "colour": "green"
             }
         },
         {
@@ -99337,7 +99803,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2021-06-17T18:27:37",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2021-06-17T18:27:37",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2021-06-17_18-27-37.png",
-                "cluster_label": 16,
+                "cluster_label": 17,
                 "colour": "blue"
             }
         },
@@ -99623,8 +100089,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2021-06-10T18:26:27",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2021-06-10T18:26:27",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2021-06-10_18-26-27.png",
-                "cluster_label": 19,
-                "colour": "darkgreen"
+                "cluster_label": 4,
+                "colour": "purple"
             }
         },
         {
@@ -100179,8 +100645,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2021-04-29T18:09:31",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2021-04-29T18:09:31",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2021-04-29_18-09-31.png",
-                "cluster_label": 16,
-                "colour": "gray"
+                "cluster_label": 15,
+                "colour": "blue"
             }
         },
         {
@@ -100951,8 +101417,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2020-07-01T00:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2020-07-01T00:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020-08-20_10-13-00.png",
-                "cluster_label": 19,
-                "colour": "orange"
+                "cluster_label": 4,
+                "colour": "black"
             }
         },
         {
@@ -101303,8 +101769,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2020-07-01T00:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2020-07-01T00:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-YarTor.png",
-                "cluster_label": 12,
-                "colour": "green"
+                "cluster_label": 16,
+                "colour": "darkred"
             }
         },
         {
@@ -101679,8 +102145,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2020-07-01T00:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2020-07-01T00:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-Whiteworks.png",
-                "cluster_label": 0,
-                "colour": "darkgreen"
+                "cluster_label": 13,
+                "colour": "darkred"
             }
         },
         {
@@ -102091,8 +102557,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2020-07-01T00:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2020-07-01T00:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-TorRoyal.png",
-                "cluster_label": 0,
-                "colour": "orange"
+                "cluster_label": 13,
+                "colour": "green"
             }
         },
         {
@@ -103125,8 +103591,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2020-07-01T00:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2020-07-01T00:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-Snowdon.png",
-                "cluster_label": 12,
-                "colour": "red"
+                "cluster_label": 16,
+                "colour": "green"
             }
         },
         {
@@ -104111,8 +104577,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2020-07-01T00:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2020-07-01T00:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-PrincetownTransmitter.png",
-                "cluster_label": 0,
-                "colour": "darkblue"
+                "cluster_label": 13,
+                "colour": "red"
             }
         },
         {
@@ -104518,7 +104984,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2020-07-01T00:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-PeakHill.png",
                 "cluster_label": 8,
-                "colour": "purple"
+                "colour": "gray"
             }
         },
         {
@@ -104911,8 +105377,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2020-07-01T00:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2020-07-01T00:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-HareTor.png",
-                "cluster_label": 19,
-                "colour": "darkblue"
+                "cluster_label": 4,
+                "colour": "cadetblue"
             }
         },
         {
@@ -105329,8 +105795,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2020-07-01T00:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2020-07-01T00:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-GreatLinksTor.png",
-                "cluster_label": 19,
-                "colour": "darkred"
+                "cluster_label": 4,
+                "colour": "darkgreen"
             }
         },
         {
@@ -106189,8 +106655,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2020-07-01T00:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2020-07-01T00:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-DevilsTor.png",
-                "cluster_label": 7,
-                "colour": "darkred"
+                "cluster_label": 13,
+                "colour": "blue"
             }
         },
         {
@@ -106781,7 +107247,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2020-07-01T00:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2020-07-01T00:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-CosdonBeacon.png",
-                "cluster_label": 15,
+                "cluster_label": 18,
                 "colour": "blue"
             }
         },
@@ -107242,7 +107708,7 @@
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2020-07-01T00:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-CombsheadTor.png",
                 "cluster_label": 0,
-                "colour": "darkred"
+                "colour": "orange"
             }
         },
         {
@@ -107407,8 +107873,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2020-07-01T00:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2020-07-01T00:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-CombestoneTor.png",
-                "cluster_label": 12,
-                "colour": "blue"
+                "cluster_label": 7,
+                "colour": "cadetblue"
             }
         },
         {
@@ -107951,8 +108417,8 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2020-07-01T00:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2020-07-01T00:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-Combestone.png",
-                "cluster_label": 12,
-                "colour": "gray"
+                "cluster_label": 7,
+                "colour": "darkgreen"
             }
         },
         {
@@ -108477,7 +108943,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2020-07-01T00:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2020-07-01T00:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-CastleDrogo.png",
-                "cluster_label": 18,
+                "cluster_label": 19,
                 "colour": "red"
             }
         },
@@ -109153,7 +109619,7 @@
                 "ind_map_link": "https://moorwalkers.github.io/map_std.html?track_id=2020-07-01T00:00:00",
                 "ind_map_link_os": "https://moorwalkers.github.io/map_os.html?track_id=2020-07-01T00:00:00",
                 "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-Belstone.png",
-                "cluster_label": 15,
+                "cluster_label": 18,
                 "colour": "gray"
             }
         },
