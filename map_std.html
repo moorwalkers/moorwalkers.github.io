@@ -733,89 +733,92 @@
             });
         }
         function loadDartmoorTors() {
-            return new Promise((resolve, reject) => {
-                fetch('dartmoor_tors.geojson')
-                    .then(response => response.json())
-                    .then(data => {
-                        var pendingFeatures = [];
-                        var completedFeatures = [];
+        return new Promise((resolve) => {
+            fetch('dartmoor_tors.geojson')
+            .then(response => response.json())
+            .then(data => {
 
-                        // Separate features by status
-                        data.features.forEach(function(feature) {
-                            if (feature.properties && feature.properties.status === "pending") {
-                                pendingFeatures.push(feature);
-                            } else {
-                                completedFeatures.push(feature);
-                            }
+                const buckets = {
+                os_pending: [],
+                os_completed: [],
+                other_pending: [],
+                other_completed: []
+                };
+
+                data.features.forEach(feature => {
+                const props = feature.properties || {};
+                const classification = (props.classification || 'other').toLowerCase();
+                const status = (props.status || '').toLowerCase();
+
+                const key =
+                    classification === 'os' && status === 'pending' ? 'os_pending' :
+                    classification === 'os' ? 'os_completed' :
+                    status === 'pending' ? 'other_pending' :
+                    'other_completed';
+
+                buckets[key].push(feature);
+                });
+
+                function createTorLayer(features, iconName) {
+                return L.geoJSON(
+                    { type: "FeatureCollection", features },
+                    {
+                    pointToLayer: function (feature, latlng) {
+                        const isPublic = feature.properties?.icon === 'public_Icon';
+                        return L.marker(latlng, {
+                        icon: L.AwesomeMarkers.icon({
+                            icon: iconName,
+                            markerColor: isPublic ? 'green' : 'blue',
+                            prefix: 'fa'
+                        })
                         });
+                    },
+                    onEachFeature: function (feature, layer) {
+                        const p = feature.properties;
+                        if (!p?.name) return;
 
-                        // Create layer for pending tors
-                        var pendingTors = L.geoJSON({ type: "FeatureCollection", features: pendingFeatures }, {
-                            pointToLayer: function (feature, latlng) {
-                                var iconOptions = {
-                                    icon: 'circle-xmark',
-                                    markerColor: feature.properties && feature.properties.icon === 'public_Icon' ? 'green' : 'blue',
-                                    prefix: 'fa'
-                                };
-                                return L.marker(latlng, { icon: L.AwesomeMarkers.icon(iconOptions) });
-                            },
-                            onEachFeature: function (feature, layer) {
-                                if (feature.properties && feature.properties.name) {
-                                    const popupContent = `
-                                        <div style="width: 100%; font-size: 10px;">
-                                            <div style="width: 170px;">
-                                                <strong>${feature.properties.name}</strong><br>
-                                                <img src="${feature.properties.imageLink}" alt="Image" style="width: 100%; height: auto;"><br>
-                                                <a href="${feature.properties.pageLink}" target="_blank">Tors of Dartmoor: ${feature.properties.name}</a><br>
-                                                ${feature.properties.gridRef}<br>
-                                                ${feature.properties.status}
-                                            </div>
-                                        </div>
-                                    `;
-                                    layer.bindPopup(popupContent);
-                                }
-                            }
-                        });
+                        layer.bindPopup(`
+                        <div style="width: 170px; font-size: 10px;">
+                            <strong>${p.name}</strong><br>
+                            ${p.imageLink}<br>
+                            ${p.pageLink}
+                            Tors of Dartmoor: ${p.name}
+                            </a><br>
+                            ${p.gridRef}<br>
+                            ${p.status}
+                        </div>
+                        `);
+                    }
+                    }
+                );
+                }
 
-                        // Create layer for completed tors
-                        var completedTors = L.geoJSON({ type: "FeatureCollection", features: completedFeatures }, {
-                            pointToLayer: function (feature, latlng) {
-                                var iconOptions = {
-                                    icon: 'circle-check',
-                                    markerColor: feature.properties && feature.properties.icon === 'public_Icon' ? 'green' : 'blue',
-                                    prefix: 'fa'
-                                };
-                                return L.marker(latlng, { icon: L.AwesomeMarkers.icon(iconOptions) });
-                            },
-                            onEachFeature: function (feature, layer) {
-                                if (feature.properties && feature.properties.name) {
-                                    const popupContent = `
-                                        <div style="width: 100%; font-size: 10px;">
-                                            <div style="width: 170px;">
-                                                <strong>${feature.properties.name}</strong><br>
-                                                <img src="${feature.properties.imageLink}" alt="Image" style="width: 100%; height: auto;"><br>
-                                                <a href="${feature.properties.pageLink}" target="_blank">Tors of Dartmoor: ${feature.properties.name}</a><br>
-                                                ${feature.properties.gridRef}<br>
-                                                ${feature.properties.status}
-                                            </div>
-                                        </div>
-                                    `;
-                                    layer.bindPopup(popupContent);
-                                }
-                            }
-                        });
+                const layers = {
+                [`OS Pending (${buckets.os_pending.length})`]:
+                    createTorLayer(buckets.os_pending, 'circle-xmark'),
 
-                        overlays["Dartmoor Tors - Pending"] = pendingTors;
-                        overlays["Dartmoor Tors - Completed"] = completedTors;
-                        layerControl.addOverlay(pendingTors, `Tors (${pendingFeatures.length} Pending)`);
-                        layerControl.addOverlay(completedTors, `Tors (${completedFeatures.length} Completed)`);
-                        resolve();
-                    })
-                    .catch(error => {
-                        console.error('Error loading dartmoor_tors.geojson:', error);
-                        resolve();
-                    });
+                [`OS Completed (${buckets.os_completed.length})`]:
+                    createTorLayer(buckets.os_completed, 'circle-check'),
+
+                [`Other Pending (${buckets.other_pending.length})`]:
+                    createTorLayer(buckets.other_pending, 'circle-xmark'),
+
+                [`Other Completed (${buckets.other_completed.length})`]:
+                    createTorLayer(buckets.other_completed, 'circle-check'),
+                }
+
+                Object.entries(layers).forEach(([name, layer]) => {
+                overlays[name] = layer;
+                layerControl.addOverlay(layer, name);
+                });
+
+                resolve();
+            })
+            .catch(err => {
+                console.error('Error loading dartmoor_tors.geojson:', err);
+                resolve();
             });
+        });
         }
 
         // Run the initial load functions
