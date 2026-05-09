@@ -803,17 +803,17 @@
                         const p = feature.properties;
                         if (!p?.name) return;
 
-                        layer.bindPopup(`
+                    layer.bindPopup(`
                         <div style="width: 170px; font-size: 10px;">
                             <strong>${p.name}</strong><br>
-                            ${p.imageLink}<br>
-                            ${p.pageLink}
+                            <img src="${p.imageLink}" style="width:100%; height:auto;"><br>
+                            <a href="${p.pageLink}" target="_blank">
                             Tors of Dartmoor: ${p.name}
                             </a><br>
                             ${p.gridRef}<br>
                             ${p.status}
                         </div>
-                        `);
+                    `);
                     }
                     }
                 );
