@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <style>
+    .outer-container {
+      position: absolute;
+      top: 10px;
+      left: 50px;
+      z-index: 1000;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 5px;
+      padding: 6px;
+      border: 1px solid #888;
+    }
+    .box { cursor: pointer; text-align: left; }
+    .content { display: none; text-align: left; }
+    .box:hover .content { display: block; }
+
+    html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
+
+    /* Hybrid container (two maps stacked) */
+    #wrap { position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
+    .map { position: absolute; inset: 0; }
+    .inactive { pointer-events: none; opacity: 0; }
+    .active { pointer-events: auto; opacity: 1; }
+
+    /* Basemap selector (fixed; survives CRS switching) */
+    #basemapControl {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 2000;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid #888;
+      border-radius: 6px;
+      padding: 8px;
+      font: 12px/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    #basemapControl label { display:block; font-weight: 600; margin-bottom: 4px; }
+    #basemapSelect { width: 130px; }
+
+    
+/* Push the Leaflet layers control down so it sits below the basemap selector */
+.leaflet-top.leaflet-right .leaflet-control-layers {
+  margin-top: 80px;   /* adjust if needed */
+}
+
+  </style>
+
+  <!-- Leaflet (single version) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Proj4 + Proj4Leaflet (needed for EPSG:27700 map only) -->
+  <script src="https://unpkg.com/proj4@2.7.5/dist/proj4.js"></script>
+  <script src="https://unpkg.com/proj4leaflet@1.0.2/src/proj4leaflet.js"></script>
+
+  <!-- Leaflet plugins -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+  <script src="https://unpkg.com/leaflet.awesome-markers@2.0.0/dist/leaflet.awesome-markers.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.66.2/L.Control.Locate.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.66.2/L.Control.Locate.min.js"></script>
+
+  <!-- Bootstrap (kept, as per your existing page) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://moorwalkers.github.io/icons8-map-pastel-32.png" type="image/x-icon">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PBJZDHQ6NW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PBJZDHQ6NW');
+  </script>
+</head>
+
+<body>
+  <!-- Hybrid map wrapper -->
+  <div id="wrap">
+    <div id="map27700" class="map active"></div>
+    <div id="map3857" class="map inactive"></div>
+  </div>
+
+  <!-- Basemap selection drives which CRS/map is active -->
+  <div id="basemapControl">
+    <label for="basemapSelect">Basemap</label>
+    <select id="basemapSelect">
+      <option value="OS_LEISURE_27700">OS Leisure</option>
+
+      <option value="OS_LIGHT_3857">OS Light</option>
+      <option value="OS_OUTDOOR_3857">OS Outdoor</option>
+      <option value="OS_ROAD_3857">OS Road</option>
+
+      <option value="OSM_3857">OpenStreetMap</option>
+      <option value="ESRI_IMAGERY_3857">Esri World Imagery</option>
+      <option value="ESRI_TOPO_3857">Esri World Topo</option>
+    </select>
+  </div>
+
+  <!-- Existing UI (unchanged) -->
+  <div class="outer-container">
+    <div class="box">
+      <button class="btn btn-primary">Track Filters</button>
+      <div class="content">
+        <div id="min-date-slider-container">Dates<br></div>
+        <div id="max-date-slider-container"></div>
+        <div id="min-distance-slider-container">Distance<br></div>
+        <div id="max-distance-slider-container"></div>
+        <div id="min-ascent-slider-container">Ascent<br></div>
+        <div id="max-ascent-slider-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position: fixed; bottom: 10px; left: 10px; z-index: 1000; display: flex; gap: 10px;">
+    <button onclick="window.location.href='index.html'" class="btn btn-primary">Home</button>
+    <button onclick="toggleContent()" class="btn btn-primary">Explore 'Tors of Dartmoor' data</button>
+    <button onclick="window.location.href='https://moorwalkers.github.io/map_std.html'" class="btn btn-primary">Switch Map View</button>
+  </div>
+
+  <div id="hidden-tors-of-dartmoor-content" style="display: none; position: fixed; bottom: 50px; left: 0; right: 0; background-color: #f9f9f9; padding: 20px; z-index: 999;">
+    <p>
+      The information regarding Dartmoor tors used in this map was referenced from the comprehensive dataset available on "Tors of Dartmoor" (https://www.torsofdartmoor.co.uk).
+    </p>
+    <p>
+      For specific details or further exploration of Dartmoor tors, please refer directly to the original source:
+      <a href="https://www.torsofdartmoor.co.uk" target="_blank">https://www.torsofdartmoor.co.uk</a>
+    </p>
+  </div>
+
+  <script>
+    // Keep as per your existing page
+    L_NO_TOUCH = false;
+    L_DISABLE_3D = false;
+
+    function toggleContent() {
+      const el = document.getElementById('hidden-tors-of-dartmoor-content');
+      el.style.display = el.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+    const selectedTrackId = getQueryParam('track_id');
+  </script>
+
+  <script>
+    // ============================================================
+    // Filter Sliders
+    // ============================================================
+    var minAscent = 0;
+    var maxAscent = 700;
+
+    var minAscentSlider = document.createElement('input');
+    minAscentSlider.type = 'range';
+    minAscentSlider.min = minAscent;
+    minAscentSlider.max = maxAscent;
+    minAscentSlider.value = minAscent;
+    minAscentSlider.step = 1;
+
+    var maxAscentSlider = document.createElement('input');
+    maxAscentSlider.type = 'range';
+    maxAscentSlider.min = minAscent;
+    maxAscentSlider.max = maxAscent;
+    maxAscentSlider.value = maxAscent;
+    maxAscentSlider.step = 1;
+
+    var minAscentSliderValueDisplay = document.createElement('span');
+    minAscentSliderValueDisplay.textContent = minAscent + " metres";
+
+    var maxAscentSliderValueDisplay = document.createElement('span');
+    maxAscentSliderValueDisplay.textContent = maxAscent + " metres";
+
+    document.getElementById('min-ascent-slider-container').appendChild(minAscentSlider);
+    document.getElementById('min-ascent-slider-container').appendChild(minAscentSliderValueDisplay);
+    document.getElementById('max-ascent-slider-container').appendChild(maxAscentSlider);
+    document.getElementById('max-ascent-slider-container').appendChild(maxAscentSliderValueDisplay);
+
+    var minDistance = 0;
+    var maxDistance = 35;
+
+    var minDistanceSlider = document.createElement('input');
+    minDistanceSlider.type = 'range';
+    minDistanceSlider.min = minDistance;
+    minDistanceSlider.max = maxDistance;
+    minDistanceSlider.value = minDistance;
+    minDistanceSlider.step = 1;
+
+    var maxDistanceSlider = document.createElement('input');
+    maxDistanceSlider.type = 'range';
+    maxDistanceSlider.min = minDistance;
+    maxDistanceSlider.max = maxDistance;
+    maxDistanceSlider.value = maxDistance;
+    maxDistanceSlider.step = 1;
+
+    var minDistanceSliderValueDisplay = document.createElement('span');
+    minDistanceSliderValueDisplay.textContent = minDistance + " miles";
+
+    var maxDistanceSliderValueDisplay = document.createElement('span');
+    maxDistanceSliderValueDisplay.textContent = maxDistance + " miles";
+
+    document.getElementById('min-distance-slider-container').appendChild(minDistanceSlider);
+    document.getElementById('min-distance-slider-container').appendChild(minDistanceSliderValueDisplay);
+    document.getElementById('max-distance-slider-container').appendChild(maxDistanceSlider);
+    document.getElementById('max-distance-slider-container').appendChild(maxDistanceSliderValueDisplay);
+
+    var currentDate = new Date();
+    var targetDate = new Date('2019-01-01');
+    var targetTimestamp = targetDate.getTime();
+    var difference = currentDate.getTime() - targetTimestamp;
+    var remainder = difference % (7 * 24 * 60 * 60 * 1000);
+    var minDateTimestamp = currentDate.getTime() - difference + remainder;
+    var maxDateTimestamp = new Date().getTime();
+
+    var minDateSlider = document.createElement('input');
+    minDateSlider.type = 'range';
+    minDateSlider.min = minDateTimestamp;
+    minDateSlider.max = maxDateTimestamp;
+    minDateSlider.value = minDateTimestamp;
+    minDateSlider.step = 604800000;
+
+    var maxDateSlider = document.createElement('input');
+    maxDateSlider.type = 'range';
+    maxDateSlider.min = minDateTimestamp;
+    maxDateSlider.max = maxDateTimestamp;
+    maxDateSlider.value = maxDateTimestamp;
+    maxDateSlider.step = 604800000;
+
+    var minDateSliderValueDisplay = document.createElement('span');
+    var d0 = new Date(parseInt(minDateSlider.value));
+    minDateSliderValueDisplay.textContent = `${d0.getFullYear()}-${String(d0.getMonth()+1).padStart(2,'0')}-${String(d0.getDate()).padStart(2,'0')}`;
+
+    var maxDateSliderValueDisplay = document.createElement('span');
+    var d1 = new Date(parseInt(maxDateSlider.value));
+    maxDateSliderValueDisplay.textContent = `${d1.getFullYear()}-${String(d1.getMonth()+1).padStart(2,'0')}-${String(d1.getDate()).padStart(2,'0')}`;
+
+    document.getElementById('min-date-slider-container').appendChild(minDateSlider);
+    document.getElementById('min-date-slider-container').appendChild(minDateSliderValueDisplay);
+    document.getElementById('max-date-slider-container').appendChild(maxDateSlider);
+    document.getElementById('max-date-slider-container').appendChild(maxDateSliderValueDisplay);
+
+    function onFiltersChanged() {
+      loadTracks(
+        new Date(parseInt(minDateSlider.value)),
+        new Date(parseInt(maxDateSlider.value)),
+        minDistanceSlider.value,
+        maxDistanceSlider.value,
+        minAscentSlider.value,
+        maxAscentSlider.value
+      );
+      loadTrackMarkers(
+        new Date(parseInt(minDateSlider.value)),
+        new Date(parseInt(maxDateSlider.value)),
+        minDistanceSlider.value,
+        maxDistanceSlider.value,
+        minAscentSlider.value,
+        maxAscentSlider.value
+      );
+    }
+
+    minAscentSlider.addEventListener('input', function() {
+      minAscentSliderValueDisplay.textContent = parseInt(this.value) + " metres";
+      onFiltersChanged();
+    });
+    maxAscentSlider.addEventListener('input', function() {
+      maxAscentSliderValueDisplay.textContent = parseInt(this.value) + " metres";
+      onFiltersChanged();
+    });
+    minDistanceSlider.addEventListener('input', function() {
+      minDistanceSliderValueDisplay.textContent = parseInt(this.value) + " miles";
+      onFiltersChanged();
+    });
+    maxDistanceSlider.addEventListener('input', function() {
+      maxDistanceSliderValueDisplay.textContent = parseInt(this.value) + " miles";
+      onFiltersChanged();
+    });
+    minDateSlider.addEventListener('input', function() {
+      const d = new Date(parseInt(this.value));
+      minDateSliderValueDisplay.textContent = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+      onFiltersChanged();
+    });
+    maxDateSlider.addEventListener('input', function() {
+      const d = new Date(parseInt(this.value));
+      maxDateSliderValueDisplay.textContent = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+      onFiltersChanged();
+    });
+  </script>
+
+  <script>
+    // ============================================================
+    // MAP SETUP (Leisure=27700 only, everything else=3857)
+    // ============================================================
+
+    const OS_KEY = "CKMgpGhRGckl2tk6802VEAGqKB7Gik5G";
+
+    // OS: Leisure is BNG-only; other styles available in 3857. [1](https://metoffice.sharepoint.com/sites/TechnologyGeographicalInformationSystemsCommsSite/SitePages/OS-API-Capabilities.aspx?web=1)[2](https://metoffice.sharepoint.com/sites/TechnologyGeographicalInformationSystemsCommsSite/SitePages/OS-Basemaps-Web-Service.aspx?web=1)
+    const ZOOM_OFFSET_27700_TO_3857 = 7;
+    const MAX_Z_27700 = 9; // based on resolutions ladder in your current setup [3](https://metoffice-my.sharepoint.com/personal/richard_langston_metoffice_gov_uk/Documents/Microsoft%20Copilot%20Chat%20Files/map_test2.html?web=1)
+
+    // EPSG:27700 CRS
+    const crs27700 = new L.Proj.CRS(
+      'EPSG:27700',
+      '+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +towgs84=446.448,-125.157,542.06,0.15,0.247,0.842,-20.489 +units=m +no_defs',
+      {
+        resolutions: [896.0, 448.0, 224.0, 112.0, 56.0, 28.0, 14.0, 7.0, 3.5, 1.75],
+        origin: [-238375.0, 1376256.0]
+      }
+    );
+
+    // Create both maps
+    const map27700 = L.map("map27700", {
+      center: [50.554, -3.946],
+      crs: crs27700,
+      minZoom: 0,
+      maxZoom: MAX_Z_27700,
+      zoom: 4,
+      zoomControl: true,
+      preferCanvas: false
+    });
+
+    const map3857 = L.map("map3857", {
+      center: [50.554, -3.946],
+      minZoom: 7,
+      maxZoom: 20,
+      zoom: 4 + ZOOM_OFFSET_27700_TO_3857,
+      zoomControl: true,
+      preferCanvas: false
+    });
+
+    // Active map pointer (existing loader code uses this)
+    let map = map27700;
+
+    // DOM + indicator
+    const el27700 = document.getElementById("map27700");
+    const el3857 = document.getElementById("map3857");
+
+    function activeWhich() {
+      return el27700.classList.contains("active") ? "27700" : "3857";
+    }
+
+    // ============================================================
+    // BASEMAPS
+    // ============================================================
+
+    // 27700: Leisure ONLY
+    const base_OS_LEISURE_27700 = L.tileLayer(
+      `https://api.os.uk/maps/raster/v1/zxy/Leisure_27700/{z}/{x}/{y}.png?key=${OS_KEY}`,
+      { attribution: "Contains OS data © Crown copyright and database right 2024", maxZoom: MAX_Z_27700, opacity: 1 }
+    );
+
+    // 3857: OS styles
+    const base_OS_LIGHT_3857 = L.tileLayer(
+      `https://api.os.uk/maps/raster/v1/zxy/Light_3857/{z}/{x}/{y}.png?key=${OS_KEY}`,
+      { attribution: "Contains OS data © Crown copyright and database right 2024", maxZoom: 20, opacity: 1 }
+    );
+
+    const base_OS_OUTDOOR_3857 = L.tileLayer(
+      `https://api.os.uk/maps/raster/v1/zxy/Outdoor_3857/{z}/{x}/{y}.png?key=${OS_KEY}`,
+      { attribution: "Contains OS data © Crown copyright and database right 2024", maxZoom: 20, opacity: 1 }
+    );
+
+    const base_OS_ROAD_3857 = L.tileLayer(
+      `https://api.os.uk/maps/raster/v1/zxy/Road_3857/{z}/{x}/{y}.png?key=${OS_KEY}`,
+      { attribution: "Contains OS data © Crown copyright and database right 2024", maxZoom: 20, opacity: 1 }
+    );
+
+    // 3857: Requested external basemaps
+    const base_OSM_3857 = L.tileLayer(
+      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      { attribution: "© OpenStreetMap contributors", maxZoom: 19, opacity: 1 }
+    );
+
+    const base_ESRI_IMAGERY_3857 = L.tileLayer(
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+      { attribution: "Tiles © Esri", maxZoom: 19, opacity: 1 }
+    );
+
+    const base_ESRI_TOPO_3857 = L.tileLayer(
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+      { attribution: "Tiles © Esri", maxZoom: 19, opacity: 1 }
+    );
+
+    let currentBase27700 = null;
+    let currentBase3857 = null;
+
+    function setBase27700(layer) {
+      if (currentBase27700 && map27700.hasLayer(currentBase27700)) map27700.removeLayer(currentBase27700);
+      currentBase27700 = layer;
+      currentBase27700.addTo(map27700);
+    }
+
+    function setBase3857(layer) {
+      if (currentBase3857 && map3857.hasLayer(currentBase3857)) map3857.removeLayer(currentBase3857);
+      currentBase3857 = layer;
+      currentBase3857.addTo(map3857);
+    }
+
+    // ============================================================
+    // OVERLAYS (preserve existing behaviour + track what is enabled)
+    // ============================================================
+    const overlays = {};
+    const activeOverlayNames = new Set();
+    const layerToName = new WeakMap();
+
+    const overlayControl27700 = L.control.layers({}, overlays, {
+      collapsed: true
+    }).addTo(map27700);
+
+    const overlayControl3857 = L.control.layers({}, overlays, {
+      collapsed: true
+    }).addTo(map3857);
+
+    const overlayControls = [overlayControl27700, overlayControl3857];
+
+    // Canonical overlay ordering (top → bottom in layer control)
+    const OVERLAY_ORDER = [
+      "Tracks",
+      "Track Markers",
+      "Points Of Interest",
+      "Pubs"
+    ];
+
+    /**
+     * Single, consistent overlay registration function.
+     * This is the ONLY way overlays should be added.
+     *
+     * @param {string} name
+     * @param {L.Layer} layer
+     * @param {boolean} addByDefault
+     */
+    function registerOverlay(name, layer, addByDefault = false) {
+      // Remove any previous version
+      removeOverlayEverywhere(name);
+
+      // Track centrally
+      overlays[name] = layer;
+      layerToName.set(layer, name);
+
+      // Add to both layer controls
+      overlayControls.forEach(ctrl => ctrl.addOverlay(layer, name));
+
+      // Enable if requested
+      if (addByDefault) {
+        layer.addTo(map);
+        activeOverlayNames.add(name);
+      }
+      // enforce canonical ordering
+      reorderLayerControls();
+
+    }
+
+    function reorderLayerControls() {
+      overlayControls.forEach(control => {
+        OVERLAY_ORDER.forEach(name => {
+          const layer = overlays[name];
+          if (layer) {
+            control.removeLayer(layer);
+            control.addOverlay(layer, name);
+          }
+        });
+      });
+    }
+
+    function removeOverlayEverywhere(name) {
+      const layer = overlays[name];
+      if (!layer) return;
+
+      if (map27700.hasLayer(layer)) map27700.removeLayer(layer);
+      if (map3857.hasLayer(layer)) map3857.removeLayer(layer);
+
+      overlayControls.forEach(lc => {
+        try { lc.removeLayer(layer); } catch(e) {}
+      });
+
+      delete overlays[name];
+      activeOverlayNames.delete(name);
+    }
+
+
+    function addOverlay(name, layer) {
+      overlays[name] = layer;
+
+      overlayControls.forEach(ctrl => {
+        ctrl.addOverlay(layer, name);
+      });
+
+      // Add to current active map by default
+      layer.addTo(map);
+    }
+
+
+    function wireOverlayTracking(m) {
+      m.on("overlayadd", (e) => {
+        const n = layerToName.get(e.layer);
+        if (n) activeOverlayNames.add(n);
+      });
+      m.on("overlayremove", (e) => {
+        const n = layerToName.get(e.layer);
+        if (n) activeOverlayNames.delete(n);
+      });
+    }
+    wireOverlayTracking(map27700);
+    wireOverlayTracking(map3857);
+
+    function moveActiveOverlays(fromMap, toMap) {
+      activeOverlayNames.forEach(name => {
+        const layer = overlays[name];
+        if (!layer) return;
+        if (fromMap.hasLayer(layer)) fromMap.removeLayer(layer);
+        if (!toMap.hasLayer(layer)) layer.addTo(toMap);
+      });
+    }
+
+    // ============================================================
+    // CRS / MAP SWITCHING (DRIVEN BY BASEMAP CHOICE)
+    // ============================================================
+    function setActive(which) {
+      if (which === "27700") {
+        el27700.classList.add("active"); el27700.classList.remove("inactive");
+        el3857.classList.add("inactive"); el3857.classList.remove("active");
+        moveActiveOverlays(map3857, map27700);
+        map = map27700;
+        map27700.invalidateSize(true);
+      } else {
+        el3857.classList.add("active"); el3857.classList.remove("inactive");
+        el27700.classList.add("inactive"); el27700.classList.remove("active");
+        moveActiveOverlays(map27700, map3857);
+        map = map3857;
+        map3857.invalidateSize(true);
+      }
+    }
+
+    function switchTo3857PreserveView() {
+      const c = map27700.getCenter();
+      const z = Math.max(7, Math.min(20, map27700.getZoom() + ZOOM_OFFSET_27700_TO_3857));
+      map3857.setView(c, z, { animate: false });
+      setActive("3857");
+    }
+
+    function switchTo27700PreserveView() {
+      const c = map3857.getCenter();
+      const z = Math.max(0, Math.min(MAX_Z_27700, map3857.getZoom() - ZOOM_OFFSET_27700_TO_3857));
+      map27700.setView(c, z, { animate: false });
+      setActive("27700");
+    }
+
+    // ============================================================
+    // BASEMAP CHOICE HANDLER
+    // ============================================================
+    const basemapSelect = document.getElementById("basemapSelect");
+
+    function applyBasemap(code) {
+      // Leisure => 27700 map
+      if (code === "OS_LEISURE_27700") {
+        // ensure 27700 has leisure
+        setBase27700(base_OS_LEISURE_27700);
+
+        // switch if needed
+        if (activeWhich() !== "27700") {
+          switchTo27700PreserveView();
+        }
+        return;
+      }
+
+      // Everything else => 3857 map
+      let layer3857 = base_OS_LIGHT_3857;
+      if (code === "OS_LIGHT_3857") layer3857 = base_OS_LIGHT_3857;
+      if (code === "OS_OUTDOOR_3857") layer3857 = base_OS_OUTDOOR_3857;
+      if (code === "OS_ROAD_3857") layer3857 = base_OS_ROAD_3857;
+      if (code === "OSM_3857") layer3857 = base_OSM_3857;
+      if (code === "ESRI_IMAGERY_3857") layer3857 = base_ESRI_IMAGERY_3857;
+      if (code === "ESRI_TOPO_3857") layer3857 = base_ESRI_TOPO_3857;
+
+      setBase3857(layer3857);
+
+      if (activeWhich() !== "3857") {
+        switchTo3857PreserveView();
+      }
+    }
+
+    basemapSelect.addEventListener("change", () => applyBasemap(basemapSelect.value));
+
+    // Locate control on both maps
+    L.control.locate({}).addTo(map27700);
+    L.control.locate({}).addTo(map3857);
+
+    // INITIAL STATE: Leisure (27700) active
+    setActive("27700");
+    setBase27700(base_OS_LEISURE_27700);
+
+    // Pre-load a sensible 3857 default in the background (not visible yet)
+    setBase3857(base_OS_LIGHT_3857);
+
+    // ============================================================
+    // EXISTING LOADERS (from your current map_test2.html)
+    // ============================================================
+
+    function debounce(func, wait) {
+      let timeout;
+      return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    }
+
+    const loadTracks = debounce(function() {
+      removeOverlayEverywhere("Tracks");
+
+      return new Promise((resolve) => {
+        fetch('tracks_manifest.json')
+          .then(response => response.json())
+          .then(manifest => {
+            if (!Array.isArray(manifest)) return resolve();
+
+            const allFilteredFeatures = [];
+
+            const loadPromises = manifest.map(file =>
+              fetch(file)
+                .then(resp => resp.json())
+                .then(geojson => {
+                  const filtered = geojson.features.filter(feature => {
+                    if (selectedTrackId && feature.properties.date !== selectedTrackId) return false;
+                    const props = feature.properties || {};
+                    const date = new Date(props.date);
+                    const distance = parseFloat(props.distance_mi);
+                    const ascent = parseFloat(props.ascent);
+                    return (
+                      date >= new Date(parseInt(minDateSlider.value)) &&
+                      date <= new Date(parseInt(maxDateSlider.value)) &&
+                      distance >= parseFloat(minDistanceSlider.value) &&
+                      distance <= parseFloat(maxDistanceSlider.value) &&
+                      ascent >= parseFloat(minAscentSlider.value) &&
+                      ascent <= parseFloat(maxAscentSlider.value)
+                    );
+                  });
+                  allFilteredFeatures.push(...filtered);
+                })
+                .catch(err => console.error('Error loading ' + file + ':', err))
+            );
+
+            Promise.all(loadPromises).then(() => {
+              if (allFilteredFeatures.length > 0) {
+                const unifiedLayer = L.geoJSON(
+                  { type: "FeatureCollection", features: allFilteredFeatures },
+                  {
+                    style: feature => ({
+                      color: feature.properties?.colour || 'green',
+                      weight: 3
+                    }),
+                    onEachFeature: (feature, layer) => {
+                      if (feature.properties?.name) {
+                        layer.bindTooltip(`
+                          <div style="font-size: 10px;">
+                            ${feature.properties.gridref}<br>
+                            ${feature.properties.name}<br>
+                            ${feature.properties.place_name}
+                          </div>
+                        `);
+                      }
+                    }
+                  }
+                );
+
+                registerOverlay("Tracks", unifiedLayer, true);
+
+                if (selectedTrackId) {
+                  const bounds = unifiedLayer.getBounds();
+                  if (bounds.isValid()) {
+                    map.fitBounds(bounds, { maxZoom: 8 });
+                  }
+                }
+              }
+              resolve();
+            });
+          })
+          .catch(error => {
+            console.error('Error loading tracks_manifest.json:', error);
+            resolve();
+          });
+      });
+    }, 400);
+
+    const loadTrackMarkers = debounce(function () {
+      removeOverlayEverywhere("Track Markers");
+
+      return new Promise((resolve) => {
+        fetch('track_markers.geojson')
+          .then(response => response.json())
+          .then(data => {
+            const filteredFeatures = data.features.filter(feature => {
+              if (selectedTrackId && feature.properties.date !== selectedTrackId) return false;
+              const props = feature.properties || {};
+              const date = new Date(props.date);
+              const distance = parseFloat(props.distance_mi);
+              const ascent = parseFloat(props.ascent);
+              return (
+                date >= new Date(parseInt(minDateSlider.value)) &&
+                date <= new Date(parseInt(maxDateSlider.value)) &&
+                distance >= parseFloat(minDistanceSlider.value) &&
+                distance <= parseFloat(maxDistanceSlider.value) &&
+                ascent >= parseFloat(minAscentSlider.value) &&
+                ascent <= parseFloat(maxAscentSlider.value)
+              );
+            });
+
+            const filteredGeoJSON = { type: "FeatureCollection", features: filteredFeatures };
+
+            const trackMarkers = L.geoJSON(filteredGeoJSON, {
+              pointToLayer: function (feature, latlng) {
+                const iconOptions = {
+                  icon: feature.properties?.icon || 'person-hiking',
+                  markerColor: feature.properties?.colour || 'black',
+                  prefix: feature.properties?.prefix || 'fa'
+                };
+                return L.marker(latlng, { icon: L.AwesomeMarkers.icon(iconOptions) });
+              },
+              onEachFeature: function (feature, layer) {
+                if (feature.properties?.name) {
+                  const download_filename = feature.properties.download_link.split('/').pop();
+                  layer.bindPopup(`
+                    <div style="width: 100.0%; height: 100.0%; font-size: 10px;">
+                      <div style="width: 170px">
+                        ${feature.properties.gridref}<br>
+                        ${feature.properties.name}<br>
+                        Distance: ${feature.properties.distance_mi} mile / ${feature.properties.distance_km} km<br>
+                        Duration: ${feature.properties.duration}<br>
+                        Ascent: ${feature.properties.ascent} metres<br>
+                        Descent: ${feature.properties.descent} metres<br>
+                        <a href="${feature.properties.elevation_profile_link}" target="_blank">
+                          <img src="${feature.properties.elevation_profile_link}" alt="Elevation Profile" style="width: 100%; margin-bottom: 5px;">
+                        </a>
+                        <a href="${feature.properties.ind_map_link_os}" target="_blank" style="display: block; margin-bottom: 5px; padding: 0.5em 1em; background-color: #0A4478; color: white; text-decoration: none; border-radius: 3px; font-size: 1.0em; text-align: center;">
+                          Open OS Map
+                        </a>
+                        <a href="${feature.properties.ind_map_link}" target="_blank" style="display: block; margin-bottom: 5px; padding: 0.5em 1em; background-color: #0A4478; color: white; text-decoration: none; border-radius: 3px; font-size: 1.0em; text-align: center;">
+                          Open Standard Map
+                        </a>
+                        <a href="${feature.properties.googleMapsLink}" target="_blank" style="display: block; margin-bottom: 5px; padding: 0.5em 1em; background-color: #0A4478; color: white; text-decoration: none; border-radius: 3px; font-size: 1.0em; text-align: center;">
+                          Starting Location on Google Maps
+                        </a>
+                        <a href="${feature.properties.download_link}" download="${download_filename}" style="display: block; margin-bottom: 5px; padding: 0.5em 1em; background-color: #0A4478; color: white; text-decoration: none; border-radius: 3px; font-size: 1.0em; text-align: center;">
+                          Download GPX Track File
+                        </a>
+                        <div style="text-align: center; margin-bottom: 5px; font-weight: bold;">
+                          ${feature.properties.place_name}
+                        </div>
+                      </div>
+                    </div>
+                  `);
+                }
+              }
+            });
+
+            registerOverlay("Track Markers", trackMarkers, true);
+            resolve();
+          })
+          .catch(error => {
+            console.error('Error loading track_markers.geojson:', error);
+            resolve();
+          });
+      });
+    }, 400);
+
+    function loadPOI() {
+      return new Promise((resolve) => {
+        fetch('poi.geojson')
+          .then(response => response.json())
+          .then(data => {
+            const poi = L.geoJSON(data, {
+              pointToLayer: function (feature, latlng) {
+                var iconOptions = { icon: 'info', markerColor: 'black', prefix: 'fa' };
+                return L.marker(latlng, { icon: L.AwesomeMarkers.icon(iconOptions) });
+              },
+              onEachFeature: function (feature, layer) {
+                if (feature.properties && feature.properties.name) {
+                  layer.bindPopup(`
+                    <div style="width: 100.0%; height: 100.0%; font-size: 10px;">
+                      <div style="width: 170px;">
+                        <strong>${feature.properties.name}</strong><br>
+                        ${feature.properties.description}
+                      </div>
+                    </div>
+                  `);
+                }
+              }
+            });
+
+            registerOverlay("Points Of Interest", poi, false);
+            resolve();
+          })
+          .catch(error => {
+            console.error('Error loading poi.geojson:', error);
+            resolve();
+          });
+      });
+    }
+
+    function loadPubs() {
+      return new Promise((resolve) => {
+        fetch('pubs.geojson')
+          .then(response => response.json())
+          .then(data => {
+            const pubs = L.geoJSON(data, {
+              pointToLayer: function (feature, latlng) {
+                var iconOptions = { icon: 'beer', markerColor: 'black', prefix: 'fa' };
+                return L.marker(latlng, { icon: L.AwesomeMarkers.icon(iconOptions) });
+              },
+              onEachFeature: function (feature, layer) {
+                if (feature.properties && feature.properties.name) {
+                  layer.bindPopup(`
+                    <div style="width: 100.0%; height: 100.0%; font-size: 10px;">
+                      <div style="width: 170px;">
+                        <strong>${feature.properties.name}</strong><br>
+                        ${feature.properties.description}
+                      </div>
+                    </div>
+                  `);
+                }
+              }
+            });
+
+            registerOverlay("Pubs", pubs, false);
+            resolve();
+          })
+          .catch(error => {
+            console.error('Error loading pubs.geojson:', error);
+            resolve();
+          });
+      });
+    }
+
+    function loadDartmoorTors() {
+      return new Promise((resolve) => {
+        fetch('dartmoor_tors.geojson')
+          .then(response => response.json())
+          .then(data => {
+            const buckets = { os_pending: [], os_completed: [], other_pending: [], other_completed: [] };
+
+            data.features.forEach(feature => {
+              const props = feature.properties || {};
+              const classification = (props.classification || 'other').toLowerCase();
+              const status = (props.status || '').toLowerCase();
+              const key =
+                classification === 'os' && status === 'pending' ? 'os_pending' :
+                classification === 'os' ? 'os_completed' :
+                status === 'pending' ? 'other_pending' :
+                'other_completed';
+              buckets[key].push(feature);
+            });
+
+            function createTorLayer(features, iconName) {
+              return L.geoJSON(
+                { type: "FeatureCollection", features },
+                {
+                  pointToLayer: function (feature, latlng) {
+                    const isPublic = feature.properties?.icon === 'public_Icon';
+                    return L.marker(latlng, {
+                      icon: L.AwesomeMarkers.icon({
+                        icon: iconName,
+                        markerColor: isPublic ? 'green' : 'blue',
+                        prefix: 'fa'
+                      })
+                    });
+                  },
+                  onEachFeature: function (feature, layer) {
+                    const p = feature.properties;
+                    if (!p?.name) return;
+                    layer.bindPopup(`
+                      <div style="width: 170px; font-size: 10px;">
+                        <strong>${p.name}</strong><br>
+                        <img src="${p.imageLink}" style="width:100%; height:auto;"><br>
+                        <a href="${p.pageLink}" target="_blank">Tors of Dartmoor: ${p.name}</a><br>
+                        ${p.gridRef}<br>
+                        ${p.status}
+                      </div>
+                    `);
+                  }
+                }
+              );
+            }
+
+            const layers = {
+              [`OS Tors Pending (${buckets.os_pending.length})`]: createTorLayer(buckets.os_pending, 'circle-xmark'),
+              [`OS Tors Completed (${buckets.os_completed.length})`]: createTorLayer(buckets.os_completed, 'circle-check'),
+              [`Other Tors Pending (${buckets.other_pending.length})`]: createTorLayer(buckets.other_pending, 'circle-xmark'),
+              [`Other Tors Completed (${buckets.other_completed.length})`]: createTorLayer(buckets.other_completed, 'circle-check')
+            };
+
+            Object.entries(layers).forEach(([name, layer]) => {
+              registerOverlay(name, layer, false);
+            });
+
+            resolve();
+          })
+          .catch(err => {
+            console.error('Error loading dartmoor_tors.geojson:', err);
+            resolve();
+          });
+      });
+    }
+
+    // Initial loads
+    loadTracks();
+    loadTrackMarkers();
+    loadPOI();
+    loadPubs();
+    loadDartmoorTors();
+  </script>
+</body>
+</html>
