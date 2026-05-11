@@ -925,8 +925,7 @@ def create_tracks_content_page(years, feature_collection):
                     </div>
                 </div>
                 <img src="{feature['properties']['elevation_profile_link']}" alt="Elevation Profile" class="clickable-image" onclick="displayLargeImage('{feature['properties']['elevation_profile_link']}')">
-                <a href=\"{feature['properties']['ind_map_link_os']}" target=\"_blank\" style='display: block; margin-top: 5px;'>Open OS Map</a>
-                <a href=\"{feature['properties']['ind_map_link']}" target=\"_blank\" style='display: block; margin-top: 5px;'>Open Standard Map</a>
+                <a href=\"{feature['properties']['ind_map_link']}" target=\"_blank\" style='display: block; margin-top: 5px;'>Open Individual Map</a>
                 <a href=\"{feature['properties']['googleMapsLink']}\" target=\"_blank\" style='display: block; margin-top: 5px;'>Starting Location on Google Maps</a>
                 <a href=\"{feature['properties']['download_link']}\" download=\"{os.path.basename(feature['properties']['download_link'])}\" style='display: block; margin-top: 5px;'>Download GPX Track File</a>
                 <div style='text-align: center; margin-top: 10px; font-weight: bold;'>{feature['properties']['place_name']}</div>
