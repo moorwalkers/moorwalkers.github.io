@@ -43,12 +43,24 @@
     #basemapControl label { display:block; font-weight: 600; margin-bottom: 4px; }
     #basemapSelect { width: 130px; }
 
-    
-/* Push the Leaflet layers control down so it sits below the basemap selector */
-.leaflet-top.leaflet-right .leaflet-control-layers {
-  margin-top: 80px;   /* adjust if needed */
-}
+    /* Push the Leaflet layers control down so it sits below the basemap selector */
+    .leaflet-top.leaflet-right .leaflet-control-layers {
+      margin-top: 80px;   /* adjust if needed */
+    }
 
+    /* Increase font size of layer control */
+    .leaflet-control-layers {
+      font-size: 16px;   /* try 14–16px for mobile */
+    }
+
+    /* Increase checkbox size (important on mobile) */
+    .leaflet-control-layers input {
+      transform: scale(2);
+      margin-left: 6px;
+      margin-right: 6px;
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
   </style>
 
   <!-- Leaflet (single version) -->
