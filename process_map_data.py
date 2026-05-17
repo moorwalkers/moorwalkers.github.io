@@ -309,7 +309,7 @@ def create_data(main_geojson):
 
         # Generate the ind_map links
         ind_map_link = (
-            "https://moorwalkers.github.io/map_std.html?track_id="
+            "https://moorwalkers.github.io/map.html?track_id="
             + iso_date
         )
         # print(ind_map_link)
