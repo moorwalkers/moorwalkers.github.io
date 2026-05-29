@@ -875,11 +875,28 @@
                 { type: "FeatureCollection", features },
                 {
                   pointToLayer: function (feature, latlng) {
-                    const isPublic = feature.properties?.icon === 'public_Icon';
+                    const iconValue = feature.properties?.icon;
+
+                    const isPublic = iconValue === 'public_Icon';
+                    const isAmber = [
+                      'okehampton_Icon',
+                      'willsworthy_Icon',
+                      'merrivale_Icon'
+                    ].includes(iconValue);
+
+                    let markerColor;
+                    if (isPublic) {
+                      markerColor = 'green';
+                    } else if (isAmber) {
+                      markerColor = 'orange'; // Leaflet AwesomeMarkers uses 'orange' for amber
+                    } else {
+                      markerColor = 'blue';
+                    }
+
                     return L.marker(latlng, {
                       icon: L.AwesomeMarkers.icon({
                         icon: iconName,
-                        markerColor: isPublic ? 'green' : 'blue',
+                        markerColor: markerColor,
                         prefix: 'fa'
                       })
                     });
