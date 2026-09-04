@@ -60,12 +60,21 @@
             max-height: 100%; /* Set maximum height to fit the container */
             display: block; /* Ensures images resize properly */
             margin: auto; /* Centers the images horizontally */
+            border-radius: 10px;
         }
         
         .track-details {
             text-align: left;
             padding-left: 20px;
             line-height: 0.9;
+        }
+
+        .track-title {
+            text-align: left;
+            margin-top: 10px;
+            font-weight: bold;
+            line-height: 1.2em;
+            min-height: 3.6em; /* Reserve space for up to 3 lines so following details align across cards */
         }
         
         .track-details-distance {
@@ -127,7 +136,10 @@
             display: block;
             background: none;
             padding: 0;
-            border: none;
+            border: 10px solid transparent;
+            border-left-width: 20px;
+            border-right-width: 10px;
+            border-radius: 10px;
         }
     </style>
     <script>
@@ -177,7 +189,7 @@
     <div class="track-list">
             <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Cornwood, South Hams, Devon</div>
+                    <div class="track-title">Cornwood, South Hams, Devon</div>
                     <br>SX 60167 60219</br>
                     <br>Date: 2026-09-03</br>
                     <br>Distance:</br>
@@ -198,7 +210,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Harberton, South Hams, Devon</div>
+                    <div class="track-title">Harberton, South Hams, Devon</div>
                     <br>SX 77896 60235</br>
                     <br>Date: 2026-08-27</br>
                     <br>Distance:</br>
@@ -219,7 +231,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Manaton, Teignbridge, Devon</div>
+                    <div class="track-title">Manaton, Teignbridge, Devon</div>
                     <br>SX 72097 80201</br>
                     <br>Date: 2026-08-20</br>
                     <br>Distance:</br>
@@ -240,7 +252,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Newbridge Car Park, New Bridge, Widecombe-in-the-Moor</div>
+                    <div class="track-title">Newbridge Car Park, New Bridge, Widecombe-in-the-Moor</div>
                     <br>SX 71101 70893</br>
                     <br>Date: 2026-08-13</br>
                     <br>Distance:</br>
@@ -261,7 +273,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Gutter Tor Car Park, Edward's Path, Sheepstor</div>
+                    <div class="track-title">Gutter Tor Car Park, Edward's Path, Sheepstor</div>
                     <br>SX 57902 67313</br>
                     <br>Date: 2026-08-06</br>
                     <br>Distance:</br>
@@ -282,7 +294,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Taikoo driveway, Belstone, West Devon</div>
+                    <div class="track-title">Taikoo driveway, Belstone, West Devon</div>
                     <br>SX 61998 93323</br>
                     <br>Date: 2026-07-30</br>
                     <br>Distance:</br>
@@ -303,7 +315,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Lower Blackaton, Manaton, Teignbridge</div>
+                    <div class="track-title">Lower Blackaton, Manaton, Teignbridge</div>
                     <br>SX 66855 78876</br>
                     <br>Date: 2026-07-23</br>
                     <br>Distance:</br>
@@ -324,7 +336,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Ponsworthy, Widecombe-in-the-Moor, Teignbridge</div>
+                    <div class="track-title">Ponsworthy, Widecombe-in-the-Moor, Teignbridge</div>
                     <br>SX 69556 73120</br>
                     <br>Date: 2026-07-16</br>
                     <br>Distance:</br>
@@ -345,7 +357,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Hope By-Pass, Outer Hope, Hope</div>
+                    <div class="track-title">Hope By-Pass, Outer Hope, Hope</div>
                     <br>SX 67592 40134</br>
                     <br>Date: 2026-07-09</br>
                     <br>Distance:</br>
@@ -366,7 +378,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Slade Hill, Bovey Tracey, Teignbridge</div>
+                    <div class="track-title">Slade Hill, Bovey Tracey, Teignbridge</div>
                     <br>SX 80430 82396</br>
                     <br>Date: 2026-07-02</br>
                     <br>Distance:</br>
@@ -387,7 +399,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>New Walk, The Mount, Totnes</div>
+                    <div class="track-title">New Walk, The Mount, Totnes</div>
                     <br>SX 80551 59997</br>
                     <br>Date: 2026-06-25</br>
                     <br>Distance:</br>
@@ -408,7 +420,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Tavistock Bus Station, West Avenue, Tavistock</div>
+                    <div class="track-title">Tavistock Bus Station, West Avenue, Tavistock</div>
                     <br>SX 47958 74265</br>
                     <br>Date: 2026-06-18</br>
                     <br>Distance:</br>
@@ -429,7 +441,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Hannaford Road, Noss Mayo, Newton and Noss</div>
+                    <div class="track-title">Hannaford Road, Noss Mayo, Newton and Noss</div>
                     <br>SX 54719 47401</br>
                     <br>Date: 2026-06-11</br>
                     <br>Distance:</br>
@@ -450,7 +462,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Dolphin Inn Car Park, Yellands Park, Great Torr</div>
+                    <div class="track-title">Dolphin Inn Car Park, Yellands Park, Great Torr</div>
                     <br>SX 63600 47851</br>
                     <br>Date: 2026-06-04</br>
                     <br>Distance:</br>
@@ -471,7 +483,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Granite Way, Meldon, Okehampton Hamlets</div>
+                    <div class="track-title">Granite Way, Meldon, Okehampton Hamlets</div>
                     <br>SX 56158 91769</br>
                     <br>Date: 2026-05-28</br>
                     <br>Distance:</br>
@@ -492,7 +504,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>A386, Ley, Mary Tavy</div>
+                    <div class="track-title">A386, Ley, Mary Tavy</div>
                     <br>SX 53734 82358</br>
                     <br>Date: 2026-05-21</br>
                     <br>Distance:</br>
@@ -513,7 +525,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Zeal Tor Tramway, Shipley Bridge, South Brent</div>
+                    <div class="track-title">Zeal Tor Tramway, Shipley Bridge, South Brent</div>
                     <br>SX 68051 62915</br>
                     <br>Date: 2026-05-14</br>
                     <br>Distance:</br>
@@ -534,7 +546,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Bowden, West Buckfastleigh, Combe</div>
+                    <div class="track-title">Bowden, West Buckfastleigh, Combe</div>
                     <br>SX 69339 67189</br>
                     <br>Date: 2026-05-07</br>
                     <br>Distance:</br>
@@ -555,7 +567,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>B3212, Chagford, West Devon</div>
+                    <div class="track-title">B3212, Chagford, West Devon</div>
                     <br>SX 67930 81593</br>
                     <br>Date: 2026-04-30</br>
                     <br>Distance:</br>
@@ -576,7 +588,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Langstone Hill, Langstone, Manaton</div>
+                    <div class="track-title">Langstone Hill, Langstone, Manaton</div>
                     <br>SX 74977 81222</br>
                     <br>Date: 2026-04-16</br>
                     <br>Distance:</br>
@@ -597,7 +609,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>B3212, Powder Mills, Dartmoor Forest</div>
+                    <div class="track-title">B3212, Powder Mills, Dartmoor Forest</div>
                     <br>SX 64615 78658</br>
                     <br>Date: 2026-04-09</br>
                     <br>Distance:</br>
@@ -618,7 +630,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Cadover Bridge Car Park, Cadover Bridge, Shaugh Prior</div>
+                    <div class="track-title">Cadover Bridge Car Park, Cadover Bridge, Shaugh Prior</div>
                     <br>SX 55460 64502</br>
                     <br>Date: 2026-04-02</br>
                     <br>Distance:</br>
@@ -639,7 +651,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>B3357, Widecombe-in-the-Moor, Teignbridge</div>
+                    <div class="track-title">B3357, Widecombe-in-the-Moor, Teignbridge</div>
                     <br>SX 68107 73292</br>
                     <br>Date: 2026-03-26</br>
                     <br>Distance:</br>
@@ -660,7 +672,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Uppaton Lane, Cornwood, South Hams</div>
+                    <div class="track-title">Uppaton Lane, Cornwood, South Hams</div>
                     <br>SX 61541 58105</br>
                     <br>Date: 2026-03-19</br>
                     <br>Distance:</br>
@@ -681,7 +693,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Hexworthy, Dartmoor Forest, West Devon</div>
+                    <div class="track-title">Hexworthy, Dartmoor Forest, West Devon</div>
                     <br>SX 65517 72637</br>
                     <br>Date: 2026-03-12</br>
                     <br>Distance:</br>
@@ -702,7 +714,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Widecombe-in-the-Moor Car Park, B3387, Bonehill</div>
+                    <div class="track-title">Widecombe-in-the-Moor Car Park, B3387, Bonehill</div>
                     <br>SX 71909 76876</br>
                     <br>Date: 2026-03-05</br>
                     <br>Distance:</br>
@@ -723,7 +735,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>B3387, Smallacombe, Ilsington</div>
+                    <div class="track-title">B3387, Smallacombe, Ilsington</div>
                     <br>SX 75414 76452</br>
                     <br>Date: 2026-02-26</br>
                     <br>Distance:</br>
@@ -744,7 +756,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Gutter Tor Car Park, Edward's Path, Sheepstor</div>
+                    <div class="track-title">Gutter Tor Car Park, Edward's Path, Sheepstor</div>
                     <br>SX 57869 67308</br>
                     <br>Date: 2026-02-19</br>
                     <br>Distance:</br>
@@ -765,7 +777,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Holne, South Hams, Devon</div>
+                    <div class="track-title">Holne, South Hams, Devon</div>
                     <br>SX 67002 71798</br>
                     <br>Date: 2026-02-12</br>
                     <br>Distance:</br>
@@ -786,7 +798,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Pork Hill Car Park, B3357, Whitchurch</div>
+                    <div class="track-title">Pork Hill Car Park, B3357, Whitchurch</div>
                     <br>SX 53117 75128</br>
                     <br>Date: 2026-02-05</br>
                     <br>Distance:</br>
@@ -807,7 +819,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Holne, South Hams, Devon</div>
+                    <div class="track-title">Holne, South Hams, Devon</div>
                     <br>SX 69763 69964</br>
                     <br>Date: 2026-01-29</br>
                     <br>Distance:</br>
@@ -828,7 +840,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Cornwood, South Hams, Devon</div>
+                    <div class="track-title">Cornwood, South Hams, Devon</div>
                     <br>SX 60173 60167</br>
                     <br>Date: 2026-01-22</br>
                     <br>Distance:</br>
@@ -849,7 +861,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Scorriton, West Buckfastleigh, Combe</div>
+                    <div class="track-title">Scorriton, West Buckfastleigh, Combe</div>
                     <br>SX 70395 68489</br>
                     <br>Date: 2026-01-15</br>
                     <br>Distance:</br>
@@ -872,7 +884,7 @@
     <div class="track-list">
             <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Harford, South Hams, Devon</div>
+                    <div class="track-title">Harford, South Hams, Devon</div>
                     <br>SX 63870 59394</br>
                     <br>Date: 2025-12-11</br>
                     <br>Distance:</br>
@@ -893,7 +905,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Shipley Bridge, South Brent, Didworthy</div>
+                    <div class="track-title">Shipley Bridge, South Brent, Didworthy</div>
                     <br>SX 68062 62957</br>
                     <br>Date: 2025-12-04</br>
                     <br>Distance:</br>
@@ -914,7 +926,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>A382, Easton, Chagford</div>
+                    <div class="track-title">A382, Easton, Chagford</div>
                     <br>SX 71342 89344</br>
                     <br>Date: 2025-11-27</br>
                     <br>Distance:</br>
@@ -935,7 +947,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Tavistock Inn, Dr Blackall's Drive, Leigh Tor Farm</div>
+                    <div class="track-title">Tavistock Inn, Dr Blackall's Drive, Leigh Tor Farm</div>
                     <br>SX 70498 72106</br>
                     <br>Date: 2025-11-20</br>
                     <br>Distance:</br>
@@ -956,7 +968,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Walkhampton, Dousland, West Devon</div>
+                    <div class="track-title">Walkhampton, Dousland, West Devon</div>
                     <br>SX 54763 69236</br>
                     <br>Date: 2025-11-13</br>
                     <br>Distance:</br>
@@ -977,7 +989,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Royal Mail, A386, Horrabridge</div>
+                    <div class="track-title">Royal Mail, A386, Horrabridge</div>
                     <br>SX 50337 70249</br>
                     <br>Date: 2025-11-06</br>
                     <br>Distance:</br>
@@ -998,7 +1010,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Trout Cottage, Two Bridges, Dartmoor Forest</div>
+                    <div class="track-title">Trout Cottage, Two Bridges, Dartmoor Forest</div>
                     <br>SX 60914 75066</br>
                     <br>Date: 2025-10-30</br>
                     <br>Distance:</br>
@@ -1019,7 +1031,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Oaklands Road, Parklands Farm, West Buckfastleigh</div>
+                    <div class="track-title">Oaklands Road, Parklands Farm, West Buckfastleigh</div>
                     <br>SX 70025 66636</br>
                     <br>Date: 2025-10-23</br>
                     <br>Distance:</br>
@@ -1040,7 +1052,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Peter's Cottage, Widecombe-in-the-Moor, Teignbridge</div>
+                    <div class="track-title">Peter's Cottage, Widecombe-in-the-Moor, Teignbridge</div>
                     <br>SX 68109 73289</br>
                     <br>Date: 2025-10-16</br>
                     <br>Distance:</br>
@@ -1061,7 +1073,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Mine (dis), Shaugh Bridge, Shaugh Prior</div>
+                    <div class="track-title">Mine (dis), Shaugh Bridge, Shaugh Prior</div>
                     <br>SX 53336 63619</br>
                     <br>Date: 2025-10-09</br>
                     <br>Distance:</br>
@@ -1082,7 +1094,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Widecombe-in-the-Moor, Teignbridge, Devon</div>
+                    <div class="track-title">Widecombe-in-the-Moor, Teignbridge, Devon</div>
                     <br>SX 72089 80197</br>
                     <br>Date: 2025-10-02</br>
                     <br>Distance:</br>
@@ -1103,7 +1115,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Badger's Holt, B3357, Peter's Cottage</div>
+                    <div class="track-title">Badger's Holt, B3357, Peter's Cottage</div>
                     <br>SX 67254 73291</br>
                     <br>Date: 2025-09-25</br>
                     <br>Distance:</br>
@@ -1124,7 +1136,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Burrator - Norsworthy, Norsworthy Bridge to South Hessary Tor, Walkhampton</div>
+                    <div class="track-title">Burrator - Norsworthy, Norsworthy Bridge to South Hessary Tor, Walkhampton</div>
                     <br>SX 56912 69300</br>
                     <br>Date: 2025-09-18</br>
                     <br>Distance:</br>
@@ -1145,7 +1157,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Pixieland, Dartmoor Forest, Dartmeet</div>
+                    <div class="track-title">Pixieland, Dartmoor Forest, Dartmeet</div>
                     <br>SX 66399 73345</br>
                     <br>Date: 2025-09-11</br>
                     <br>Distance:</br>
@@ -1166,7 +1178,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Bellever, Dartmoor Forest, Postbridge</div>
+                    <div class="track-title">Bellever, Dartmoor Forest, Postbridge</div>
                     <br>SX 64631 78699</br>
                     <br>Date: 2025-09-04</br>
                     <br>Distance:</br>
@@ -1187,7 +1199,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Princetown, Dartmoor Forest, West Devon</div>
+                    <div class="track-title">Princetown, Dartmoor Forest, West Devon</div>
                     <br>SX 58918 73488</br>
                     <br>Date: 2025-08-28</br>
                     <br>Distance:</br>
@@ -1208,7 +1220,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Holming Beam, B3357, Two Bridges</div>
+                    <div class="track-title">Holming Beam, B3357, Two Bridges</div>
                     <br>SX 59143 76475</br>
                     <br>Date: 2025-08-21</br>
                     <br>Distance:</br>
@@ -1229,7 +1241,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Teignworthy, Chagford, West Devon</div>
+                    <div class="track-title">Teignworthy, Chagford, West Devon</div>
                     <br>SX 67449 85590</br>
                     <br>Date: 2025-08-14</br>
                     <br>Distance:</br>
@@ -1250,7 +1262,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>North Huish, South Hams, Devon</div>
+                    <div class="track-title">North Huish, South Hams, Devon</div>
                     <br>SX 72883 53620</br>
                     <br>Date: 2025-08-07</br>
                     <br>Distance:</br>
@@ -1271,7 +1283,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Buckland Monachorum, West Devon, Devon</div>
+                    <div class="track-title">Buckland Monachorum, West Devon, Devon</div>
                     <br>SX 49741 69433</br>
                     <br>Date: 2025-07-31</br>
                     <br>Distance:</br>
@@ -1292,7 +1304,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Meldon, Okehampton Hamlets, West Devon</div>
+                    <div class="track-title">Meldon, Okehampton Hamlets, West Devon</div>
                     <br>SX 56166 91715</br>
                     <br>Date: 2025-07-24</br>
                     <br>Distance:</br>
@@ -1313,7 +1325,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Great Houndtor, Water, Teignbridge</div>
+                    <div class="track-title">Great Houndtor, Water, Teignbridge</div>
                     <br>SX 74001 79182</br>
                     <br>Date: 2025-07-17</br>
                     <br>Distance:</br>
@@ -1334,7 +1346,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Harberton, South Hams, Devon</div>
+                    <div class="track-title">Harberton, South Hams, Devon</div>
                     <br>SX 77902 60284</br>
                     <br>Date: 2025-07-10</br>
                     <br>Distance:</br>
@@ -1355,7 +1367,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Holne, South Hams, Devon</div>
+                    <div class="track-title">Holne, South Hams, Devon</div>
                     <br>SX 68554 71188</br>
                     <br>Date: 2025-06-26</br>
                     <br>Distance:</br>
@@ -1376,7 +1388,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Belstone, West Devon, Devon</div>
+                    <div class="track-title">Belstone, West Devon, Devon</div>
                     <br>SX 62098 93760</br>
                     <br>Date: 2025-06-19</br>
                     <br>Distance:</br>
@@ -1397,7 +1409,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Stokeclimsland, Callington, Cornwall</div>
+                    <div class="track-title">Stokeclimsland, Callington, Cornwall</div>
                     <br>SX 37510 71366</br>
                     <br>Date: 2025-06-12</br>
                     <br>Distance:</br>
@@ -1418,7 +1430,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Pixieland, Dartmoor Forest, Dartmeet</div>
+                    <div class="track-title">Pixieland, Dartmoor Forest, Dartmeet</div>
                     <br>SX 66400 73332</br>
                     <br>Date: 2025-06-05</br>
                     <br>Distance:</br>
@@ -1439,7 +1451,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>The Hound of the Basket Meals, Holwell Bridge, Manaton</div>
+                    <div class="track-title">The Hound of the Basket Meals, Holwell Bridge, Manaton</div>
                     <br>SX 73946 79208</br>
                     <br>Date: 2025-05-29</br>
                     <br>Distance:</br>
@@ -1460,7 +1472,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Rutt Farm, Rutt Lane, North Filham</div>
+                    <div class="track-title">Rutt Farm, Rutt Lane, North Filham</div>
                     <br>SX 64788 56869</br>
                     <br>Date: 2025-05-22</br>
                     <br>Distance:</br>
@@ -1481,7 +1493,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Enclosure, Edward's Path, Sheepstor</div>
+                    <div class="track-title">Enclosure, Edward's Path, Sheepstor</div>
                     <br>SX 57856 67287</br>
                     <br>Date: 2025-05-15</br>
                     <br>Distance:</br>
@@ -1502,7 +1514,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Holne, South Hams, Devon</div>
+                    <div class="track-title">Holne, South Hams, Devon</div>
                     <br>SX 69765 69971</br>
                     <br>Date: 2025-05-08</br>
                     <br>Distance:</br>
@@ -1523,7 +1535,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Lovaton, Meavy, West Devon</div>
+                    <div class="track-title">Lovaton, Meavy, West Devon</div>
                     <br>SX 54571 66931</br>
                     <br>Date: 2025-05-01</br>
                     <br>Distance:</br>
@@ -1544,7 +1556,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>1, Foundry Lane, Noss Mayo</div>
+                    <div class="track-title">1, Foundry Lane, Noss Mayo</div>
                     <br>SX 54726 47368</br>
                     <br>Date: 2025-04-24</br>
                     <br>Distance:</br>
@@ -1565,7 +1577,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Holne, South Hams, Devon</div>
+                    <div class="track-title">Holne, South Hams, Devon</div>
                     <br>SX 67007 71779</br>
                     <br>Date: 2025-04-17</br>
                     <br>Distance:</br>
@@ -1586,7 +1598,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Walkhampton, Dousland, West Devon</div>
+                    <div class="track-title">Walkhampton, Dousland, West Devon</div>
                     <br>SX 54755 69224</br>
                     <br>Date: 2025-04-10</br>
                     <br>Distance:</br>
@@ -1607,7 +1619,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Royal Mail, A386, Horrabridge</div>
+                    <div class="track-title">Royal Mail, A386, Horrabridge</div>
                     <br>SX 50336 70253</br>
                     <br>Date: 2025-03-27</br>
                     <br>Distance:</br>
@@ -1628,7 +1640,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>B3212, Chagford, West Devon</div>
+                    <div class="track-title">B3212, Chagford, West Devon</div>
                     <br>SX 67978 81588</br>
                     <br>Date: 2025-03-20</br>
                     <br>Distance:</br>
@@ -1649,7 +1661,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Lower Bowdley, Ashburton, Teignbridge</div>
+                    <div class="track-title">Lower Bowdley, Ashburton, Teignbridge</div>
                     <br>SX 74080 74296</br>
                     <br>Date: 2025-03-13</br>
                     <br>Distance:</br>
@@ -1670,7 +1682,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>B3212, Dartfordleigh, Dartmoor Forest</div>
+                    <div class="track-title">B3212, Dartfordleigh, Dartmoor Forest</div>
                     <br>SX 64619 78674</br>
                     <br>Date: 2025-03-06</br>
                     <br>Distance:</br>
@@ -1691,7 +1703,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Holne, South Hams, Devon</div>
+                    <div class="track-title">Holne, South Hams, Devon</div>
                     <br>SX 67002 71809</br>
                     <br>Date: 2025-02-13</br>
                     <br>Distance:</br>
@@ -1712,7 +1724,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Sheepstor, West Devon, Devon</div>
+                    <div class="track-title">Sheepstor, West Devon, Devon</div>
                     <br>SX 56866 69295</br>
                     <br>Date: 2025-02-06</br>
                     <br>Distance:</br>
@@ -1733,7 +1745,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Ponsworthy, Poundsgate, Teignbridge</div>
+                    <div class="track-title">Ponsworthy, Poundsgate, Teignbridge</div>
                     <br>SX 69467 73117</br>
                     <br>Date: 2025-01-30</br>
                     <br>Distance:</br>
@@ -1754,7 +1766,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Two Bridges, B3357, Two Bridges</div>
+                    <div class="track-title">Two Bridges, B3357, Two Bridges</div>
                     <br>SX 60931 75053</br>
                     <br>Date: 2025-01-16</br>
                     <br>Distance:</br>
@@ -1775,7 +1787,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Scorriton, West Buckfastleigh, Combe</div>
+                    <div class="track-title">Scorriton, West Buckfastleigh, Combe</div>
                     <br>SX 70379 68520</br>
                     <br>Date: 2025-01-09</br>
                     <br>Distance:</br>
@@ -1796,7 +1808,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Pork Hill Car Park, B3357, Whitchurch</div>
+                    <div class="track-title">Pork Hill Car Park, B3357, Whitchurch</div>
                     <br>SX 53108 75133</br>
                     <br>Date: 2025-01-02</br>
                     <br>Distance:</br>
@@ -1819,7 +1831,7 @@
     <div class="track-list">
             <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Shaugh Prior, South Hams, Devon</div>
+                    <div class="track-title">Shaugh Prior, South Hams, Devon</div>
                     <br>SX 55500 64514</br>
                     <br>Date: 2024-12-12</br>
                     <br>Distance:</br>
@@ -1840,7 +1852,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>B3212, Dartmoor Forest, West Devon</div>
+                    <div class="track-title">B3212, Dartmoor Forest, West Devon</div>
                     <br>SX 67657 81015</br>
                     <br>Date: 2024-12-05</br>
                     <br>Distance:</br>
@@ -1861,7 +1873,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>National Park Visitor Centre, B3387, Smallacombe</div>
+                    <div class="track-title">National Park Visitor Centre, B3387, Smallacombe</div>
                     <br>SX 76528 77135</br>
                     <br>Date: 2024-11-28</br>
                     <br>Distance:</br>
@@ -1882,7 +1894,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Gutter Tor Car Park, Edward's Path, Sheepstor</div>
+                    <div class="track-title">Gutter Tor Car Park, Edward's Path, Sheepstor</div>
                     <br>SX 57868 67307</br>
                     <br>Date: 2024-11-14</br>
                     <br>Distance:</br>
@@ -1903,7 +1915,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Cornwood, South Hams, Devon</div>
+                    <div class="track-title">Cornwood, South Hams, Devon</div>
                     <br>SX 60170 60175</br>
                     <br>Date: 2024-11-07</br>
                     <br>Distance:</br>
@@ -1924,7 +1936,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Lower Bowdley, Ashburton, Teignbridge</div>
+                    <div class="track-title">Lower Bowdley, Ashburton, Teignbridge</div>
                     <br>SX 74060 74223</br>
                     <br>Date: 2024-10-31</br>
                     <br>Distance:</br>
@@ -1945,7 +1957,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Mine (dis), Shaugh Bridge, Shaugh Prior</div>
+                    <div class="track-title">Mine (dis), Shaugh Bridge, Shaugh Prior</div>
                     <br>SX 53342 63625</br>
                     <br>Date: 2024-10-10</br>
                     <br>Distance:</br>
@@ -1966,7 +1978,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Lower Godsworthy, Peter Tavy, West Devon</div>
+                    <div class="track-title">Lower Godsworthy, Peter Tavy, West Devon</div>
                     <br>SX 52188 77880</br>
                     <br>Date: 2024-10-03</br>
                     <br>Distance:</br>
@@ -1987,7 +1999,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Holne Moor, Holne, South Hams</div>
+                    <div class="track-title">Holne Moor, Holne, South Hams</div>
                     <br>SX 68839 70881</br>
                     <br>Date: 2024-09-26</br>
                     <br>Distance:</br>
@@ -2008,7 +2020,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Oaklands Road, Parklands Farm, West Buckfastleigh</div>
+                    <div class="track-title">Oaklands Road, Parklands Farm, West Buckfastleigh</div>
                     <br>SX 70027 66636</br>
                     <br>Date: 2024-09-19</br>
                     <br>Distance:</br>
@@ -2029,7 +2041,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Dartmoor Forest, West Devon, Devon</div>
+                    <div class="track-title">Dartmoor Forest, West Devon, Devon</div>
                     <br>SX 66071 83685</br>
                     <br>Date: 2024-09-12</br>
                     <br>Distance:</br>
@@ -2050,7 +2062,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Shipley Bridge, South Brent, Didworthy</div>
+                    <div class="track-title">Shipley Bridge, South Brent, Didworthy</div>
                     <br>SX 68064 62899</br>
                     <br>Date: 2024-09-05</br>
                     <br>Distance:</br>
@@ -2071,7 +2083,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Widecombe-in-the-Moor, Teignbridge, Devon</div>
+                    <div class="track-title">Widecombe-in-the-Moor, Teignbridge, Devon</div>
                     <br>SX 72098 80198</br>
                     <br>Date: 2024-08-29</br>
                     <br>Distance:</br>
@@ -2092,7 +2104,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Tor Royal Lane, Peat Cot, Dartmoor Forest</div>
+                    <div class="track-title">Tor Royal Lane, Peat Cot, Dartmoor Forest</div>
                     <br>SX 60410 70804</br>
                     <br>Date: 2024-08-08</br>
                     <br>Distance:</br>
@@ -2113,7 +2125,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Wapsworthy, Peter Tavy, West Devon</div>
+                    <div class="track-title">Wapsworthy, Peter Tavy, West Devon</div>
                     <br>SX 54635 80547</br>
                     <br>Date: 2024-08-01</br>
                     <br>Distance:</br>
@@ -2134,7 +2146,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Belstone, West Devon, Devon</div>
+                    <div class="track-title">Belstone, West Devon, Devon</div>
                     <br>SX 61489 93287</br>
                     <br>Date: 2024-07-25</br>
                     <br>Distance:</br>
@@ -2155,7 +2167,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Gutter Tor Car Park, Edward's Path, Sheepstor</div>
+                    <div class="track-title">Gutter Tor Car Park, Edward's Path, Sheepstor</div>
                     <br>SX 57881 67304</br>
                     <br>Date: 2024-07-18</br>
                     <br>Distance:</br>
@@ -2176,7 +2188,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Burrator - Norsworthy, Norsworthy Bridge to South Hessary Tor, Walkhampton</div>
+                    <div class="track-title">Burrator - Norsworthy, Norsworthy Bridge to South Hessary Tor, Walkhampton</div>
                     <br>SX 56868 69313</br>
                     <br>Date: 2024-07-11</br>
                     <br>Distance:</br>
@@ -2197,7 +2209,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Ugborough, Bittaford, South Hams</div>
+                    <div class="track-title">Ugborough, Bittaford, South Hams</div>
                     <br>SX 65837 57155</br>
                     <br>Date: 2024-07-04</br>
                     <br>Distance:</br>
@@ -2218,7 +2230,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>B3212, Dartfordleigh, Dartmoor Forest</div>
+                    <div class="track-title">B3212, Dartfordleigh, Dartmoor Forest</div>
                     <br>SX 63917 77860</br>
                     <br>Date: 2024-06-27</br>
                     <br>Distance:</br>
@@ -2239,7 +2251,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Lane End, Peter Tavy, West Devon</div>
+                    <div class="track-title">Lane End, Peter Tavy, West Devon</div>
                     <br>SX 53733 82352</br>
                     <br>Date: 2024-06-20</br>
                     <br>Distance:</br>
@@ -2260,7 +2272,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>South Tawton, Sticklepath, West Devon</div>
+                    <div class="track-title">South Tawton, Sticklepath, West Devon</div>
                     <br>SX 64520 93570</br>
                     <br>Date: 2024-06-13</br>
                     <br>Distance:</br>
@@ -2281,7 +2293,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>South Brent Village Hall, Station Approach, Aish</div>
+                    <div class="track-title">South Brent Village Hall, Station Approach, Aish</div>
                     <br>SX 69761 60274</br>
                     <br>Date: 2024-06-06</br>
                     <br>Distance:</br>
@@ -2302,7 +2314,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>St Peter's Church, Stoke Road, Noss Mayo</div>
+                    <div class="track-title">St Peter's Church, Stoke Road, Noss Mayo</div>
                     <br>SX 55005 47727</br>
                     <br>Date: 2024-05-30</br>
                     <br>Distance:</br>
@@ -2323,7 +2335,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Cornwood, South Hams, Devon</div>
+                    <div class="track-title">Cornwood, South Hams, Devon</div>
                     <br>SX 61386 60669</br>
                     <br>Date: 2024-05-23</br>
                     <br>Distance:</br>
@@ -2344,7 +2356,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Hexworthy, Dartmoor Forest, West Devon</div>
+                    <div class="track-title">Hexworthy, Dartmoor Forest, West Devon</div>
                     <br>SX 65090 72746</br>
                     <br>Date: 2024-05-16</br>
                     <br>Distance:</br>
@@ -2365,7 +2377,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Drake Manor Inn, The Village, Buckland Monachorum</div>
+                    <div class="track-title">Drake Manor Inn, The Village, Buckland Monachorum</div>
                     <br>SX 48979 68337</br>
                     <br>Date: 2024-05-09</br>
                     <br>Distance:</br>
@@ -2386,7 +2398,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Lovaton, Meavy, West Devon</div>
+                    <div class="track-title">Lovaton, Meavy, West Devon</div>
                     <br>SX 54576 66939</br>
                     <br>Date: 2024-05-02</br>
                     <br>Distance:</br>
@@ -2407,7 +2419,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Bovey Tracey, Haytor Vale, Teignbridge</div>
+                    <div class="track-title">Bovey Tracey, Haytor Vale, Teignbridge</div>
                     <br>SX 76990 77791</br>
                     <br>Date: 2024-04-25</br>
                     <br>Distance:</br>
@@ -2428,7 +2440,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Trowlesworthy Farm Access Track, Shaugh Prior, South Hams</div>
+                    <div class="track-title">Trowlesworthy Farm Access Track, Shaugh Prior, South Hams</div>
                     <br>SX 56414 64399</br>
                     <br>Date: 2024-04-18</br>
                     <br>Distance:</br>
@@ -2449,7 +2461,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Shipley Bridge, South Brent, Didworthy</div>
+                    <div class="track-title">Shipley Bridge, South Brent, Didworthy</div>
                     <br>SX 68038 62914</br>
                     <br>Date: 2024-04-11</br>
                     <br>Distance:</br>
@@ -2470,7 +2482,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Shaugh Prior, South Hams, Devon</div>
+                    <div class="track-title">Shaugh Prior, South Hams, Devon</div>
                     <br>SX 53315 63616</br>
                     <br>Date: 2024-04-04</br>
                     <br>Distance:</br>
@@ -2491,7 +2503,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Dunnabridge Pound, B3357, Dunabridge Pound Farm</div>
+                    <div class="track-title">Dunnabridge Pound, B3357, Dunabridge Pound Farm</div>
                     <br>SX 64602 74569</br>
                     <br>Date: 2024-03-28</br>
                     <br>Distance:</br>
@@ -2512,7 +2524,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Dartmoor Forest, West Devon, Devon</div>
+                    <div class="track-title">Dartmoor Forest, West Devon, Devon</div>
                     <br>SX 66055 83687</br>
                     <br>Date: 2024-03-21</br>
                     <br>Distance:</br>
@@ -2533,7 +2545,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>The Russell Inn, 2, West Street</div>
+                    <div class="track-title">The Russell Inn, 2, West Street</div>
                     <br>SX 12587 50977</br>
                     <br>Date: 2024-03-14</br>
                     <br>Distance:</br>
@@ -2554,7 +2566,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>PL11 745, B3247, Sheviock</div>
+                    <div class="track-title">PL11 745, B3247, Sheviock</div>
                     <br>SX 38939 53318</br>
                     <br>Date: 2024-03-13</br>
                     <br>Distance:</br>
@@ -2575,7 +2587,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Gutter Tor Car Park, Edward's Path, Sheepstor</div>
+                    <div class="track-title">Gutter Tor Car Park, Edward's Path, Sheepstor</div>
                     <br>SX 57870 67307</br>
                     <br>Date: 2024-03-07</br>
                     <br>Distance:</br>
@@ -2596,7 +2608,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Pork Hill Car Park, B3357, Whitchurch</div>
+                    <div class="track-title">Pork Hill Car Park, B3357, Whitchurch</div>
                     <br>SX 53107 75123</br>
                     <br>Date: 2024-02-29</br>
                     <br>Distance:</br>
@@ -2617,7 +2629,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Royal Mail, A386, Horrabridge</div>
+                    <div class="track-title">Royal Mail, A386, Horrabridge</div>
                     <br>SX 50342 70272</br>
                     <br>Date: 2024-02-22</br>
                     <br>Distance:</br>
@@ -2638,7 +2650,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Holne, South Hams, Devon</div>
+                    <div class="track-title">Holne, South Hams, Devon</div>
                     <br>SX 67031 71782</br>
                     <br>Date: 2024-02-08</br>
                     <br>Distance:</br>
@@ -2659,7 +2671,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Ugborough, Moorhaven Village, South Hams</div>
+                    <div class="track-title">Ugborough, Moorhaven Village, South Hams</div>
                     <br>SX 67734 59289</br>
                     <br>Date: 2024-02-01</br>
                     <br>Distance:</br>
@@ -2680,7 +2692,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Clearbrook Village Hall, Plym Valley Trail, Buckland Monachorum</div>
+                    <div class="track-title">Clearbrook Village Hall, Plym Valley Trail, Buckland Monachorum</div>
                     <br>SX 52241 65574</br>
                     <br>Date: 2024-01-25</br>
                     <br>Distance:</br>
@@ -2701,7 +2713,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Walkhampton, Dousland, West Devon</div>
+                    <div class="track-title">Walkhampton, Dousland, West Devon</div>
                     <br>SX 54752 69223</br>
                     <br>Date: 2024-01-18</br>
                     <br>Distance:</br>
@@ -2722,7 +2734,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>B3212, Chagford, West Devon</div>
+                    <div class="track-title">B3212, Chagford, West Devon</div>
                     <br>SX 67968 81589</br>
                     <br>Date: 2024-01-11</br>
                     <br>Distance:</br>
@@ -2745,7 +2757,7 @@
     <div class="track-list">
             <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Harford, South Hams, Devon</div>
+                    <div class="track-title">Harford, South Hams, Devon</div>
                     <br>SX 63847 59386</br>
                     <br>Date: 2023-12-28</br>
                     <br>Distance:</br>
@@ -2766,7 +2778,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Burrator - Norsworthy, Norsworthy Bridge to South Hessary Tor, Walkhampton</div>
+                    <div class="track-title">Burrator - Norsworthy, Norsworthy Bridge to South Hessary Tor, Walkhampton</div>
                     <br>SX 56885 69304</br>
                     <br>Date: 2023-12-21</br>
                     <br>Distance:</br>
@@ -2787,7 +2799,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Trout Cottage, Two Bridges, Dartmoor Forest</div>
+                    <div class="track-title">Trout Cottage, Two Bridges, Dartmoor Forest</div>
                     <br>SX 60912 75059</br>
                     <br>Date: 2023-12-14</br>
                     <br>Distance:</br>
@@ -2808,7 +2820,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Wreckers' Retreat, Beach Path, Hartland</div>
+                    <div class="track-title">Wreckers' Retreat, Beach Path, Hartland</div>
                     <br>SS 22268 24700</br>
                     <br>Date: 2023-12-07</br>
                     <br>Distance:</br>
@@ -2829,7 +2841,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Holne, South Hams, Devon</div>
+                    <div class="track-title">Holne, South Hams, Devon</div>
                     <br>SX 69681 70013</br>
                     <br>Date: 2023-11-30</br>
                     <br>Distance:</br>
@@ -2850,7 +2862,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Ugborough, Bittaford, South Hams</div>
+                    <div class="track-title">Ugborough, Bittaford, South Hams</div>
                     <br>SX 65843 57145</br>
                     <br>Date: 2023-11-23</br>
                     <br>Distance:</br>
@@ -2871,7 +2883,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Walkhampton, Dousland, West Devon</div>
+                    <div class="track-title">Walkhampton, Dousland, West Devon</div>
                     <br>SX 54745 69220</br>
                     <br>Date: 2023-11-16</br>
                     <br>Distance:</br>
@@ -2892,7 +2904,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>B3357, Dartmoor Forest, West Devon</div>
+                    <div class="track-title">B3357, Dartmoor Forest, West Devon</div>
                     <br>SX 55313 75017</br>
                     <br>Date: 2023-11-09</br>
                     <br>Distance:</br>
@@ -2913,7 +2925,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Buckland in the Moor, Teignbridge, Devon</div>
+                    <div class="track-title">Buckland in the Moor, Teignbridge, Devon</div>
                     <br>SX 74043 74235</br>
                     <br>Date: 2023-11-02</br>
                     <br>Distance:</br>
@@ -2934,7 +2946,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Golf Links Road, Wrangaton, Ugborough</div>
+                    <div class="track-title">Golf Links Road, Wrangaton, Ugborough</div>
                     <br>SX 67367 58158</br>
                     <br>Date: 2023-10-26</br>
                     <br>Distance:</br>
@@ -2955,7 +2967,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Fingle Bridge Inn, Fisherman's Path, Drewsteignton</div>
+                    <div class="track-title">Fingle Bridge Inn, Fisherman's Path, Drewsteignton</div>
                     <br>SX 74311 90023</br>
                     <br>Date: 2023-10-19</br>
                     <br>Distance:</br>
@@ -2976,7 +2988,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Holne, South Hams, Devon</div>
+                    <div class="track-title">Holne, South Hams, Devon</div>
                     <br>SX 68533 71247</br>
                     <br>Date: 2023-10-12</br>
                     <br>Distance:</br>
@@ -2997,7 +3009,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Dolphin Inn Car Park, Yellands Park, Great Torr</div>
+                    <div class="track-title">Dolphin Inn Car Park, Yellands Park, Great Torr</div>
                     <br>SX 63578 47836</br>
                     <br>Date: 2023-10-05</br>
                     <br>Distance:</br>
@@ -3018,7 +3030,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Gutter Tor Car Park, Edward's Path, Sheepstor</div>
+                    <div class="track-title">Gutter Tor Car Park, Edward's Path, Sheepstor</div>
                     <br>SX 57870 67309</br>
                     <br>Date: 2023-09-28</br>
                     <br>Distance:</br>
@@ -3039,7 +3051,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Scorriton, West Buckfastleigh, Combe</div>
+                    <div class="track-title">Scorriton, West Buckfastleigh, Combe</div>
                     <br>SX 70416 68584</br>
                     <br>Date: 2023-09-21</br>
                     <br>Distance:</br>
@@ -3060,7 +3072,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Burrator - Norsworthy, Norsworthy Bridge to South Hessary Tor, Walkhampton</div>
+                    <div class="track-title">Burrator - Norsworthy, Norsworthy Bridge to South Hessary Tor, Walkhampton</div>
                     <br>SX 56885 69295</br>
                     <br>Date: 2023-09-14</br>
                     <br>Distance:</br>
@@ -3081,7 +3093,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Great Houndtor, Water, Teignbridge</div>
+                    <div class="track-title">Great Houndtor, Water, Teignbridge</div>
                     <br>SX 73950 79201</br>
                     <br>Date: 2023-08-31</br>
                     <br>Distance:</br>
@@ -3102,7 +3114,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Ugborough, South Brent, South Hams</div>
+                    <div class="track-title">Ugborough, South Brent, South Hams</div>
                     <br>SX 68865 58966</br>
                     <br>Date: 2023-08-24</br>
                     <br>Distance:</br>
@@ -3123,7 +3135,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>B3212, Chagford, West Devon</div>
+                    <div class="track-title">B3212, Chagford, West Devon</div>
                     <br>SX 67964 81590</br>
                     <br>Date: 2023-08-22</br>
                     <br>Distance:</br>
@@ -3144,7 +3156,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>B3212, Dousland, Walkhampton</div>
+                    <div class="track-title">B3212, Dousland, Walkhampton</div>
                     <br>SX 58742 73283</br>
                     <br>Date: 2023-08-17</br>
                     <br>Distance:</br>
@@ -3165,7 +3177,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Ponsworthy, Poundsgate, Teignbridge</div>
+                    <div class="track-title">Ponsworthy, Poundsgate, Teignbridge</div>
                     <br>SX 69501 73124</br>
                     <br>Date: 2023-08-10</br>
                     <br>Distance:</br>
@@ -3186,7 +3198,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Royal Mail, A386, Horrabridge</div>
+                    <div class="track-title">Royal Mail, A386, Horrabridge</div>
                     <br>SX 50331 70268</br>
                     <br>Date: 2023-08-03</br>
                     <br>Distance:</br>
@@ -3207,7 +3219,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Great Houndtor, Water, Teignbridge</div>
+                    <div class="track-title">Great Houndtor, Water, Teignbridge</div>
                     <br>SX 73982 79176</br>
                     <br>Date: 2023-07-27</br>
                     <br>Distance:</br>
@@ -3228,7 +3240,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Chapple, West Devon, Devon</div>
+                    <div class="track-title">Chapple, West Devon, Devon</div>
                     <br>SX 67094 88394</br>
                     <br>Date: 2023-07-20</br>
                     <br>Distance:</br>
@@ -3249,7 +3261,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>1, Foundry Lane, Noss Mayo</div>
+                    <div class="track-title">1, Foundry Lane, Noss Mayo</div>
                     <br>SX 54725 47375</br>
                     <br>Date: 2023-07-13</br>
                     <br>Distance:</br>
@@ -3270,7 +3282,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Ringrone, Cliff Road, Salcombe</div>
+                    <div class="track-title">Ringrone, Cliff Road, Salcombe</div>
                     <br>SX 72948 37421</br>
                     <br>Date: 2023-07-06</br>
                     <br>Distance:</br>
@@ -3291,7 +3303,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Pork Hill Car Park, B3357, Whitchurch</div>
+                    <div class="track-title">Pork Hill Car Park, B3357, Whitchurch</div>
                     <br>SX 53093 75151</br>
                     <br>Date: 2023-06-29</br>
                     <br>Distance:</br>
@@ -3312,7 +3324,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Holne, South Hams, Devon</div>
+                    <div class="track-title">Holne, South Hams, Devon</div>
                     <br>SX 68529 71248</br>
                     <br>Date: 2023-06-22</br>
                     <br>Distance:</br>
@@ -3333,7 +3345,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Pixieland, Dartmoor Forest, Dartmeet</div>
+                    <div class="track-title">Pixieland, Dartmoor Forest, Dartmeet</div>
                     <br>SX 66400 73327</br>
                     <br>Date: 2023-06-15</br>
                     <br>Distance:</br>
@@ -3354,7 +3366,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Hexworthy, Dartmoor Forest, West Devon</div>
+                    <div class="track-title">Hexworthy, Dartmoor Forest, West Devon</div>
                     <br>SX 65423 72669</br>
                     <br>Date: 2023-05-25</br>
                     <br>Distance:</br>
@@ -3375,7 +3387,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Dolphin Inn Car Park, Yellands Park, Great Torr</div>
+                    <div class="track-title">Dolphin Inn Car Park, Yellands Park, Great Torr</div>
                     <br>SX 63588 47825</br>
                     <br>Date: 2023-05-18</br>
                     <br>Distance:</br>
@@ -3396,7 +3408,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Lovaton, Meavy, West Devon</div>
+                    <div class="track-title">Lovaton, Meavy, West Devon</div>
                     <br>SX 54580 66947</br>
                     <br>Date: 2023-05-11</br>
                     <br>Distance:</br>
@@ -3417,7 +3429,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Deancombe, South Hams, Devon</div>
+                    <div class="track-title">Deancombe, South Hams, Devon</div>
                     <br>SX 70391 63991</br>
                     <br>Date: 2023-04-20</br>
                     <br>Distance:</br>
@@ -3438,7 +3450,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Harford, South Hams, Devon</div>
+                    <div class="track-title">Harford, South Hams, Devon</div>
                     <br>SX 63840 59387</br>
                     <br>Date: 2023-04-13</br>
                     <br>Distance:</br>
@@ -3459,7 +3471,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Oaklands Road, Parklands Farm, West Buckfastleigh</div>
+                    <div class="track-title">Oaklands Road, Parklands Farm, West Buckfastleigh</div>
                     <br>SX 70025 66636</br>
                     <br>Date: 2023-04-06</br>
                     <br>Distance:</br>
@@ -3480,7 +3492,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Oaklands Road, Parklands Farm, West Buckfastleigh</div>
+                    <div class="track-title">Oaklands Road, Parklands Farm, West Buckfastleigh</div>
                     <br>SX 70031 66624</br>
                     <br>Date: 2023-03-30</br>
                     <br>Distance:</br>
@@ -3501,7 +3513,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Widecombe-in-the-Moor, Teignbridge, Devon</div>
+                    <div class="track-title">Widecombe-in-the-Moor, Teignbridge, Devon</div>
                     <br>SX 68135 73268</br>
                     <br>Date: 2023-03-23</br>
                     <br>Distance:</br>
@@ -3522,7 +3534,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Dr Blackall's Drive, Poundsgate, Teignbridge</div>
+                    <div class="track-title">Dr Blackall's Drive, Poundsgate, Teignbridge</div>
                     <br>SX 69458 72986</br>
                     <br>Date: 2023-03-16</br>
                     <br>Distance:</br>
@@ -3543,7 +3555,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Meavy, West Devon, Devon</div>
+                    <div class="track-title">Meavy, West Devon, Devon</div>
                     <br>SX 55486 65754</br>
                     <br>Date: 2023-03-09</br>
                     <br>Distance:</br>
@@ -3564,7 +3576,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Buckland Monachorum, West Devon, Devon</div>
+                    <div class="track-title">Buckland Monachorum, West Devon, Devon</div>
                     <br>SX 52227 65583</br>
                     <br>Date: 2023-02-23</br>
                     <br>Distance:</br>
@@ -3585,7 +3597,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Uppaton Lane, Cornwood, South Hams</div>
+                    <div class="track-title">Uppaton Lane, Cornwood, South Hams</div>
                     <br>SX 61549 58103</br>
                     <br>Date: 2023-02-09</br>
                     <br>Distance:</br>
@@ -3606,7 +3618,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Cornwood, South Hams, Devon</div>
+                    <div class="track-title">Cornwood, South Hams, Devon</div>
                     <br>SX 60178 60171</br>
                     <br>Date: 2023-02-02</br>
                     <br>Distance:</br>
@@ -3627,7 +3639,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Cudlipptown, Peter Tavy, West Devon</div>
+                    <div class="track-title">Cudlipptown, Peter Tavy, West Devon</div>
                     <br>SX 51348 77776</br>
                     <br>Date: 2023-01-19</br>
                     <br>Distance:</br>
@@ -3648,7 +3660,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Walkhampton, Dousland, West Devon</div>
+                    <div class="track-title">Walkhampton, Dousland, West Devon</div>
                     <br>SX 54753 69222</br>
                     <br>Date: 2023-01-12</br>
                     <br>Distance:</br>
@@ -3671,7 +3683,7 @@
     <div class="track-list">
             <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>B3212, Chagford, West Devon</div>
+                    <div class="track-title">B3212, Chagford, West Devon</div>
                     <br>SX 67968 81593</br>
                     <br>Date: 2022-12-08</br>
                     <br>Distance:</br>
@@ -3692,7 +3704,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Harford, South Hams, Devon</div>
+                    <div class="track-title">Harford, South Hams, Devon</div>
                     <br>SX 63846 59382</br>
                     <br>Date: 2022-12-01</br>
                     <br>Distance:</br>
@@ -3713,7 +3725,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Royal Mail, A386, Horrabridge</div>
+                    <div class="track-title">Royal Mail, A386, Horrabridge</div>
                     <br>SX 50331 70258</br>
                     <br>Date: 2022-11-24</br>
                     <br>Distance:</br>
@@ -3734,7 +3746,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Trout Cottage, Two Bridges, Dartmoor Forest</div>
+                    <div class="track-title">Trout Cottage, Two Bridges, Dartmoor Forest</div>
                     <br>SX 60909 75047</br>
                     <br>Date: 2022-11-17</br>
                     <br>Distance:</br>
@@ -3755,7 +3767,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Foggintor School Ruin / Four Winds, B3357, Dartmoor Forest</div>
+                    <div class="track-title">Foggintor School Ruin / Four Winds, B3357, Dartmoor Forest</div>
                     <br>SX 56051 74888</br>
                     <br>Date: 2022-11-10</br>
                     <br>Distance:</br>
@@ -3776,7 +3788,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Cadover Bridge Car Park, Cadover Bridge, Shaugh Prior</div>
+                    <div class="track-title">Cadover Bridge Car Park, Cadover Bridge, Shaugh Prior</div>
                     <br>SX 55468 64557</br>
                     <br>Date: 2022-10-13</br>
                     <br>Distance:</br>
@@ -3797,7 +3809,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Dolphin Inn Car Park, Yellands Park, Great Torr</div>
+                    <div class="track-title">Dolphin Inn Car Park, Yellands Park, Great Torr</div>
                     <br>SX 63580 47830</br>
                     <br>Date: 2022-09-01</br>
                     <br>Distance:</br>
@@ -3818,7 +3830,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Holne, South Hams, Devon</div>
+                    <div class="track-title">Holne, South Hams, Devon</div>
                     <br>SX 68744 71335</br>
                     <br>Date: 2022-08-25</br>
                     <br>Distance:</br>
@@ -3839,7 +3851,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Bonehill, Widecombe-in-the-Moor, Teignbridge</div>
+                    <div class="track-title">Bonehill, Widecombe-in-the-Moor, Teignbridge</div>
                     <br>SX 71693 76895</br>
                     <br>Date: 2022-08-18</br>
                     <br>Distance:</br>
@@ -3860,7 +3872,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Tor Royal Lane, Peat Cot, Dartmoor Forest</div>
+                    <div class="track-title">Tor Royal Lane, Peat Cot, Dartmoor Forest</div>
                     <br>SX 60447 70719</br>
                     <br>Date: 2022-08-09</br>
                     <br>Distance:</br>
@@ -3881,7 +3893,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Pixieland, Dartmoor Forest, Dartmeet</div>
+                    <div class="track-title">Pixieland, Dartmoor Forest, Dartmeet</div>
                     <br>SX 66394 73346</br>
                     <br>Date: 2022-08-04</br>
                     <br>Distance:</br>
@@ -3902,7 +3914,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Princetown, Dartmoor Forest, West Devon</div>
+                    <div class="track-title">Princetown, Dartmoor Forest, West Devon</div>
                     <br>SX 58898 73481</br>
                     <br>Date: 2022-07-07</br>
                     <br>Distance:</br>
@@ -3923,7 +3935,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Oaklands Road, Parklands Farm, West Buckfastleigh</div>
+                    <div class="track-title">Oaklands Road, Parklands Farm, West Buckfastleigh</div>
                     <br>SX 70031 66640</br>
                     <br>Date: 2022-06-30</br>
                     <br>Distance:</br>
@@ -3944,7 +3956,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>St Thomas a Becket, Sourton, West Devon</div>
+                    <div class="track-title">St Thomas a Becket, Sourton, West Devon</div>
                     <br>SX 53562 90308</br>
                     <br>Date: 2022-06-23</br>
                     <br>Distance:</br>
@@ -3965,7 +3977,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Gidleigh, West Devon, Devon</div>
+                    <div class="track-title">Gidleigh, West Devon, Devon</div>
                     <br>SX 67153 88400</br>
                     <br>Date: 2022-06-16</br>
                     <br>Distance:</br>
@@ -3986,7 +3998,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Fox and Hounds, A386, Little Crandford</div>
+                    <div class="track-title">Fox and Hounds, A386, Little Crandford</div>
                     <br>SX 52580 86637</br>
                     <br>Date: 2022-06-09</br>
                     <br>Distance:</br>
@@ -4007,7 +4019,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Great Houndtor, Water, Teignbridge</div>
+                    <div class="track-title">Great Houndtor, Water, Teignbridge</div>
                     <br>SX 73984 79186</br>
                     <br>Date: 2022-05-19</br>
                     <br>Distance:</br>
@@ -4028,7 +4040,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Horndon, Mary Tavy, West Devon</div>
+                    <div class="track-title">Horndon, Mary Tavy, West Devon</div>
                     <br>SX 52383 80681</br>
                     <br>Date: 2022-05-12</br>
                     <br>Distance:</br>
@@ -4049,7 +4061,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Lovaton, Meavy, West Devon</div>
+                    <div class="track-title">Lovaton, Meavy, West Devon</div>
                     <br>SX 54568 66946</br>
                     <br>Date: 2022-05-05</br>
                     <br>Distance:</br>
@@ -4070,7 +4082,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Walkhampton, Dousland, West Devon</div>
+                    <div class="track-title">Walkhampton, Dousland, West Devon</div>
                     <br>SX 54760 69236</br>
                     <br>Date: 2022-04-21</br>
                     <br>Distance:</br>
@@ -4091,7 +4103,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Peter's Cottage, Widecombe-in-the-Moor, Teignbridge</div>
+                    <div class="track-title">Peter's Cottage, Widecombe-in-the-Moor, Teignbridge</div>
                     <br>SX 68104 73284</br>
                     <br>Date: 2022-04-14</br>
                     <br>Distance:</br>
@@ -4112,7 +4124,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Deancombe, South Hams, Devon</div>
+                    <div class="track-title">Deancombe, South Hams, Devon</div>
                     <br>SX 70373 64000</br>
                     <br>Date: 2022-04-07</br>
                     <br>Distance:</br>
@@ -4133,7 +4145,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Moortown, Whitchurch, West Devon</div>
+                    <div class="track-title">Moortown, Whitchurch, West Devon</div>
                     <br>SX 52653 73180</br>
                     <br>Date: 2022-03-31</br>
                     <br>Distance:</br>
@@ -4154,7 +4166,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Gutter Tor Car Park, Edward's Path, Sheepstor</div>
+                    <div class="track-title">Gutter Tor Car Park, Edward's Path, Sheepstor</div>
                     <br>SX 57886 67311</br>
                     <br>Date: 2022-03-24</br>
                     <br>Distance:</br>
@@ -4175,7 +4187,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Cubworthy, Poundsgate, Teignbridge</div>
+                    <div class="track-title">Cubworthy, Poundsgate, Teignbridge</div>
                     <br>SX 69642 73933</br>
                     <br>Date: 2022-03-17</br>
                     <br>Distance:</br>
@@ -4196,7 +4208,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Cudlipptown, Peter Tavy, West Devon</div>
+                    <div class="track-title">Cudlipptown, Peter Tavy, West Devon</div>
                     <br>SX 51351 77762</br>
                     <br>Date: 2022-03-10</br>
                     <br>Distance:</br>
@@ -4217,7 +4229,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Pork Hill Car Park, B3357, Whitchurch</div>
+                    <div class="track-title">Pork Hill Car Park, B3357, Whitchurch</div>
                     <br>SX 53109 75132</br>
                     <br>Date: 2022-02-10</br>
                     <br>Distance:</br>
@@ -4238,7 +4250,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>B3212, Chagford, West Devon</div>
+                    <div class="track-title">B3212, Chagford, West Devon</div>
                     <br>SX 67967 81592</br>
                     <br>Date: 2022-02-03</br>
                     <br>Distance:</br>
@@ -4259,7 +4271,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Cadover Bridge Car Park, Cadover Bridge, Shaugh Prior</div>
+                    <div class="track-title">Cadover Bridge Car Park, Cadover Bridge, Shaugh Prior</div>
                     <br>SX 55442 64501</br>
                     <br>Date: 2022-01-27</br>
                     <br>Distance:</br>
@@ -4280,7 +4292,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Lower Bowdley, Ashburton, Teignbridge</div>
+                    <div class="track-title">Lower Bowdley, Ashburton, Teignbridge</div>
                     <br>SX 74046 74238</br>
                     <br>Date: 2022-01-20</br>
                     <br>Distance:</br>
@@ -4301,7 +4313,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Harford, South Hams, Devon</div>
+                    <div class="track-title">Harford, South Hams, Devon</div>
                     <br>SX 63840 59392</br>
                     <br>Date: 2022-01-13</br>
                     <br>Distance:</br>
@@ -4324,7 +4336,7 @@
     <div class="track-list">
             <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Dartmoor Inn, B3357, Merrivale</div>
+                    <div class="track-title">Dartmoor Inn, B3357, Merrivale</div>
                     <br>SX 54961 75147</br>
                     <br>Date: 2021-12-30</br>
                     <br>Distance:</br>
@@ -4345,7 +4357,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Burrator - Norsworthy, Norsworthy Bridge to South Hessary Tor, Walkhampton</div>
+                    <div class="track-title">Burrator - Norsworthy, Norsworthy Bridge to South Hessary Tor, Walkhampton</div>
                     <br>SX 56875 69300</br>
                     <br>Date: 2021-12-16</br>
                     <br>Distance:</br>
@@ -4366,7 +4378,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Scorriton, West Buckfastleigh, Combe</div>
+                    <div class="track-title">Scorriton, West Buckfastleigh, Combe</div>
                     <br>SX 70373 68515</br>
                     <br>Date: 2021-12-09</br>
                     <br>Distance:</br>
@@ -4387,7 +4399,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Walkhampton, Dousland, West Devon</div>
+                    <div class="track-title">Walkhampton, Dousland, West Devon</div>
                     <br>SX 54751 69231</br>
                     <br>Date: 2021-11-25</br>
                     <br>Distance:</br>
@@ -4408,7 +4420,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Trout Cottage, Two Bridges, Dartmoor Forest</div>
+                    <div class="track-title">Trout Cottage, Two Bridges, Dartmoor Forest</div>
                     <br>SX 60923 75152</br>
                     <br>Date: 2021-11-18</br>
                     <br>Distance:</br>
@@ -4429,7 +4441,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Cornwood, South Hams, Devon</div>
+                    <div class="track-title">Cornwood, South Hams, Devon</div>
                     <br>SX 60169 60172</br>
                     <br>Date: 2021-10-21</br>
                     <br>Distance:</br>
@@ -4450,7 +4462,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Gutter Tor Car Park, Edward's Path, Sheepstor</div>
+                    <div class="track-title">Gutter Tor Car Park, Edward's Path, Sheepstor</div>
                     <br>SX 57932 67313</br>
                     <br>Date: 2021-10-14</br>
                     <br>Distance:</br>
@@ -4471,7 +4483,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Hexworthy, Dartmoor Forest, West Devon</div>
+                    <div class="track-title">Hexworthy, Dartmoor Forest, West Devon</div>
                     <br>SX 65515 72646</br>
                     <br>Date: 2021-09-23</br>
                     <br>Distance:</br>
@@ -4492,7 +4504,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Cudlipptown, Peter Tavy, West Devon</div>
+                    <div class="track-title">Cudlipptown, Peter Tavy, West Devon</div>
                     <br>SX 51351 77755</br>
                     <br>Date: 2021-09-16</br>
                     <br>Distance:</br>
@@ -4513,7 +4525,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Ringrone, Cliff Road, Salcombe</div>
+                    <div class="track-title">Ringrone, Cliff Road, Salcombe</div>
                     <br>SX 72948 37460</br>
                     <br>Date: 2021-08-12</br>
                     <br>Distance:</br>
@@ -4534,7 +4546,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Widecombe-in-the-Moor Car Park, B3387, Bonehill</div>
+                    <div class="track-title">Widecombe-in-the-Moor Car Park, B3387, Bonehill</div>
                     <br>SX 71930 76881</br>
                     <br>Date: 2021-08-05</br>
                     <br>Distance:</br>
@@ -4555,7 +4567,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Granite Way, Meldon, Okehampton Hamlets</div>
+                    <div class="track-title">Granite Way, Meldon, Okehampton Hamlets</div>
                     <br>SX 56160 91774</br>
                     <br>Date: 2021-07-01</br>
                     <br>Distance:</br>
@@ -4576,7 +4588,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Buckland Monachorum, Milton Combe, West Devon</div>
+                    <div class="track-title">Buckland Monachorum, Milton Combe, West Devon</div>
                     <br>SX 47386 64896</br>
                     <br>Date: 2021-06-24</br>
                     <br>Distance:</br>
@@ -4597,7 +4609,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Mothecombe, South Hams, Devon</div>
+                    <div class="track-title">Mothecombe, South Hams, Devon</div>
                     <br>SX 61170 47823</br>
                     <br>Date: 2021-06-17</br>
                     <br>Distance:</br>
@@ -4618,7 +4630,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Range Notice Board, A386, Lydford</div>
+                    <div class="track-title">Range Notice Board, A386, Lydford</div>
                     <br>SX 52536 85390</br>
                     <br>Date: 2021-06-10</br>
                     <br>Distance:</br>
@@ -4639,7 +4651,7 @@
             </div>
                     <div class="track" style="border: 10px solid #F1C40F;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>1, Foundry Lane, Noss Mayo</div>
+                    <div class="track-title">1, Foundry Lane, Noss Mayo</div>
                     <br>SX 54716 47413</br>
                     <br>Date: 2021-04-29</br>
                     <br>Distance:</br>
@@ -4662,7 +4674,7 @@
     <div class="track-list">
             <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Range Notice Board, A386, Lydford</div>
+                    <div class="track-title">Range Notice Board, A386, Lydford</div>
                     <br>SX 52551 85372</br>
                     <br>Date: 2020-08-20</br>
                     <br>Distance:</br>
@@ -4683,7 +4695,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Widecombe-in-the-Moor, Teignbridge, Devon</div>
+                    <div class="track-title">Widecombe-in-the-Moor, Teignbridge, Devon</div>
                     <br>SX 68116 73287</br>
                     <br>Date: 2020 or Earlier - Yar Tor</br>
                     <br>Distance:</br>
@@ -4704,7 +4716,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Tor Royal Lane, Peat Cot, Dartmoor Forest</div>
+                    <div class="track-title">Tor Royal Lane, Peat Cot, Dartmoor Forest</div>
                     <br>SX 60308 71075</br>
                     <br>Date: 2020 or Earlier - Whiteworks</br>
                     <br>Distance:</br>
@@ -4725,7 +4737,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>The Plume of Feathers Inn, Plymouth Hill, Princetown</div>
+                    <div class="track-title">The Plume of Feathers Inn, Plymouth Hill, Princetown</div>
                     <br>SX 59050 73435</br>
                     <br>Date: 2020 or Earlier - Tor Royal</br>
                     <br>Distance:</br>
@@ -4746,7 +4758,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>B3387, Smallacombe, Ilsington</div>
+                    <div class="track-title">B3387, Smallacombe, Ilsington</div>
                     <br>SX 74809 76162</br>
                     <br>Date: 2020 or Earlier - Top Tor</br>
                     <br>Distance:</br>
@@ -4767,7 +4779,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Holne, South Hams, Devon</div>
+                    <div class="track-title">Holne, South Hams, Devon</div>
                     <br>SX 69407 70199</br>
                     <br>Date: 2020 or Earlier - Snowdon</br>
                     <br>Distance:</br>
@@ -4788,7 +4800,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Shipley Bridge, South Brent, Didworthy</div>
+                    <div class="track-title">Shipley Bridge, South Brent, Didworthy</div>
                     <br>SX 68044 62908</br>
                     <br>Date: 2020 or Earlier - Shipley Bridge</br>
                     <br>Distance:</br>
@@ -4809,7 +4821,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Princetown, Dartmoor Forest, West Devon</div>
+                    <div class="track-title">Princetown, Dartmoor Forest, West Devon</div>
                     <br>SX 58891 73476</br>
                     <br>Date: 2020 or Earlier - Princetown Transmitter</br>
                     <br>Distance:</br>
@@ -4830,7 +4842,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Foggintor School Ruin / Four Winds, B3357, Dartmoor Forest</div>
+                    <div class="track-title">Foggintor School Ruin / Four Winds, B3357, Dartmoor Forest</div>
                     <br>SX 56076 74883</br>
                     <br>Date: 2020 or Earlier - Peak Hill</br>
                     <br>Distance:</br>
@@ -4851,7 +4863,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Range Notice Board, A386, Lydford</div>
+                    <div class="track-title">Range Notice Board, A386, Lydford</div>
                     <br>SX 52563 85343</br>
                     <br>Date: 2020 or Earlier - Hare Tor</br>
                     <br>Distance:</br>
@@ -4872,7 +4884,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Fox & Hounds Hotel, A386, Little Crandford</div>
+                    <div class="track-title">Fox & Hounds Hotel, A386, Little Crandford</div>
                     <br>SX 52550 86696</br>
                     <br>Date: 2020 or Earlier - Great Links Tor</br>
                     <br>Distance:</br>
@@ -4893,7 +4905,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Ugborough, Moorhaven Village, South Hams</div>
+                    <div class="track-title">Ugborough, Moorhaven Village, South Hams</div>
                     <br>SX 68050 59381</br>
                     <br>Date: 2020 or Earlier - Glazebrook</br>
                     <br>Distance:</br>
@@ -4914,7 +4926,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Two Bridges, B3357, Two Bridges</div>
+                    <div class="track-title">Two Bridges, B3357, Two Bridges</div>
                     <br>SX 60906 75024</br>
                     <br>Date: 2020 or Earlier - Devils Tor</br>
                     <br>Distance:</br>
@@ -4935,7 +4947,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Ford Cross, Ford Cross, South Tawton</div>
+                    <div class="track-title">Ford Cross, Ford Cross, South Tawton</div>
                     <br>SX 64536 93596</br>
                     <br>Date: 2020 or Earlier - Cosdon Beacon</br>
                     <br>Distance:</br>
@@ -4956,7 +4968,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Gutter Tor Car Park, Edward's Path, Sheepstor</div>
+                    <div class="track-title">Gutter Tor Car Park, Edward's Path, Sheepstor</div>
                     <br>SX 57870 67308</br>
                     <br>Date: 2020 or Earlier - Combshead Tor</br>
                     <br>Distance:</br>
@@ -4977,7 +4989,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Holne, South Hams, Devon</div>
+                    <div class="track-title">Holne, South Hams, Devon</div>
                     <br>SX 66978 71786</br>
                     <br>Date: 2020 or Earlier - Combestone Tor</br>
                     <br>Distance:</br>
@@ -4998,7 +5010,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Holne, South Hams, Devon</div>
+                    <div class="track-title">Holne, South Hams, Devon</div>
                     <br>SX 66994 71794</br>
                     <br>Date: 2020 or Earlier - Combestone</br>
                     <br>Distance:</br>
@@ -5019,7 +5031,7 @@
             </div>
                     <div class="track" style="border: 10px solid #C0FFC0;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Fingle Bridge Inn, Fisherman's Path, Drewsteignton</div>
+                    <div class="track-title">Fingle Bridge Inn, Fisherman's Path, Drewsteignton</div>
                     <br>SX 74317 90029</br>
                     <br>Date: 2020 or Earlier - Castle Drogo</br>
                     <br>Distance:</br>
@@ -5040,7 +5052,7 @@
             </div>
                     <div class="track" style="border: 10px solid #90EE90;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Belstone, West Devon, Devon</div>
+                    <div class="track-title">Belstone, West Devon, Devon</div>
                     <br>SX 62015 93323</br>
                     <br>Date: 2020 or Earlier - Belstone</br>
                     <br>Distance:</br>
@@ -5061,7 +5073,7 @@
             </div>
                     <div class="track" style="border: 10px solid #FFA07A;">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>Lynton, Lynton and Lynmouth, Lynbridge</div>
+                    <div class="track-title">Lynton, Lynton and Lynmouth, Lynbridge</div>
                     <br>SS 71081 49728</br>
                     <br>Date: 2019-05-15</br>
                     <br>Distance:</br>

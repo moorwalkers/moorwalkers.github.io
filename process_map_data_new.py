@@ -708,12 +708,21 @@ def create_tracks_content_page(years, feature_collection):
             max-height: 100%; /* Set maximum height to fit the container */
             display: block; /* Ensures images resize properly */
             margin: auto; /* Centers the images horizontally */
+            border-radius: 10px;
         }
         
         .track-details {
             text-align: left;
             padding-left: 20px;
             line-height: 0.9;
+        }
+
+        .track-title {
+            text-align: left;
+            margin-top: 10px;
+            font-weight: bold;
+            line-height: 1.2em;
+            min-height: 3.6em; /* Reserve space for up to 3 lines so following details align across cards */
         }
         
         .track-details-distance {
@@ -775,7 +784,10 @@ def create_tracks_content_page(years, feature_collection):
             display: block;
             background: none;
             padding: 0;
-            border: none;
+            border: 10px solid transparent;
+            border-left-width: 20px;
+            border-right-width: 10px;
+            border-radius: 10px;
         }
     </style>
     <script>
@@ -990,7 +1002,7 @@ def create_tracks_content_page(years, feature_collection):
                         html_track = f"""\
 <div class="track" style="border: 10px solid {grid_colour};">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>{feature['properties']['place_name']}</div>
+                    <div class="track-title">{feature['properties']['place_name']}</div>
                     <br>{feature['properties']['gridref']}</br>
                     <br>Date: {date_title}</br>
                     <br>Distance:</br>
