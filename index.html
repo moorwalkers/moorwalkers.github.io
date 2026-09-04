@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Moor Walkers Map</title>
         <style>
             body {
@@ -109,6 +110,35 @@
                 width: 100%;
                 border: none;
                 min-height: 2000px;
+            }
+
+            /* Scale down the oversized header/nav elements on narrow mobile viewports */
+            @media (max-width: 600px) {
+                h1 {
+                    font-size: 1.8em;
+                }
+                p {
+                    font-size: 1em;
+                }
+                ul {
+                    font-size: 1.2em;
+                    flex-direction: column;
+                    gap: 10px !important;
+                }
+                li {
+                    margin: 0;
+                    width: 100%;
+                }
+                .latest-donation {
+                    padding: 10px;
+                }
+                .latest-donation table {
+                    font-size: 0.8em;
+                }
+                .latest-donation th,
+                .latest-donation td {
+                    padding: 4px;
+                }
             }
         </style>
         <link rel="icon" href="https://moorwalkers.github.io/icons8-map-pastel-32.png" type="image/x-icon">

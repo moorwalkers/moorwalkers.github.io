@@ -40,10 +40,20 @@
                 }
             }
 
-            /* Define the grid for smaller screens (e.g., mobile) */
-            @media (max-width: 1080px) {
+            /* Define the grid for medium-sized screens */
+            @media (min-width: 601px) and (max-width: 1080px) {
                 .track-list {
                     grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            /* Define the grid for mobile screens: single column with larger text/images */
+            @media (max-width: 600px) {
+                .track-list {
+                    grid-template-columns: 1fr;
+                }
+                .track {
+                    font-size: 1.4em;
                 }
             }
 
