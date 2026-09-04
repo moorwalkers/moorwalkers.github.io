@@ -61,6 +61,25 @@
       margin-top: 12px;
       margin-bottom: 12px;
     }
+
+    /* Popup link styling (kept separate from image-wrapper links) */
+    .popup-btn {
+      display: block;
+      margin-bottom: 5px;
+      padding: 0.5em 1em;
+      background-color: #0A4478;
+      color: white;
+      text-decoration: none;
+      border-radius: 3px;
+      font-size: 1.0em;
+      text-align: center;
+    }
+    .popup-img-link {
+      display: block;
+      background: none;
+      padding: 0;
+      border: none;
+    }
   </style>
 
   <!-- Leaflet (single version) -->
@@ -751,16 +770,16 @@
                         Duration: ${feature.properties.duration}<br>
                         Ascent: ${feature.properties.ascent} metres<br>
                         Descent: ${feature.properties.descent} metres<br>
-                        <a href="${feature.properties.elevation_profile_link}" target="_blank">
+                        <a href="${feature.properties.elevation_profile_link}" target="_blank" class="popup-img-link">
                           <img src="${feature.properties.elevation_profile_link}" alt="Elevation Profile" style="width: 100%; margin-bottom: 5px;">
                         </a>
-                        <a href="${feature.properties.ind_map_link}" target="_blank" style="display: block; margin-bottom: 5px; padding: 0.5em 1em; background-color: #0A4478; color: white; text-decoration: none; border-radius: 3px; font-size: 1.0em; text-align: center;">
+                        <a href="${feature.properties.ind_map_link}" target="_blank" class="popup-btn">
                           Open Individual Map
                         </a>
-                        <a href="${feature.properties.googleMapsLink}" target="_blank" style="display: block; margin-bottom: 5px; padding: 0.5em 1em; background-color: #0A4478; color: white; text-decoration: none; border-radius: 3px; font-size: 1.0em; text-align: center;">
+                        <a href="${feature.properties.googleMapsLink}" target="_blank" class="popup-btn">
                           Starting Location on Google Maps
                         </a>
-                        <a href="${feature.properties.download_link}" download="${download_filename}" style="display: block; margin-bottom: 5px; padding: 0.5em 1em; background-color: #0A4478; color: white; text-decoration: none; border-radius: 3px; font-size: 1.0em; text-align: center;">
+                        <a href="${feature.properties.download_link}" download="${download_filename}" class="popup-btn">
                           Download GPX Track File
                         </a>
                         <div style="text-align: center; margin-bottom: 5px; font-weight: bold;">
