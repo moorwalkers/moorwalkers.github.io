@@ -540,40 +540,47 @@ def save_tracks_as_elevation_profiles(feature_collection):
     
     print("Elevation profiles created")
 
+MANUAL_MODE = True
 def save_tracks_as_map_screenshots(feature_collection):
     """
     Generate map thumbnails using the live map page.
     """
-
     output_dir = os.path.join(os.getcwd(), "track_thumbnails")
-
     os.makedirs(output_dir, exist_ok=True)
 
     with sync_playwright() as p:
-
-        browser = p.chromium.launch(headless=True)
-
-        page = browser.new_page(viewport={"width": 1200, "height": 900})
-
+        browser = p.chromium.launch(
+            headless=not MANUAL_MODE
+        )
+        page = browser.new_page(
+            viewport={"width": 1200, "height": 900}
+        )
         for feature in feature_collection["features"]:
-
-            track_name = (feature["properties"]["name"].replace(" ", "").replace("@", "_"))
-
-            output_file = os.path.join(output_dir, f"{track_name}.png")
-
+            track_name = (
+                feature["properties"]["name"]
+                .replace(" ", "")
+                .replace("@", "_")
+            )
+            output_file = os.path.join(
+                output_dir,
+                f"{track_name}.png"
+            )
             if os.path.exists(output_file):
                 continue
-
             track_id = feature["properties"]["date"]
-
-            url = (f"http://localhost:{PORT}/map.html?track_id={track_id}")
-
+            url = f"http://localhost:{PORT}/map.html?track_id={track_id}"
             print(f"Generating thumbnail for {track_name}")
-
             page.goto(url, wait_until="networkidle")
 
-            # Give Leaflet and OS tiles time to finish rendering
-            page.wait_for_timeout(3000)
+            if MANUAL_MODE:
+                print("\n" + "=" * 70)
+                print(f"Track: {track_name}")
+                print("Move the map, zoom if required, and wait for all tiles to load.")
+                input("Press Enter to take the screenshot...")
+                print("=" * 70)
+            else:
+                # Automatic mode
+                page.wait_for_timeout(5000)
 
             # Screenshot map
             page.screenshot(path=output_file)
@@ -583,10 +590,7 @@ def save_tracks_as_map_screenshots(feature_collection):
             image.save(output_file, "PNG")
 
         browser.close()
-
-    print(
-        "Track thumbnails created"
-    )
+    print("Track thumbnails created")
 
 def save_tracks_as_gpx(feature_collection):
     """Converts a GeoJSON FeatureCollection of tracks to individual GPX files and saves them."""
