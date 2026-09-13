@@ -658,8 +658,8 @@
                   { type: "FeatureCollection", features: allFilteredFeatures },
                   {
                     style: feature => ({
-                      color: feature.properties?.colour || 'green',
-                      weight: 3
+                      color: selectedTrackId ? 'blue' : (feature.properties?.colour || 'green'),
+                      weight: selectedTrackId ? 6 : 3
                     }),
                     onEachFeature: (feature, layer) => {
                       if (feature.properties?.name) {
