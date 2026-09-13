@@ -573,7 +573,7 @@ def save_tracks_as_map_screenshots(feature_collection):
             page.goto(url, wait_until="networkidle")
 
             # Give Leaflet and OS tiles time to finish rendering
-            page.wait_for_timeout(10000)
+            page.wait_for_timeout(5000)
 
             # Screenshot map
             page.screenshot(path=output_file)
