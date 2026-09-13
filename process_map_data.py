@@ -436,7 +436,6 @@ def create_data(main_geojson):
         "black",
         "cadetblue",
         "darkgreen",
-        "orange",
         "darkblue",
     ]
 
