@@ -356,8 +356,7 @@
       minZoom: 0,
       maxZoom: MAX_Z_27700,
       zoom: 4,
-      zoomControl: true,
-      preferCanvas: false
+      zoomControl: true
     });
 
     const map3857 = L.map("map3857", {
@@ -365,8 +364,7 @@
       minZoom: 7,
       maxZoom: 20,
       zoom: 4 + ZOOM_OFFSET_27700_TO_3857,
-      zoomControl: true,
-      preferCanvas: false
+      zoomControl: true
     });
 
     // Active map pointer (existing loader code uses this)
