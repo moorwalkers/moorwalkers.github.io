@@ -371,12 +371,6 @@ def create_data(main_geojson):
             "https://moorwalkers.github.io/map.html?track_id="
             + iso_date
         )
-        # print(ind_map_link)
-        ind_map_link_os = (
-            "https://moorwalkers.github.io/map_os.html?track_id="
-            + iso_date
-        )
-        # print(ind_map_link_os)
 
         # Create a GeoJSON feature LineString from the GPX file
         feature = geojson.Feature(
@@ -396,7 +390,6 @@ def create_data(main_geojson):
                 "googleMapsLink": googleMapsLink,
                 "download_link": download_link,
                 "ind_map_link": ind_map_link,
-                "ind_map_link_os": ind_map_link_os,
                 "elevation_profile_link": elevation_profile_link,
                 "thumbnail_link": thumbnail_link,
             },
