@@ -162,7 +162,7 @@ def create_data(main_geojson):
             geojson_data = geojson.load(f)
         # Check if it's a FeatureCollection, and if so load it
         if isinstance(geojson_data, geojson.FeatureCollection):
-            feature_collection = geojson_data
+            features = geojson_data["features"]
             print("Existing data loaded")
         else:
             print(
@@ -170,7 +170,6 @@ def create_data(main_geojson):
             )
             features = []
         # Create features list and load years list from the feature_collection
-        features = feature_collection["features"]
         for feature in features:
             years.append(feature["properties"]["name"][:4])
 
