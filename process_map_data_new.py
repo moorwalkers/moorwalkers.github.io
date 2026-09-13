@@ -11,9 +11,13 @@ Main functionalities:
 Dependencies: geojson, gpxpy, matplotlib, requests, geopy, OSGridConverter, shapely, sklearn, etc.
 """
 
+import http.server
 import json
 import os
 import re
+import socketserver
+import subprocess
+import threading
 import time
 from datetime import datetime, timedelta
 from math import sqrt
@@ -25,12 +29,57 @@ import matplotlib.pyplot as plt
 import requests
 from geopy import distance
 from OSGridConverter import latlong2grid
+from PIL import Image
+from playwright.sync_api import sync_playwright
 from shapely.geometry import LineString
 from sklearn.cluster import KMeans
 
-from PIL import Image
-from playwright.sync_api import sync_playwright
+# Constants
+PORT = 8001
 
+# Determines the number of physical CPU cores on a Windows system.
+def get_windows_physical_core_count():
+    try:
+        result = subprocess.run(
+            [
+                "powershell.exe",
+                "-NoProfile",
+                "-Command",
+                "(Get-CimInstance -ClassName Win32_Processor | "
+                "Measure-Object -Property NumberOfCores -Sum).Sum",
+            ],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+
+        return int(result.stdout.strip())
+
+    except Exception:
+        return os.cpu_count() or 1
+
+# KMeans (via scikit-learn/joblib) attempts to detect the number ofphysical CPU cores when fitting clusters. On newer Windows systems
+# this can trigger warnings because the legacy WMIC command is no longer available. Setting LOKY_MAX_CPU_COUNT to the physical core
+# count avoids that detection step and suppresses the warning.
+os.environ["LOKY_MAX_CPU_COUNT"] = str(get_windows_physical_core_count())
+
+# Custom HTTP request handler that suppresses log messages.
+class QuietHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
+    def log_message(self, format, *args):
+        pass
+
+# Starts a local HTTP server on the specified port using the QuietHTTPRequestHandler.
+def start_local_server():
+    handler = QuietHTTPRequestHandler
+    httpd = socketserver.TCPServer(("", PORT), handler)
+
+    thread = threading.Thread(target=httpd.serve_forever)
+    thread.daemon = True
+    thread.start()
+
+    return httpd
+
+# Fetches a formatted address from LocationIQ given latitude and longitude coordinates.
 def get_address_from_locationiq(lat, lon):
     """Fetches a formatted address from LocationIQ given latitude and longitude coordinates."""
     
@@ -65,6 +114,7 @@ def get_address_from_locationiq(lat, lon):
         else:
             return ",".join(sections[0:3]).strip()
 
+# Simplifies a polyline using the Douglas-Peucker algorithm with a specified tolerance.
 def douglas_peucker(points, epsilon):
     """Simplifies a polyline using the Douglas-Peucker algorithm with a specified tolerance."""
 
@@ -525,7 +575,7 @@ def save_tracks_as_map_screenshots(feature_collection):
 
             track_id = feature["properties"]["date"]
 
-            url = (f"https://moorwalkers.github.io/map.html?track_id={track_id}")
+            url = (f"http://localhost:{PORT}/map.html?track_id={track_id}")
 
             print(f"Generating thumbnail for {track_name}")
 
@@ -1058,7 +1108,12 @@ def main():
     save_tracks_as_elevation_profiles(feature_collection)
 
     # Create individual map and track thumbnails
-    save_tracks_as_map_screenshots(feature_collection)
+    server = start_local_server()
+    # Ensure the local server is running before taking screenshots
+    try:
+        save_tracks_as_map_screenshots(feature_collection)
+    finally:
+        server.shutdown()
 
     # Create individual gpx files from the created data for users to download
     save_tracks_as_gpx(feature_collection)
