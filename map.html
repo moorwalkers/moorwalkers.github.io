@@ -516,19 +516,6 @@
       activeOverlayNames.delete(name);
     }
 
-
-    function addOverlay(name, layer) {
-      overlays[name] = layer;
-
-      overlayControls.forEach(ctrl => {
-        ctrl.addOverlay(layer, name);
-      });
-
-      // Add to current active map by default
-      layer.addTo(map);
-    }
-
-
     function wireOverlayTracking(m) {
       m.on("overlayadd", (e) => {
         const n = layerToName.get(e.layer);
