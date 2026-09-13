@@ -5,7 +5,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Royal Oak (Meavy)",
-        "description": "<a href=https://www.theroyaloakmeavy.co.uk/>The Royal Oak (Meavy)</a>",
+        "description": "<a href=https://www.theroyaloakmeavy.co.uk/ target=_blank>The Royal Oak (Meavy)</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -17,7 +17,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Burrator Inn",
-        "description": "<a href=https://www.burratorinn.com/>The Burrator Inn</a>",
+        "description": "<a href=https://www.burratorinn.com/ target=_blank>The Burrator Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -41,7 +41,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Skylark Inn",
-        "description": "<a href=https://www.skylarkinn.co.uk/>The Skylark Inn</a>",
+        "description": "<a href=https://www.skylarkinn.co.uk/ target=_blank>The Skylark Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -53,7 +53,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Avon Inn",
-        "description": "<a href=https://avon-inn.org.uk/>The Avon Inn</a>",
+        "description": "<a href=https://avon-inn.org.uk/ target=_blank>The Avon Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -65,7 +65,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Church House Inn",
-        "description": "<a href=https://www.churchhouseholne.co.uk/>The Church House Inn</a>",
+        "description": "<a href=https://www.churchhouseholne.co.uk/ target=_blank>The Church House Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -77,7 +77,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Whitchurch Inn",
-        "description": "<a href=https://www.thewhitchurchinn.pub/>The Whitchurch Inn</a>",
+        "description": "<a href=https://www.thewhitchurchinn.pub/ target=_blank>The Whitchurch Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -89,7 +89,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Leaping Salmon",
-        "description": "<a href=https://www.theleapingsalmon.co.uk/>The Leaping Salmon</a>",
+        "description": "<a href=https://www.theleapingsalmon.co.uk/ target=_blank>The Leaping Salmon</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -101,7 +101,7 @@
       "type": "Feature",
       "properties": {
         "name": "Ye Olde Salutation Inne",
-        "description": "<a href=http://www.yeoldesalutationinn-looe.foodanddrinksites.co.uk/>Ye Olde Salutation Inne</a>",
+        "description": "<a href=http://www.yeoldesalutationinn-looe.foodanddrinksites.co.uk/ target=_blank>Ye Olde Salutation Inne</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -113,7 +113,7 @@
       "type": "Feature",
       "properties": {
         "name": "Three Crowns",
-        "description": "<a href=https://threecrowns-chagford.co.uk/>Three Crowns</a>",
+        "description": "<a href=https://threecrowns-chagford.co.uk/ target=_blank>Three Crowns</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -125,7 +125,7 @@
       "type": "Feature",
       "properties": {
         "name": "Two Bridges Hotel",
-        "description": "<a href=https://twobridges.co.uk/>Two Bridges Hotel</a>",
+        "description": "<a href=https://twobridges.co.uk/ target=_blank>Two Bridges Hotel</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -137,7 +137,7 @@
       "type": "Feature",
       "properties": {
         "name": "The White Thorn Inn",
-        "description": "<a href=https://www.thewhitethorninn.co.uk/>The White Thorn Inn</a>",
+        "description": "<a href=https://www.thewhitethorninn.co.uk/ target=_blank>The White Thorn Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -161,7 +161,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Rock Inn (Haytor)",
-        "description": "<a href=https://www.rock-inn.co.uk/>The Rock Inn (Haytor)</a>",
+        "description": "<a href=https://www.rock-inn.co.uk/ target=_blank>The Rock Inn (Haytor)</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -173,7 +173,7 @@
       "type": "Feature",
       "properties": {
         "name": "Drake Manor Inn",
-        "description": "<a href=https://drakemanorinn.co.uk/>Drake Manor Inn</a>",
+        "description": "<a href=https://drakemanorinn.co.uk/ target=_blank>Drake Manor Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -185,7 +185,7 @@
       "type": "Feature",
       "properties": {
         "name": "Peter Tavy Inn",
-        "description": "<a href=https://petertavyinn.co.uk/>Peter Tavy Inn</a>",
+        "description": "<a href=https://petertavyinn.co.uk/ target=_blank>Peter Tavy Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -197,7 +197,7 @@
       "type": "Feature",
       "properties": {
         "name": "Prince of Wales",
-        "description": "<a href=https://www.princeofwalesprincetown.pub/>Prince of Wales</a>",
+        "description": "<a href=https://www.princeofwalesprincetown.pub/ target=_blank>Prince of Wales</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -209,7 +209,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Plume of Feathers",
-        "description": "<a href=https://plumedartmoor.co.uk/>The Plume of Feathers</a>",
+        "description": "<a href=https://plumedartmoor.co.uk/ target=_blank>The Plume of Feathers</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -221,7 +221,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Rugglestone Inn",
-        "description": "<a href=https://www.rugglestoneinn.co.uk/>The Rugglestone Inn</a>",
+        "description": "<a href=https://www.rugglestoneinn.co.uk/ target=_blank>The Rugglestone Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -245,7 +245,7 @@
       "type": "Feature",
       "properties": {
         "name": "East Dart Inn",
-        "description": "<a href=https://east-dart-inn.co.uk/>East Dart Inn</a>",
+        "description": "<a href=https://east-dart-inn.co.uk/ target=_blank>East Dart Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -257,7 +257,7 @@
       "type": "Feature",
       "properties": {
         "name": "Warren House Inn",
-        "description": "<a href=http://www.warrenhouseinn.co.uk/>Warren House Inn</a>",
+        "description": "<a href=http://www.warrenhouseinn.co.uk/ target=_blank>Warren House Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -269,7 +269,7 @@
       "type": "Feature",
       "properties": {
         "name": "Forest Inn",
-        "description": "<a href=https://forestinndartmoor.co.uk/>Forest Inn</a>",
+        "description": "<a href=https://forestinndartmoor.co.uk/ target=_blank>Forest Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -281,7 +281,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Walkhampton Inn",
-        "description": "<a href=https://walkhamptoninn.co.uk/>The Walkhampton Inn</a>",
+        "description": "<a href=https://walkhamptoninn.co.uk/ target=_blank>The Walkhampton Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -293,7 +293,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Rock Inn (Yelverton)",
-        "description": "<a href=http://therockinnyelverton.pub/>The Rock Inn (Yelverton)</a>",
+        "description": "<a href=http://therockinnyelverton.pub/ target=_blank>The Rock Inn (Yelverton)</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -317,7 +317,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Mary Tavy Inn",
-        "description": "<a href=https://themarytavyinn.co.uk/>The Mary Tavy Inn</a>",
+        "description": "<a href=https://themarytavyinn.co.uk/ target=_blank>The Mary Tavy Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -329,7 +329,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Castle Inn",
-        "description": "<a href=https://castleinnlydford.co.uk/>The Castle Inn</a>",
+        "description": "<a href=https://castleinnlydford.co.uk/ target=_blank>The Castle Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -341,7 +341,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Fox & Hounds",
-        "description": "<a href=http://www.foxandhoundshotel.com/>The Fox & Hounds</a>",
+        "description": "<a href=http://www.foxandhoundshotel.com/ target=_blank>The Fox & Hounds</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -353,7 +353,7 @@
       "type": "Feature",
       "properties": {
         "name": "Bearslake Inn",
-        "description": "<a href=https://bearslakeinn.com/>Bearslake Inn</a>",
+        "description": "<a href=https://bearslakeinn.com/ target=_blank>Bearslake Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -365,7 +365,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Tors Inn",
-        "description": "<a href=https://thetorsinn.co.uk/>The Tors Inn</a>",
+        "description": "<a href=https://thetorsinn.co.uk/ target=_blank>The Tors Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -389,7 +389,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Anchor Inn (Ugborough)",
-        "description": "<a href=https://www.anchorinnugborough.co.uk/>The Anchor Inn (Ugborough)</a>",
+        "description": "<a href=https://www.anchorinnugborough.co.uk/ target=_blank>The Anchor Inn (Ugborough)</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -401,7 +401,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Ship Inn (Ugborough)",
-        "description": "<a href=https://www.shipinnugborough.co.uk/>The Ship Inn (Ugborough)</a>",
+        "description": "<a href=https://www.shipinnugborough.co.uk/ target=_blank>The Ship Inn (Ugborough)</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -425,7 +425,7 @@
       "type": "Feature",
       "properties": {
         "name": "Cornwood Inn",
-        "description": "<a href=https://www.cornwood-inn.com/>Cornwood Inn</a>",
+        "description": "<a href=https://www.cornwood-inn.com/ target=_blank>Cornwood Inn</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -437,7 +437,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Ship Inn (Noss Mayo)",
-        "description": "<a href=https://www.shipinn-nossmayo.co.uk/>The Ship Inn (Noss Mayo)</a>",
+        "description": "<a href=https://www.shipinn-nossmayo.co.uk/ target=_blank>The Ship Inn (Noss Mayo)</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
@@ -449,7 +449,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Swan Inn (Noss Mayo)",
-        "description": "<a href=https://www.swaninnnossmayo.com/>The Swan Inn (Noss Mayo)</a>",
+        "description": "<a href=https://www.swaninnnossmayo.com/ target=_blank>The Swan Inn (Noss Mayo)</a target=_blank>",
         "category": "Pub"
       },
       "geometry": {
