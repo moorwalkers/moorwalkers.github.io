@@ -625,23 +625,87 @@
       removeOverlayEverywhere("Tracks");
 
       return new Promise((resolve) => {
+
         fetch('tracks_manifest.json')
           .then(response => response.json())
           .then(manifest => {
-            if (!Array.isArray(manifest)) return resolve();
 
+            // ==========================================================
+            // INDIVIDUAL TRACK MODE
+            // Load only the selected track file
+            // ==========================================================
+            if (selectedTrackId) {
+
+              const trackFile = manifest[selectedTrackId];
+
+              if (!trackFile) {
+                console.error('Track not found in manifest:', selectedTrackId);
+                resolve();
+                return;
+              }
+
+              fetch(trackFile)
+                .then(resp => resp.json())
+                .then(geojson => {
+
+                  const unifiedLayer = L.geoJSON(
+                    geojson,
+                    {
+                      style: {
+                        color: 'blue',
+                        weight: 6
+                      },
+                      onEachFeature: (feature, layer) => {
+                        if (feature.properties?.name) {
+                          layer.bindTooltip(`
+                            <div style="font-size: 10px;">
+                              ${feature.properties.gridref}<br>
+                              ${feature.properties.name}<br>
+                              ${feature.properties.place_name}
+                            </div>
+                          `);
+                        }
+                      }
+                    }
+                  );
+
+                  registerOverlay("Tracks", unifiedLayer, true);
+
+                  const bounds = unifiedLayer.getBounds();
+
+                  if (bounds.isValid()) {
+                    map.fitBounds(bounds, { maxZoom: 8 });
+                  }
+
+                  resolve();
+                })
+                .catch(error => {
+                  console.error('Error loading track file:', error);
+                  resolve();
+                });
+
+              return;
+            }
+
+            // ==========================================================
+            // NORMAL MAP MODE
+            // Load every track and apply filters
+            // ==========================================================
             const allFilteredFeatures = [];
 
-            const loadPromises = manifest.map(file =>
+            const loadPromises = Object.values(manifest).map(file =>
               fetch(file)
                 .then(resp => resp.json())
                 .then(geojson => {
+
                   const filtered = geojson.features.filter(feature => {
-                    if (selectedTrackId && feature.properties.date !== selectedTrackId) return false;
+
                     const props = feature.properties || {};
+
                     const date = new Date(props.date);
                     const distance = parseFloat(props.distance_mi);
                     const ascent = parseFloat(props.ascent);
+
                     return (
                       date >= new Date(parseInt(minDateSlider.value)) &&
                       date <= new Date(parseInt(maxDateSlider.value)) &&
@@ -651,19 +715,27 @@
                       ascent <= parseFloat(maxAscentSlider.value)
                     );
                   });
+
                   allFilteredFeatures.push(...filtered);
                 })
-                .catch(err => console.error('Error loading ' + file + ':', err))
+                .catch(err =>
+                  console.error('Error loading ' + file + ':', err)
+                )
             );
 
             Promise.all(loadPromises).then(() => {
+
               if (allFilteredFeatures.length > 0) {
+
                 const unifiedLayer = L.geoJSON(
-                  { type: "FeatureCollection", features: allFilteredFeatures },
+                  {
+                    type: "FeatureCollection",
+                    features: allFilteredFeatures
+                  },
                   {
                     style: feature => ({
-                      color: selectedTrackId ? 'blue' : (feature.properties?.colour || 'green'),
-                      weight: selectedTrackId ? 6 : 3
+                      color: feature.properties?.colour || 'green',
+                      weight: 3
                     }),
                     onEachFeature: (feature, layer) => {
                       if (feature.properties?.name) {
@@ -680,14 +752,8 @@
                 );
 
                 registerOverlay("Tracks", unifiedLayer, true);
-
-                if (selectedTrackId) {
-                  const bounds = unifiedLayer.getBounds();
-                  if (bounds.isValid()) {
-                    map.fitBounds(bounds, { maxZoom: 8 });
-                  }
-                }
               }
+
               resolve();
             });
           })
@@ -695,8 +761,10 @@
             console.error('Error loading tracks_manifest.json:', error);
             resolve();
           });
+
       });
     }, 400);
+               
 
     const loadTrackMarkers = debounce(function () {
       removeOverlayEverywhere("Track Markers");

@@ -626,7 +626,7 @@ def save_tracks_as_gpx(feature_collection):
 def split_features_to_files(features, output_dir):
     """Splits GeoJSON features into individual files and generates a manifest and marker features."""
 
-    manifest = []
+    manifest = {}
     marker_features = []
     for feature in features:
         name = feature.get("properties", {}).get("name")
@@ -650,8 +650,12 @@ def split_features_to_files(features, output_dir):
         with open(filepath, "w", encoding="utf-8") as out_f:
             json.dump(feature_geojson, out_f, ensure_ascii=False, indent=2)
 
-        # Add relative path to manifest
-        manifest.append(os.path.join(output_dir, filename).replace("\\", "/"))
+        # Add track id and relative path to manifest
+        track_id = feature["properties"]["date"]
+        manifest[track_id] = (
+            os.path.join(output_dir, filename)
+            .replace("\\", "/")
+        )
 
         # Extract starting location for marker
         geometry = feature.get("geometry", {})
