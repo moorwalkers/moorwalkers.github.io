@@ -447,10 +447,6 @@ function parseCSV(csv) {
       // Extract the latest donation record
       const latestDonation = getLatestDonation(data);
       
-      // Hide the loading indicator
-      const loadingEl = document.getElementById('donationLoading');
-      if (loadingEl) loadingEl.style.display = 'none';
-      
       // Display the donation data
       displayDonation(latestDonation);
     })
@@ -687,10 +683,6 @@ function parseCSV(csv) {
       
       // Extract the latest donation record based on Donation column
       const latestDonation = getLatestDonationByDonationColumn(data);
-      
-      // Hide the loading indicator
-      const loadingEl = document.getElementById('latestDonationLoading');
-      if (loadingEl) loadingEl.style.display = 'none';
       
       // Display the donation data
       displayLatestDonation(latestDonation);
