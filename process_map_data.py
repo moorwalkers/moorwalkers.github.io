@@ -11,9 +11,13 @@ Main functionalities:
 Dependencies: geojson, gpxpy, matplotlib, requests, geopy, OSGridConverter, shapely, sklearn, etc.
 """
 
+import http.server
 import json
 import os
 import re
+import socketserver
+import subprocess
+import threading
 import time
 from datetime import datetime, timedelta
 from math import sqrt
@@ -25,9 +29,57 @@ import matplotlib.pyplot as plt
 import requests
 from geopy import distance
 from OSGridConverter import latlong2grid
+from PIL import Image
+from playwright.sync_api import sync_playwright
 from shapely.geometry import LineString
 from sklearn.cluster import KMeans
 
+# Constants
+PORT = 8001
+
+# Determines the number of physical CPU cores on a Windows system.
+def get_windows_physical_core_count():
+    try:
+        result = subprocess.run(
+            [
+                "powershell.exe",
+                "-NoProfile",
+                "-Command",
+                "(Get-CimInstance -ClassName Win32_Processor | "
+                "Measure-Object -Property NumberOfCores -Sum).Sum",
+            ],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+
+        return int(result.stdout.strip())
+
+    except Exception:
+        return os.cpu_count() or 1
+
+# KMeans (via scikit-learn/joblib) attempts to detect the number ofphysical CPU cores when fitting clusters. On newer Windows systems
+# this can trigger warnings because the legacy WMIC command is no longer available. Setting LOKY_MAX_CPU_COUNT to the physical core
+# count avoids that detection step and suppresses the warning.
+os.environ["LOKY_MAX_CPU_COUNT"] = str(get_windows_physical_core_count())
+
+# Custom HTTP request handler that suppresses log messages.
+class QuietHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
+    def log_message(self, format, *args):
+        pass
+
+# Starts a local HTTP server on the specified port using the QuietHTTPRequestHandler.
+def start_local_server():
+    handler = QuietHTTPRequestHandler
+    httpd = socketserver.TCPServer(("", PORT), handler)
+
+    thread = threading.Thread(target=httpd.serve_forever)
+    thread.daemon = True
+    thread.start()
+
+    return httpd
+
+# Fetches a formatted address from LocationIQ given latitude and longitude coordinates.
 def get_address_from_locationiq(lat, lon):
     """Fetches a formatted address from LocationIQ given latitude and longitude coordinates."""
     
@@ -62,6 +114,7 @@ def get_address_from_locationiq(lat, lon):
         else:
             return ",".join(sections[0:3]).strip()
 
+# Simplifies a polyline using the Douglas-Peucker algorithm with a specified tolerance.
 def douglas_peucker(points, epsilon):
     """Simplifies a polyline using the Douglas-Peucker algorithm with a specified tolerance."""
 
@@ -286,7 +339,13 @@ def create_data(main_geojson):
             + filename[:-4].replace(" ", "").replace("@", "_")
             + ".png"
         )
-        #print(elevation_profile_link)
+
+        # Generate the elevation profile image link
+        thumbnail_link = (
+            "https://moorwalkers.github.io/track_thumbnails/"
+            + filename[:-4].replace(" ", "").replace("@", "_")
+            + ".png"
+        )
 
         # Calculate the start and end times of the track, and then the duration
         start_time = track_points[0].time
@@ -339,6 +398,7 @@ def create_data(main_geojson):
                 "ind_map_link": ind_map_link,
                 "ind_map_link_os": ind_map_link_os,
                 "elevation_profile_link": elevation_profile_link,
+                "thumbnail_link": thumbnail_link,
             },
         )
 
@@ -351,6 +411,21 @@ def create_data(main_geojson):
 
     # Sort the features list by name
     features = sorted(features, key=lambda x: x["properties"]["name"], reverse=True)
+
+    # Add or refresh the thumbnail link for every feature.
+    # This also updates tracks already stored in moorwalkers.geojson.
+    for feature in features:
+        track_name = (
+            feature["properties"]["name"]
+            .replace(" ", "")
+            .replace("@", "_")
+        )
+
+        feature["properties"]["thumbnail_link"] = (
+            "https://moorwalkers.github.io/track_thumbnails/"
+            + track_name
+            + ".png"
+        )
 
     # Create a GeoJSON feature collection from the features list
     feature_collection = geojson.FeatureCollection(features)
@@ -473,6 +548,54 @@ def save_tracks_as_elevation_profiles(feature_collection):
             plt.close()  # Close the figure to prevent overlap
     
     print("Elevation profiles created")
+
+def save_tracks_as_map_screenshots(feature_collection):
+    """
+    Generate map thumbnails using the live map page.
+    """
+
+    output_dir = os.path.join(os.getcwd(), "track_thumbnails")
+
+    os.makedirs(output_dir, exist_ok=True)
+
+    with sync_playwright() as p:
+
+        browser = p.chromium.launch(headless=True)
+
+        page = browser.new_page(viewport={"width": 1200, "height": 900})
+
+        for feature in feature_collection["features"]:
+
+            track_name = (feature["properties"]["name"].replace(" ", "").replace("@", "_"))
+
+            output_file = os.path.join(output_dir, f"{track_name}.png")
+
+            if os.path.exists(output_file):
+                continue
+
+            track_id = feature["properties"]["date"]
+
+            url = (f"http://localhost:{PORT}/map.html?track_id={track_id}")
+
+            print(f"Generating thumbnail for {track_name}")
+
+            page.goto(url, wait_until="networkidle")
+
+            # Give Leaflet and OS tiles time to finish rendering
+            page.wait_for_timeout(10000)
+
+            # Screenshot map
+            page.screenshot(path=output_file)
+
+            image = Image.open(output_file)
+            image.thumbnail((400, 250))
+            image.save(output_file, "PNG")
+
+        browser.close()
+
+    print(
+        "Track thumbnails created"
+    )
 
 def save_tracks_as_gpx(feature_collection):
     """Converts a GeoJSON FeatureCollection of tracks to individual GPX files and saves them."""
@@ -615,10 +738,20 @@ def create_tracks_content_page(years, feature_collection):
                 }
             }
 
-            /* Define the grid for smaller screens (e.g., mobile) */
-            @media (max-width: 1080px) {
+            /* Define the grid for medium-sized screens */
+            @media (min-width: 601px) and (max-width: 1080px) {
                 .track-list {
                     grid-template-columns: repeat(2, 1fr);
+                }
+            }
+
+            /* Define the grid for mobile screens: single column with larger text/images */
+            @media (max-width: 600px) {
+                .track-list {
+                    grid-template-columns: 1fr;
+                }
+                .track {
+                    font-size: 1.4em;
                 }
             }
 
@@ -635,12 +768,21 @@ def create_tracks_content_page(years, feature_collection):
             max-height: 100%; /* Set maximum height to fit the container */
             display: block; /* Ensures images resize properly */
             margin: auto; /* Centers the images horizontally */
+            border-radius: 10px;
         }
         
         .track-details {
             text-align: left;
             padding-left: 20px;
             line-height: 0.9;
+        }
+
+        .track-title {
+            text-align: left;
+            margin-top: 10px;
+            font-weight: bold;
+            line-height: 1.2em;
+            min-height: 3.6em; /* Reserve space for up to 3 lines so following details align across cards */
         }
         
         .track-details-distance {
@@ -685,7 +827,7 @@ def create_tracks_content_page(years, feature_collection):
             width: 400px; /* Adjust the width */
         }
         
-        a {
+        .btn {
             display: block;
             padding: 0.5em 1em;
             background-color: #0A4478;
@@ -695,8 +837,17 @@ def create_tracks_content_page(years, feature_collection):
             transition: background-color 0.2s ease;
             font-size: 1.0em;
         }
-        a:hover {
+        .btn:hover {
             background-color: #1A4E87;
+        }
+        .img-link {
+            display: block;
+            background: none;
+            padding: 0;
+            border: 10px solid transparent;
+            border-left-width: 20px;
+            border-right-width: 10px;
+            border-radius: 10px;
         }
     </style>
     <script>
@@ -911,7 +1062,7 @@ def create_tracks_content_page(years, feature_collection):
                         html_track = f"""\
 <div class="track" style="border: 10px solid {grid_colour};">
                 <div class="track-details">
-                    <div style='text-align: left; margin-top: 10px; font-weight: bold;'>{feature['properties']['place_name']}</div>
+                    <div class="track-title">{feature['properties']['place_name']}</div>
                     <br>{feature['properties']['gridref']}</br>
                     <br>Date: {date_title}</br>
                     <br>Distance:</br>
@@ -925,10 +1076,10 @@ def create_tracks_content_page(years, feature_collection):
                         <br>Descent: {feature['properties']['descent']}m</br>
                     </div>
                 </div>
-                <img src="{feature['properties']['elevation_profile_link']}" alt="Elevation Profile" class="clickable-image" onclick="displayLargeImage('{feature['properties']['elevation_profile_link']}')">
-                <a href=\"{feature['properties']['ind_map_link']}" target=\"_blank\" style='display: block; margin-top: 5px;'>Open Individual Map</a>
-                <a href=\"{feature['properties']['googleMapsLink']}\" target=\"_blank\" style='display: block; margin-top: 5px;'>Starting Location on Google Maps</a>
-                <a href=\"{feature['properties']['download_link']}\" download=\"{os.path.basename(feature['properties']['download_link'])}\" style='display: block; margin-top: 5px;'>Download GPX Track File</a>
+                <a href="{feature['properties']['ind_map_link']}" target="_blank" class="img-link"><img src="{feature['properties']['thumbnail_link']}" alt="Map Thumbnail" style="display: block;"></a>
+                <img src="{feature['properties']['elevation_profile_link']}" alt="Elevation Profile">
+                <a href=\"{feature['properties']['googleMapsLink']}\" target=\"_blank\" class="btn" style='margin-top: 5px;'>Starting Location on Google Maps</a>
+                <a href=\"{feature['properties']['download_link']}\" download=\"{os.path.basename(feature['properties']['download_link'])}\" class="btn" style='margin-top: 5px;'>Download GPX Track File</a>
             </div>
                     """
                         f.write(html_track)
@@ -955,6 +1106,14 @@ def main():
 
     # Create individual elevation profile images
     save_tracks_as_elevation_profiles(feature_collection)
+
+    # Create individual map and track thumbnails
+    server = start_local_server()
+    # Ensure the local server is running before taking screenshots
+    try:
+        save_tracks_as_map_screenshots(feature_collection)
+    finally:
+        server.shutdown()
 
     # Create individual gpx files from the created data for users to download
     save_tracks_as_gpx(feature_collection)
