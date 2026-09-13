@@ -100,7 +100,6 @@
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
 
   <!-- Favicon -->
@@ -590,13 +589,15 @@
       }
 
       // Everything else => 3857 map
-      let layer3857 = base_OS_LIGHT_3857;
-      if (code === "OS_LIGHT_3857") layer3857 = base_OS_LIGHT_3857;
-      if (code === "OS_OUTDOOR_3857") layer3857 = base_OS_OUTDOOR_3857;
-      if (code === "OS_ROAD_3857") layer3857 = base_OS_ROAD_3857;
-      if (code === "OSM_3857") layer3857 = base_OSM_3857;
-      if (code === "ESRI_IMAGERY_3857") layer3857 = base_ESRI_IMAGERY_3857;
-      if (code === "ESRI_TOPO_3857") layer3857 = base_ESRI_TOPO_3857;
+      const basemaps3857 = {
+        OS_LIGHT_3857: base_OS_LIGHT_3857,
+        OS_OUTDOOR_3857: base_OS_OUTDOOR_3857,
+        OS_ROAD_3857: base_OS_ROAD_3857,
+        OSM_3857: base_OSM_3857,
+        ESRI_IMAGERY_3857: base_ESRI_IMAGERY_3857,
+        ESRI_TOPO_3857: base_ESRI_TOPO_3857
+      };
+      const layer3857 = basemaps3857[code] || base_OS_LIGHT_3857;
 
       setBase3857(layer3857);
 
