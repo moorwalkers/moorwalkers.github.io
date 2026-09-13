@@ -797,31 +797,6 @@ def create_tracks_content_page(years, feature_collection):
             font-weight: bold;
         }
 
-        /* Styling for the modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Styling for the larger image */
-        .modal-content {
-            display: block;
-            max-width: 80%;
-            max-height: 80%;
-        }
-        
-        /* Styling for the clickable images */
-        .clickable-image {
-            cursor: pointer;
-        }
-
         /* Custom styles for larger sliders */
         input[type="range"] {
             width: 400px; /* Adjust the width */
@@ -850,28 +825,8 @@ def create_tracks_content_page(years, feature_collection):
             border-radius: 10px;
         }
     </style>
-    <script>
-        function displayLargeImage(imageUrl) {
-            var modal = document.getElementById('modal');
-            var largerImg = document.getElementById('largerImage');
-            // Show the modal
-            modal.style.display = 'flex';
-            // Set the larger image source
-            largerImg.src = imageUrl;
-        }
-
-        function closeModal() {
-            var modal = document.getElementById('modal');
-            modal.style.display = 'none';
-        }
-    </script>
     </head>
     <body>
-        <!-- Modal for displaying larger image -->
-        <div id="modal" class="modal" onclick="closeModal()">
-            <img id="largerImage" class="modal-content" src="" alt="Larger Image">
-        </div>
-        
         <!-- Container for distance sliders -->
         <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
         <div style="margin: 10px;">
