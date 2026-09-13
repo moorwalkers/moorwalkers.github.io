@@ -5,7 +5,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Royal Oak (Meavy)",
-        "description": "",
+        "description": "<a href=https://www.theroyaloakmeavy.co.uk/>The Royal Oak (Meavy)</a>",
         "category": "Pub"
       },
       "geometry": {
@@ -17,7 +17,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Burrator Inn",
-        "description": "",
+        "description": "<a href=https://www.burratorinn.com/>The Burrator Inn</a>",
         "category": "Pub"
       },
       "geometry": {
@@ -41,7 +41,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Skylark Inn",
-        "description": "",
+        "description": "<a href=https://www.skylarkinn.co.uk/>The Skylark Inn</a>",
         "category": "Pub"
       },
       "geometry": {
@@ -53,7 +53,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Avon Inn",
-        "description": "",
+        "description": "<a href=https://avon-inn.org.uk/>The Avon Inn</a>",
         "category": "Pub"
       },
       "geometry": {
@@ -65,7 +65,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Church House Inn",
-        "description": "",
+        "description": "<a href=https://www.churchhouseholne.co.uk/>The Church House Inn</a>",
         "category": "Pub"
       },
       "geometry": {
@@ -89,7 +89,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Leaping Salmon",
-        "description": "",
+        "description": "<a href=https://www.theleapingsalmon.co.uk/>The Leaping Salmon</a>",
         "category": "Pub"
       },
       "geometry": {
@@ -101,7 +101,7 @@
       "type": "Feature",
       "properties": {
         "name": "Ye Olde Salutation Inne",
-        "description": "",
+        "description": "<a href=http://www.yeoldesalutationinn-looe.foodanddrinksites.co.uk/>Ye Olde Salutation Inne</a>",
         "category": "Pub"
       },
       "geometry": {
@@ -113,7 +113,7 @@
       "type": "Feature",
       "properties": {
         "name": "Three Crowns",
-        "description": "",
+        "description": "<a href=https://threecrowns-chagford.co.uk/>Three Crowns</a>",
         "category": "Pub"
       },
       "geometry": {
@@ -125,7 +125,7 @@
       "type": "Feature",
       "properties": {
         "name": "Two Bridges Hotel",
-        "description": "",
+        "description": "<a href=https://twobridges.co.uk/>Two Bridges Hotel</a>",
         "category": "Pub"
       },
       "geometry": {
@@ -137,7 +137,7 @@
       "type": "Feature",
       "properties": {
         "name": "The White Thorn Inn",
-        "description": "",
+        "description": "<a href=https://www.thewhitethorninn.co.uk/>The White Thorn Inn</a>",
         "category": "Pub"
       },
       "geometry": {
@@ -160,8 +160,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "The Rock Inn",
-        "description": "",
+        "name": "The Rock Inn (Haytor)",
+        "description": "<a href=https://www.rock-inn.co.uk/>The Rock Inn (Haytor)</a>",
         "category": "Pub"
       },
       "geometry": {
@@ -173,7 +173,7 @@
       "type": "Feature",
       "properties": {
         "name": "Drake Manor Inn",
-        "description": "",
+        "description": "<a href=https://drakemanorinn.co.uk/>Drake Manor Inn</a>",
         "category": "Pub"
       },
       "geometry": {
@@ -185,7 +185,7 @@
       "type": "Feature",
       "properties": {
         "name": "Peter Tavy Inn",
-        "description": "",
+        "description": "<a href=https://petertavyinn.co.uk/>Peter Tavy Inn</a>",
         "category": "Pub"
       },
       "geometry": {
@@ -196,20 +196,8 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "The Anchor Inn",
-        "description": "",
-        "category": "Pub"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-3.861932, 50.387609]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "Prince of Wales",
-        "description": "",
+        "description": "<a href=https://www.princeofwalesprincetown.pub/>Prince of Wales</a>",
         "category": "Pub"
       },
       "geometry": {
@@ -221,7 +209,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Plume of Feathers",
-        "description": "",
+        "description": "<a href=https://plumedartmoor.co.uk/>The Plume of Feathers</a>",
         "category": "Pub"
       },
       "geometry": {
@@ -233,7 +221,7 @@
       "type": "Feature",
       "properties": {
         "name": "The Rugglestone Inn",
-        "description": "",
+        "description": "<a href=https://www.rugglestoneinn.co.uk/>The Rugglestone Inn</a>",
         "category": "Pub"
       },
       "geometry": {
@@ -244,13 +232,229 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Tavistock Inn",
+        "name": "Tavistock Inn (Poundsgate)",
         "description": "",
         "category": "Pub"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [-3.828877, 50.534367]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "East Dart Inn",
+        "description": "<a href=https://east-dart-inn.co.uk/>East Dart Inn</a>",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.9099276331692288, 50.59492550871564]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Warren House Inn",
+        "description": "<a href=http://www.warrenhouseinn.co.uk/>Warren House Inn</a>",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.8751273930020833, 50.61302798817701]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Forest Inn",
+        "description": "<a href=https://forestinndartmoor.co.uk/>Forest Inn</a>",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.8993143207093994, 50.53795728651605]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Walkhampton Inn",
+        "description": "<a href=https://walkhamptoninn.co.uk/>The Walkhampton Inn</a>",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-4.069995906522893, 50.50890748617563]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Rock Inn (Yelverton)",
+        "description": "<a href=http://therockinnyelverton.pub/>The Rock Inn (Yelverton)</a>",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-4.084326428238634, 50.49192662455946]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The London Inn",
+        "description": "",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-4.098898034608654, 50.509463097450315]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Mary Tavy Inn",
+        "description": "<a href=https://themarytavyinn.co.uk/>The Mary Tavy Inn</a>",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-4.113849453805444, 50.590207548807264]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Castle Inn",
+        "description": "<a href=https://castleinnlydford.co.uk/>The Castle Inn</a>",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-4.108867912467537, 50.64366085381667]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Fox & Hounds",
+        "description": "<a href=http://www.foxandhoundshotel.com/>The Fox & Hounds</a>",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-4.088005281321273, 50.66099123480529]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bearslake Inn",
+        "description": "<a href=https://bearslakeinn.com/>Bearslake Inn</a>",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-4.084554364253595, 50.68084354325581]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Tors Inn",
+        "description": "<a href=https://thetorsinn.co.uk/>The Tors Inn</a>",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.957456386737827, 50.72496727574511]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Pack Horse Inn",
+        "description": "",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.834056409213958, 50.42624157245098]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Anchor Inn (Ugborough)",
+        "description": "<a href=https://www.anchorinnugborough.co.uk/>The Anchor Inn (Ugborough)</a>",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.8619165183034427, 50.38759218839427]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Ship Inn (Ugborough)",
+        "description": "<a href=https://www.shipinnugborough.co.uk/>The Ship Inn (Ugborough)</a>",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.861093817840464, 50.386757091930086]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Mountain Inn",
+        "description": "",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.976839319611446, 50.41772153699395]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cornwood Inn",
+        "description": "<a href=https://www.cornwood-inn.com/>Cornwood Inn</a>",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-3.9644793421910176, 50.42040285575875]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Ship Inn (Noss Mayo)",
+        "description": "<a href=https://www.shipinn-nossmayo.co.uk/>The Ship Inn (Noss Mayo)</a>",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-4.040678774742404, 50.3108531310876]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "The Swan Inn (Noss Mayo)",
+        "description": "<a href=https://www.swaninnnossmayo.com/>The Swan Inn (Noss Mayo)</a>",
+        "category": "Pub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-4.039603535784548, 50.311754640972616]
       }
     }
   ]
