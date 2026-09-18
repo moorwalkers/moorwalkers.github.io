@@ -1061,14 +1061,6 @@ def main():
     # Create individual elevation profile images
     save_tracks_as_elevation_profiles(feature_collection)
 
-    # Create individual map and track thumbnails
-    server = start_local_server()
-    # Ensure the local server is running before taking screenshots
-    try:
-        save_tracks_as_map_screenshots(feature_collection)
-    finally:
-        server.shutdown()
-
     # Create individual gpx files from the created data for users to download
     save_tracks_as_gpx(feature_collection)
 
@@ -1089,6 +1081,14 @@ def main():
     
     # Create the tracks content page
     create_tracks_content_page(years, feature_collection)
+
+    # Create individual map and track thumbnails
+    server = start_local_server()
+    # Ensure the local server is running before taking screenshots
+    try:
+        save_tracks_as_map_screenshots(feature_collection)
+    finally:
+        server.shutdown()
 
 if __name__ == "__main__":
     main()
