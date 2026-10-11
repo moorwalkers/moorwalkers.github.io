@@ -89,6 +89,7 @@
   <!-- Leaflet (single version) -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-polylinedecorator@1.6.0/dist/leaflet.polylineDecorator.js"></script>
 
   <!-- Proj4 + Proj4Leaflet (needed for EPSG:27700 map only) -->
   <script src="https://unpkg.com/proj4@2.7.5/dist/proj4.js"></script>
@@ -367,6 +368,54 @@
       return el27700.classList.contains("active") ? "27700" : "3857";
     }
 
+    const TRACK_ARROW_MIN_ZOOM = { "27700": 6, "3857": 13 };
+    let currentTrackDisplayLayer = null;
+    let currentTrackArrows = null;
+
+    function updateTrackDirectionArrows() {
+      if (!currentTrackDisplayLayer || !currentTrackArrows) return;
+
+      const shouldShow = map.getZoom() >= TRACK_ARROW_MIN_ZOOM[activeWhich()];
+      const isVisible = currentTrackDisplayLayer.hasLayer(currentTrackArrows);
+
+      if (shouldShow && !isVisible) {
+        currentTrackDisplayLayer.addLayer(currentTrackArrows);
+      } else if (!shouldShow && isVisible) {
+        currentTrackDisplayLayer.removeLayer(currentTrackArrows);
+      }
+    }
+
+    function createTrackDisplayLayer(trackLayer) {
+      const displayLayer = L.featureGroup([trackLayer]);
+      const arrows = L.featureGroup();
+
+      trackLayer.eachLayer(line => {
+        arrows.addLayer(L.polylineDecorator(line, {
+          patterns: [{
+            offset: "10%",
+            repeat: "20%",
+            symbol: L.Symbol.arrowHead({
+              pixelSize: 12,
+              polygon: false,
+              pathOptions: {
+                color: line.options.color || "blue",
+                weight: 2
+              }
+            })
+          }]
+        }));
+      });
+
+      currentTrackDisplayLayer = displayLayer;
+      currentTrackArrows = arrows;
+      updateTrackDirectionArrows();
+
+      return displayLayer;
+    }
+
+    map27700.on("zoomend", updateTrackDirectionArrows);
+    map3857.on("zoomend", updateTrackDirectionArrows);
+
     // ============================================================
     // BASEMAPS
     // ============================================================
@@ -537,12 +586,14 @@
         moveActiveOverlays(map3857, map27700);
         map = map27700;
         map27700.invalidateSize(true);
+        updateTrackDirectionArrows();
       } else {
         el3857.classList.add("active"); el3857.classList.remove("inactive");
         el27700.classList.add("inactive"); el27700.classList.remove("active");
         moveActiveOverlays(map27700, map3857);
         map = map3857;
         map3857.invalidateSize(true);
+        updateTrackDirectionArrows();
       }
     }
 
@@ -669,7 +720,7 @@
                     }
                   );
 
-                  registerOverlay("Tracks", unifiedLayer, true);
+                  registerOverlay("Tracks", createTrackDisplayLayer(unifiedLayer), true);
 
                   const bounds = unifiedLayer.getBounds();
 
@@ -751,7 +802,7 @@
                   }
                 );
 
-                registerOverlay("Tracks", unifiedLayer, true);
+                registerOverlay("Tracks", createTrackDisplayLayer(unifiedLayer), true);
               }
 
               resolve();
