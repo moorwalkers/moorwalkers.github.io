@@ -716,31 +716,16 @@ def create_tracks_content_page(years, feature_collection):
             padding: 20px;
         }
 
-            /* Define the grid for larger screens (e.g., desktop) */
-            @media (min-width: 1501px) {
+            /* Define the grid for desktop and tablet screens */
+            @media (min-width: 601px) {
                 .track-list {
-                    grid-template-columns: repeat(5, 1fr);
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
                 }
             }
 
-            /* Define the grid for medium-sized screens */
-            @media (min-width: 1291px) and (max-width: 1500px) {
+            @media (min-width: 1081px) {
                 .track-list {
-                    grid-template-columns: repeat(4, 1fr);
-                }
-            }
-
-            /* Define the grid for medium-sized screens */
-            @media (min-width: 1081px) and (max-width: 1290px) {
-                .track-list {
-                    grid-template-columns: repeat(3, 1fr);
-                }
-            }
-
-            /* Define the grid for medium-sized screens */
-            @media (min-width: 601px) and (max-width: 1080px) {
-                .track-list {
-                    grid-template-columns: repeat(2, 1fr);
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
                 }
             }
 
@@ -760,6 +745,46 @@ def create_tracks_content_page(years, feature_collection):
             border-radius: 10px;
             padding: 10px;
             text-align: center;
+            min-width: 0;
+        }
+
+        .track-title {
+            text-align: left;
+            margin: 10px 0;
+            font-weight: bold;
+            line-height: 1.2em;
+        }
+
+        .track-content {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 12px;
+            align-items: stretch;
+            text-align: left;
+        }
+
+        .track-media,
+        .track-details {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .track-actions {
+            margin-top: auto;
+        }
+
+        .track-actions .btn {
+            text-align: center;
+            overflow-wrap: anywhere;
+        }
+
+        .track-download {
+            margin-top: auto;
+        }
+
+        .track-media > img {
+            margin: 0 auto;
         }
 
         .track img {
@@ -772,27 +797,42 @@ def create_tracks_content_page(years, feature_collection):
         
         .track-details {
             text-align: left;
-            padding-left: 20px;
-            line-height: 0.9;
         }
 
-        .track-title {
-            text-align: left;
-            margin-top: 10px;
+        .track-details-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            line-height: 1.3;
+        }
+
+        .track-details-primary,
+        .track-details-secondary {
+            min-width: 0;
+        }
+
+        .track-detail {
+            margin-bottom: 8px;
+        }
+
+        .track-detail-label {
             font-weight: bold;
-            line-height: 1.2em;
-            min-height: 3.6em; /* Reserve space for up to 3 lines so following details align across cards */
         }
         
         .track-details-distance {
-            line-height: 0.6;
+            line-height: 1.3;
         }
 
-        .track-details-ascent-normal {
+        .track-details-ascent-normal,
+        .track-details-ascent-bold {
+            line-height: 1.3;
+        }
+
+        .track-details-ascent-normal .track-detail-label {
             font-weight: normal;
         }
-        
-        .track-details-ascent-bold {
+
+        .track-details-ascent-bold .track-detail-label {
             font-weight: bold;
         }
 
@@ -1015,25 +1055,39 @@ def create_tracks_content_page(years, feature_collection):
                         # HTML template for each track
                         html_track = f"""\
 <div class="track" style="border: 10px solid {grid_colour};">
-                <div class="track-details">
-                    <div class="track-title">{feature['properties']['place_name']}</div>
-                    <br>{feature['properties']['gridref']}</br>
-                    <br>Date: {date_title}</br>
-                    <br>Distance:</br>
-                    <div class="track-details-distance">
-                        <br>{feature['properties']['distance_mi']} miles</br>
-                        <br>{feature['properties']['distance_km']} km</br>
+                <div class="track-title">{feature['properties']['place_name']}</div>
+                <div class="track-content">
+                    <div class="track-media">
+                        <a href="{feature['properties']['ind_map_link']}" target="_blank" class="img-link"><img src="{feature['properties']['thumbnail_link']}" alt="Map Thumbnail" style="display: block;"></a>
+                        <img src="{feature['properties']['elevation_profile_link']}" alt="Elevation Profile">
+                        <div class="track-actions">
+                            <a href=\"{feature['properties']['googleMapsLink']}\" target=\"_blank\" class="btn">Starting Location</a>
+                        </div>
                     </div>
-                    <br>Duration: {feature['properties']['duration']}</br>
-                    <div class="track-details-ascent-{asc_desc_font_weight}">
-                        <br>Ascent: {feature['properties']['ascent']}m</br>
-                        <br>Descent: {feature['properties']['descent']}m</br>
+                    <div class="track-details">
+                        <div class="track-details-grid">
+                        <div class="track-details-primary">
+                            <div class="track-detail">{feature['properties']['gridref']}</div>
+                            <div class="track-detail">Date: {date_title}</div>
+                        </div>
+                        <div class="track-details-secondary">
+                            <div class="track-detail">
+                                <div class="track-detail-label">Distance:</div>
+                                <div class="track-details-distance">
+                                    <div>{feature['properties']['distance_mi']} miles</div>
+                                    <div>{feature['properties']['distance_km']} km</div>
+                                </div>
+                            </div>
+                            <div class="track-detail">Duration: {feature['properties']['duration']}</div>
+                            <div class="track-details-ascent-{asc_desc_font_weight}">
+                                <div><span class="track-detail-label">Ascent:</span> {feature['properties']['ascent']}m</div>
+                                <div><span class="track-detail-label">Descent:</span> {feature['properties']['descent']}m</div>
+                            </div>
+                        </div>
+                        </div>
+                        <a href=\"{feature['properties']['download_link']}\" download=\"{os.path.basename(feature['properties']['download_link'])}\" class="btn track-download">Download GPX Track File</a>
                     </div>
                 </div>
-                <a href="{feature['properties']['ind_map_link']}" target="_blank" class="img-link"><img src="{feature['properties']['thumbnail_link']}" alt="Map Thumbnail" style="display: block;"></a>
-                <img src="{feature['properties']['elevation_profile_link']}" alt="Elevation Profile">
-                <a href=\"{feature['properties']['googleMapsLink']}\" target=\"_blank\" class="btn" style='margin-top: 5px;'>Starting Location on Google Maps</a>
-                <a href=\"{feature['properties']['download_link']}\" download=\"{os.path.basename(feature['properties']['download_link'])}\" class="btn" style='margin-top: 5px;'>Download GPX Track File</a>
             </div>
                     """
                         f.write(html_track)
