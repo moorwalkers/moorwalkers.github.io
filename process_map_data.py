@@ -787,6 +787,69 @@ def create_tracks_content_page(years, feature_collection):
             margin: 0 auto;
         }
 
+        .profile-preview {
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            cursor: zoom-in;
+        }
+
+        .profile-preview:focus-visible {
+            outline: 3px solid #0A4478;
+            outline-offset: 2px;
+        }
+
+        .profile-lightbox {
+            position: relative;
+            max-width: 96vw;
+            max-height: 96vh;
+            padding: 52px 16px 16px;
+            border: 0;
+            border-radius: 6px;
+            overflow: visible;
+        }
+
+        .profile-lightbox::backdrop {
+            background: rgba(0, 0, 0, 0.78);
+        }
+
+        .profile-lightbox img {
+            display: block;
+            max-width: calc(96vw - 32px);
+            max-height: calc(90vh - 60px);
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .profile-lightbox-close {
+            position: absolute;
+            top: 6px;
+            right: 16px;
+            min-width: 72px;
+            min-height: 40px;
+            padding: 6px 12px;
+            border: 2px solid #111;
+            border-radius: 48% 52% 46% 54% / 52% 46% 54% 48%;
+            background: #fff;
+            color: #111;
+            font: 600 16px "Comic Sans MS", "Segoe Print", cursive;
+            transform: rotate(-2deg);
+            cursor: pointer;
+        }
+
+        .profile-lightbox-close:hover {
+            color: #1f77b4;
+            border-color: #1f77b4;
+        }
+
+        .profile-lightbox-close:focus-visible {
+            outline: 3px solid #1f77b4;
+            outline-offset: 3px;
+        }
+
         .track img {
             max-width: 100%; /* Set maximum width to fit the container */
             max-height: 100%; /* Set maximum height to fit the container */
@@ -891,6 +954,10 @@ def create_tracks_content_page(years, feature_collection):
 
     # HTML template for the end of the tracks content page
     html_end = """    
+    <dialog class="profile-lightbox" id="profileLightbox" aria-label="Enlarged elevation profile">
+        <button class="profile-lightbox-close" type="button">Close</button>
+        <img alt="Elevation Profile">
+    </dialog>
     </body>
 <script>
   // Function to set maximum values for distance and ascent sliders
@@ -973,6 +1040,30 @@ def create_tracks_content_page(years, feature_collection):
   // Initialize maximum slider values and perform initial filtering
   setMaxSliderValues();
   filterTracks();
+
+    const profileLightbox = document.getElementById('profileLightbox');
+    const profileLightboxImage = profileLightbox.querySelector('img');
+    const profileLightboxClose = profileLightbox.querySelector('.profile-lightbox-close');
+
+    document.querySelectorAll('.profile-preview').forEach(function(preview) {
+        preview.addEventListener('click', function() {
+            const image = preview.querySelector('img');
+            profileLightboxImage.src = image.src;
+            profileLightboxImage.alt = image.alt;
+            profileLightbox.showModal();
+            profileLightboxClose.focus();
+        });
+    });
+
+    profileLightboxClose.addEventListener('click', function() {
+        profileLightbox.close();
+    });
+
+    profileLightbox.addEventListener('click', function(event) {
+        if (event.target === profileLightbox) {
+            profileLightbox.close();
+        }
+    });
   
   // Send height to parent window for iframe resizing
   function sendHeight() {
@@ -1059,7 +1150,9 @@ def create_tracks_content_page(years, feature_collection):
                 <div class="track-content">
                     <div class="track-media">
                         <a href="{feature['properties']['ind_map_link']}" target="_blank" class="img-link"><img src="{feature['properties']['thumbnail_link']}" alt="Map Thumbnail" style="display: block;"></a>
-                        <img src="{feature['properties']['elevation_profile_link']}" alt="Elevation Profile">
+                        <button type="button" class="profile-preview" aria-label="Enlarge elevation profile">
+                            <img src="{feature['properties']['elevation_profile_link']}" alt="Elevation Profile">
+                        </button>
                         <div class="track-actions">
                             <a href=\"{feature['properties']['googleMapsLink']}\" target=\"_blank\" class="btn">Starting Location</a>
                         </div>

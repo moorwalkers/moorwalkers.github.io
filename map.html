@@ -78,11 +78,59 @@
       font-size: 1.0em;
       text-align: center;
     }
-    .popup-img-link {
+    .popup-img-preview {
       display: block;
+      width: 100%;
       background: none;
       padding: 0;
       border: none;
+      cursor: zoom-in;
+    }
+    .popup-img-preview:focus-visible {
+      outline: 3px solid #0A4478;
+      outline-offset: 2px;
+    }
+    .profile-lightbox {
+      position: relative;
+      max-width: 96vw;
+      max-height: 96vh;
+      padding: 52px 16px 16px;
+      border: 0;
+      border-radius: 6px;
+    }
+    .profile-lightbox::backdrop {
+      background: rgba(0, 0, 0, 0.78);
+    }
+    .profile-lightbox img {
+      display: block;
+      max-width: calc(96vw - 32px);
+      max-height: calc(90vh - 60px);
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+    .profile-lightbox-close {
+      position: absolute;
+      top: 6px;
+      right: 16px;
+      min-width: 72px;
+      min-height: 40px;
+      padding: 6px 12px;
+      border: 2px solid #111;
+      border-radius: 48% 52% 46% 54% / 52% 46% 54% 48%;
+      background: #fff;
+      color: #111;
+      font: 600 16px "Comic Sans MS", "Segoe Print", cursive;
+      transform: rotate(-2deg);
+      cursor: pointer;
+    }
+    .profile-lightbox-close:hover {
+      color: #1f77b4;
+      border-color: #1f77b4;
+    }
+    .profile-lightbox-close:focus-visible {
+      outline: 3px solid #1f77b4;
+      outline-offset: 3px;
     }
   </style>
 
@@ -172,6 +220,11 @@
       <a href="https://www.torsofdartmoor.co.uk" target="_blank">https://www.torsofdartmoor.co.uk</a>
     </p>
   </div>
+
+  <dialog class="profile-lightbox" id="profileLightbox" aria-label="Enlarged elevation profile">
+    <button class="profile-lightbox-close" type="button">Close</button>
+    <img alt="Elevation Profile">
+  </dialog>
 
   <script>
     // Keep as per your existing page
@@ -355,6 +408,47 @@
       maxZoom: 20,
       zoom: 4 + ZOOM_OFFSET_27700_TO_3857,
       zoomControl: true
+    });
+
+    const profileLightbox = document.getElementById('profileLightbox');
+    const profileLightboxImage = profileLightbox.querySelector('img');
+    const profileLightboxClose = profileLightbox.querySelector('.profile-lightbox-close');
+    let profileTrigger = null;
+
+    function wireProfilePreview(event) {
+      const preview = event.popup.getElement().querySelector('.popup-img-preview');
+      if (!preview) return;
+
+      preview.addEventListener('click', () => {
+        const image = preview.querySelector('img');
+        profileLightboxImage.src = image.src;
+        profileTrigger = preview;
+        profileLightbox.showModal();
+        profileLightboxClose.focus();
+      });
+    }
+
+    map27700.on('popupopen', wireProfilePreview);
+    map3857.on('popupopen', wireProfilePreview);
+
+    profileLightboxClose.addEventListener('click', () => profileLightbox.close());
+    profileLightbox.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        profileLightbox.close();
+      }
+    });
+    profileLightbox.addEventListener('click', event => {
+      const bounds = profileLightbox.getBoundingClientRect();
+      if (event.target === profileLightbox &&
+          (event.clientX < bounds.left || event.clientX > bounds.right ||
+           event.clientY < bounds.top || event.clientY > bounds.bottom)) {
+        profileLightbox.close();
+      }
+    });
+    profileLightbox.addEventListener('close', () => {
+      if (profileTrigger?.isConnected) profileTrigger.focus();
+      profileTrigger = null;
     });
 
     // Active map pointer (existing loader code uses this)
@@ -863,14 +957,14 @@
                         Duration: ${feature.properties.duration}<br>
                         Ascent: ${feature.properties.ascent} metres<br>
                         Descent: ${feature.properties.descent} metres<br>
-                        <a href="${feature.properties.elevation_profile_link}" target="_blank" class="popup-img-link">
+                        <button type="button" class="popup-img-preview" aria-label="Enlarge elevation profile">
                           <img src="${feature.properties.elevation_profile_link}" alt="Elevation Profile" style="width: 100%; margin-bottom: 5px;">
-                        </a>
+                        </button>
                         <a href="${feature.properties.ind_map_link}" target="_blank" class="popup-btn">
                           Open Individual Map
                         </a>
                         <a href="${feature.properties.googleMapsLink}" target="_blank" class="popup-btn">
-                          Starting Location on Google Maps
+                          Starting Location
                         </a>
                         <a href="${feature.properties.download_link}" download="${download_filename}" class="popup-btn">
                           Download GPX Track File
