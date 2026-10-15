@@ -131,21 +131,18 @@
             position: absolute;
             top: 6px;
             right: 16px;
-            min-width: 72px;
+            width: 40px;
             min-height: 40px;
-            padding: 6px 12px;
-            border: 2px solid #111;
-            border-radius: 48% 52% 46% 54% / 52% 46% 54% 48%;
-            background: #fff;
+            padding: 0;
+            border: 0;
+            background: transparent;
             color: #111;
-            font: 600 16px "Comic Sans MS", "Segoe Print", cursive;
-            transform: rotate(-2deg);
+            font: 32px/1 Arial, sans-serif;
             cursor: pointer;
         }
 
         .profile-lightbox-close:hover {
             color: #1f77b4;
-            border-color: #1f77b4;
         }
 
         .profile-lightbox-close:focus-visible {
@@ -9075,7 +9072,7 @@
             </div>
                     </div>    
     <dialog class="profile-lightbox" id="profileLightbox" aria-label="Enlarged elevation profile">
-        <button class="profile-lightbox-close" type="button">Close</button>
+        <button class="profile-lightbox-close" type="button" aria-label="Close">&times;</button>
         <img alt="Elevation Profile">
     </dialog>
     </body>
