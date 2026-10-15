@@ -78,9 +78,16 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.35);
       font-size: 12px;
     }
-    #trackSheet .track-sheet-body { display: flex; gap: 12px; align-items: flex-start; }
-    #trackSheet .track-sheet-left { flex: 1 1 55%; min-width: 0; }
-    #trackSheet .track-sheet-right { flex: 1 1 45%; min-width: 0; }
+    #trackSheet .track-sheet-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 12px;
+      align-items: start;
+    }
+    #trackSheet .track-sheet-title,
+    #trackSheet .track-sheet-profile { grid-column: 1 / -1; }
+    #trackSheet .track-sheet-left,
+    #trackSheet .track-sheet-right { min-width: 0; }
     #trackSheet .popup-btn { margin-bottom: 8px; font-size: 0.95em; }
     .track-sheet-close {
       position: absolute;
@@ -810,11 +817,14 @@
 
     // Shared hover/click behaviour for track lines
     const trackSheet = document.getElementById('trackSheet');
-    let sheetLayer = null;
     const trackLinesByDate = {};
     const markersByDate = {};
     const markerPropsByDate = {};
     const IS_TOUCH = window.matchMedia('(hover: none)').matches;
+
+    function markerTitleHtml(p) {
+      return `<div style="text-align: center; margin-bottom: 5px; font-weight: bold;">${p.place_name || ''}</div>`;
+    }
 
     function markerDetailsHtml(p) {
       return `
@@ -823,7 +833,11 @@
         Distance: ${p.distance_mi} mile / ${p.distance_km} km<br>
         Duration: ${p.duration}<br>
         Ascent: ${p.ascent} metres<br>
-        Descent: ${p.descent} metres<br>
+        Descent: ${p.descent} metres<br>`;
+    }
+
+    function markerProfileHtml(p) {
+      return `
         <button type="button" class="popup-img-preview" aria-label="Enlarge elevation profile">
           <img src="${p.elevation_profile_link}" alt="Elevation Profile" style="width: 100%; margin-bottom: 5px;">
         </button>`;
@@ -837,49 +851,45 @@
         <a href="${p.download_link}" download="${download_filename}" class="popup-btn">Download GPX Track File</a>`;
     }
 
-    // Bold a track while it is hovered, selected via the sheet, or its marker popup is open
+    // Bold a track while hovered, or while it is the selected track (stays selected after popup/sheet closes)
+    let selectedDate = null;
+
     function refreshTrackWeight(layer) {
       if (!layer || !layer._baseWeight) return;
-      const bold = layer._hovered || layer._sheetOpen || layer._markerOpen;
+      const bold = layer._hovered || layer._selected;
       layer.setStyle({ weight: layer._baseWeight + (bold ? 4 : 0), opacity: 1 });
       if (bold) layer.bringToFront();
     }
 
-    function setMarkerTrackEmphasis(date, on) {
+    function selectTrack(date) {
+      const previous = trackLinesByDate[selectedDate];
+      selectedDate = date;
+      if (previous) {
+        previous._selected = false;
+        refreshTrackWeight(previous);
+      }
       const line = trackLinesByDate[date];
-      if (!line) return;
-      line._markerOpen = on;
-      refreshTrackWeight(line);
+      if (line) {
+        line._selected = true;
+        refreshTrackWeight(line);
+      }
     }
 
     function hideTrackSheet() {
       trackSheet.style.display = 'none';
-      if (sheetLayer) {
-        sheetLayer._sheetOpen = false;
-        refreshTrackWeight(sheetLayer);
-      }
-      sheetLayer = null;
     }
 
     function showTrackSheet(date) {
       const p = markerPropsByDate[date];
       if (!p) return;
-      const layer = trackLinesByDate[date];
-      if (sheetLayer) {
-        sheetLayer._sheetOpen = false;
-        refreshTrackWeight(sheetLayer);
-      }
-      sheetLayer = layer || null;
-      if (layer) {
-        layer._sheetOpen = true;
-        refreshTrackWeight(layer);
-      }
+      selectTrack(date);
       trackSheet.querySelector('.track-sheet-body').innerHTML = `
+        <div class="track-sheet-title">${markerTitleHtml(p)}</div>
         <div class="track-sheet-left">
           ${markerDetailsHtml(p)}
-          <div style="font-weight: bold;">${p.place_name || ''}</div>
         </div>
         <div class="track-sheet-right">${markerButtonsHtml(p)}</div>
+        <div class="track-sheet-profile">${markerProfileHtml(p)}</div>
       `;
       trackSheet.style.display = 'block';
     }
@@ -894,8 +904,13 @@
     });
 
     trackSheet.querySelector('.track-sheet-close').addEventListener('click', hideTrackSheet);
-    map27700.on('click', hideTrackSheet);
-    map3857.on('click', hideTrackSheet);
+    // Tapping empty map closes the sheet and clears the selected track
+    function clearTrackSelection() {
+      hideTrackSheet();
+      selectTrack(null);
+    }
+    map27700.on('click', clearTrackSelection);
+    map3857.on('click', clearTrackSelection);
 
     function attachTrackInteractions(feature, layer, baseWeight) {
       const p = feature.properties || {};
@@ -903,6 +918,10 @@
 
       layer._baseWeight = baseWeight;
       if (p.date) trackLinesByDate[p.date] = layer;
+      if (p.date && p.date === selectedDate) {
+        layer._selected = true;
+        refreshTrackWeight(layer);
+      }
 
       const isTouch = IS_TOUCH;
 
@@ -1107,16 +1126,14 @@
                     // Touch: show the details in the bottom sheet instead of a map popup
                     layer.on('click', () => showTrackSheet(markerDate));
                   } else {
-                    layer.on('popupopen', () => setMarkerTrackEmphasis(markerDate, true));
-                    layer.on('popupclose', () => setMarkerTrackEmphasis(markerDate, false));
+                    layer.on('popupopen', () => selectTrack(markerDate));
                     layer.bindPopup(`
                       <div style="width: 100.0%; height: 100.0%; font-size: 10px;">
                         <div style="width: 170px">
+                          ${markerTitleHtml(p)}
                           ${markerDetailsHtml(p)}
+                          ${markerProfileHtml(p)}
                           ${markerButtonsHtml(p)}
-                          <div style="text-align: center; margin-bottom: 5px; font-weight: bold;">
-                            ${p.place_name}
-                          </div>
                         </div>
                       </div>
                     `);
