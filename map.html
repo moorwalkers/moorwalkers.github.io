@@ -62,6 +62,33 @@
       margin-bottom: 12px;
     }
 
+    /* Mobile track details sheet, sits above the Home / Explore buttons */
+    #trackSheet {
+      display: none;
+      position: fixed;
+      left: 10px;
+      right: 10px;
+      bottom: 60px;
+      z-index: 1001;
+      background: #fff;
+      padding: 12px 40px 8px 12px;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.35);
+      font-size: 13px;
+    }
+    #trackSheet .popup-btn { margin-top: 8px; }
+    .track-sheet-close {
+      position: absolute;
+      top: 2px;
+      right: 6px;
+      border: 0;
+      background: none;
+      font-size: 26px;
+      line-height: 1;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+
     /* Popup link styling (kept separate from image-wrapper links) */
     .popup-btn,
     .popup-btn:link,
@@ -209,6 +236,11 @@
   <div style="position: fixed; bottom: 10px; left: 10px; z-index: 1000; display: flex; gap: 10px;">
     <button onclick="window.location.href='index.html'" class="btn btn-primary">Home</button>
     <button onclick="toggleContent()" class="btn btn-primary">Explore 'Tors of Dartmoor' data</button>
+  </div>
+
+  <div id="trackSheet">
+    <button type="button" class="track-sheet-close" aria-label="Close">&times;</button>
+    <div class="track-sheet-body"></div>
   </div>
 
   <div id="hidden-tors-of-dartmoor-content" style="display: none; position: fixed; bottom: 50px; left: 0; right: 0; background-color: #f9f9f9; padding: 20px; z-index: 999;">
@@ -772,6 +804,28 @@
     }
 
     // Shared hover/click behaviour for track lines
+    const trackSheet = document.getElementById('trackSheet');
+    let sheetLayer = null, sheetWeight = 0;
+
+    function hideTrackSheet() {
+      trackSheet.style.display = 'none';
+      if (sheetLayer) sheetLayer.setStyle({ weight: sheetWeight });
+      sheetLayer = null;
+    }
+
+    function showTrackSheet(html, layer, baseWeight) {
+      if (sheetLayer) sheetLayer.setStyle({ weight: sheetWeight });
+      sheetLayer = layer;
+      sheetWeight = baseWeight;
+      layer.setStyle({ weight: baseWeight + 4 });
+      trackSheet.querySelector('.track-sheet-body').innerHTML = html;
+      trackSheet.style.display = 'block';
+    }
+
+    trackSheet.querySelector('.track-sheet-close').addEventListener('click', hideTrackSheet);
+    map27700.on('click', hideTrackSheet);
+    map3857.on('click', hideTrackSheet);
+
     function attachTrackInteractions(feature, layer, baseWeight) {
       const p = feature.properties || {};
       if (!p.name) return;
@@ -783,27 +837,24 @@
         weight: isTouch ? 30 : 18,
         opacity: 0,
         lineCap: 'round',
-        lineJoin: 'round'
+        lineJoin: 'round',
+        bubblingMouseEvents: false
       });
       layer.options.interactive = false;
       layer._hit = hit;
 
       if (isTouch) {
-        // No hover on touch screens: tap shows a popup with an explicit open button
+        // No hover on touch screens: tap shows a bottom sheet (clear of the track) with an open button
         const openBtn = (p.ind_map_link && !selectedTrackId)
           ? `<a href="${p.ind_map_link}" class="popup-btn" target="_blank" rel="noopener">Open this track</a>`
           : '';
-        hit.bindPopup(`
-          <div style="font-size: 13px;">
-            <strong>${p.name}</strong><br>
-            ${p.place_name || ''}<br>
-            ${p.gridref || ''}<br>
-            ${p.distance_mi ?? ''} mi &middot; ${p.ascent ?? ''} m ascent<br>
-            ${openBtn}
-          </div>
-        `);
-        hit.on('popupopen', () => layer.setStyle({ weight: baseWeight + 4 }));
-        hit.on('popupclose', () => layer.setStyle({ weight: baseWeight }));
+        hit.on('click', () => showTrackSheet(`
+          <strong>${p.name}</strong><br>
+          ${p.place_name || ''}<br>
+          ${p.gridref || ''}<br>
+          ${p.distance_mi ?? ''} mi &middot; ${p.ascent ?? ''} m ascent
+          ${openBtn}
+        `, layer, baseWeight));
         return;
       }
 
