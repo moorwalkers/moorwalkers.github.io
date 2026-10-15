@@ -781,6 +781,7 @@ def create_tracks_content_page(years, feature_collection):
 
         .track-download {
             margin-top: auto;
+            text-align: center;
         }
 
         .track-media > img {
