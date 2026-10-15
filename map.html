@@ -399,7 +399,8 @@
       minZoom: 0,
       maxZoom: MAX_Z_27700,
       zoom: 4,
-      zoomControl: true
+      zoomControl: true,
+      bounceAtZoomLimits: false
     });
 
     const map3857 = L.map("map3857", {
@@ -407,7 +408,8 @@
       minZoom: 7,
       maxZoom: 20,
       zoom: 4 + ZOOM_OFFSET_27700_TO_3857,
-      zoomControl: true
+      zoomControl: true,
+      bounceAtZoomLimits: false
     });
 
     const profileLightbox = document.getElementById('profileLightbox');
