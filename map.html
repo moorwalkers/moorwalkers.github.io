@@ -484,7 +484,9 @@
       const arrows = L.featureGroup();
 
       trackLayer.eachLayer(line => {
+        if (line._hit) displayLayer.addLayer(line._hit);
         arrows.addLayer(L.polylineDecorator(line, {
+          interactive: false,
           patterns: [{
             offset: 50,
             repeat: 200,
@@ -492,6 +494,7 @@
               pixelSize: 12,
               polygon: false,
               pathOptions: {
+                interactive: false,
                 color: line.options.color || "blue",
                 weight: 2
               }
@@ -766,6 +769,63 @@
       };
     }
 
+    // Shared hover/click behaviour for track lines
+    function attachTrackInteractions(feature, layer, baseWeight) {
+      const p = feature.properties || {};
+      if (!p.name) return;
+
+      const isTouch = window.matchMedia('(hover: none)').matches;
+
+      // Wide invisible line that captures hover/tap; the visible line is non-interactive
+      const hit = L.polyline(layer.getLatLngs(), {
+        weight: isTouch ? 30 : 18,
+        opacity: 0,
+        lineCap: 'round',
+        lineJoin: 'round'
+      });
+      layer.options.interactive = false;
+      layer._hit = hit;
+
+      if (isTouch) {
+        // No hover on touch screens: tap shows a popup with an explicit open button
+        const openBtn = (p.ind_map_link && !selectedTrackId)
+          ? `<a href="${p.ind_map_link}" class="popup-btn" target="_blank" rel="noopener">Open this track</a>`
+          : '';
+        hit.bindPopup(`
+          <div style="font-size: 13px;">
+            <strong>${p.name}</strong><br>
+            ${p.place_name || ''}<br>
+            ${p.gridref || ''}<br>
+            ${p.distance_mi ?? ''} mi &middot; ${p.ascent ?? ''} m ascent<br>
+            ${openBtn}
+          </div>
+        `);
+        hit.on('popupopen', () => layer.setStyle({ weight: baseWeight + 4 }));
+        hit.on('popupclose', () => layer.setStyle({ weight: baseWeight }));
+        return;
+      }
+
+      hit.bindTooltip(`
+        <div style="font-size: 11px;">
+          <strong>${p.name}</strong><br>
+          ${p.place_name || ''}<br>
+          ${p.gridref || ''}<br>
+          ${p.distance_mi ?? ''} mi &middot; ${p.ascent ?? ''} m ascent<br>
+          <em>Click to open this track</em>
+        </div>
+      `, { sticky: true, direction: 'top', opacity: 0.95 });
+
+      hit.on('mouseover', () => {
+        layer.setStyle({ weight: baseWeight + 4, opacity: 1 });
+        layer.bringToFront();
+      });
+      hit.on('mouseout', () => layer.setStyle({ weight: baseWeight, opacity: 1 }));
+
+      if (p.ind_map_link && !selectedTrackId) {
+        hit.on('click', () => { window.open(p.ind_map_link, '_blank', 'noopener'); });
+      }
+    }
+
     const loadTracks = debounce(function() {
       removeOverlayEverywhere("Tracks");
 
@@ -800,17 +860,8 @@
                         color: 'blue',
                         weight: 6
                       },
-                      onEachFeature: (feature, layer) => {
-                        if (feature.properties?.name) {
-                          layer.bindTooltip(`
-                            <div style="font-size: 10px;">
-                              ${feature.properties.gridref}<br>
-                              ${feature.properties.name}<br>
-                              ${feature.properties.place_name}
-                            </div>
-                          `);
-                        }
-                      }
+                      onEachFeature: (feature, layer) =>
+                        attachTrackInteractions(feature, layer, 6)
                     }
                   );
 
@@ -882,17 +933,8 @@
                       color: feature.properties?.colour || 'green',
                       weight: 3
                     }),
-                    onEachFeature: (feature, layer) => {
-                      if (feature.properties?.name) {
-                        layer.bindTooltip(`
-                          <div style="font-size: 10px;">
-                            ${feature.properties.gridref}<br>
-                            ${feature.properties.name}<br>
-                            ${feature.properties.place_name}
-                          </div>
-                        `);
-                      }
-                    }
+                    onEachFeature: (feature, layer) =>
+                      attachTrackInteractions(feature, layer, 3)
                   }
                 );
 
