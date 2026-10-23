@@ -550,6 +550,7 @@ def save_tracks_as_map_screenshots(feature_collection):
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
+            channel="msedge",
             headless=not MANUAL_MODE
         )
         page = browser.new_page(
