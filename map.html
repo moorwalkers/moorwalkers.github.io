@@ -513,12 +513,37 @@
     const TRACK_ARROW_MIN_ZOOM = { "27700": 6, "3857": 13 };
     let currentTrackDisplayLayer = null;
     let currentTrackArrows = null;
+    let currentTrackLayer = null;
+    let arrowsCreated = false;
 
     function updateTrackDirectionArrows() {
-      if (!currentTrackDisplayLayer || !currentTrackArrows) return;
+      if (!currentTrackDisplayLayer || !currentTrackArrows || !currentTrackLayer) return;
 
       const shouldShow = map.getZoom() >= TRACK_ARROW_MIN_ZOOM[activeWhich()];
       const isVisible = currentTrackDisplayLayer.hasLayer(currentTrackArrows);
+
+      // Create arrows on-demand when zoom threshold is first reached
+      if (shouldShow && !arrowsCreated) {
+        currentTrackLayer.eachLayer(line => {
+          currentTrackArrows.addLayer(L.polylineDecorator(line, {
+            interactive: false,
+            patterns: [{
+              offset: 50,
+              repeat: 200,
+              symbol: L.Symbol.arrowHead({
+                pixelSize: 12,
+                polygon: false,
+                pathOptions: {
+                  interactive: false,
+                  color: line.options.color || "blue",
+                  weight: 2
+                }
+              })
+            }]
+          }));
+        });
+        arrowsCreated = true;
+      }
 
       if (shouldShow && !isVisible) {
         currentTrackDisplayLayer.addLayer(currentTrackArrows);
@@ -533,26 +558,12 @@
 
       trackLayer.eachLayer(line => {
         if (line._hit) displayLayer.addLayer(line._hit);
-        arrows.addLayer(L.polylineDecorator(line, {
-          interactive: false,
-          patterns: [{
-            offset: 50,
-            repeat: 200,
-            symbol: L.Symbol.arrowHead({
-              pixelSize: 12,
-              polygon: false,
-              pathOptions: {
-                interactive: false,
-                color: line.options.color || "blue",
-                weight: 2
-              }
-            })
-          }]
-        }));
       });
 
       currentTrackDisplayLayer = displayLayer;
       currentTrackArrows = arrows;
+      currentTrackLayer = trackLayer;
+      arrowsCreated = false;
       updateTrackDirectionArrows();
 
       return displayLayer;
