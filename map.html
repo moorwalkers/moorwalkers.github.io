@@ -883,6 +883,12 @@
     setPanelCollapsed(basemapControl, true);
     setPanelCollapsed(customLayersControl, true);
 
+    // Clicking/tapping anywhere outside the controls minimises both panels
+    document.addEventListener("pointerdown", (e) => {
+      if (e.target.closest("#mapControls")) return;
+      panelToggles.forEach(([panel]) => setPanelCollapsed(panel, true));
+    }, true);
+
     function removeOverlayEverywhere(name) {
       const layer = overlays[name];
       if (!layer) return;
