@@ -29,38 +29,103 @@
     .active { pointer-events: auto; opacity: 1; }
 
     /* Basemap selector (fixed; survives CRS switching) */
-    #basemapControl {
+    #mapControls {
       position: fixed;
       top: 10px;
       right: 10px;
       z-index: 2000;
+      width: 190px;
+      max-width: calc(100vw - 20px);
+      max-height: calc(100vh - 80px);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font: 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    }
+    .map-panel {
       background: rgba(255,255,255,0.9);
       border: 1px solid #888;
       border-radius: 6px;
       padding: 8px;
-      font: 12px/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-sizing: border-box;
     }
-    #basemapControl label { display:block; font-weight: 600; margin-bottom: 4px; }
-    #basemapSelect { width: 130px; }
+    .map-panel-title { display: block; font-weight: 600; margin: 0 0 4px; }
+    #basemapSelect {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 6px 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      background-color: #fff;
+      cursor: pointer;
+    }
 
-    /* Push the Leaflet layers control down so it sits below the basemap selector */
+    /* Hide the default Leaflet layers control */
     .leaflet-top.leaflet-right .leaflet-control-layers {
-      margin-top: 80px;   /* adjust if needed */
+      display: none;
     }
 
-    /* Increase font size of layer control */
-    .leaflet-control-layers {
-      font-size: 16px;   /* try 14–16px for mobile */
+    /* Custom layers control (replaces Leaflet default) */
+    #customLayersControl {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
     }
 
-    /* Increase checkbox size (important on mobile) */
-    .leaflet-control-layers input {
-      transform: scale(2);
-      margin-left: 6px;
-      margin-right: 6px;
-      margin-top: 12px;
-      margin-bottom: 12px;
+    .panel-toggle {
+      all: unset;
+      box-sizing: border-box;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .panel-toggle:focus-visible { outline: 2px solid #0A4478; outline-offset: 2px; }
+    .panel-toggle .chevron { transition: transform 0.2s ease; }
+    .map-panel.collapsed .chevron { transform: rotate(-90deg); }
+    #customLayersControl.collapsed #layersListContainer,
+    #basemapControl.collapsed #basemapSelect { display: none; }
+    #basemapSelect { margin-top: 6px; }
+
+    #layersListContainer {
+      margin-top: 8px;
+      overflow-y: auto;
+      min-height: 0;
+    }
+
+    #customLayersControl .layers-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    #customLayersControl .layer-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 0;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    #customLayersControl input[type="checkbox"] {
+      cursor: pointer;
+      accent-color: #0A4478;
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      margin: 0;
+    }
+
+    #customLayersControl .layer-item label {
+      font-weight: normal;
+      cursor: pointer;
+      flex: 1;
+      overflow-wrap: anywhere;
     }
 
     /* Mobile track details sheet, sits above the Home / Explore buttons */
@@ -216,20 +281,31 @@
     <div id="map3857" class="map inactive"></div>
   </div>
 
-  <!-- Basemap selection drives which CRS/map is active -->
-  <div id="basemapControl">
-    <label for="basemapSelect">Basemap</label>
-    <select id="basemapSelect">
-      <option value="OS_LEISURE_27700">OS Leisure</option>
+  <!-- Basemap (single select) and feature layers (multi select), stacked and sharing one style -->
+  <div id="mapControls">
+    <div id="basemapControl" class="map-panel">
+      <button type="button" class="panel-toggle" id="basemapToggle" aria-controls="basemapSelect">
+        <span>Basemap</span><span class="chevron">▾</span>
+      </button>
+      <select id="basemapSelect" aria-label="Basemap">
+        <option value="OS_LEISURE_27700">OS Leisure</option>
 
-      <option value="OS_LIGHT_3857">OS Light</option>
-      <option value="OS_OUTDOOR_3857">OS Outdoor</option>
-      <option value="OS_ROAD_3857">OS Road</option>
+        <option value="OS_LIGHT_3857">OS Light</option>
+        <option value="OS_OUTDOOR_3857">OS Outdoor</option>
+        <option value="OS_ROAD_3857">OS Road</option>
 
-      <option value="OSM_3857">OpenStreetMap</option>
-      <option value="ESRI_IMAGERY_3857">Esri World Imagery</option>
-      <option value="ESRI_TOPO_3857">Esri World Topo</option>
-    </select>
+        <option value="OSM_3857">OpenStreetMap</option>
+        <option value="ESRI_IMAGERY_3857">Esri World Imagery</option>
+        <option value="ESRI_TOPO_3857">Esri World Topo</option>
+      </select>
+    </div>
+
+    <div id="customLayersControl" class="map-panel">
+      <button type="button" class="panel-toggle" id="layersToggle" aria-controls="layersListContainer">
+        <span>Feature Layers</span><span class="chevron">▾</span>
+      </button>
+      <div class="layers-list" id="layersListContainer"></div>
+    </div>
   </div>
 
   <!-- Existing UI (unchanged) -->
@@ -716,7 +792,7 @@
       }
       // enforce canonical ordering
       reorderLayerControls();
-
+      updateCustomLayersControl();
     }
 
     function reorderLayerControls() {
@@ -730,6 +806,76 @@
         });
       });
     }
+
+    function updateCustomLayersControl() {
+      const container = document.getElementById("layersListContainer");
+      container.innerHTML = "";
+
+      // Ordered layers first, then any others (e.g. the tor layers)
+      const names = [
+        ...OVERLAY_ORDER.filter(n => overlays[n]),
+        ...Object.keys(overlays).filter(n => !OVERLAY_ORDER.includes(n))
+      ];
+
+      names.forEach(name => {
+        const layer = overlays[name];
+        const isActive = activeOverlayNames.has(name);
+
+        const item = document.createElement("div");
+        item.className = "layer-item";
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = isActive;
+        checkbox.id = "layer-" + name.replace(/[^A-Za-z0-9]+/g, "-");
+
+        const label = document.createElement("label");
+        label.htmlFor = checkbox.id;
+        label.textContent = name;
+
+        checkbox.addEventListener("change", (e) => {
+          e.stopPropagation();
+          if (checkbox.checked) {
+            layer.addTo(map);
+            activeOverlayNames.add(name);
+          } else {
+            map27700.removeLayer(layer);
+            map3857.removeLayer(layer);
+            activeOverlayNames.delete(name);
+          }
+        });
+
+        item.appendChild(checkbox);
+        item.appendChild(label);
+        container.appendChild(item);
+      });
+    }
+
+    // Accordion: opening one panel minimises the other; Feature Layers starts minimised
+    const customLayersControl = document.getElementById("customLayersControl");
+    const basemapControl = document.getElementById("basemapControl");
+    const panelToggles = [
+      [basemapControl, document.getElementById("basemapToggle")],
+      [customLayersControl, document.getElementById("layersToggle")]
+    ];
+
+    function setPanelCollapsed(panel, collapsed) {
+      panel.classList.toggle("collapsed", collapsed);
+      panelToggles.find(([p]) => p === panel)[1].setAttribute("aria-expanded", String(!collapsed));
+    }
+
+    panelToggles.forEach(([panel, toggle]) => {
+      toggle.addEventListener("click", () => {
+        const open = panel.classList.contains("collapsed");
+        setPanelCollapsed(panel, !open);
+        if (open) {
+          panelToggles.forEach(([other]) => { if (other !== panel) setPanelCollapsed(other, true); });
+        }
+      });
+    });
+
+    setPanelCollapsed(basemapControl, true);
+    setPanelCollapsed(customLayersControl, true);
 
     function removeOverlayEverywhere(name) {
       const layer = overlays[name];
@@ -749,11 +895,17 @@
     function wireOverlayTracking(m) {
       m.on("overlayadd", (e) => {
         const n = layerToName.get(e.layer);
-        if (n) activeOverlayNames.add(n);
+        if (n) {
+          activeOverlayNames.add(n);
+          updateCustomLayersControl();
+        }
       });
       m.on("overlayremove", (e) => {
         const n = layerToName.get(e.layer);
-        if (n) activeOverlayNames.delete(n);
+        if (n) {
+          activeOverlayNames.delete(n);
+          updateCustomLayersControl();
+        }
       });
     }
     wireOverlayTracking(map27700);
