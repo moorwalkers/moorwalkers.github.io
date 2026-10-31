@@ -843,11 +843,10 @@
     }
 
     function markerButtonsHtml(p) {
-      const download_filename = p.download_link.split('/').pop();
       return `
         <a href="${p.ind_map_link}" target="_blank" class="popup-btn">Open Individual Map</a>
         <a href="${p.googleMapsLink}" target="_blank" class="popup-btn">Starting Location</a>
-        <a href="#" class="popup-btn download-gpx-btn" data-track-date="${p.date}" data-download-link="${p.download_link}">Download GPX Track File</a>`;
+        <button type="button" class="popup-btn download-gpx-btn" data-track-date="${p.date}">Download GPX Track File</button>`;
     }
 
     // Helper: Escape XML special characters
@@ -935,15 +934,12 @@ ${trkpts}    </trkseg>
     }
 
     // Helper: Trigger browser download of GPX
-    function downloadTrackAsGpx(trackDate, fallbackDownloadLink) {
+    function downloadTrackAsGpx(trackDate) {
       try {
         const feature = trackFeaturesByDate[trackDate];
         if (!feature) {
-          console.warn(`[GPX Download] Feature not found for date: ${trackDate}`);
-          if (fallbackDownloadLink) {
-            console.log(`[GPX Download] Browser generation failed; using static fallback: ${trackDate}`);
-            window.location.href = fallbackDownloadLink;
-          }
+          console.error(`[GPX Download] Feature not found for track: ${trackDate}`);
+          alert('Unable to generate the GPX file for this track.');
           return;
         }
 
@@ -967,10 +963,7 @@ ${trkpts}    </trkseg>
         }
       } catch (error) {
         console.error('[GPX Download] Error generating GPX:', error.message);
-        if (fallbackDownloadLink) {
-          console.log(`[GPX Download] Browser generation failed; using static fallback: ${fallbackDownloadLink}`);
-          window.location.href = fallbackDownloadLink;
-        }
+        alert('Unable to generate the GPX file for this track.');
       }
     }
 
@@ -1032,8 +1025,7 @@ ${trkpts}    </trkseg>
       if (!downloadBtn) return;
       event.preventDefault();
       const trackDate = downloadBtn.getAttribute('data-track-date');
-      const fallbackLink = downloadBtn.getAttribute('data-download-link');
-      downloadTrackAsGpx(trackDate, fallbackLink);
+      downloadTrackAsGpx(trackDate);
     });
 
     trackSheet.querySelector('.track-sheet-close').addEventListener('click', hideTrackSheet);

@@ -1,0 +1,36 @@
+﻿Remove static GPX file generation system; transition to browser-generated GPX downloads
+
+SUMMARY
+=======
+
+This commit removes the now-redundant static GPX file generation system 
+(save_tracks_as_gpx function) and simplifies both Python processing and browser 
+download logic to rely exclusively on browser-generated GPX from loaded GeoJSON 
+features.
+
+CHANGES
+=======
+
+process_map_data.py:
+- Removed: save_tracks_as_gpx() function (no longer needed)
+- Removed: XML imports (from xml.etree.ElementTree import Element, SubElement, tostring)
+- Removed: download_link URL generation (was previously generated for static .gpx files)
+- Removed: download_link property from feature properties (no longer in GeoJSON output)
+- Removed: call to save_tracks_as_gpx(feature_collection) in main()
+- Updated: create_tracks_content_page() to link "Download GPX Track File" button to 
+  the individual map page (ind_map_link) instead of static .gpx file
+
+map.html:
+- Simplified: markerButtonsHtml() - removed data-download-link attribute
+- Simplified: downloadTrackAsGpx() - removed fallback logic to static .gpx files
+- Updated: event listener for download buttons - no longer extracts fallback link
+
+DATA CHANGES
+============
+
+- moorwalkers.geojson: regenerated without download_link property (241 features)
+- All individual track .geojson files: regenerated without download_link
+- All yearly bundle files (tracks_YYYY.geojson): regenerated without download_link
+- track_markers.geojson: regenerated to match main feature set
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>

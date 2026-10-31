@@ -394,7 +394,7 @@
       },
       "properties": {
         "name": "2020 or Earlier - Tor Royal",
-        "date": "2020-07-04T00:00:00",
+        "date": "2020-07-01T00:00:00",
         "distance_km": 7.08,
         "distance_mi": 4.4,
         "duration": "1:30:01",
@@ -402,15 +402,14 @@
         "descent": -53,
         "center_lat": 50.53540909717506,
         "center_lon": -3.9784736884738234,
-        "place_name": "The Plume of Feathers Inn, Plymouth Hill, Princetown",
+        "place_name": "Ivybridge Lane, Princetown, Dartmoor Forest",
         "gridref": "SX 59050 73435",
         "googleMapsLink": "https://www.google.com/maps?q=50.543649,-3.990631",
-        "download_link": "https://moorwalkers.github.io/track_downloads/2020orEarlier-TorRoyal.gpx",
-        "ind_map_link": "https://moorwalkers.github.io/map.html?track_id=2020-07-04T00:00:00",
+        "ind_map_link": "https://moorwalkers.github.io/map.html?track_id=2020-07-01T00:00:00",
         "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-TorRoyal.png",
+        "thumbnail_link": "https://moorwalkers.github.io/track_thumbnails/2020orEarlier-TorRoyal.png",
         "cluster_label": 0,
-        "colour": "red",
-        "thumbnail_link": "https://moorwalkers.github.io/track_thumbnails/2020orEarlier-TorRoyal.png"
+        "colour": "red"
       }
     }
   ]

@@ -754,7 +754,7 @@
       },
       "properties": {
         "name": "2020-08-20 @ 10-13-00",
-        "date": "2020-08-20T10:13:00",
+        "date": "2020-07-01T00:00:00",
         "distance_km": 15.76,
         "distance_mi": 9.79,
         "duration": "6:25:01",
@@ -762,15 +762,14 @@
         "descent": -419,
         "center_lat": 50.6507713955364,
         "center_lon": -4.0406692916460045,
-        "place_name": "Range Notice Board, A386, Lydford",
+        "place_name": "A386, Vale Down, Lydford",
         "gridref": "SX 52551 85372",
         "googleMapsLink": "https://www.google.com/maps?q=50.649325,-4.087028",
-        "download_link": "https://moorwalkers.github.io/track_downloads/2020-08-20_10-13-00.gpx",
-        "ind_map_link": "https://moorwalkers.github.io/map.html?track_id=2020-08-20T10:13:00",
+        "ind_map_link": "https://moorwalkers.github.io/map.html?track_id=2020-07-01T00:00:00",
         "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020-08-20_10-13-00.png",
+        "thumbnail_link": "https://moorwalkers.github.io/track_thumbnails/2020-08-20_10-13-00.png",
         "cluster_label": 14,
-        "colour": "darkred",
-        "thumbnail_link": "https://moorwalkers.github.io/track_thumbnails/2020-08-20_10-13-00.png"
+        "colour": "darkred"
       }
     }
   ]

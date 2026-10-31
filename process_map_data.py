@@ -21,7 +21,6 @@ import threading
 import time
 from datetime import datetime, timedelta
 from math import sqrt
-from xml.etree.ElementTree import Element, SubElement, tostring
 
 import geojson
 import gpxpy
@@ -324,14 +323,6 @@ def create_data(main_geojson):
         )
         # print(googleMapsLink)
 
-        # Generate the track_download link
-        download_link = (
-            "https://moorwalkers.github.io/track_downloads/"
-            + filename[:-4].replace(" ", "").replace("@", "_")
-            + ".gpx"
-        )
-        # print(download_link)
-
         # Generate the elevation profile image link
         elevation_profile_link = (
             "https://moorwalkers.github.io/elevation_profiles/"
@@ -387,7 +378,6 @@ def create_data(main_geojson):
                 "place_name": get_address_from_locationiq(starting_latitude, starting_longitude),
                 "gridref": gridref,
                 "googleMapsLink": googleMapsLink,
-                "download_link": download_link,
                 "ind_map_link": ind_map_link,
                 "elevation_profile_link": elevation_profile_link,
                 "thumbnail_link": thumbnail_link,
@@ -592,37 +582,6 @@ def save_tracks_as_map_screenshots(feature_collection):
 
         browser.close()
     print("Track thumbnails created")
-
-def save_tracks_as_gpx(feature_collection):
-    """Converts a GeoJSON FeatureCollection of tracks to individual GPX files and saves them."""
-
-    # Create the output directory if it doesn't exist
-    output_dir = os.path.join(os.getcwd(), "track_downloads")
-    os.makedirs(output_dir, exist_ok=True)
-
-    for feature in feature_collection["features"]:
-        track_name = feature["properties"]["name"].replace(" ", "").replace("@", "_")
-        gpx_data = feature["geometry"]["coordinates"]
-
-        # Create a new GPX XML document
-        gpx = Element("gpx", attrib={"version": "1.1", "creator": "Your Creator Name"})
-        trk = SubElement(gpx, "trk")
-        trkseg = SubElement(trk, "trkseg")
-
-        for point in gpx_data:
-            trkpt = SubElement(
-                trkseg, "trkpt", attrib={"lat": str(point[1]), "lon": str(point[0])}
-            )
-            ele = SubElement(trkpt, "ele")
-            ele.text = str(point[2])  # Elevation
-            # You can add more track point attributes here if needed
-
-        # Save the GPX file
-        gpx_filename = os.path.join(output_dir, f"{track_name}.gpx")
-        with open(gpx_filename, "w", encoding="utf-8") as f:
-            f.write(tostring(gpx, encoding="unicode"))
-
-    print("GPX files created")
 
 def split_features_to_files(features, output_dir):
     """Splits GeoJSON features into individual files and generates a manifest and marker features."""
@@ -1154,6 +1113,7 @@ def create_tracks_content_page(years, feature_collection):
                         </button>
                         <div class="track-actions">
                             <a href=\"{feature['properties']['googleMapsLink']}\" target=\"_blank\" class="btn">Starting Location</a>
+                            <a href=\"{feature['properties']['ind_map_link']}\" target=\"_blank\" class="btn">Download GPX Track File</a>
                         </div>
                     </div>
                     <div class="track-details">
@@ -1177,7 +1137,6 @@ def create_tracks_content_page(years, feature_collection):
                             </div>
                         </div>
                         </div>
-                        <a href=\"{feature['properties']['download_link']}\" download=\"{os.path.basename(feature['properties']['download_link'])}\" class="btn track-download">Download GPX Track File</a>
                     </div>
                 </div>
             </div>
@@ -1380,9 +1339,6 @@ def main():
 
     # Create individual elevation profile images
     save_tracks_as_elevation_profiles(feature_collection)
-
-    # Create individual gpx files from the created data for users to download
-    save_tracks_as_gpx(feature_collection)
 
     # Ensure output directory exists
     os.makedirs(output_dir, exist_ok=True)

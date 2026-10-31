@@ -472,7 +472,7 @@
       },
       "properties": {
         "name": "2020 or Earlier - Devils Tor",
-        "date": "2020-07-13T00:00:00",
+        "date": "2020-07-01T00:00:00",
         "distance_km": 12.21,
         "distance_mi": 7.59,
         "duration": "2:32:09",
@@ -480,15 +480,14 @@
         "descent": -210,
         "center_lat": 50.574530971047906,
         "center_lon": -3.980558620713921,
-        "place_name": "Two Bridges, B3357, Two Bridges",
+        "place_name": "B3357, Two Bridges, Dartmoor Forest",
         "gridref": "SX 60906 75024",
         "googleMapsLink": "https://www.google.com/maps?q=50.55838,-3.96504",
-        "download_link": "https://moorwalkers.github.io/track_downloads/2020orEarlier-DevilsTor.gpx",
-        "ind_map_link": "https://moorwalkers.github.io/map.html?track_id=2020-07-13T00:00:00",
+        "ind_map_link": "https://moorwalkers.github.io/map.html?track_id=2020-07-01T00:00:00",
         "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-DevilsTor.png",
+        "thumbnail_link": "https://moorwalkers.github.io/track_thumbnails/2020orEarlier-DevilsTor.png",
         "cluster_label": 0,
-        "colour": "gray",
-        "thumbnail_link": "https://moorwalkers.github.io/track_thumbnails/2020orEarlier-DevilsTor.png"
+        "colour": "gray"
       }
     }
   ]

@@ -400,7 +400,7 @@
       },
       "properties": {
         "name": "2020 or Earlier - Great Links Tor",
-        "date": "2020-07-11T00:00:00",
+        "date": "2020-07-01T00:00:00",
         "distance_km": 8.45,
         "distance_mi": 5.25,
         "duration": "2:42:15",
@@ -408,15 +408,14 @@
         "descent": -276,
         "center_lat": 50.66424430033107,
         "center_lon": -4.068021478398951,
-        "place_name": "Fox & Hounds Hotel, A386, Little Crandford",
+        "place_name": "A386, Bridestowe, West Devon",
         "gridref": "SX 52550 86696",
         "googleMapsLink": "https://www.google.com/maps?q=50.661224,-4.087572",
-        "download_link": "https://moorwalkers.github.io/track_downloads/2020orEarlier-GreatLinksTor.gpx",
-        "ind_map_link": "https://moorwalkers.github.io/map.html?track_id=2020-07-11T00:00:00",
+        "ind_map_link": "https://moorwalkers.github.io/map.html?track_id=2020-07-01T00:00:00",
         "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2020orEarlier-GreatLinksTor.png",
+        "thumbnail_link": "https://moorwalkers.github.io/track_thumbnails/2020orEarlier-GreatLinksTor.png",
         "cluster_label": 14,
-        "colour": "red",
-        "thumbnail_link": "https://moorwalkers.github.io/track_thumbnails/2020orEarlier-GreatLinksTor.png"
+        "colour": "red"
       }
     }
   ]
