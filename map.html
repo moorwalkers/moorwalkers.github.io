@@ -57,16 +57,6 @@
       box-sizing: border-box;
     }
     .map-panel-title { display: block; font-weight: 600; margin: 0 0 4px; }
-    #basemapSelect {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 6px 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 14px;
-      background-color: #fff;
-      cursor: pointer;
-    }
 
     /* Hide the default Leaflet layers control */
     .leaflet-top.leaflet-right .leaflet-control-layers {
@@ -94,22 +84,24 @@
     .panel-toggle .chevron { transition: transform 0.2s ease; }
     .map-panel.collapsed .chevron { transform: rotate(-90deg); }
     #customLayersControl.collapsed #layersListContainer,
-    #basemapControl.collapsed #basemapSelect { display: none; }
-    #basemapSelect { margin-top: 6px; }
+    #basemapControl.collapsed #basemapList { display: none; }
 
-    #layersListContainer {
+    #layersListContainer,
+    #basemapList {
       margin-top: 8px;
+    }
+    #layersListContainer {
       overflow-y: auto;
       min-height: 0;
     }
 
-    #customLayersControl .layers-list {
+    .map-panel .layers-list {
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
 
-    #customLayersControl .layer-item {
+    .map-panel .layer-item {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -118,7 +110,8 @@
       user-select: none;
     }
 
-    #customLayersControl input[type="checkbox"] {
+    .map-panel input[type="checkbox"],
+    .map-panel input[type="radio"] {
       cursor: pointer;
       accent-color: #0A4478;
       width: 20px;
@@ -127,7 +120,8 @@
       margin: 0;
     }
 
-    #customLayersControl .layer-item label {
+    .map-panel .layer-item label,
+    .map-panel .layer-item span {
       font-weight: normal;
       cursor: pointer;
       flex: 1;
@@ -290,20 +284,18 @@
   <!-- Basemap (single select) and feature layers (multi select), stacked and sharing one style -->
   <div id="mapControls">
     <div id="basemapControl" class="map-panel">
-      <button type="button" class="panel-toggle" id="basemapToggle" aria-controls="basemapSelect">
+      <button type="button" class="panel-toggle" id="basemapToggle" aria-controls="basemapList">
         <span>Basemap</span><span class="chevron">▾</span>
       </button>
-      <select id="basemapSelect" aria-label="Basemap">
-        <option value="OS_LEISURE_27700">OS Leisure</option>
-
-        <option value="OS_LIGHT_3857">OS Light</option>
-        <option value="OS_OUTDOOR_3857">OS Outdoor</option>
-        <option value="OS_ROAD_3857">OS Road</option>
-
-        <option value="OSM_3857">OpenStreetMap</option>
-        <option value="ESRI_IMAGERY_3857">Esri World Imagery</option>
-        <option value="ESRI_TOPO_3857">Esri World Topo</option>
-      </select>
+      <div class="layers-list" id="basemapList" role="radiogroup" aria-label="Basemap">
+        <label class="layer-item"><input type="radio" name="basemap" value="OS_LEISURE_27700" checked><span>OS Leisure</span></label>
+        <label class="layer-item"><input type="radio" name="basemap" value="OS_LIGHT_3857"><span>OS Light</span></label>
+        <label class="layer-item"><input type="radio" name="basemap" value="OS_OUTDOOR_3857"><span>OS Outdoor</span></label>
+        <label class="layer-item"><input type="radio" name="basemap" value="OS_ROAD_3857"><span>OS Road</span></label>
+        <label class="layer-item"><input type="radio" name="basemap" value="OSM_3857"><span>OpenStreetMap</span></label>
+        <label class="layer-item"><input type="radio" name="basemap" value="ESRI_IMAGERY_3857"><span>Esri World Imagery</span></label>
+        <label class="layer-item"><input type="radio" name="basemap" value="ESRI_TOPO_3857"><span>Esri World Topo</span></label>
+      </div>
     </div>
 
     <div id="customLayersControl" class="map-panel">
@@ -970,7 +962,7 @@
     // ============================================================
     // BASEMAP CHOICE HANDLER
     // ============================================================
-    const basemapSelect = document.getElementById("basemapSelect");
+    const basemapList = document.getElementById("basemapList");
 
     function applyBasemap(code) {
       // Leisure => 27700 map
@@ -1003,7 +995,9 @@
       }
     }
 
-    basemapSelect.addEventListener("change", () => applyBasemap(basemapSelect.value));
+    basemapList.addEventListener("change", (e) => {
+      if (e.target.name === "basemap") applyBasemap(e.target.value);
+    });
 
     // Locate control on both maps
     L.control.locate({}).addTo(map27700);
