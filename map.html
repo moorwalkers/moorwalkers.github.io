@@ -516,6 +516,55 @@
     let currentTrackLayer = null;
     let arrowsCreated = false;
 
+    // Helper: Create a single arrow decorator for a track line with appropriate styling
+    function createTrackArrowDecorator(line) {
+      const isHighlighted = line._hovered || line._selected;
+      const pixelSize = isHighlighted ? 22 : 16;
+      const weight = isHighlighted ? 4 : 3;
+
+      return L.polylineDecorator(line, {
+        interactive: false,
+        patterns: [{
+          offset: 50,
+          repeat: 200,
+          symbol: L.Symbol.arrowHead({
+            pixelSize: pixelSize,
+            polygon: false,
+            pathOptions: {
+              interactive: false,
+              color: line.options.color || "blue",
+              weight: weight
+            }
+          })
+        }]
+      });
+    }
+
+    // Helper: Update arrow styling when track highlight state changes
+    function updateTrackArrowStyling(line) {
+      if (!arrowsCreated || !currentTrackArrows || !currentTrackLayer) return;
+
+      const isHighlighted = line._hovered || line._selected;
+      const wasHighlighted = line._arrowIsHighlighted;
+
+      // No change needed if the state is already correct
+      if (isHighlighted === wasHighlighted) return;
+
+      try {
+        // Remove old decorator if it exists
+        if (line._arrowDecorator) {
+          currentTrackArrows.removeLayer(line._arrowDecorator);
+        }
+
+        // Create new decorator with current highlight state
+        line._arrowDecorator = createTrackArrowDecorator(line);
+        currentTrackArrows.addLayer(line._arrowDecorator);
+        line._arrowIsHighlighted = isHighlighted;
+      } catch (error) {
+        console.error(`[Track Arrows] Error updating decorator for track ${line._trackDate}:`, error.message);
+      }
+    }
+
     function updateTrackDirectionArrows() {
       if (!currentTrackDisplayLayer || !currentTrackArrows || !currentTrackLayer) return;
 
@@ -525,22 +574,9 @@
       // Create arrows on-demand when zoom threshold is first reached
       if (shouldShow && !arrowsCreated) {
         currentTrackLayer.eachLayer(line => {
-          currentTrackArrows.addLayer(L.polylineDecorator(line, {
-            interactive: false,
-            patterns: [{
-              offset: 50,
-              repeat: 200,
-              symbol: L.Symbol.arrowHead({
-                pixelSize: 12,
-                polygon: false,
-                pathOptions: {
-                  interactive: false,
-                  color: line.options.color || "blue",
-                  weight: 2
-                }
-              })
-            }]
-          }));
+          line._arrowDecorator = createTrackArrowDecorator(line);
+          line._arrowIsHighlighted = line._hovered || line._selected;
+          currentTrackArrows.addLayer(line._arrowDecorator);
         });
         arrowsCreated = true;
       }
@@ -990,6 +1026,8 @@ ${trkpts}    </trkseg>
       const bold = layer._hovered || layer._selected;
       layer.setStyle({ weight: layer._baseWeight + (bold ? 4 : 0), opacity: 1 });
       if (bold) layer.bringToFront();
+      // Update arrow styling if arrows have been created
+      updateTrackArrowStyling(layer);
     }
 
     function selectTrack(date) {
@@ -1058,6 +1096,7 @@ ${trkpts}    </trkseg>
 
       layer._baseWeight = baseWeight;
       if (p.date) {
+        layer._trackDate = p.date;
         trackLinesByDate[p.date] = layer;
         trackFeaturesByDate[p.date] = feature;  // Store complete feature for GPX generation
       }
