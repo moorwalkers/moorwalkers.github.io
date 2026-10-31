@@ -955,16 +955,13 @@
 
       return new Promise((resolve) => {
 
-        fetch('tracks_manifest.json')
-          .then(response => response.json())
-          .then(manifest => {
-
-            // ==========================================================
-            // INDIVIDUAL TRACK MODE
-            // Load only the selected track file
-            // ==========================================================
-            if (selectedTrackId) {
-
+        // ==========================================================
+        // Check for INDIVIDUAL TRACK MODE first
+        // ==========================================================
+        if (selectedTrackId) {
+          fetch('tracks_manifest.json')
+            .then(response => response.json())
+            .then(manifest => {
               const trackFile = manifest[selectedTrackId];
 
               if (!trackFile) {
@@ -1000,23 +997,38 @@
                   resolve();
                 })
                 .catch(error => {
-                  console.error('Error loading track file:', error);
+                  console.error('Error loading track file:', trackFile, error);
                   resolve();
                 });
+            })
+            .catch(error => {
+              console.error('Error loading tracks_manifest.json:', error);
+              resolve();
+            });
 
-              return;
-            }
+          return;
+        }
 
-            // ==========================================================
-            // NORMAL MAP MODE
-            // Load every track and apply filters
-            // ==========================================================
+        // ==========================================================
+        // NORMAL MAP MODE
+        // Load yearly bundles in parallel
+        // ==========================================================
+        fetch('tracks_yearly_manifest.json')
+          .then(response => response.json())
+          .then(yearlyManifest => {
+
             const allFilteredFeatures = [];
 
-            const loadPromises = Object.values(manifest).map(file =>
-              fetch(file)
+            // Load all yearly files in parallel
+            const loadPromises = Object.entries(yearlyManifest).map(([year, filePath]) =>
+              fetch(filePath)
                 .then(resp => resp.json())
                 .then(geojson => {
+
+                  if (!geojson.features || !Array.isArray(geojson.features)) {
+                    console.error('Invalid GeoJSON from ' + filePath);
+                    return;
+                  }
 
                   const filtered = geojson.features.filter(feature => {
 
@@ -1039,7 +1051,7 @@
                   allFilteredFeatures.push(...filtered);
                 })
                 .catch(err =>
-                  console.error('Error loading ' + file + ':', err)
+                  console.error('Error loading yearly bundle ' + filePath + ':', err)
                 )
             );
 
@@ -1069,7 +1081,7 @@
             });
           })
           .catch(error => {
-            console.error('Error loading tracks_manifest.json:', error);
+            console.error('Error loading tracks_yearly_manifest.json:', error);
             resolve();
           });
 

@@ -1192,6 +1192,180 @@ def create_tracks_content_page(years, feature_collection):
 
     print("Tracks content page created")
 
+def group_features_by_year(features):
+    """Group features by year extracted from properties.date (ISO 8601 format)."""
+    yearly = {}
+    for feature in features:
+        date_str = feature.get("properties", {}).get("date")
+        if not date_str:
+            raise ValueError(f"Feature missing date property: {feature.get('properties', {}).get('name', 'unknown')}")
+        try:
+            year = int(date_str[:4])
+        except (ValueError, IndexError):
+            raise ValueError(f"Cannot parse year from date '{date_str}' for feature {feature.get('properties', {}).get('name', 'unknown')}")
+        
+        if year not in yearly:
+            yearly[year] = []
+        yearly[year].append(feature)
+    
+    return yearly
+
+def create_yearly_geojson_features(yearly_groups):
+    """Create GeoJSON FeatureCollections for each year with deterministic ordering."""
+    yearly_geojsons = {}
+    
+    for year, features in yearly_groups.items():
+        # Sort by date (primary) then name (secondary) for deterministic ordering
+        sorted_features = sorted(
+            features,
+            key=lambda f: (f.get("properties", {}).get("date", ""), f.get("properties", {}).get("name", ""))
+        )
+        
+        yearly_geojsons[year] = {
+            "type": "FeatureCollection",
+            "features": sorted_features
+        }
+    
+    return yearly_geojsons
+
+def needs_update(existing_path, new_geojson):
+    """Check if existing GeoJSON file differs from new content (compares parsed JSON, not strings)."""
+    if not os.path.exists(existing_path):
+        return True
+    
+    try:
+        with open(existing_path, "r", encoding="utf-8") as f:
+            existing = json.load(f)
+        
+        # Compare parsed JSON structures
+        return existing != new_geojson
+    except Exception:
+        return True
+
+def write_yearly_geojson_files(yearly_geojsons, output_dir):
+    """Write yearly GeoJSON files with incremental updates. Returns stats."""
+    created = []
+    updated = []
+    unchanged = []
+    
+    os.makedirs(output_dir, exist_ok=True)
+    
+    for year, geojson_data in yearly_geojsons.items():
+        filename = f"tracks_{year}.geojson"
+        filepath = os.path.join(output_dir, filename)
+        
+        # Check if file existed before any operation
+        file_existed = os.path.exists(filepath)
+        
+        if needs_update(filepath, geojson_data):
+            with open(filepath, "w", encoding="utf-8") as f:
+                json.dump(geojson_data, f, ensure_ascii=False, indent=2)
+            
+            # Classify as created or updated based on pre-write state
+            if file_existed:
+                updated.append(year)
+            else:
+                created.append(year)
+        else:
+            unchanged.append(year)
+    
+    return created, updated, unchanged
+
+def remove_obsolete_yearly_files(output_dir, valid_years):
+    """Remove yearly files for years no longer in the dataset."""
+    removed = []
+    
+    if not os.path.exists(output_dir):
+        return removed
+    
+    for filename in os.listdir(output_dir):
+        if not filename.startswith("tracks_") or not filename.endswith(".geojson"):
+            continue
+        
+        # Extract year from filename
+        try:
+            year_str = filename[7:-8]  # Remove "tracks_" and ".geojson"
+            year = int(year_str)
+            
+            if year not in valid_years:
+                filepath = os.path.join(output_dir, filename)
+                os.remove(filepath)
+                removed.append(year)
+        except ValueError:
+            continue
+    
+    return removed
+
+def write_yearly_manifest(yearly_geojsons, manifest_path):
+    """Write/update yearly manifest file. Returns True if updated, False if unchanged."""
+    manifest = {}
+    
+    for year in sorted(yearly_geojsons.keys()):
+        # Use forward slashes for browser compatibility
+        manifest[str(year)] = f"tracks/tracks_{year}.geojson"
+    
+    if needs_update(manifest_path, manifest):
+        with open(manifest_path, "w", encoding="utf-8") as f:
+            json.dump(manifest, f, ensure_ascii=False, indent=2)
+        return True
+    
+    return False
+
+def validate_yearly_output(features, yearly_geojsons):
+    """Validate yearly output matches source features."""
+    total_yearly = sum(len(gc["features"]) for gc in yearly_geojsons.values())
+    if total_yearly != len(features):
+        raise ValueError(
+            f"Reconciliation failed: {len(features)} source features but "
+            f"{total_yearly} features in yearly bundles"
+        )
+
+def process_yearly_geojson(features, output_dir, yearly_manifest_path):
+    """Orchestrate yearly GeoJSON bundling: group, create, write, validate, report."""
+    print("\n--- Yearly GeoJSON Generation ---")
+    
+    # Group features by year
+    yearly_groups = group_features_by_year(features)
+    
+    # Create yearly GeoJSON FeatureCollections
+    yearly_geojsons = create_yearly_geojson_features(yearly_groups)
+    
+    # Validate before writing
+    validate_yearly_output(features, yearly_geojsons)
+    
+    # Write yearly files
+    created, updated, unchanged = write_yearly_geojson_files(yearly_geojsons, output_dir)
+    
+    # Remove obsolete yearly files
+    removed = remove_obsolete_yearly_files(output_dir, set(yearly_geojsons.keys()))
+    
+    # Write/update manifest
+    manifest_updated = write_yearly_manifest(yearly_geojsons, yearly_manifest_path)
+    
+    # Report status for each file
+    for year in sorted(yearly_geojsons.keys()):
+        if year in created:
+            status = "Created"
+        elif year in updated:
+            status = "Updated"
+        else:
+            status = "Unchanged"
+        print(f"  {status} tracks_{year}.geojson")
+    
+    if manifest_updated:
+        print("  Updated tracks_yearly_manifest.json")
+    else:
+        print("  Unchanged tracks_yearly_manifest.json")
+    
+    # Print summary
+    print(f"\nYearly GeoJSON Summary:")
+    print(f"  Total features: {len(features)}")
+    print(f"  Years represented: {len(yearly_geojsons)}")
+    print(f"  Files created: {len(created)}")
+    print(f"  Files updated: {len(updated)}")
+    print(f"  Files unchanged: {len(unchanged)}")
+    print(f"  Files removed: {len(removed)}")
+
 def main():
     """Processes GeoJSON map data to generate elevation profiles, GPX files, split tracks, and supporting files."""
 
@@ -1224,6 +1398,10 @@ def main():
     write_track_markers(marker_features, track_markers_path)
 
     print(f"Split {len(features)} features into '{output_dir}' folder, created manifest '{manifest_path}', and created '{track_markers_path}' with {len(marker_features)} markers.")
+    
+    # Generate yearly GeoJSON bundles and manifest
+    yearly_manifest_path = "tracks_yearly_manifest.json"
+    process_yearly_geojson(features, output_dir, yearly_manifest_path)
     
     # Create the tracks content page
     create_tracks_content_page(years, feature_collection)
