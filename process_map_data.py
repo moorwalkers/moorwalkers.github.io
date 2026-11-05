@@ -697,6 +697,23 @@ def create_tracks_content_page(years, feature_collection):
                 .track {
                     font-size: 1.4em;
                 }
+                .track-list .track-content {
+                    grid-template-areas:
+                        "media details"
+                        "actions actions";
+                }
+                .track-content .track-details {
+                    display: contents;
+                }
+                .track-content .track-details-grid {
+                    grid-area: details;
+                }
+                .track-content .track-actions {
+                    grid-area: actions;
+                    display: grid;
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                    align-self: stretch;
+                }
             }
 
         .track {
@@ -718,9 +735,18 @@ def create_tracks_content_page(years, feature_collection):
         .track-content {
             display: grid;
             grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            grid-template-areas: "media details";
             gap: 12px;
             align-items: stretch;
             text-align: left;
+        }
+
+        .track-media {
+            grid-area: media;
+        }
+
+        .track-details {
+            grid-area: details;
         }
 
         .track-media,
@@ -731,7 +757,10 @@ def create_tracks_content_page(years, feature_collection):
         }
 
         .track-actions {
-            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            min-width: 0;
         }
 
         .track-actions .btn {
@@ -1022,6 +1051,88 @@ def create_tracks_content_page(years, feature_collection):
             profileLightbox.close();
         }
     });
+
+    let trackManifestPromise;
+
+    function escapeGpxXml(value) {
+        return String(value)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&apos;');
+    }
+
+    function sanitizeGpxFilename(name) {
+        const safeName = String(name || 'track')
+            .replace(/[^A-Za-z0-9._ -]/g, '_')
+            .trim();
+        return (safeName || 'track').replace(/\\.gpx$/i, '') + '.gpx';
+    }
+
+    async function downloadTrackAsGpx(trackId) {
+        try {
+            trackManifestPromise ||= fetch('tracks_manifest.json').then(response => {
+                if (!response.ok) throw new Error('Unable to load track manifest');
+                return response.json();
+            });
+            const manifest = await trackManifestPromise;
+            const trackPath = manifest[trackId];
+            if (!trackPath) throw new Error('Track not found in manifest');
+
+            const response = await fetch(trackPath);
+            if (!response.ok) throw new Error('Unable to load track data');
+            const geojson = await response.json();
+            const feature = geojson.type === 'Feature' ? geojson : geojson.features?.[0];
+            const coordinates = feature?.geometry?.coordinates;
+            if (feature?.geometry?.type !== 'LineString' || !Array.isArray(coordinates) || !coordinates.length) {
+                throw new Error('Track has no supported line geometry');
+            }
+
+            const trackName = feature.properties?.name || 'Track';
+            const trackPoints = coordinates.map(coordinate => {
+                const [longitude, latitude, elevation] = coordinate;
+                if (!Number.isFinite(longitude) || !Number.isFinite(latitude)) {
+                    throw new Error('Track contains invalid coordinates');
+                }
+                const pointLines = [`    <trkpt lat="${latitude}" lon="${longitude}">`];
+                if (Number.isFinite(elevation)) pointLines.push(`      <ele>${elevation}</ele>`);
+                pointLines.push('    </trkpt>');
+                return pointLines.join('\\n');
+            }).join('\\n');
+
+            const gpx = [
+                '<?xml version="1.0" encoding="UTF-8"?>',
+                '<gpx version="1.1" creator="Moor Walkers" xmlns="http://www.topografix.com/GPX/1/1">',
+                '  <trk>',
+                `    <name>${escapeGpxXml(trackName)}</name>`,
+                '    <trkseg>',
+                trackPoints,
+                '    </trkseg>',
+                '  </trk>',
+                '</gpx>'
+            ].join('\\n');
+            const objectUrl = URL.createObjectURL(new Blob([gpx], { type: 'application/gpx+xml;charset=utf-8' }));
+            const link = document.createElement('a');
+            link.href = objectUrl;
+            link.download = sanitizeGpxFilename(trackName);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(objectUrl);
+        } catch (error) {
+            console.error('[GPX Download] Error generating GPX:', error);
+            alert('Unable to generate the GPX file for this track.');
+        }
+    }
+
+    document.addEventListener('click', event => {
+        const downloadLink = event.target.closest('.track-actions a[href*="map.html?track_id="]');
+        if (!downloadLink) return;
+        event.preventDefault();
+        const trackId = new URL(downloadLink.href).searchParams.get('track_id');
+        if (trackId) downloadTrackAsGpx(trackId);
+    });
   
   // Send height to parent window for iframe resizing
   function sendHeight() {
@@ -1111,10 +1222,6 @@ def create_tracks_content_page(years, feature_collection):
                         <button type="button" class="profile-preview" aria-label="Enlarge elevation profile">
                             <img src="{feature['properties']['elevation_profile_link']}" alt="Elevation Profile">
                         </button>
-                        <div class="track-actions">
-                            <a href=\"{feature['properties']['googleMapsLink']}\" target=\"_blank\" class="btn">Starting Location</a>
-                            <a href=\"{feature['properties']['ind_map_link']}\" target=\"_blank\" class="btn">Download GPX Track File</a>
-                        </div>
                     </div>
                     <div class="track-details">
                         <div class="track-details-grid">
@@ -1136,6 +1243,10 @@ def create_tracks_content_page(years, feature_collection):
                                 <div><span class="track-detail-label">Descent:</span> {feature['properties']['descent']}m</div>
                             </div>
                         </div>
+                        </div>
+                        <div class="track-actions">
+                        <a href=\"{feature['properties']['googleMapsLink']}\" target=\"_blank\" class="btn">Starting Location</a>
+                        <a href=\"{feature['properties']['ind_map_link']}\" target=\"_blank\" class="btn">Download GPX Track File</a>
                         </div>
                     </div>
                 </div>
