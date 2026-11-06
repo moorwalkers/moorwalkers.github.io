@@ -1036,7 +1036,7 @@
     const trackLinesByDate = {};
     const markersByDate = {};
     const markerPropsByDate = {};
-    const trackFeaturesByDate = {};  // Store complete GeoJSON features for browser GPX generation
+    const trackFeaturesByName = {};
     const IS_TOUCH = window.matchMedia('(hover: none)').matches;
 
     function markerTitleHtml(p) {
@@ -1064,7 +1064,7 @@
       return `
         <a href="${p.ind_map_link}" target="_blank" class="popup-btn">Open Individual Map</a>
         <a href="${p.googleMapsLink}" target="_blank" class="popup-btn">Starting Location</a>
-        <button type="button" class="popup-btn download-gpx-btn" data-track-date="${p.date}">Download GPX Track File</button>`;
+        <button type="button" class="popup-btn download-gpx-btn" data-track-name="${escapeXml(p.name || '')}">Download GPX Track File</button>`;
     }
 
     // Helper: Escape XML special characters
@@ -1152,11 +1152,11 @@ ${trkpts}    </trkseg>
     }
 
     // Helper: Trigger browser download of GPX
-    function downloadTrackAsGpx(trackDate) {
+    function downloadTrackAsGpx(trackName) {
       try {
-        const feature = trackFeaturesByDate[trackDate];
+        const feature = trackFeaturesByName[trackName];
         if (!feature) {
-          console.error(`[GPX Download] Feature not found for track: ${trackDate}`);
+          console.error(`[GPX Download] Feature not found for track: ${trackName}`);
           alert('Unable to generate the GPX file for this track.');
           return;
         }
@@ -1165,8 +1165,7 @@ ${trkpts}    </trkseg>
         const blob = new Blob([gpxXml], { type: 'application/gpx+xml;charset=utf-8' });
         const objectUrl = URL.createObjectURL(blob);
 
-        const trackName = feature.properties?.name || 'track';
-        const filename = sanitizeFilename(trackName);
+        const filename = sanitizeFilename(feature.properties?.name || 'track');
 
         try {
           const link = document.createElement('a');
@@ -1243,8 +1242,8 @@ ${trkpts}    </trkseg>
       const downloadBtn = event.target.closest('.download-gpx-btn');
       if (!downloadBtn) return;
       event.preventDefault();
-      const trackDate = downloadBtn.getAttribute('data-track-date');
-      downloadTrackAsGpx(trackDate);
+      const trackName = downloadBtn.getAttribute('data-track-name');
+      downloadTrackAsGpx(trackName);
     });
 
     trackSheet.querySelector('.track-sheet-close').addEventListener('click', hideTrackSheet);
@@ -1261,10 +1260,10 @@ ${trkpts}    </trkseg>
       if (!p.name) return;
 
       layer._baseWeight = baseWeight;
+      trackFeaturesByName[p.name] = feature;
       if (p.date) {
         layer._trackDate = p.date;
         trackLinesByDate[p.date] = layer;
-        trackFeaturesByDate[p.date] = feature;  // Store complete feature for GPX generation
       }
       if (p.date && p.date === selectedDate) {
         layer._selected = true;
@@ -1302,7 +1301,7 @@ ${trkpts}    </trkseg>
     const loadTracks = debounce(function() {
       removeOverlayEverywhere("Tracks");
       Object.keys(trackLinesByDate).forEach(k => delete trackLinesByDate[k]);
-      Object.keys(trackFeaturesByDate).forEach(k => delete trackFeaturesByDate[k]);  // Clear stored features
+      Object.keys(trackFeaturesByName).forEach(k => delete trackFeaturesByName[k]);
 
       return new Promise((resolve) => {
 
