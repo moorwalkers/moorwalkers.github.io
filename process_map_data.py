@@ -44,8 +44,7 @@ def get_windows_physical_core_count():
                 "powershell.exe",
                 "-NoProfile",
                 "-Command",
-                "(Get-CimInstance -ClassName Win32_Processor | "
-                "Measure-Object -Property NumberOfCores -Sum).Sum",
+                "(Get-CimInstance -ClassName Win32_Processor | Measure-Object -Property NumberOfCores -Sum).Sum",
             ],
             capture_output=True,
             text=True,
@@ -54,7 +53,7 @@ def get_windows_physical_core_count():
 
         return int(result.stdout.strip())
 
-    except Exception:
+    except (OSError, subprocess.SubprocessError, ValueError):
         return os.cpu_count() or 1
 
 # KMeans (via scikit-learn/joblib) attempts to detect the number ofphysical CPU cores when fitting clusters. On newer Windows systems
@@ -195,7 +194,7 @@ def create_data(main_geojson):
     processed_count = 0
     print(f"Processing {file_list_length} new files")
 
-    for filename in file_list:
+    for processed_count, filename in enumerate(file_list, start=1):
         # Add the year from the filename to the years list
         years.append(filename[:4])
 
@@ -254,16 +253,16 @@ def create_data(main_geojson):
         for idx, val in enumerate(track_points):
             # Append elevations at the edges directly to sevenpoint list
             if idx == 0 or idx == max_index:
-                sevenpoint.append(track_points[idx].elevation)
+                sevenpoint.append(val.elevation)
             # Compute the average elevation based on the immediate neighbors for second and second-to-last elements
             elif idx == 1 or idx == max_index - 1:
-                sum =   track_points[idx].elevation + \
+                sum =   val.elevation + \
                         track_points[idx-1].elevation + \
                         track_points[idx+1].elevation
                 sevenpoint.append(sum / 3)
             # Compute the average elevation based on a window of 5 elements for third and third-to-last elements
             elif idx == 2 or idx == max_index - 2:
-                sum =   track_points[idx].elevation + \
+                sum =   val.elevation + \
                         track_points[idx-1].elevation + \
                         track_points[idx-2].elevation + \
                         track_points[idx+1].elevation + \
@@ -271,7 +270,7 @@ def create_data(main_geojson):
                 sevenpoint.append(sum / 5)
             # Compute the average elevation based on a window of 7 elements for the rest of the elements
             else:
-                sum =   track_points[idx].elevation + \
+                sum =   val.elevation + \
                         track_points[idx - 1].elevation + \
                         track_points[idx - 2].elevation + \
                         track_points[idx - 3].elevation + \
@@ -284,15 +283,17 @@ def create_data(main_geojson):
         total_ascent_m = 0
         total_descent_m = 0
         # Iterate through computed elevations in sevenpoint to calculate ascent and descent
-        for idx, val in enumerate(sevenpoint):
-            # Skip the first index since there's no previous elevation to compare
-            if idx != 0:
-                elevation_change = sevenpoint[idx] - sevenpoint[idx-1]
+        previous_elevation = None
+        for elevation in sevenpoint:
+            # Skip the first elevation since there's no previous elevation to compare
+            if previous_elevation is not None:
+                elevation_change = elevation - previous_elevation
                 # Calculate total ascent and descent based on elevation change
                 if elevation_change > 0:
                     total_ascent_m += elevation_change
                 elif elevation_change < 0:
                     total_descent_m += elevation_change
+            previous_elevation = elevation
 
         # Calculate the starting and centre coordinates
         # Extract latitude and longitude from the track points
@@ -387,8 +388,7 @@ def create_data(main_geojson):
         # Add the feature to the features list
         features.append(feature)
 
-        processed_count += 1
-        processed_percent = "{:.1f}%".format((processed_count / file_list_length) * 100)
+        processed_percent = f"{(processed_count / file_list_length) * 100:.1f}%"
         print(f"{processed_percent} processed")
 
     # Sort the features list by name
@@ -444,8 +444,7 @@ def save_tracks_as_elevation_profiles(feature_collection):
     for feature in feature_collection["features"]:
         coordinates = feature["geometry"]["coordinates"]
         for i in coordinates:
-            if i[2] > max_elevation:
-                max_elevation = i[2]
+            max_elevation = max(max_elevation, i[2])
 
     # Round up max elevation to the nearest 100
     remainder = max_elevation % 100
@@ -1291,7 +1290,7 @@ def needs_update(existing_path, new_geojson):
         
         # Compare parsed JSON structures
         return existing != new_geojson
-    except Exception:
+    except (OSError, json.JSONDecodeError, UnicodeDecodeError):
         return True
 
 def write_yearly_geojson_files(yearly_geojsons, output_dir):
@@ -1410,7 +1409,7 @@ def process_yearly_geojson(features, output_dir, yearly_manifest_path):
         print("  Unchanged tracks_yearly_manifest.json")
     
     # Print summary
-    print(f"\nYearly GeoJSON Summary:")
+    print("\nYearly GeoJSON Summary:")
     print(f"  Total features: {len(features)}")
     print(f"  Years represented: {len(yearly_geojsons)}")
     print(f"  Files created: {len(created)}")
