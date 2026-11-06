@@ -361,6 +361,15 @@
       return urlParams.get(param);
     }
     const selectedTrackId = getQueryParam('track_id');
+    const trackColoursPromise = fetch('track_colours.json')
+      .then(response => {
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        return response.json();
+      })
+      .catch(error => {
+        console.error('Error loading track_colours.json:', error);
+        return {};
+      });
   </script>
 
   <script>
@@ -1355,9 +1364,11 @@ ${trkpts}    </trkseg>
         // NORMAL MAP MODE
         // Load yearly bundles in parallel
         // ==========================================================
-        fetch('tracks_yearly_manifest.json')
-          .then(response => response.json())
-          .then(yearlyManifest => {
+        Promise.all([
+          fetch('tracks_yearly_manifest.json').then(response => response.json()),
+          trackColoursPromise
+        ])
+          .then(([yearlyManifest, trackColours]) => {
 
             const allFilteredFeatures = [];
 
@@ -1408,7 +1419,7 @@ ${trkpts}    </trkseg>
                   },
                   {
                     style: feature => ({
-                      color: feature.properties?.colour || 'green',
+                      color: trackColours[feature.properties?.name] || feature.properties?.colour || 'green',
                       weight: 3
                     }),
                     onEachFeature: (feature, layer) =>
@@ -1437,9 +1448,11 @@ ${trkpts}    </trkseg>
       Object.keys(markerPropsByDate).forEach(k => delete markerPropsByDate[k]);
 
       return new Promise((resolve) => {
-        fetch('track_markers.geojson')
-          .then(response => response.json())
-          .then(data => {
+        Promise.all([
+          fetch('track_markers.geojson').then(response => response.json()),
+          trackColoursPromise
+        ])
+          .then(([data, trackColours]) => {
             const filteredFeatures = data.features.filter(feature => {
               if (selectedTrackId && feature.properties.date !== selectedTrackId) return false;
               const props = feature.properties || {};
@@ -1462,7 +1475,7 @@ ${trkpts}    </trkseg>
               pointToLayer: function (feature, latlng) {
                 const iconOptions = {
                   icon: feature.properties?.icon || 'person-hiking',
-                  markerColor: feature.properties?.colour || 'black',
+                  markerColor: trackColours[feature.properties?.name] || feature.properties?.colour || 'green',
                   prefix: feature.properties?.prefix || 'fa'
                 };
                 return L.marker(latlng, { icon: L.AwesomeMarkers.icon(iconOptions) });

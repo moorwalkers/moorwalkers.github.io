@@ -412,62 +412,17 @@ def create_data(main_geojson):
     # Create a GeoJSON feature collection from the features list
     feature_collection = geojson.FeatureCollection(features)
 
-    # Cluster the GeoJSON data into groups of nearby start points
-    # Required to decrease the likelihood of the same colour being used for nearby tracks
-
-    # List of colours to be used for the tracks and markers
-    colours = [
-        "darkred",
-        "green",
-        "red",
-        "blue",
-        "gray",
-        "purple",
-        "black",
-        "cadetblue",
-        "darkgreen",
-        "darkblue",
-    ]
-
-    # Calulcate how many clusters should be produced by dividing the total number of tracks by the
-    # total number of available colours and adding one, this should ensure no cluster has more
-    # tracks than available colours
-    num_clusters = len(feature_collection["features"]) // len(colours) + 1
-    # print(f"Number of featues = {len(feature_collection['features'])}")
-    # print(f"Number of colours = {len(colours)}")
-    # print(f"Number of clusters = {num_clusters}")
-
-    # Extract the start point coordinates from GeoJSON file
-    coordinates = []
+    write_track_colours(feature_collection["features"], "track_colours.json")
     for feature in feature_collection["features"]:
-        # Use the first point in each linestring, just returning the lat and long (not elevation)
-        first_point = feature["geometry"]["coordinates"][0][:2]
-        coordinates.append(first_point)
-
-    # Cluster coordinates using KMeans algorithm
-    kmeans = KMeans(n_clusters=num_clusters, random_state=0, n_init="auto").fit(
-        coordinates
-    )
-    labels = kmeans.labels_
-
-    # Add the cluster label property to each feature in the GeoJSON data
-    for i, feature in enumerate(feature_collection["features"]):
-        feature["properties"]["cluster_label"] = int(labels[i])
-
-    # Add the colour property to each feature in the GeoJSON data
-    # This should assign a different colour from the colours list to each feature within a cluster
-    for i in range(num_clusters):
-        colour_idx = 0
-        for feature in feature_collection["features"]:
-            if feature["properties"]["cluster_label"] == i:
-                feature["properties"]["colour"] = colours[colour_idx % len(colours)]
-                colour_idx += 1
+        feature["properties"].pop("colour", None)
+        feature["properties"].pop("cluster_label", None)
 
     # Write the feature collection to the GeoJSON file
-    with open(
-        main_geojson, "w", encoding="utf-8"
-    ) as f:
-        geojson.dump(feature_collection, f, indent=4)
+    if needs_update(main_geojson, feature_collection):
+        with open(
+            main_geojson, "w", encoding="utf-8"
+        ) as f:
+            geojson.dump(feature_collection, f, indent=4)
 
     # Remove duplicates from 'years' list
     years = list(set(years))
@@ -583,6 +538,31 @@ def save_tracks_as_map_screenshots(feature_collection):
         browser.close()
     print("Track thumbnails created")
 
+def write_track_colours(features, output_path):
+    """Store clustered track and marker colours separately from track data."""
+    colours = [
+        "darkred", "green", "red", "blue", "gray", "purple", "black",
+        "cadetblue", "darkgreen", "darkblue",
+    ]
+    track_colours = {}
+    if features:
+        num_clusters = len(features) // len(colours) + 1
+        coordinates = [feature["geometry"]["coordinates"][0][:2] for feature in features]
+        labels = KMeans(n_clusters=num_clusters, random_state=0, n_init="auto").fit(
+            coordinates
+        ).labels_
+        for cluster in range(num_clusters):
+            colour_idx = 0
+            for feature, label in zip(features, labels):
+                if label == cluster:
+                    track_colours[feature["properties"]["name"]] = colours[colour_idx % len(colours)]
+                    colour_idx += 1
+
+    if needs_update(output_path, track_colours):
+        with open(output_path, "w", encoding="utf-8") as output_file:
+            json.dump(track_colours, output_file, ensure_ascii=False, indent=2, sort_keys=True)
+
+
 def split_features_to_files(features, output_dir):
     """Splits GeoJSON features into individual files and generates a manifest and marker features."""
 
@@ -607,8 +587,9 @@ def split_features_to_files(features, output_dir):
             "features": [feature]
         }
 
-        with open(filepath, "w", encoding="utf-8") as out_f:
-            json.dump(feature_geojson, out_f, ensure_ascii=False, indent=2)
+        if needs_update(filepath, feature_geojson):
+            with open(filepath, "w", encoding="utf-8") as out_f:
+                json.dump(feature_geojson, out_f, ensure_ascii=False, indent=2)
 
         # Add track id and relative path to manifest
         track_id = feature["properties"]["date"]
@@ -647,8 +628,9 @@ def write_track_markers(marker_features, output_path):
         "type": "FeatureCollection",
         "features": marker_features
     }
-    with open(output_path, "w", encoding="utf-8") as mf:
-        json.dump(track_markers_geojson, mf, ensure_ascii=False, indent=2)
+    if needs_update(output_path, track_markers_geojson):
+        with open(output_path, "w", encoding="utf-8") as mf:
+            json.dump(track_markers_geojson, mf, ensure_ascii=False, indent=2)
 
 def create_tracks_content_page(years, feature_collection):
     """Create an HTML page with track data to be embedded in an iframe."""
