@@ -637,8 +637,9 @@ def create_tracks_content_page(years, feature_collection):
     # HTML template for the start of the tracks content page
     html_start = """\
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
     <head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tracks Content</title>
     <style>
         body {
@@ -773,7 +774,6 @@ def create_tracks_content_page(years, feature_collection):
         }
 
         .profile-lightbox {
-            position: relative;
             max-width: 96vw;
             max-height: 96vh;
             padding: 52px 16px 16px;
@@ -894,30 +894,16 @@ def create_tracks_content_page(years, feature_collection):
             border-right-width: 10px;
             border-radius: 10px;
         }
-    </style>
+    
+:root{--navy:#082f52;--blue:#0a4478;--green:#496b43;--ink:#20303b;--muted:#60717c;--line:#dbe3e6;--soft:#f3f6f2;--shadow:0 8px 24px rgba(8,47,82,.09)}
+*{box-sizing:border-box}body{margin:0;padding:0 0 2rem;color:var(--ink);background:#fff;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}button,input{font:inherit}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #f3c969;outline-offset:3px}
+.filter-panel{margin:1rem 1.25rem 2.25rem;padding:clamp(1rem,3vw,1.5rem);border:1px solid var(--line);border-top:5px solid var(--green);border-radius:14px;background:var(--soft);box-shadow:var(--shadow)}.filter-header{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:1.25rem}.filter-header h2{margin:0;color:var(--navy);font-size:1.55rem}.filter-header p{margin:.25rem 0 0;color:var(--muted)}.result-count{color:#365331;font-weight:750;white-space:nowrap}.filter-grid{display:grid;grid-template-columns:minmax(220px,1fr) repeat(2,minmax(260px,1.35fr));gap:1.25rem}.filter-group{min-width:0;padding:1rem;border:1px solid var(--line);border-radius:12px;background:#fff}.filter-group-title{display:block;margin-bottom:.7rem;color:var(--navy);font-weight:750}.search-input{width:100%;min-height:44px;padding:.65rem .75rem;border:1px solid #b7c4ca;border-radius:9px}.range-row{display:grid;grid-template-columns:78px 1fr 74px;gap:.65rem;align-items:center}.range-row+.range-row{margin-top:.8rem}.range-row label{color:var(--muted);font-size:.9rem}.range-value{text-align:right;font-weight:700;white-space:nowrap}input[type=range]{width:100%!important;accent-color:var(--blue)}.filter-actions{display:flex;justify-content:flex-end;margin-top:1rem}.reset-button{min-height:42px;padding:.6rem .9rem;border:1px solid var(--blue);border-radius:9px;color:var(--blue);background:#fff;font-weight:700;cursor:pointer}.no-results{display:none;margin:0 1.25rem 2rem;padding:1rem;border-radius:10px;background:#fff4d8;color:#674c08}
+.year-heading{display:flex;align-items:baseline;gap:.75rem;margin:2.75rem 1.25rem 1rem;padding-bottom:.6rem;border-bottom:1px solid var(--line);color:var(--navy);font-size:clamp(1.55rem,4vw,2.15rem)}.year-count{color:var(--muted);font-size:.9rem;font-weight:650}.track-list{gap:1rem!important;padding:0 1.25rem!important}.track{padding:1rem!important;border:1px solid var(--line)!important;border-top:5px solid var(--track-color,var(--green))!important;border-radius:14px!important;background:#fff;box-shadow:var(--shadow)}.track-title{margin:0 0 .9rem!important;color:var(--navy)!important;font-size:1.08rem!important;line-height:1.3!important;text-align:left}.track-content{gap:1rem!important}.track img{border-radius:9px}.img-link{padding:0!important;border:0!important;border-radius:9px!important;overflow:hidden}.profile-preview{margin-top:.6rem}.btn{padding:.62rem .8rem!important;border:1px solid var(--blue);border-radius:9px!important;background:#fff!important;color:var(--blue)!important;font-weight:700;text-align:center}.btn:hover{background:#edf4f8!important}.track-download-action{background:var(--blue)!important;color:#fff!important}.track-download-action:hover{background:#07385f!important}.profile-lightbox{border:0!important;border-radius:12px!important;box-shadow:var(--shadow)}.profile-lightbox-close{border-radius:50%!important;background:#edf4f8!important;color:var(--navy)!important}
+@media(max-width:1080px){.filter-grid{grid-template-columns:1fr 1fr}.filter-group-search{grid-column:1/-1}}@media(max-width:680px){.filter-panel{margin-inline:.75rem}.filter-header{align-items:flex-start;flex-direction:column}.filter-grid{grid-template-columns:1fr}.filter-group-search{grid-column:auto}.range-row{grid-template-columns:66px 1fr 68px}.track-list{padding-inline:.75rem!important}.year-heading{margin-inline:.75rem}.track-actions{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem}}@media(max-width:430px){.track-actions{grid-template-columns:1fr}}
+</style>
     </head>
     <body>
-        <!-- Container for distance sliders -->
-        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
-        <div style="margin: 10px;">
-            <label for="minDistance">Minimum Distance:</label>
-            <input type="range" id="minDistance" name="minDistance" min="0" max="15" value="0">
-            <span id="minDistanceValue"></span> miles <!-- Display selected value -->
-            <br><br>
-            <label for="maxDistance">Maximum Distance:</label>
-            <input type="range" id="maxDistance" name="maxDistance" min="0" max="15" value="15">
-            <span id="maxDistanceValue"></span> miles <!-- Display selected value -->
-            <br><br><br>
-            <label for="minAscent">Minimum Ascent:</label>
-            <input type="range" id="minAscent" name="minAscent" min="0" max="1500" value="0">
-            <span id="minAscentValue"></span> meters <!-- Display selected value -->
-            <br><br>
-            <label for="maxAscent">Maximum Ascent:</label>
-            <input type="range" id="maxAscent" name="maxAscent" min="0" max="1500" value="1500">
-            <span id="maxAscentValue"></span> meters <!-- Display selected value -->
-            <br><br>
-        </div>
-        </div>
+        <section class="filter-panel" aria-labelledby="filterTitle"><div class="filter-header"><div><h2 id="filterTitle">Find a walk</h2><p>Search by place, then refine the results by distance or ascent.</p></div><div class="result-count" id="resultCount" role="status" aria-live="polite"></div></div><div class="filter-grid"><div class="filter-group filter-group-search"><label class="filter-group-title" for="placeSearch">Search by place</label><input class="search-input" type="search" id="placeSearch" placeholder="For example, Powder Mills" autocomplete="off"></div><div class="filter-group"><span class="filter-group-title">Distance</span><div class="range-row"><label for="minDistance">Minimum</label><input type="range" id="minDistance" min="0" max="15" value="0"><span class="range-value"><span id="minDistanceValue"></span> mi</span></div><div class="range-row"><label for="maxDistance">Maximum</label><input type="range" id="maxDistance" min="0" max="15" value="15"><span class="range-value"><span id="maxDistanceValue"></span> mi</span></div></div><div class="filter-group"><span class="filter-group-title">Ascent</span><div class="range-row"><label for="minAscent">Minimum</label><input type="range" id="minAscent" min="0" max="1500" value="0"><span class="range-value"><span id="minAscentValue"></span> m</span></div><div class="range-row"><label for="maxAscent">Maximum</label><input type="range" id="maxAscent" min="0" max="1500" value="1500"><span class="range-value"><span id="maxAscentValue"></span> m</span></div></div></div><div class="filter-actions"><button type="button" class="reset-button" id="resetFilters">Reset filters</button></div></section><div class="no-results" id="noResults" role="status">No walks match the selected filters.</div>
     """
 
     # HTML template for the end of the tracks content page
@@ -928,84 +914,96 @@ def create_tracks_content_page(years, feature_collection):
     </dialog>
     </body>
 <script>
-  // Function to set maximum values for distance and ascent sliders
   function setMaxSliderValues() {
-    // Retrieve all tracks
     var tracks = document.querySelectorAll('.track');
-
-    // Initialize variables to store maximum distance and ascent values
     var maxDistance = 0;
     var maxAscent = 0;
 
-    // Loop through each track to find the maximum distance and ascent
     tracks.forEach(function(track) {
-      // Extract distance and ascent details from track elements
       var trackDistance = parseFloat(track.querySelector('.track-details-distance').innerText.trim().split(' ')[0]);
       var ascentDetails = track.querySelector('.track-details-ascent-normal') || track.querySelector('.track-details-ascent-bold');
       var trackAscent = parseFloat(ascentDetails.innerText.trim().split(' ')[1]);
 
-      // Update the maximum distance and ascent values
-      maxDistance = Math.max(maxDistance, Math.ceil(trackDistance)); // Round up distance to nearest whole number
-      maxAscent = Math.max(maxAscent, Math.ceil(trackAscent / 100) * 100); // Round up ascent to nearest 100
+      maxDistance = Math.max(maxDistance, Math.ceil(trackDistance));
+      maxAscent = Math.max(maxAscent, Math.ceil(trackAscent / 100) * 100);
     });
 
-    // Set the maximum values for distance and ascent sliders
     document.getElementById('maxDistance').setAttribute('max', maxDistance);
     document.getElementById('maxAscent').setAttribute('max', maxAscent);
     
-    // Set the slider values to the maximum
     document.getElementById('maxDistance').value = maxDistance;
     document.getElementById('maxAscent').value = maxAscent;
 
-    // Display the maximum values next to the sliders
     document.getElementById('maxDistanceValue').innerText = maxDistance;
     document.getElementById('maxAscentValue').innerText = maxAscent;
   }
 
-  // Function to filter tracks based on slider values
-  function filterTracks() {
-    // Retrieve slider values for minimum and maximum distance and ascent
-    var minDistance = parseFloat(document.getElementById('minDistance').value);
-    var maxDistance = parseFloat(document.getElementById('maxDistance').value);
-    var minAscent = parseFloat(document.getElementById('minAscent').value);
-    var maxAscent = parseFloat(document.getElementById('maxAscent').value);
-
-    // Retrieve all tracks
+  function handlePlaceSearch(searchTerm) {
     var tracks = document.querySelectorAll('.track');
-
-    // Loop through each track and show/hide tracks based on distance and ascent criteria
+    var visibleCount = 0;
+    
     tracks.forEach(function(track) {
+      var titleText = track.querySelector('.track-title').innerText.toLowerCase();
+      var matchesSearch = searchTerm === '' || titleText.includes(searchTerm.toLowerCase());
+      
       var trackDistance = parseFloat(track.querySelector('.track-details-distance').innerText.trim().split(' ')[0]);
       var ascentDetails = track.querySelector('.track-details-ascent-normal') || track.querySelector('.track-details-ascent-bold');
       var trackAscent = parseFloat(ascentDetails.innerText.trim().split(' ')[1]);
-
-      // Show the track if it satisfies the distance and ascent criteria, otherwise hide it
-      if (
-        trackDistance >= minDistance &&
-        trackDistance <= maxDistance &&
-        trackAscent >= minAscent &&
-        trackAscent <= maxAscent
-      ) {
-        track.style.display = 'block';
-      } else {
-        track.style.display = 'none';
-      }
+      
+      var minDistance = parseFloat(document.getElementById('minDistance').value);
+      var maxDistance = parseFloat(document.getElementById('maxDistance').value);
+      var minAscent = parseFloat(document.getElementById('minAscent').value);
+      var maxAscent = parseFloat(document.getElementById('maxAscent').value);
+      
+      var meetsDistanceAscent = (trackDistance >= minDistance && trackDistance <= maxDistance &&
+                                trackAscent >= minAscent && trackAscent <= maxAscent);
+      
+      var isVisible = matchesSearch && meetsDistanceAscent;
+      track.style.display = isVisible ? 'block' : 'none';
+      
+      if (isVisible) visibleCount++;
     });
-
-    // Display the selected slider values
-    document.getElementById('minDistanceValue').innerText = minDistance;
-    document.getElementById('maxDistanceValue').innerText = maxDistance;
-    document.getElementById('minAscentValue').innerText = minAscent;
-    document.getElementById('maxAscentValue').innerText = maxAscent;
+    
+    updateResultCount(visibleCount);
+    return visibleCount;
   }
 
-  // Add event listeners to the sliders to trigger filtering when their values change
+  function updateResultCount(count) {
+    var resultCountEl = document.getElementById('resultCount');
+    var noResultsEl = document.getElementById('noResults');
+    
+    if (count > 0) {
+      resultCountEl.innerText = count + ' walk' + (count !== 1 ? 's' : '');
+      noResultsEl.style.display = 'none';
+    } else {
+      resultCountEl.innerText = '';
+      noResultsEl.style.display = 'block';
+    }
+  }
+
+  function filterTracks() {
+    var searchTerm = document.getElementById('placeSearch').value;
+    handlePlaceSearch(searchTerm);
+  }
+
+  function resetAllFilters() {
+    document.getElementById('placeSearch').value = '';
+    document.getElementById('minDistance').value = '0';
+    document.getElementById('maxDistance').value = '15';
+    document.getElementById('minAscent').value = '0';
+    document.getElementById('maxAscent').value = '1500';
+    
+    setMaxSliderValues();
+    filterTracks();
+  }
+
   document.getElementById('minDistance').addEventListener('input', filterTracks);
   document.getElementById('maxDistance').addEventListener('input', filterTracks);
   document.getElementById('minAscent').addEventListener('input', filterTracks);
   document.getElementById('maxAscent').addEventListener('input', filterTracks);
+  document.getElementById('placeSearch').addEventListener('input', filterTracks);
+  document.getElementById('resetFilters').addEventListener('click', resetAllFilters);
 
-  // Initialize maximum slider values and perform initial filtering
   setMaxSliderValues();
   filterTracks();
 
@@ -1115,17 +1113,14 @@ def create_tracks_content_page(years, feature_collection):
         if (trackId) downloadTrackAsGpx(trackId);
     });
   
-  // Send height to parent window for iframe resizing
   function sendHeight() {
       const height = document.body.scrollHeight;
       window.parent.postMessage({ type: 'resize', height: height }, '*');
   }
   
-  // Send height on load and when window is resized
   window.addEventListener('load', sendHeight);
   window.addEventListener('resize', sendHeight);
   
-  // Also send height after a short delay to account for dynamic content
   setTimeout(sendHeight, 1000);
 </script>
 </html>
@@ -1195,13 +1190,13 @@ def create_tracks_content_page(years, feature_collection):
 
                         # HTML template for each track
                         html_track = f"""\
-<div class="track" style="border: 10px solid {grid_colour};">
+<div class="track" style="--track-color: {grid_colour};">
                 <div class="track-title">{feature['properties']['place_name']}</div>
                 <div class="track-content">
                     <div class="track-media">
-                        <a href="{feature['properties']['ind_map_link']}" target="_blank" class="img-link"><img src="{feature['properties']['thumbnail_link']}" alt="Map Thumbnail" style="display: block;"></a>
+                        <a href="{feature['properties']['ind_map_link']}" target="_blank" class="img-link"><img src="{feature['properties']['thumbnail_link']}" alt="Route map thumbnail" loading="lazy" style="display: block;"></a>
                         <button type="button" class="profile-preview" aria-label="Enlarge elevation profile">
-                            <img src="{feature['properties']['elevation_profile_link']}" alt="Elevation Profile">
+                            <img src="{feature['properties']['elevation_profile_link']}" alt="Elevation profile" loading="lazy">
                         </button>
                     </div>
                     <div class="track-details">
@@ -1227,7 +1222,7 @@ def create_tracks_content_page(years, feature_collection):
                         </div>
                         <div class="track-actions">
                         <a href=\"{feature['properties']['googleMapsLink']}\" target=\"_blank\" class="btn">Starting Location</a>
-                        <a href=\"{feature['properties']['ind_map_link']}\" target=\"_blank\" class="btn">Download GPX Track File</a>
+                        <a href=\"{feature['properties']['ind_map_link']}\" target=\"_blank\" class="btn track-download-action">Download GPX Track File</a>
                         </div>
                     </div>
                 </div>
