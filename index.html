@@ -271,6 +271,40 @@
       background: #fff;
     }
 
+    .profile-lightbox {
+      max-width: 96vw;
+      max-height: 96vh;
+      padding: 52px 16px 16px;
+      border: 0;
+      border-radius: 12px;
+      overflow: visible;
+      box-shadow: var(--shadow);
+    }
+    .profile-lightbox::backdrop { background: rgba(0, 0, 0, .78); }
+    .profile-lightbox img {
+      display: block;
+      max-width: calc(96vw - 32px);
+      max-height: calc(90vh - 60px);
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+    .profile-lightbox-close {
+      position: absolute;
+      top: 6px;
+      right: 16px;
+      width: 40px;
+      min-height: 40px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: #edf4f8;
+      color: var(--navy);
+      font: 32px/1 Arial, sans-serif;
+      cursor: pointer;
+    }
+    .profile-lightbox-close:hover { color: var(--blue); }
+
     .site-footer { padding: 2.5rem 0; color: #dce8f0; background: var(--navy); }
     .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
     .footer-title { margin: 0; color: #fff; font-weight: 800; }
@@ -425,13 +459,36 @@
     </div>
   </footer>
 
+    <dialog class="profile-lightbox" id="profileLightbox" aria-label="Enlarged elevation profile">
+    <button class="profile-lightbox-close" type="button" aria-label="Close">&times;</button>
+    <img alt="Elevation profile">
+    </dialog>
+
 <script>
   // Auto-resize iframe based on content
+    const tracksIframe = document.getElementById('tracksIframe');
+    const profileLightbox = document.getElementById('profileLightbox');
+    const profileLightboxImage = profileLightbox.querySelector('img');
+    const profileLightboxClose = profileLightbox.querySelector('.profile-lightbox-close');
+
   window.addEventListener('message', function(e) {
+      if (e.source !== tracksIframe.contentWindow) return;
       if (e.data.type === 'resize') {
-          document.getElementById('tracksIframe').style.height = e.data.height + 'px';
+        tracksIframe.style.height = e.data.height + 'px';
+      } else if (e.data.type === 'open-profile') {
+        profileLightboxImage.src = e.data.src;
+        profileLightboxImage.alt = e.data.alt;
+        profileLightbox.showModal();
+        profileLightboxClose.focus();
       }
   });
+
+    profileLightboxClose.addEventListener('click', function() {
+      profileLightbox.close();
+    });
+    profileLightbox.addEventListener('click', function(e) {
+      if (e.target === profileLightbox) profileLightbox.close();
+    });
   
 // Fetch and display latest charity donation
 // IIFE (Immediately Invoked Function Expression) to keep variables scoped
