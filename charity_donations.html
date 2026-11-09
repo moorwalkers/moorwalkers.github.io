@@ -1,119 +1,324 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Charity Donations - Moor Walkers</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #0A4478;
-            color: white;
-            padding: 1em;
-            text-align: center;
-        }
-        h1 {
-            text-align: center;
-            margin: 0;
-            font-size: 2.5em;
-        }
-        h2 {
-            text-align: center;
-            color: #0A4478;
-            font-size: 2em;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-        .content {
-            padding: 20px;
-        }
-        #loading, #loading2 {
-            color: #666;
-            font-style: italic;
-            text-align: center;
-            padding: 20px;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin: 0 auto;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #0A4478;
-            color: white;
-            font-weight: bold;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        a {
-            color: #0A4478;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .error {
-            color: red;
-            padding: 10px;
-            background-color: #ffe6e6;
-            border-radius: 4px;
-            text-align: center;
-        }
-        nav {
-            text-align: center;
-            padding: 20px;
-        }
-        nav a {
-            display: inline-block;
-            padding: 0.5em 1em;
-            background-color: #0A4478;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.2s ease;
-            font-size: 1.0em;
-            margin: 0 0.5em;
-        }
-        nav a:hover {
-            background-color: #1A4E87;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="A record of charity collections, donations and proposed charities for the Moor Walkers group.">
+  <title>Charity Donations | Moor Walkers</title>
+  <link rel="icon" href="https://moorwalkers.github.io/icons8-map-pastel-32.png" type="image/x-icon">
+  <style>
+    :root {
+      --navy: #082f52;
+      --blue: #0a4478;
+      --blue-hover: #07385f;
+      --green: #496b43;
+      --green-dark: #365331;
+      --ink: #20303b;
+      --muted: #60717c;
+      --surface: #ffffff;
+      --surface-soft: #f3f6f2;
+      --line: #dbe3e6;
+      --shadow: 0 10px 30px rgba(8, 47, 82, 0.10);
+      --radius: 16px;
+      --content-width: 1400px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--surface-soft);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    a:focus-visible {
+      outline: 3px solid #f3c969;
+      outline-offset: 3px;
+    }
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      z-index: 100;
+      padding: .75rem 1rem;
+      background: #fff;
+      color: var(--navy);
+    }
+    .skip-link:focus { left: 1rem; top: 1rem; }
+    .container {
+      width: min(calc(100% - 2rem), var(--content-width));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      color: #fff;
+      background:
+        linear-gradient(120deg, rgba(8,47,82,.97), rgba(10,68,120,.91)),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,.18), transparent 34%);
+      padding: 1rem 0 4.5rem;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 750;
+      letter-spacing: .01em;
+    }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      background: rgba(255,255,255,.12);
+      font-size: 1.2rem;
+    }
+    .topnav { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .topnav a {
+      color: #fff;
+      text-decoration: none;
+      padding: .55rem .75rem;
+      border-radius: 8px;
+      font-size: .95rem;
+    }
+    .topnav a:hover { background: rgba(255,255,255,.12); }
+    .hero {
+      max-width: 850px;
+      padding: 5rem 0 1rem;
+    }
+    .eyebrow {
+      margin: 0 0 .6rem;
+      color: #d7e7d3;
+      font-weight: 750;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: .78rem;
+    }
+    h1 {
+      margin: 0;
+      max-width: 850px;
+      font-size: clamp(2.5rem, 7vw, 5.25rem);
+      line-height: .98;
+      letter-spacing: -.045em;
+    }
+    .hero-copy {
+      max-width: 720px;
+      margin: 1.4rem 0 0;
+      color: #e5eef5;
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      margin-top: 1.7rem;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: .72rem 1.05rem;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .15s ease, background-color .15s ease;
+    }
+    .button:hover { transform: translateY(-1px); }
+    .button-primary { background: #fff; color: var(--navy); }
+    .button-primary:hover { background: #edf4f8; }
+    .button-secondary { border-color: rgba(255,255,255,.55); color: #fff; }
+    .button-secondary:hover { background: rgba(255,255,255,.1); }
+
+    main { padding-bottom: 4rem; }
+    .intro-panel {
+      position: relative;
+      margin-top: -2.25rem;
+      padding: clamp(1.3rem, 3vw, 2rem);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .intro-panel p { max-width: 950px; margin: 0; font-size: 1.08rem; }
+    .section { padding-top: clamp(3.5rem, 7vw, 6rem); }
+    .section-heading { margin-bottom: 1.5rem; }
+    .section-heading h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      line-height: 1.1;
+      letter-spacing: -.025em;
+    }
+    .section-heading p { max-width: 720px; margin: .65rem 0 0; color: var(--muted); }
+    .section-heading .eyebrow { color: var(--green); margin-bottom: .6rem; }
+
+    .table-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--green);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+    }
+    #loading, #loading2 {
+      color: var(--muted);
+      font-style: italic;
+      padding: 2rem;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 760px;
+      background: #fff;
+      font-size: .93rem;
+    }
+    th, td {
+      padding: .85rem 1rem;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      color: #fff;
+      background: var(--navy);
+      font-size: .76rem;
+      letter-spacing: .045em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    tbody tr:nth-child(even) { background: #f7f9f8; }
+    tbody tr:hover { background: #eef4ef; }
+    td { color: var(--ink); }
+    td a { color: var(--blue); font-weight: 650; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    td a:hover { color: var(--blue-hover); }
+    .error {
+      margin: 1rem;
+      padding: 1rem;
+      color: #7a1d1d;
+      border: 1px solid #efb8b8;
+      border-radius: 10px;
+      background: #fff0f0;
+    }
+
+    .site-footer { padding: 2.5rem 0; color: #dce8f0; background: var(--navy); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
+    .footer-title { margin: 0; color: #fff; font-weight: 800; }
+    .footer-copy { margin: .25rem 0 0; color: #bcd0dd; font-size: .92rem; }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: .75rem 1.2rem; }
+    .footer-nav a { color: #fff; }
+
+    @media (max-width: 680px) {
+      .topbar { align-items: flex-start; }
+      .topnav { justify-content: flex-end; }
+      .topnav a { padding: .45rem .5rem; font-size: .85rem; }
+      .hero { padding-top: 3.6rem; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .button { width: 100%; }
+      th, td { padding: .75rem .8rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Moor Walkers - Charity Donations</h1>
-    </header>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="https://docs.google.com/spreadsheets/d/1mBTYXbNLlbsC-6KlDGwNO9-Q5Cxw4lRz/edit?usp=sharing&ouid=103249216531241065383&rtpof=true&sd=true" target="_blank">Full Spreadsheet</a>
-    </nav>
-    <div class="content">
-    <h2>Upcoming Charities</h2>
-    <div id="loading2">Loading Upcoming Charities...</div>
-    <div id="error2"></div>
-    <div id="tableContainer2"></div>
-    
-    <h2>Recent Charity Donations</h2>
-    <div id="loading">Loading data...</div>
-    <div id="error"></div>
-    <div id="tableContainer"></div>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="topbar">
+        <a class="brand" href="index.html" aria-label="Moor Walkers home">
+          <span class="brand-mark" aria-hidden="true">⌁</span>
+          <span>Moor Walkers</span>
+        </a>
+        <nav class="topnav" aria-label="Primary navigation">
+          <a href="index.html">Home</a>
+          <a href="#upcoming">Upcoming</a>
+          <a href="#recent">Recent donations</a>
+        </nav>
+      </div>
+
+      <div class="hero">
+        <p class="eyebrow">Walking with purpose</p>
+        <h1>Charity collections and donations.</h1>
+        <p class="hero-copy">A record of the charities proposed by the Moor Walkers group and the donations made from collections taken during our walks.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="index.html">Return to the home page</a>
+          <a class="button button-secondary" href="https://docs.google.com/spreadsheets/d/1mBTYXbNLlbsC-6KlDGwNO9-Q5Cxw4lRz/edit?usp=sharing&amp;ouid=103249216531241065383&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener noreferrer">Open the full spreadsheet</a>
+        </div>
+      </div>
     </div>
+  </header>
+
+  <main id="main-content">
+    <div class="container">
+      <section class="intro-panel" aria-label="About charity collections">
+        <p>We take a collection during our walks and donate the proceeds to charities proposed by members of the Moor Walkers group. This page shows the upcoming proposals and a recent history of collections and donations.</p>
+      </section>
+
+      <section class="section" id="upcoming">
+        <div class="section-heading">
+          <p class="eyebrow">Proposed by our walkers</p>
+          <h2>Upcoming charities</h2>
+          <p>Charities currently proposed to receive a future donation from the group's walking collections.</p>
+        </div>
+        <div class="table-card">
+          <div id="loading2" role="status">Loading upcoming charities…</div>
+          <div id="error2" aria-live="polite"></div>
+          <div id="tableContainer2" class="table-scroll"></div>
+        </div>
+      </section>
+
+      <section class="section" id="recent">
+        <div class="section-heading">
+          <p class="eyebrow">Our recent record</p>
+          <h2>Recent charity donations</h2>
+          <p>The latest collection entries and charity donations, with the most recent records shown first.</p>
+        </div>
+        <div class="table-card">
+          <div id="loading" role="status">Loading recent donations…</div>
+          <div id="error" aria-live="polite"></div>
+          <div id="tableContainer" class="table-scroll"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <p class="footer-title">Moor Walkers</p>
+        <p class="footer-copy">Exploring Dartmoor and the surrounding countryside.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="https://moorwalkers.github.io/map.html">Interactive map</a>
+        <a href="#main-content">Back to top</a>
+      </nav>
+    </div>
+  </footer>
 
     <script>
         const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9fPeRBDx4hLm3TU25ElZA14R2H5gSwoenN0ouGNmlfbyRRwqt2ODbQ0vVMZlVjA/pub?gid=1099060302&single=true&output=csv';
