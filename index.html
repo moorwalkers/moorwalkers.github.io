@@ -1,206 +1,430 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta name="google-site-verification" content="QaepS4BX_zktIe37hTgzdkyPJmJM7G-kX_bn2Ezudzw" />
-        <meta name="robots" content="noindex, nofollow">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Moor Walkers Map</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-            }
-            header {
-                background-color: #0A4478;
-                color: white;
-                padding: 1em;
-                text-align: center;
-            }
-            h1 {
-                text-align: center;
-                margin: 0;
-                font-size: 2.5em;
-            }
-            p {
-                font-size: 1.2em;
-                margin-top: 2em;
-                margin-bottom: 1em;
-                text-align: center;
-            }
-            ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-                text-align: center;
-                font-size: 1.8em;
-            }
-            li {
-                display: inline-block;
-                margin: 0 1em;
-            }
-            a {
-                display: block;
-                padding: 0.5em 1em;
-                background-color: #0A4478;
-                color: white;
-                text-decoration: none;
-                border-radius: 5px;
-                transition: background-color 0.2s ease;
-                font-size: 1.0em;
-            }
-            a:hover {
-                background-color: #1A4E87;
-            }
-            /* Latest donation display */
-            .latest-donation {
-                background-color: #f0f8ff;
-                border: 2px solid #0A4478;
-                border-radius: 10px;
-                padding: 15px;
-                margin: 20px auto;
-                max-width: 800px;
-                text-align: center;
-            }
-            .latest-donation h3 {
-                color: #0A4478;
-                margin-top: 0;
-                font-size: 1em;
-            }
-            .latest-donation table {
-                margin: 10px auto;
-                border-collapse: collapse;
-                background-color: white;
-            }
-            .latest-donation th {
-                background-color: #0A4478;
-                color: white;
-                padding: 8px;
-                font-size: 0.9em;
-            }
-            .latest-donation td {
-                padding: 8px;
-                border: 1px solid #ddd;
-                font-size: 0.9em;
-            }
-            .latest-donation a {
-                color: #0A4478;
-                text-decoration: none;
-                display: inline;
-                padding: 0;
-                background-color: transparent;
-                border-radius: 0;
-            }
-            .latest-donation a:hover {
-                text-decoration: underline;
-                background-color: transparent;
-            }
-            .latest-donation a.button-link {
-                display: inline-block;
-                padding: 0.5em 1em;
-                background-color: #0A4478;
-                color: white;
-                text-decoration: none;
-                border-radius: 5px;
-                transition: background-color 0.2s ease;
-            }
-            .latest-donation a.button-link:hover {
-                background-color: #1A4E87;
-                text-decoration: none;
-            }
-            .iframe-container {
-                width: 100%;
-                border: none;
-                min-height: 2000px;
-            }
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="QaepS4BX_zktIe37hTgzdkyPJmJM7G-kX_bn2Ezudzw">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore Moor Walkers routes across Dartmoor and the surrounding countryside, view the interactive map and discover the charities supported by the group.">
+  <title>Moor Walkers | Dartmoor walks and route maps</title>
+  <link rel="icon" href="https://moorwalkers.github.io/icons8-map-pastel-32.png" type="image/x-icon">
+  <style>
+    :root {
+      --navy: #082f52;
+      --blue: #0a4478;
+      --blue-hover: #07385f;
+      --green: #496b43;
+      --green-dark: #365331;
+      --ink: #20303b;
+      --muted: #60717c;
+      --surface: #ffffff;
+      --surface-soft: #f3f6f2;
+      --line: #dbe3e6;
+      --shadow: 0 10px 30px rgba(8, 47, 82, 0.10);
+      --radius: 16px;
+      --content-width: 1400px;
+    }
 
-            /* Scale down the oversized header/nav elements on narrow mobile viewports */
-            @media (max-width: 600px) {
-                h1 {
-                    font-size: 1.8em;
-                }
-                p {
-                    font-size: 1em;
-                }
-                ul {
-                    font-size: 1.2em;
-                    flex-direction: column;
-                    gap: 10px !important;
-                }
-                li {
-                    margin: 0;
-                    width: 100%;
-                }
-                .latest-donation {
-                    padding: 10px;
-                }
-                .latest-donation table {
-                    font-size: 0.8em;
-                }
-                .latest-donation th,
-                .latest-donation td {
-                    padding: 4px;
-                }
-            }
-        </style>
-        <link rel="icon" href="https://moorwalkers.github.io/icons8-map-pastel-32.png" type="image/x-icon">
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--surface-soft);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid #f3c969;
+      outline-offset: 3px;
+    }
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      z-index: 100;
+      padding: .75rem 1rem;
+      background: #fff;
+      color: var(--navy);
+    }
+    .skip-link:focus { left: 1rem; top: 1rem; }
+    .container {
+      width: min(calc(100% - 2rem), var(--content-width));
+      margin-inline: auto;
+    }
 
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-PBJZDHQ6NW"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-PBJZDHQ6NW');
-        </script>
-    </head>
-    <body>
-        <header>
-            <h1>Moor Walkers Map</h1>
-        </header>
-        <main>
-            <p>Welcome to our website, dedicated to showcasing the incredible walks that the Moor Walkers have taken over Dartmoor and the surrounding areas.
-            <br>Join us on a journey through the heart of this stunning landscape and discover the hidden treasures that Dartmoor has to offer.
-            <br><br>Each week we take a collection during our walks, and these collections are donated to charities proposed by our walkers.</p>
-            
-            <!-- Charity Information -->
-            <div class="latest-donation">
-                <h3>Latest Charity Collection</h3>
-                <div id="donationLoading" style="font-style: italic; color: #666;">Loading...</div>
-                <div id="donationContainer"></div>
-                
-                <h3 style="margin-top: 20px;">Latest Donation</h3>
-                <div id="latestDonationLoading" style="font-style: italic; color: #666;">Loading...</div>
-                <div id="latestDonationContainer"></div>
-                
-                <h3 style="margin-top: 20px;">Next Proposed Donation</h3>
-                <div id="upcomingLoading" style="font-style: italic; color: #666;">Loading...</div>
-                <div id="upcomingContainer"></div>
-                
-                <p style="margin-top: 15px; text-align: center;">
-                    <a href="charity_donations.html" class="button-link">View Recent Charity Collections & Donations</a>
-                </p>
+    .site-header {
+      color: #fff;
+      background:
+        linear-gradient(120deg, rgba(8,47,82,.97), rgba(10,68,120,.91)),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,.18), transparent 34%);
+      padding: 1rem 0 4.5rem;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 750;
+      letter-spacing: .01em;
+    }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      background: rgba(255,255,255,.12);
+      font-size: 1.2rem;
+    }
+    .topnav { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .topnav a {
+      color: #fff;
+      text-decoration: none;
+      padding: .55rem .75rem;
+      border-radius: 8px;
+      font-size: .95rem;
+    }
+    .topnav a:hover { background: rgba(255,255,255,.12); }
+    .hero {
+      max-width: 850px;
+      padding: 5rem 0 1rem;
+    }
+    .eyebrow {
+      margin: 0 0 .6rem;
+      color: #d7e7d3;
+      font-weight: 750;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: .78rem;
+    }
+    h1 {
+      margin: 0;
+      max-width: 800px;
+      font-size: clamp(2.5rem, 7vw, 5.25rem);
+      line-height: .98;
+      letter-spacing: -.045em;
+    }
+    .hero-copy {
+      max-width: 720px;
+      margin: 1.4rem 0 0;
+      color: #e5eef5;
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+    }
+    .hero-actions, .section-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      margin-top: 1.7rem;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: .72rem 1.05rem;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .15s ease, background-color .15s ease, border-color .15s ease;
+    }
+    .button:hover { transform: translateY(-1px); }
+    .button-primary { background: #fff; color: var(--navy); }
+    .button-primary:hover { background: #edf4f8; }
+    .button-secondary { border-color: rgba(255,255,255,.55); color: #fff; background: transparent; }
+    .button-secondary:hover { background: rgba(255,255,255,.1); }
+    .button-blue { background: var(--blue); color: #fff; }
+    .button-blue:hover { background: var(--blue-hover); }
+    .button-outline { border-color: var(--blue); color: var(--blue); background: #fff; }
+    .button-outline:hover { background: #eef5fa; }
+
+    main { padding-bottom: 4rem; }
+    .intro-panel {
+      position: relative;
+      margin-top: -2.25rem;
+      padding: clamp(1.3rem, 3vw, 2rem);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .intro-panel p { max-width: 950px; margin: 0; font-size: 1.08rem; }
+    .section { padding-top: clamp(3.5rem, 7vw, 6rem); }
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .section-heading h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      line-height: 1.1;
+      letter-spacing: -.025em;
+    }
+    .section-heading p { max-width: 650px; margin: .65rem 0 0; color: var(--muted); }
+
+    .charity-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      align-items: stretch;
+    }
+    .charity-card {
+      min-width: 0;
+      padding: 1.35rem;
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--green);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 5px 18px rgba(8,47,82,.06);
+    }
+    .charity-card h3 { margin: 0 0 1rem; color: var(--green-dark); font-size: 1.2rem; }
+    .loading { color: var(--muted); font-style: italic; }
+    .charity-card-combined {
+      display: flex;
+      flex-direction: column;
+    }
+    .charity-card-section { min-width: 0; }
+    .charity-card-section-next {
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
+    }
+    .charity-values {
+      display: grid;
+      gap: .9rem;
+    }
+    .charity-value {
+      min-width: 0;
+    }
+    .charity-label {
+      display: block;
+      margin-bottom: .15rem;
+      color: var(--muted);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .055em;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+    .charity-data {
+      display: block;
+      color: var(--ink);
+      overflow-wrap: anywhere;
+      font-size: 1.03rem;
+      font-weight: 650;
+      line-height: 1.45;
+    }
+    .charity-data a { color: var(--blue); }
+    .charity-card p { margin: 0; }
+
+    .explore-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .feature-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 240px;
+      padding: clamp(1.4rem, 3vw, 2rem);
+      border-radius: var(--radius);
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--navy));
+      text-decoration: none;
+      box-shadow: var(--shadow);
+    }
+    .feature-card:nth-child(2) { background: linear-gradient(135deg, var(--green), var(--green-dark)); }
+    .feature-icon { font-size: 2rem; line-height: 1; }
+    .feature-card h3 { margin: auto 0 .5rem; font-size: 1.5rem; }
+    .feature-card p { margin: 0; color: rgba(255,255,255,.85); }
+    .feature-card span:last-child { margin-top: 1rem; font-weight: 750; }
+    .feature-card:hover { transform: translateY(-2px); }
+
+    .walks-shell {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .walks-heading { padding: 1.5rem 1.5rem 1rem; }
+    .walks-heading h2 { margin: 0; color: var(--navy); font-size: clamp(1.7rem, 4vw, 2.45rem); }
+    .walks-heading p { margin: .5rem 0 0; color: var(--muted); }
+    .iframe-container {
+      display: block;
+      width: 100%;
+      min-height: 2000px;
+      border: 0;
+      background: #fff;
+    }
+
+    .site-footer { padding: 2.5rem 0; color: #dce8f0; background: var(--navy); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
+    .footer-title { margin: 0; color: #fff; font-weight: 800; }
+    .footer-copy { margin: .25rem 0 0; color: #bcd0dd; font-size: .92rem; }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: .75rem 1.2rem; }
+    .footer-nav a { color: #fff; }
+
+    @media (max-width: 900px) {
+      .charity-grid { grid-template-columns: 1fr; }
+      .explore-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      .topbar { align-items: flex-start; }
+      .topnav { justify-content: flex-end; }
+      .topnav a { padding: .45rem .5rem; font-size: .85rem; }
+      .hero { padding-top: 3.6rem; }
+      .section-heading, .footer-inner { align-items: flex-start; flex-direction: column; }
+      .button { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PBJZDHQ6NW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PBJZDHQ6NW');
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="topbar">
+        <a class="brand" href="index.html" aria-label="Moor Walkers home">
+          <span class="brand-mark" aria-hidden="true">⌁</span>
+          <span>Moor Walkers Map</span>
+        </a>
+        <nav class="topnav" aria-label="Primary navigation">
+          <a href="#charity">Charity</a>
+          <a href="#explore">Explore</a>
+          <a href="#walks">Walks</a>
+        </nav>
+      </div>
+
+      <div class="hero">
+        <p class="eyebrow">Dartmoor and beyond</p>
+        <h1>Exploring Dartmoor</h1>
+        <p class="hero-copy">Explore the routes walked by the Moor Walkers group across Dartmoor and the surrounding countryside, with detailed maps, walk information and downloadable GPX files to help you follow them for yourself.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://moorwalkers.github.io/map.html">Explore the interactive map</a>
+          <a class="button button-secondary" href="#walks">Browse individual walks</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="container">
+      <section class="intro-panel" aria-label="About Moor Walkers">
+        <p>Each week we explore Dartmoor and nearby areas, building a record of the routes and places the Moor Walkers group has explored. We also take a collection during our walks and donate the proceeds to charities proposed by our walkers.</p>
+      </section>
+
+      <section class="section" id="charity">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" style="color: var(--green);">Walking with purpose</p>
+            <h2>Supporting good causes</h2>
+            <p>See our latest collection, most recent donation and the next charity proposed by the group.</p>
+          </div>
+        </div>
+
+        <div class="charity-grid">
+          <article class="charity-card">
+            <h3>Latest charity collection</h3>
+            <div id="donationLoading" class="loading" role="status">Loading collection…</div>
+            <div id="donationContainer"></div>
+          </article>
+
+          <article class="charity-card charity-card-combined">
+            <div class="charity-card-section">
+              <h3>Latest donation</h3>
+              <div id="latestDonationLoading" class="loading" role="status">Loading donation…</div>
+              <div id="latestDonationContainer"></div>
             </div>
-            
-            <p><strong>Click the links below to view the maps showing all tracks:</strong></p>            
 
-            <ul style=" list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; align-items: center; gap: 20px;">
-            <li>
-                <a href="https://moorwalkers.github.io/map.html">Moor Walkers<br>Interactive Map</a>
-            </li>
-            <li>
-                <a href="https://docs.google.com/document/d/137F0WaxtaFVZZZPkvI25haU_frupJENH9McdYEDUlF8/preview" target="_blank">Moor Walkers<br>Interactive Map<br> User Guide</a>
-            </li>
-            </ul>
+            <div class="charity-card-section charity-card-section-next">
+              <h3>Next proposed donation</h3>
+              <div id="upcomingLoading" class="loading" role="status">Loading proposal…</div>
+              <div id="upcomingContainer"></div>
+            </div>
+          </article>
+        </div>
 
-            <br>
-            <br>
-            <p><strong>Or click one of the following Individual Map links to view individual tracks:</strong></p>
+        <div class="section-actions">
+          <a class="button button-outline" href="charity_donations.html">View charity collections and donations</a>
+        </div>
+      </section>
 
-            <!-- iframe for tracks content -->
-            <iframe src="tracks_content.html" class="iframe-container" id="tracksIframe"></iframe>
-        </main>
-    </body>
+      <section class="section" id="explore">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" style="color: var(--green);">Plan your route</p>
+            <h2>Explore the walking maps</h2>
+            <p>Use the interactive map to discover routes by location, or open the guide for help with the map features.</p>
+          </div>
+        </div>
+        <div class="explore-grid">
+          <a class="feature-card" href="https://moorwalkers.github.io/map.html">
+            <span class="feature-icon" aria-hidden="true">⌖</span>
+            <h3>Interactive map</h3>
+            <p>View Moor Walkers routes together on one map and explore the areas we have covered.</p>
+            <span>Open the map →</span>
+          </a>
+          <a class="feature-card" href="https://docs.google.com/document/d/137F0WaxtaFVZZZPkvI25haU_frupJENH9McdYEDUlF8/preview" target="_blank" rel="noopener noreferrer">
+            <span class="feature-icon" aria-hidden="true">?</span>
+            <h3>Interactive map user guide</h3>
+            <p>Learn how to navigate the map, display tracks and use the available viewing tools.</p>
+            <span>Read the guide →</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section" id="walks">
+        <div class="walks-shell">
+          <div class="walks-heading">
+            <p class="eyebrow" style="color: var(--green);">Route catalogue</p>
+            <h2>Browse individual walks</h2>
+            <p>Filter the full catalogue and open an individual map, starting location or GPX download.</p>
+          </div>
+          <iframe src="tracks_content.html" class="iframe-container" id="tracksIframe" title="Moor Walkers individual route catalogue" loading="lazy"></iframe>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <p class="footer-title">Moor Walkers</p>
+        <p class="footer-copy">Exploring Dartmoor and the surrounding countryside.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="https://moorwalkers.github.io/map.html">Interactive map</a>
+        <a href="charity_donations.html">Charity donations</a>
+        <a href="#main-content">Back to top</a>
+      </nav>
+    </div>
+  </footer>
+
 <script>
   // Auto-resize iframe based on content
   window.addEventListener('message', function(e) {
@@ -384,57 +608,37 @@ function parseCSV(csv) {
    * @param {Object|null} donation - Object containing headers and row arrays
    */
   function displayDonation(donation) {
-    // Get the loading indicator element
     const loadingEl = document.getElementById('donationLoading');
-    
-    // If no donation data available, hide loading and show message
+
     if (!donation) {
       if (loadingEl) loadingEl.style.display = 'none';
       document.getElementById('donationContainer').innerHTML = '<p>No donation data available</p>';
       return;
     }
 
-    // Find the column index for "Donation Recipient" to apply special link formatting
     const donationRecipientIndex = donation.headers.findIndex(h =>
       h.toLowerCase().includes('donation') && h.toLowerCase().includes('recipient')
     );
-
-    // Find the column index for "Charity" to make charity names clickable
     const charityIndex = donation.headers.findIndex(h =>
       h.toLowerCase() === 'charity' || (h.toLowerCase().includes('charity') && !h.toLowerCase().includes('url'))
     );
-    // Get the charity URL from the donation object (stored separately)
     const charityUrl = donation.charityUrl;
 
-    // Build the HTML table - start with table header row
-    let html = '<table><tr>';
-    donation.headers.forEach(header => {
-      html += `<th>${header}</th>`;
-    });
-    html += '</tr><tr>';
-
-    // Build the data row
+    let html = '<div class="charity-values">';
     donation.row.forEach((cell, idx) => {
-      let cellContent = cell;
-      
-      // If this is the Donation Recipient column and contains a URL, make it clickable
+      let cellContent = cell ?? '';
+
       if (idx === donationRecipientIndex && cell && String(cell).match(/^https?:\/\//)) {
         cellContent = `<a href="${cell}" target="_blank" rel="noopener noreferrer">${cell}</a>`;
       }
-      
-      // If this is the Charity column and we have a valid Charity URL, make it clickable
-      if (idx === charityIndex && cell && charityUrl) {
-        if (String(charityUrl).match(/^https?:\/\//)) {
-          cellContent = `<a href="${charityUrl}" target="_blank" rel="noopener noreferrer">${cell}</a>`;
-        }
+      if (idx === charityIndex && cell && charityUrl && String(charityUrl).match(/^https?:\/\//)) {
+        cellContent = `<a href="${charityUrl}" target="_blank" rel="noopener noreferrer">${cell}</a>`;
       }
-      
-      // Add the cell to the table (use nullish coalescing to handle null/undefined)
-      html += `<td>${cellContent ?? ''}</td>`;
-    });
-    html += '</tr></table>';
 
-    // Hide the loading indicator and display the table
+      html += `<div class="charity-value"><span class="charity-label">${donation.headers[idx]}</span><span class="charity-data">${cellContent}</span></div>`;
+    });
+    html += '</div>';
+
     if (loadingEl) loadingEl.style.display = 'none';
     document.getElementById('donationContainer').innerHTML = html;
   }
@@ -621,57 +825,37 @@ function parseCSV(csv) {
    * @param {Object|null} donation - Object containing headers and row arrays
    */
   function displayLatestDonation(donation) {
-    // Get the loading indicator element
     const loadingEl = document.getElementById('latestDonationLoading');
-    
-    // If no donation data available, hide loading and show message
+
     if (!donation) {
       if (loadingEl) loadingEl.style.display = 'none';
       document.getElementById('latestDonationContainer').innerHTML = '<p>No donation data available</p>';
       return;
     }
 
-    // Find the column index for "Donation Recipient" to apply special link formatting
     const donationRecipientIndex = donation.headers.findIndex(h =>
       h.toLowerCase().includes('donation') && h.toLowerCase().includes('recipient')
     );
-
-    // Find the column index for "Charity" to make charity names clickable
     const charityIndex = donation.headers.findIndex(h =>
       h.toLowerCase() === 'charity' || (h.toLowerCase().includes('charity') && !h.toLowerCase().includes('url'))
     );
-    // Get the charity URL from the donation object (stored separately)
     const charityUrl = donation.charityUrl;
 
-    // Build the HTML table - start with table header row
-    let html = '<table><tr>';
-    donation.headers.forEach(header => {
-      html += `<th>${header}</th>`;
-    });
-    html += '</tr><tr>';
-
-    // Build the data row
+    let html = '<div class="charity-values">';
     donation.row.forEach((cell, idx) => {
-      let cellContent = cell;
-      
-      // If this is the Donation Recipient column and contains a URL, make it clickable
+      let cellContent = cell ?? '';
+
       if (idx === donationRecipientIndex && cell && String(cell).match(/^https?:\/\//)) {
         cellContent = `<a href="${cell}" target="_blank" rel="noopener noreferrer">${cell}</a>`;
       }
-      
-      // If this is the Charity column and we have a valid Charity URL, make it clickable
-      if (idx === charityIndex && cell && charityUrl) {
-        if (String(charityUrl).match(/^https?:\/\//)) {
-          cellContent = `<a href="${charityUrl}" target="_blank" rel="noopener noreferrer">${cell}</a>`;
-        }
+      if (idx === charityIndex && cell && charityUrl && String(charityUrl).match(/^https?:\/\//)) {
+        cellContent = `<a href="${charityUrl}" target="_blank" rel="noopener noreferrer">${cell}</a>`;
       }
-      
-      // Add the cell to the table (use nullish coalescing to handle null/undefined)
-      html += `<td>${cellContent ?? ''}</td>`;
-    });
-    html += '</tr></table>';
 
-    // Hide the loading indicator and display the table
+      html += `<div class="charity-value"><span class="charity-label">${donation.headers[idx]}</span><span class="charity-data">${cellContent}</span></div>`;
+    });
+    html += '</div>';
+
     if (loadingEl) loadingEl.style.display = 'none';
     document.getElementById('latestDonationContainer').innerHTML = html;
   }
@@ -827,43 +1011,32 @@ function parseCSV(csv) {
        * @param {Object|null} upcoming - Object containing headers and row arrays
        */
       function displayUpcoming(upcoming) {
-          // If no data available, show message
+          const loadingEl = document.getElementById('upcomingLoading');
+
           if (!upcoming) {
+              if (loadingEl) loadingEl.style.display = 'none';
               document.getElementById('upcomingContainer').innerHTML = '<p>No next proposed donation data available</p>';
               return;
           }
-          
-          // Find the column index for "Charity" to make charity names clickable
-          const charityIndex = upcoming.headers.findIndex(h => 
+
+          const charityIndex = upcoming.headers.findIndex(h =>
               h.toLowerCase() === 'charity' || (h.toLowerCase().includes('charity') && !h.toLowerCase().includes('url'))
           );
-          // Get the charity URL from the upcoming object (stored separately)
           const charityUrl = upcoming.charityUrl;
-          
-          // Build the HTML table - start with header row
-          let html = '<table><tr>';
-          upcoming.headers.forEach(header => {
-              html += `<th>${header}</th>`;
-          });
-          html += '</tr><tr>';
-          
-          // Build the data row
+
+          let html = '<div class="charity-values">';
           upcoming.row.forEach((cell, idx) => {
-              let cellContent = cell;
-              
-              // If this is the Charity column and we have a valid Charity URL, make it clickable
-              if (idx === charityIndex && cell && charityUrl) {
-                  if (String(charityUrl).match(/^https?:\/\//)) {
-                      cellContent = `<a href="${charityUrl}" target="_blank" rel="noopener noreferrer">${cell}</a>`;
-                  }
+              let cellContent = cell ?? '';
+
+              if (idx === charityIndex && cell && charityUrl && String(charityUrl).match(/^https?:\/\//)) {
+                  cellContent = `<a href="${charityUrl}" target="_blank" rel="noopener noreferrer">${cell}</a>`;
               }
-              
-              // Add the cell to the table
-              html += `<td>${cellContent}</td>`;
+
+              html += `<div class="charity-value"><span class="charity-label">${upcoming.headers[idx]}</span><span class="charity-data">${cellContent}</span></div>`;
           });
-          html += '</tr></table>';
-          
-          // Display the table in the container
+          html += '</div>';
+
+          if (loadingEl) loadingEl.style.display = 'none';
           document.getElementById('upcomingContainer').innerHTML = html;
       }
       
@@ -890,5 +1063,5 @@ function parseCSV(csv) {
           });
   })();
 </script>
+</body>
 </html>
-    
