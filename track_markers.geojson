@@ -6,6 +6,33 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -4.00497,
+          50.488326
+        ]
+      },
+      "properties": {
+        "name": "2026-11-12 @ 18-13-36",
+        "date": "2026-11-12T18:13:36",
+        "distance_km": 6.7,
+        "distance_mi": 4.16,
+        "duration": "1:55:27",
+        "ascent": 131,
+        "descent": -141,
+        "center_lat": 50.488335926647956,
+        "center_lon": -3.990638306802501,
+        "place_name": "Gutter Tor Car Park, Edward's Path, Sheepstor",
+        "gridref": "SX 57867 67311",
+        "googleMapsLink": "https://www.google.com/maps?q=50.488326,-4.00497",
+        "ind_map_link": "https://moorwalkers.github.io/map.html?track_id=2026-11-12T18:13:36",
+        "elevation_profile_link": "https://moorwalkers.github.io/elevation_profiles/2026-11-12_18-13-36.png",
+        "thumbnail_link": "https://moorwalkers.github.io/track_thumbnails/2026-11-12_18-13-36.png"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -3.913831,
           50.592495
         ]
