@@ -1222,7 +1222,7 @@ def create_tracks_content_page(years, feature_collection):
                         </div>
                         <div class="track-actions">
                         <a href=\"{feature['properties']['googleMapsLink']}\" target=\"_blank\" class="btn">Starting Location</a>
-                        <a href=\"{feature['properties']['ind_map_link']}\" target=\"_blank\" class="btn track-download-action">Download GPX Track File</a>
+                        <a href=\"{feature['properties']['ind_map_link']}\" target=\"_blank\" class="btn track-download-action">Download GPX</a>
                         </div>
                     </div>
                 </div>
